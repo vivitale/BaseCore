@@ -105,5 +105,19 @@
 
 	<style name="Widget.GifView" parent="@android:style/Widget"></style>
 
+	<!-- 带有图标的TextView -->
+	<declare-styleable name="IconText">
+		<attr name="android:text"/>
+		<attr name="IT_text_size" format="dimension"/>
+		<attr name="IT_text_selected_color" format="color"/>
+		<attr name="IT_text_unselected_color" format="color"/>
+		<attr name="IT_selected" format="boolean"/>
+		<attr name="IT_selected_color" format="color"/>
+		<attr name="IT_unselected_color" format="color"/>
+		<attr name="IT_padding" format="dimension"/>
+		<attr name="IT_selected_icon" format="reference"/>
+		<attr name="IT_unselected_icon" format="reference"/>
+	</declare-styleable>
+
 
 </resources>

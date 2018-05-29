@@ -69,7 +69,7 @@ public class PermissionsTool
 			}
 			if(list.size() > 0)
 			{
-				ActivityCompat.requestPermissions(mActivity, list.toArray(new String[list.size()]), 1);
+				ActivityCompat.requestPermissions(mActivity, list.toArray(new String[list.size()]), REQUEST_CODE);
 			}
 			return list;
 		}
