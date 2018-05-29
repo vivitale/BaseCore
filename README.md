@@ -97,7 +97,6 @@ drawable2Bytes              | drawable转byteArr
 bytes2Drawable              | byteArr转drawable
 bitmap2Base64               | Bitmap转Base64
 base642Bitmap               | Base64转Bitmap
-                            |
 **图片处理**|
 getBitmap                   | 获取bitmap
 scale                       | 缩放图片
@@ -122,18 +121,15 @@ zoomImage                   | 缩放图片
 copyCenterBitmap            | 按指定宽高截取中间一段图片
 resourceIdToUri             | 将资源ID转为Uri
 resizeBitmap                | 重新计算图片的最大尺寸
-                            |
 **图片保存**|
 save                        | 保存图片
 saveBitmap2FileZIP          | 保存图片
 saveBitmap2File             | 保存图片
-                            |
 **图片压缩有关**|
 compressByScale             | 按缩放压缩
 compressByQuality           | 按质量压缩
 compressBySampleSize        | 按采样大小压缩
 compressImage               | 压缩图片
-                            |
 **其他**|
 GetLocalOrNetBitmap         | 得到本地或者网络上的bitmap
 getBitmapByUrl              | 下载图片
@@ -191,14 +187,12 @@ BYTE                        | Byte与Byte的倍数
 KB                          | KB与Byte的倍数
 MB                          | MB与Byte的倍数
 GB                          | GB与Byte的倍数
-                            |
 **时间相关常量**                  |
 MSEC                        | 毫秒与毫秒的倍数
 SEC                         | 秒与毫秒的倍数
 MIN                         | 分与毫秒的倍数
 HOUR                        | 时与毫秒的倍数
 DAY                         | 天与毫秒的倍数
-                            |
 **正则相关常量**                  |
 REGEX_MOBILE_SIMPLE         | 手机号（简单）
 REGEX_MOBILE_EXACT          | 手机号（精确）
@@ -284,7 +278,6 @@ toDBC                       | 转化为半角字符
 toSBC                       | 转化为全角字符
 oneCn2ASCII                 | 单个汉字转成ASCII码
 oneCn2PY                    | 单个汉字转成拼音
-                            |
 **数据处理**|
 getAstro                    | 根据日期判断获取对应星座
 hideMobilePhone4            | 隐藏手机中间4位号码 130****0000
@@ -331,7 +324,6 @@ captureWithStatusBar        | 获取当前屏幕截图，包含状态栏
 captureWithoutStatusBar     | 获取当前屏幕截图，不包含状态栏
 getDisplayMetrics           | 获取DisplayMetrics对象
 isScreenLock                | 判断是否锁屏
-                            |
 **硬件信息相关**|
 getUniqueSerialNumber       | 获取手机唯一标识序列号
 getIMEI                     | 获取设备的IMEI
@@ -363,12 +355,10 @@ getLocalIpAddress           | GPS获取IP
 getIpAddressWifi            | wifi获取IP
 getIpAddressOperator        | 3G/4g网络IP
 getIpAddress                | 获取本机的ip地址（上面3种方法都包括）
-                            |
 **app相关信息**|
 getAppInfo                  | 获取包信息
 getAppVersionNo             | 获取App版本号
 getAppVersionName           | 获取App版本名称
-                            |
 **手机操作相关**|
 isPhone                     | 判断设备是否是手机
 getPhoneStatus              | 获取手机状态信息
@@ -389,6 +379,10 @@ px2dp                       | px转dp
 px2dip                      | px转dip
 sp2px                       | sp转px
 px2sp                       | px转sp
+
+
+### Download -> 下载工具
+`TODO 待编辑`
 
 
 ### EditTextUtil -> 输入框控制工具类
@@ -437,7 +431,6 @@ encryptSHA384               | SHA384加密
 encryptSHA512ToString       | SHA512加密
 encryptSHA512               | SHA512加密
 encryptAlgorithm            | 对data进行algorithm算法加密
-                            |
 **DES加密相关**                 |
 DESTemplet                  | DES加密
 encryptDES                  | DES加密
@@ -446,7 +439,6 @@ encryptDES2HexString        | DES加密后转为16进制
 decryptBase64DES            | DES解密Base64编码密文
 decryptHexStringDES         | DES解密16进制密文
 decryptDES                  | DES解密
-                            |
 **3DES加密相关**                 |
 encrypt3DES2Base64          | 3DES加密后转为Base64编码
 encrypt3DES2HexString       | 3DES加密后转为16进制
@@ -454,7 +446,6 @@ encrypt3DES                 | 3DES加密
 decryptBase64_3DES          | 3DES解密Base64编码密文
 decryptHexString3DES        | 3DES解密16进制密文
 decrypt3DES                 | 3DES解密
-                            |
 **AES加密相关**                  |
 encryptAES2Base64           | AES加密后转为Base64编码
 encryptAES2HexString        | AES加密后转为16进制
@@ -487,7 +478,7 @@ getSDCardPath               | 获取SD卡路径
 getDataPath                 | 获取SD卡Data路径
 getFreeSpace                | 获取SD卡剩余空间
 sdCardIsAvailable           | SD卡是否可用
-                            |
+**文件操作** 
 fileExists                  | 文件或者文件夹是否存在
 delAllFile                  | 删除指定文件夹下所有文件, 不保留文件夹.
 copy                        | 文件复制(文件路径)
@@ -543,7 +534,6 @@ getDirName                  | 获取全路径中的最长目录
 getFileName                 | 获取全路径中的文件名
 getFileNameNoExtension      | 获取全路径中的不带拓展名的文件名
 getFileExtension            | 获取全路径中的文件拓展名
-                            |
 **清除数据**                     |
 cleanInternalCache          | 清除内部缓存
 cleanInternalFiles          | 清除内部文件
@@ -946,7 +936,6 @@ info                        | 信息提示(蓝)
 success                     | 成功提示(绿)
 error                       | 错误提示(红)
 warning                     | 警告提示(黄)
-                            |
 **系统 Toast 替代方法**           |
 showToast                   | 显示系统toast
 showToastShort              | 显示系统toast(短)
@@ -961,7 +950,9 @@ doubleClickExit             | 点击两次退出
 ## 其他工具
 ### ViewAnimator
 简单的实现控制View动画的方法
+
 [ViewAnimator Github](https://github.com/florent37)
+
 [ViewAnimator 使用方法](https://github.com/florent37/ViewAnimator/blob/master/README.md)
 
 ## MVP框架介绍
@@ -973,10 +964,15 @@ doubleClickExit             | 点击两次退出
 
 -------
 # 特别感谢 以下文章与项目给予的极大灵感和支持
+
 https://www.jianshu.com/u/46702d5c6978
+
 https://github.com/vondear/RxTools
+
 https://github.com/Blankj/AndroidUtilCode
+
 https://github.com/zzhoujay/RichText
+
 https://github.com/florent37/ViewAnimator
 
 
