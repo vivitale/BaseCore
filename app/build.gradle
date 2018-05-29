@@ -74,6 +74,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     kapt 'com.github.bumptech.glide:compiler:4.6.1'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.6.1'
+//    // 动画
+//    implementation 'com.github.florent37:viewanimator:1.0.5'
 //    // RecyclerView适配器工具
 //    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
 //    implementation 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'

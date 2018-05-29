@@ -50,6 +50,8 @@ compileOnly 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
 compileOnly 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
 compileOnly 'com.squareup.okhttp3:okhttp:3.8.1'
 compileOnly 'com.squareup.okio:okio:1.13.0'
+// 动画
+compileOnly 'com.github.florent37:viewanimator:1.0.5'
 // 图片工具glide
 compileOnly 'com.github.bumptech.glide:glide:4.6.1'
 annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
