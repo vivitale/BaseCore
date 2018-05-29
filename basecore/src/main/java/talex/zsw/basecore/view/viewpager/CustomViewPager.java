@@ -36,14 +36,12 @@ public class CustomViewPager extends ViewPager
 		super(context, attrs);
 	}
 
-	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+	@Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
-		if (mChildrenViews.size() > current)
+		if(mChildrenViews.size() > current)
 		{
 			View child = mChildrenViews.get(current);
-			child
-				.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+			child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
 			height = child.getMeasuredHeight();
 		}
 		heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
@@ -57,14 +55,13 @@ public class CustomViewPager extends ViewPager
 	public void resetHeight(int current)
 	{
 		this.current = current;
-		if (mChildrenViews.size() > current)
+		if(mChildrenViews.size() > current)
 		{
 
 			LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getLayoutParams();
-			if (layoutParams == null)
+			if(layoutParams == null)
 			{
-				layoutParams =
-					new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height);
+				layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height);
 			}
 			else
 			{
@@ -74,6 +71,10 @@ public class CustomViewPager extends ViewPager
 		}
 	}
 
+	/**
+	 * 设置ViewPsger的存放的View和对应的position,此方法必须等View绘制完毕以后调用
+	 * 如果是Fragment,则在onViewCreated之后调用
+	 */
 	public void setObjectForPosition(View view, int position)
 	{
 		mChildrenViews.put(position, view);

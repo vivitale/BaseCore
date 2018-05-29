@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -19,10 +21,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,6 +32,7 @@ import java.util.List;
 
 import talex.zsw.basecore.R;
 import talex.zsw.basecore.util.RegTool;
+import talex.zsw.basecore.util.glide.GlideApp;
 
 
 /**
@@ -160,9 +163,10 @@ public class RichText extends TextView
 		{
 			final URLDrawable urlDrawable = new URLDrawable();
 
-			Target target = new SimpleTarget<Bitmap>()
+			SimpleTarget<Bitmap> target = new SimpleTarget<Bitmap>()
 			{
-				@Override public void onResourceReady(Bitmap bitmap, GlideAnimation glideAnimation)
+				@Override
+				public void onResourceReady(@NonNull Bitmap bitmap, @Nullable Transition<? super Bitmap> transition)
 				{
 					Drawable drawable = new BitmapDrawable(getContext().getResources(), bitmap);
 					drawable.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
@@ -171,20 +175,29 @@ public class RichText extends TextView
 					RichText.this.setText(getText());
 				}
 
-				@Override public void onLoadStarted(Drawable placeholder)
+				@Override public void onLoadStarted(@Nullable Drawable placeholder)
 				{
 					urlDrawable.setBounds(placeholder.getBounds());
 					urlDrawable.setDrawable(placeholder);
 				}
 
-				@Override public void onLoadFailed(Exception e, Drawable errorDrawable)
+				@Override public void onLoadFailed(@Nullable Drawable errorDrawable)
 				{
 					urlDrawable.setBounds(errorDrawable.getBounds());
 					urlDrawable.setDrawable(errorDrawable);
 				}
 			};
+
 			addTarget(target);
-			Glide.with(getContext()).load(source).placeholder(placeHolder).error(errorImage).into(target);
+			GlideApp
+				.with(getContext())
+				.asBitmap()
+				.load(source)
+				.placeholder(new ColorDrawable(0xffF0F0F0))
+				.error(new ColorDrawable(0xffF0F0F0))
+				.fallback(new ColorDrawable(0xffF0F0F0))
+				.transition(BitmapTransitionOptions.withCrossFade())
+				.into(target);
 			return urlDrawable;
 		}
 	};

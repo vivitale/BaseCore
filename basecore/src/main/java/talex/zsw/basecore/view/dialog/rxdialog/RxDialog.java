@@ -10,7 +10,7 @@ import android.view.WindowManager.LayoutParams;
 import talex.zsw.basecore.R;
 
 /**
- * @author vondear
+ * 基础Dialog
  */
 public class RxDialog extends Dialog
 {

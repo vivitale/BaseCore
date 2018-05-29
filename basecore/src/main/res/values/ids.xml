@@ -7,4 +7,7 @@
     <item name="swipe_refresh_header" type="id"/>
     <item name="swipe_load_more_footer" type="id"/>
 
+
+    <item name="glide_tag_id" type="id"/>
+
 </resources>

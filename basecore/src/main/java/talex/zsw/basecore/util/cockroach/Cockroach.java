@@ -3,10 +3,6 @@ package talex.zsw.basecore.util.cockroach;
 import android.os.Handler;
 import android.os.Looper;
 
-/**
- * Created by wanjian on 2017/2/14.
- */
-
 public final class Cockroach
 {
 
@@ -30,8 +26,6 @@ public final class Cockroach
 	 * exceptionHandler.handlerException可能运行在非UI线程中。
 	 * <p>
 	 * 若设置了Thread.setDefaultUncaughtExceptionHandler则可能无法捕获子线程异常。
-	 *
-	 * @param exceptionHandler
 	 */
 	public static synchronized void install(ExceptionHandler exceptionHandler)
 	{

@@ -20,4 +20,10 @@
 		android:layout_height="wrap_content"
 		android:text="显示列表POP"/>
 
+	<ImageView
+		android:id="@+id/mImageView"
+		android:src="@mipmap/ic_launcher"
+		android:layout_width="80dp"
+		android:layout_height="80dp"/>
+
 </LinearLayout>

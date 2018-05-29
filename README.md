@@ -1,11 +1,83 @@
 # BaseCore
-[![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![](https://jitpack.io/v/vivitale/BaseCore.svg)](https://jitpack.io/#vivitale/BaseCore) [![Twitter](https://img.shields.io/badge/Gradle-3.0.0-brightgreen.svg)](https://github.com/vivitale/BaseCore)
+[![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![](https://jitpack.io/v/vivitale/BaseCore.svg)](https://jitpack.io/#vivitale/BaseCore) [![Twitter](https://img.shields.io/badge/Gradle-3.0.1-brightgreen.svg)](https://github.com/vivitale/BaseCore)
+
+[TOC]
  
- 
-## Usage
+## 使用方法
 > 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.7'	}> 第三步 使用方法,在Application中初始化:
  
     Tool.init(this, BuildConfig.DEBUG);
+
+## 库介绍
+```
+// 已经整合进入BaseCore中的库
+api 'com.android.support:support-v4:27.1.0'
+api 'com.android.support:appcompat-v7:27.1.0'
+api 'com.android.support:design:27.1.0'
+api 'com.android.support:recyclerview-v7:27.1.0'
+api 'com.android.support:cardview-v7:27.1.0'
+api 'com.android.support:percent:27.1.0'
+api 'com.android.support.constraint:constraint-layout:1.0.2'
+// json相关
+api 'com.google.code.gson:gson:2.8.0'
+// Knife
+api 'com.jakewharton:butterknife:8.4.0'
+annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0' //Java 的butterknife注解处理器
+// Kotlin
+api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+api "org.jetbrains.anko:anko-common:$anko_version"
+api "org.jetbrains.anko:anko-sqlite:$anko_version"
+// RxJava
+api 'io.reactivex.rxjava2:rxjava:2.1.1'
+api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0' // 包含android库和基础库
+api 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.1.0' // 支持Kotlin语法的RxLifecycle基础库
+api 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.1.0' //支持Kotlin语法的Android库
+// EventBus
+api 'org.greenrobot:eventbus:3.0.0'
+//沉浸式
+api 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+// 动画
+api 'com.nineoldandroids:library:2.4.0'
+
+
+// 依据项目情况需自行整合的库
+// 网络请求
+compileOnly 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
+compileOnly 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
+compileOnly 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
+compileOnly 'com.squareup.okhttp3:okhttp:3.8.1'
+compileOnly 'com.squareup.okio:okio:1.13.0'
+// 图片工具glide
+compileOnly 'com.github.bumptech.glide:glide:4.6.1'
+annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+compileOnly 'com.github.bumptech.glide:okhttp3-integration:4.6.1'
+// RecyclerView适配器工具
+compileOnly 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+compileOnly 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
+// 轮播图
+compileOnly 'cn.bingoogolapple:bga-banner:2.0.3@aar'
+// 二维码,一维码工具
+compileOnly 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
+compileOnly 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
+// 图片选择、预览、九宫格图片控件、拖拽排序九宫格图片控件,需要同时选择 bga-baseadapter
+compileOnly 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+```
+### 常用工具库
+库名 | 简单说明 | GitHub | 使用方法
+--------- | ------------- | ------------- | -------------
+Okgo | 网络请求框架 |[Github](https://github.com/jeasonlzy/okhttp-OkGo) | [使用方法](https://github.com/jeasonlzy/okhttp-OkGo/wiki)
+ViewAnimator  | 给View添加动画效果 |[Github](https://github.com/florent37)  | [使用方法](https://github.com/florent37/ViewAnimator/blob/master/README.md)
+BaseRecyclerViewAdapterHelper  | RecyclerView适配器简单化库 |[Github](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)  | [使用方法](https://www.jianshu.com/p/b343fcff51b0)
+BGABaseAdapter  | AdapterView 和 RecyclerView 中通用的 Adapter 和 ViewHolder |[Github](https://github.com/bingoogolapple/BGABaseAdapter-Android)  | 
+BGABanner  | 轮播图 |[Github](https://github.com/bingoogolapple/BGABanner-Android)  | 
+BGAQRCode  | 条码工具库 |[Github](https://github.com/bingoogolapple/BGAQRCode-Android)  | 
+BGAPhotoPicker  | 图片选择、预览等 |[Github](https://github.com/bingoogolapple/BGAPhotoPicker-Android)
+
+
+## MVP框架介绍
 
 ## Util
 ### ActivityTool  -> Activity相关工具
@@ -385,7 +457,108 @@ px2sp                       | px转sp
 
 
 ### Download -> 下载工具
-`TODO 待编辑`
+```
+// ----------- 下载相关 ----------- 
+@SuppressLint("SdCardPath")
+public static final String path = "/mnt/sdcard/Download/Sendinfo";// 保存到SD卡的文件夹
+private String localfile = "";// 文件下载之后的本地真实地址
+public String host = "http://daodao.zhiyoubao.com";//下载服务器的地址
+private String dowonloadUrl = "";// 文件的最终下载地址
+private static final String threadcount = "4";// 设置下载线程数为4
+private DownloaderService downloader;
+
+private Handler mHandler = new Handler()
+{
+    public void handleMessage(Message msg)
+    {
+        if (msg.what == 5478)
+        {
+            String url = (String) msg.obj;
+            int length = msg.arg1;
+            // 设置进度条按读取的length长度更新
+            mProgressBar.incrementProgressBy(length);
+            mTVProgress.setText(getPercent(mProgressBar.getProgress(), mProgressBar.getMax()));
+            if (mProgressBar.getProgress() == mProgressBar.getMax())
+            {
+                // 下载完成！
+                // 下载完成后清除进度条并将map中的数据清空
+                downloader.delete(url);
+                downloader.reset();
+                ...
+            }
+        }
+    }
+};
+/** 响应开始下载按钮的点击事件 */
+private void startDownload()
+{
+    dowonloadUrl = host + mUpdateAppInfo.getFilePath();
+    String fileName = context.getPackageName() + mUpdateAppInfo.getVersion() + ".apk";
+    localfile = path + fileName;
+    DownloadTask downloadTask = new DownloadTask();
+    downloadTask.execute(dowonloadUrl, localfile, threadcount);
+}
+/** 响应暂停下载按钮的点击事件 */
+private void pauseDownload()
+{
+    if (downloader != null)
+    {
+        downloader.pause();
+    }
+}
+/** 显示进度条 */
+private void showProgress(DownloadInfoDetail downloadInfoDetail)
+{
+    mProgressBar.setMax(downloadInfoDetail.getFileSize());
+    mProgressBar.setProgress(downloadInfoDetail.getComplete());
+}
+/** 获取当前进度的百分比 */
+private String getPercent(int now, int max)
+{
+    float percent = (float) now / (float) max * 100;
+    DecimalFormat df = new DecimalFormat("#0.00");
+    return df.format(percent) + "%";
+}
+/** 下载任务  */
+private class DownloadTask extends AsyncTask<String, Integer, DownloadInfoDetail>
+{
+    String urlstr = null;
+    @Override
+    protected void onPreExecute()
+    {
+    }
+    @Override
+    protected DownloadInfoDetail doInBackground(String... params)
+    {
+        urlstr = params[0];
+        String localfile = params[1];
+        int threadcount = Integer.parseInt(params[2]);
+        // 初始化一个downloader下载器
+        if (downloader == null)
+        {
+            downloader = new DownloaderService(urlstr, localfile,
+                threadcount, context, mHandler);
+        }
+        if (downloader.isdownloading())
+        {
+            return null;
+        }
+        // 得到下载信息类的个数组成集合
+        return downloader.getDownloaderInfors();
+    }
+    @Override
+    protected void onPostExecute(DownloadInfoDetail downloadInfoDetail)
+    {
+        if (downloadInfoDetail != null)
+        {
+            // 显示进度条
+            showProgress(downloadInfoDetail);
+            // 调用方法开始下载
+            downloader.download();
+        }
+    }
+}
+```
 
 
 ### EditTextUtil -> 输入框控制工具类
@@ -473,7 +646,7 @@ showFragment                | 动态显示Fragment
 ### FileTool -> 文件操作相关
 方法名 | 说明
 --------- | -------------
-**SD卡操作**                     |
+**SD卡操作**|
 getRootPath                 | 得到SD卡根目录
 getCecheFolder              | 获取本应用图片缓存目录
 isSDCardEnable              | 判断SD卡是否打开
@@ -481,7 +654,7 @@ getSDCardPath               | 获取SD卡路径
 getDataPath                 | 获取SD卡Data路径
 getFreeSpace                | 获取SD卡剩余空间
 sdCardIsAvailable           | SD卡是否可用
-**文件操作** 
+**文件操作**|
 fileExists                  | 文件或者文件夹是否存在
 delAllFile                  | 删除指定文件夹下所有文件, 不保留文件夹.
 copy                        | 文件复制(文件路径)
@@ -537,7 +710,7 @@ getDirName                  | 获取全路径中的最长目录
 getFileName                 | 获取全路径中的文件名
 getFileNameNoExtension      | 获取全路径中的不带拓展名的文件名
 getFileExtension            | 获取全路径中的文件拓展名
-**清除数据**                     |
+**清除数据**|
 cleanInternalCache          | 清除内部缓存
 cleanInternalFiles          | 清除内部文件
 cleanInternalDbs            | 清除内部数据库
@@ -545,6 +718,21 @@ cleanInternalDbByName       | 根据名称清除数据库
 cleanInternalSP             | 清除内部SP
 cleanExternalCache          | 清除外部缓存
 cleanCustomCache            | 清除自定义目录下的文件
+
+
+### GlideTool -> Glide下载图片工具类
+方法名 | 说明
+--------- | -------------
+loadImg                     | 加载图片(设置占位图,调整图片宽高,自定义)
+loadImgCenterCrop           | 缩放宽和高都到达View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能超过边界
+loadImgCenterInside         | 如果宽和高都在View的边界内，那就不缩放，否则缩放宽和高都进入View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能在边界内
+loadImgFitCenter            | 缩放宽和高都进入View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能在边界内
+loadImgCircleCrop           | 加载圆形图片
+loadImgRoundedCorners       | 加载圆角图片
+loadImgNoCache              | 加载图片并且不缓存
+loadImageSimpleTarget       | 加载图片返回Bitmap
+getBitmap                   | 获取图片,或者图片路径
+clean                       | 清空图片缓存
 
 
 ### IntentTool -> Intent相关 
@@ -882,12 +1070,29 @@ setWebData                  | 简单震动一次
 
 ### Dialog
 #### SweetAlertDialog -> 几种Dialog直接的切换显示
-`TODO 待编辑`
+原项目地址:[https://github.com/pedant/sweet-alert-dialog](https://github.com/pedant/sweet-alert-dialog)
+```
+public static final int NORMAL_TYPE = 0;        // 普通模式
+public static final int ERROR_TYPE = 1;            // 显示错误框
+public static final int SUCCESS_TYPE = 2;        // 显示成功框
+public static final int WARNING_TYPE = 3;        // 显示警告
+public static final int CUSTOM_IMAGE_TYPE = 4;    // 显示图片
+public static final int PROGRESS_TYPE = 5;        // 显示圆形进度条
+```
 
 ### EditText
 #### ClearEditText -> 带清理功能的EditText 
+方法名 | 说明
+--------- | -------------
 shake                       | 抖动
 setAfterChangedListener     | 设置文字变化以后的事件
+
+### ImageView
+#### GifView -> 显示Gif图片
+方法名 | 说明
+--------- | -------------
+setMovieResource            | 设置gif的id
+
 
 ### PopupWindow
 #### MyPopupWindow  -> 可以监听显示,消失事件的POP
@@ -906,30 +1111,117 @@ PopLayout popLayout = PopLayout(MainActivity.this, ViewGroup.LayoutParams.WRAP_C
 popLayout.show(mBtn1)
 ```
 #### PopListView  -> 弹出一个列表pop
-`TODO 待编辑`
+```
+PopListView popListView = new PopListView(this,
+        ViewGroup.LayoutParams.WRAP_CONTENT,
+        ViewGroup.LayoutParams.WRAP_CONTENT);
+popListView.addAction(new ActionItem("标清"));
+popListView.addAction(new ActionItem("高清"));
+popListView.addAction(new ActionItem("超清"));
+popListView.setColorItemText(0);
+// popListView.setmAdapter();//给listView设置adapter来实现列表项目格式自定义
+popListView.setItemOnClickListener(new PopListView.OnItemOnClickListener(){
+    @Override public void onItemClick(ActionItem item, int position)
+    {
+        
+    }
+});
+popListView.show(view, 0);
+```
+
+### RecyleView
+类名 | 说明
+--------- | -------------
+DividerGridItemDecoration   | 设置Grid下RecyleView的间隔
+DividerItemDecoration       | 设置List下RecyleView的间隔
+FullyGridLayoutManager      | 使RecyclerView使用GridLayoutManager嵌套在ScrollView中
+FullyLinearLayoutManager    | 使RecyclerView使用LinearLayoutManager嵌套在ScrollView中
+FullyStaggeredGridLayoutManager| 使RecyclerView使用瀑布流嵌套在ScrollView中
+SampleFooter                | 简单实现的没有更多底部栏
+SampleHeader                | 简单实现的没有数据栏
+
 
 ### TextView
 #### AutofitTextView -> 自适应文字大小的TextView
-`TODO 待编辑`
+原项目地址:[https://github.com/grantland/android-autofittextview](https://github.com/grantland/android-autofittextview)
+
+自动修改文字大小以适应View的宽度
+
+
 #### RichText  -> Android平台下的富文本解析器
-项目地址:[https://github.com/zzhoujay/RichText](https://github.com/zzhoujay/RichText)
+原项目地址:[https://github.com/zzhoujay/RichText](https://github.com/zzhoujay/RichText)
 在此项目中集成的是老版本的RichText,单一个类文件,如需扩展Markdown等新功能请前往Github集成最新项目
 
 方法名 | 说明
 --------- | -------------
-setRichText                 | 显示系统toast(短)
+setRichText                 | 设置富文本内容
 setPlaceHolder              | 设置站位图片
 setErrorImage               | 设置错误图片
 setOnImageClickListener     | 设置图片点击事件
 
 ### ViewPager
 #### CustomViewPager -> 自动适应高度的ViewPager
-`TODO 待编辑`
+在Activity中处理的方法
 
-### PageControlView  -> 底部小圆圈
-`TODO 待编辑`
+```
+mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+{
+    @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+    {
+    
+    }
 
-### RxToast  -> Activity相关工具
+    @Override public void onPageSelected(int position)
+    {
+        mViewPager.resetHeight(position);
+    }
+
+    @Override public void onPageScrollStateChanged(int state)
+    {
+    }
+});
+mViewPager.resetHeight(0);
+
+
+/** 获取当前选中的Tab */
+public int getCurr()
+{
+    return mViewPager.getCurrentItem();
+}
+
+/** 设置ViewPsger的存放的View和对应的position,此方法必须等View绘制完毕以后调用,如果是Fragment,则在onViewCreated之后调用 */
+public void setObjectForPosition(View view, int position)
+{
+    mViewPager.setObjectForPosition(view, position);
+}
+```
+在Fragment中处理的方法
+
+```
+((CompanyDetailActivity) getActivity()).setObjectForPosition(mView, position);
+```
+
+方法名 | 说明
+--------- | -------------
+resetHeight                 | 在切换tab的时候，重置ViewPager的高度
+setObjectForPosition        | 设置ViewPsger的存放的View和对应的position,此方法必须等View绘制完毕以后调用,如果是Fragment,则在onViewCreated之后调用
+
+
+### WebView
+#### MyWebView -> 高度为网页最大的WevView
+高度会自行计算的WebView
+
+### Other
+#### PageControlView  -> 底部小圆圈
+方法名 | 说明
+--------- | -------------
+setCount                    | 设置圆圈数量
+generatePageControl         | 设置当前选中圆圈
+setSelectRes                | 设置选中圆圈资源id
+setUnSelectRes              | 设置未选中圆圈资源id
+
+
+#### RxToast  -> Activity相关工具
 方法名 | 说明
 --------- | -------------
 **Toast 替代方法 ：立即显示无需等待**|
@@ -946,19 +1238,63 @@ showToastLong               | 显示系统toast(短)
 doubleClickExit             | 点击两次退出
 
 
-### WebView
-#### MyWebView -> 高度为网页最大的WevView
+#### SwipeToLoadLayout -> 上拉刷新,下拉加载
+原项目地址:[https://github.com/Aspsine/SwipeToLoadLayout](https://github.com/Aspsine/SwipeToLoadLayout)
 
+相比原项目功能增加了可设置固定头部的功能
 
-## 其他工具
-### ViewAnimator
-简单的实现控制View动画的方法
+```
+<talex.zsw.baselibrary.view.SwipeToLoadLayout.SwipeToLoadLayout
+    android:id="@+id/mSwipeToLoadLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:swipe_style="scale">
 
-[ViewAnimator Github](https://github.com/florent37)
+    <include
+        android:id="@id/swipe_refresh_header"
+        layout="@layout/layout_twitter_header"/>
 
-[ViewAnimator 使用方法](https://github.com/florent37/ViewAnimator/blob/master/README.md)
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@id/swipe_head"
+        android:background="@color/aqua"
+        android:layout_height="wrap_content">
 
-## MVP框架介绍
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试测试"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@id/swipe_target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:scrollbars="none"/>
+
+    <include
+        android:id="@id/swipe_load_more_footer"
+        layout="@layout/layout_classic_footer"/>
+</talex.zsw.baselibrary.view.SwipeToLoadLayout.SwipeToLoadLayout>
+```
+
+    可用已定义的下拉刷新头部
+    layout_gif_header
+    layout_google_hook_header
+    layout_google_header
+    layout_jd_header
+    layout_twitter_header
+    layout_yalantis_header
+    
+    可用已定义的上拉加载底部
+    layout_classic_footer
+    layout_google_hook_footer
+    layout_google_footer
 
 
 ![未完待续](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527567486795&di=19907f5d73242150201c8779411e5b61&imgtype=0&src=http%3A%2F%2Fcdnq.duitang.com%2Fuploads%2Fitem%2F201501%2F10%2F20150110163418_h4JFG.thumb.700_0.jpeg)
@@ -979,5 +1315,13 @@ https://github.com/Blankj/AndroidUtilCode
 https://github.com/zzhoujay/RichText
 
 https://github.com/florent37/ViewAnimator
+
+https://github.com/pedant/sweet-alert-dialog
+
+https://github.com/Aspsine/SwipeToLoadLayout
+
+https://github.com/grantland/android-autofittextview
+
+https://github.com/bingoogolapple
 
 

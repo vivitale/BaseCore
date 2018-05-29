@@ -1,9 +1,7 @@
 package talex.zsw.basecore.interfaces;
 
 /**
- *
- * @author Vondear
- * @date 2017/9/22
+ * 无返回事件的回调
  */
 
 public interface OnSimpleListener

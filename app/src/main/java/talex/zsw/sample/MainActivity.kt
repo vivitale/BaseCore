@@ -4,10 +4,16 @@ import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import butterknife.OnClick
+import kotlinx.android.synthetic.main.activity_main.*
 import talex.zsw.basecore.model.ActionItem
 import talex.zsw.basecore.util.LogTool
+import talex.zsw.basecore.util.glide.GlideTool
 import talex.zsw.basecore.view.popupwindow.PopLayout
 import talex.zsw.basecore.view.popupwindow.PopListView
+import talex.zsw.sample.base.BaseMVPActivity
+import talex.zsw.sample.entitys.BaseResponse
+import talex.zsw.sample.mvp.CommonPresenter
+import talex.zsw.sample.mvp.CommonView
 
 /**
  * 作者: 赵小白 email:vvtale@gmail.com  
@@ -33,6 +39,7 @@ class MainActivity : BaseMVPActivity<CommonView.Presenter>(), CommonView.View
 
     override fun initData()
     {
+        GlideTool.loadImgCircleCrop(mImageView,"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1182022639,405039723&fm=27&gp=0.jpg")
     }
 
     override fun bindData(response: BaseResponse)
