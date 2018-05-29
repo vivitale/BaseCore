@@ -7,8 +7,8 @@ android {
 	defaultConfig {
 		minSdkVersion 15
 		targetSdkVersion 26
-		versionCode 3
-		versionName "0.0.3"
+		versionCode 4
+		versionName "0.0.4"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 		multiDexEnabled true
@@ -45,52 +45,55 @@ android {
 }
 
 dependencies {
-	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	api fileTree(dir: 'libs', include: ['*.jar'])
 
-	implementation 'com.android.support:support-v4:27.1.0'
-	implementation 'com.android.support:appcompat-v7:27.1.0'
-	implementation 'com.android.support:design:27.1.0'
-	implementation 'com.android.support:recyclerview-v7:27.1.0'
-	implementation 'com.android.support:cardview-v7:27.1.0'
-	implementation 'com.android.support:percent:27.1.0'
-	implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+	api 'com.android.support:support-v4:27.1.0'
+	api 'com.android.support:appcompat-v7:27.1.0'
+	api 'com.android.support:design:27.1.0'
+	api 'com.android.support:recyclerview-v7:27.1.0'
+	api 'com.android.support:cardview-v7:27.1.0'
+	api 'com.android.support:percent:27.1.0'
+	api 'com.android.support.constraint:constraint-layout:1.0.2'
 	// json相关
-	implementation 'com.google.code.gson:gson:2.8.0'
+	api 'com.google.code.gson:gson:2.8.0'
 	// 网络请求
-	implementation 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
-	implementation 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
-	implementation 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
-	implementation 'com.squareup.okhttp3:okhttp:3.8.1'
-	implementation 'com.squareup.okio:okio:1.13.0'
+	api 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
+	api 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
+	api 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
+	api 'com.squareup.okhttp3:okhttp:3.8.1'
+	api 'com.squareup.okio:okio:1.13.0'
 	// 图片工具glide
-	implementation 'com.github.bumptech.glide:glide:3.8.0'
-	implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+	api 'com.github.bumptech.glide:glide:3.8.0'
+	api 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
 	// Knife
-	implementation 'com.jakewharton:butterknife:8.4.0'
+	api 'com.jakewharton:butterknife:8.4.0'
 	annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0' //Java 的butterknife注解处理器
 	//	kapt 'com.jakewharton:butterknife-compiler:8.7.0' // *** 在app中添加 *** Kotlin 的butterknife注解处理器
 	// Kotlin
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-	implementation "org.jetbrains.anko:anko-common:$anko_version"
-	implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
+	api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+	api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	api "org.jetbrains.anko:anko-common:$anko_version"
+	api "org.jetbrains.anko:anko-sqlite:$anko_version"
 	// RxJava
-	implementation 'io.reactivex.rxjava2:rxjava:2.1.1'
-	implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-	implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-	//	implementation 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'// rxlifecycle 基础库
-	//	implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.1.0' // rxlifecycle android库,包含基础库
-	implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0' // 包含android库和基础库
-	implementation 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.1.0' // 支持Kotlin语法的RxLifecycle基础库
-	implementation 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.1.0' //支持Kotlin语法的Android库
+	api 'io.reactivex.rxjava2:rxjava:2.1.1'
+	api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+	api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+	//	api 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'// rxlifecycle 基础库
+	//	api 'com.trello.rxlifecycle2:rxlifecycle-android:2.1.0' // rxlifecycle android库,包含基础库
+	api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0' // 包含android库和基础库
+	api 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.1.0' // 支持Kotlin语法的RxLifecycle基础库
+	api 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.1.0' //支持Kotlin语法的Android库
 	// EventBus
-	implementation 'org.greenrobot:eventbus:3.0.0'
+	api 'org.greenrobot:eventbus:3.0.0'
 	//	kapt 'org.greenrobot:eventbus-annotation-processor:3.0.1'// *** 在app中添加 ***
 	//	provided 'org.glassfish:javax.annotation:10.0-b28'// *** 在app中添加 ***
 	//沉浸式
-	implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+	api 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 	// 动画
-	implementation 'com.nineoldandroids:library:2.4.0'
+	api 'com.nineoldandroids:library:2.4.0'
+	compileOnly 'com.github.florent37:viewanimator:1.0.5'
+	// RecyclerView适配器工具
+	api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
 }
 
 allprojects {

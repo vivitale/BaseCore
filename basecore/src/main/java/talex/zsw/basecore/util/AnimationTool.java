@@ -195,7 +195,7 @@ public class AnimationTool
         view.setVisibility(View.VISIBLE);
 
         ObjectAnimator popup = ObjectAnimator.ofPropertyValuesHolder(view,
-                PropertyValuesHolder.ofFloat("alpha", 0f, 1f),
+                PropertyValuesHolder.ofFloat("alpha_out", 0f, 1f),
                 PropertyValuesHolder.ofFloat("scaleX", 0f, 1f),
                 PropertyValuesHolder.ofFloat("scaleY", 0f, 1f));
         popup.setDuration(duration);
@@ -213,7 +213,7 @@ public class AnimationTool
      */
     public static ObjectAnimator popout(final View view, final long duration, final AnimatorListenerAdapter animatorListenerAdapter) {
         ObjectAnimator popout = ObjectAnimator.ofPropertyValuesHolder(view,
-                PropertyValuesHolder.ofFloat("alpha", 1f, 0f),
+                PropertyValuesHolder.ofFloat("alpha_out", 1f, 0f),
                 PropertyValuesHolder.ofFloat("scaleX", 1f, 0f),
                 PropertyValuesHolder.ofFloat("scaleY", 1f, 0f));
         popout.setDuration(duration);

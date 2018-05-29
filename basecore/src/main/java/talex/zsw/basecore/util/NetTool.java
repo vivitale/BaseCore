@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import talex.zsw.basecore.view.RxToast;
+import talex.zsw.basecore.view.other.RxToast;
 
 /**
  * 网络工具

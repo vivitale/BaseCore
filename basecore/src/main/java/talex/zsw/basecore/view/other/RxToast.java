@@ -1,4 +1,4 @@
-package talex.zsw.basecore.view;
+package talex.zsw.basecore.view.other;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

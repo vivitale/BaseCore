@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 import talex.zsw.basecore.model.Gps;
-import talex.zsw.basecore.view.RxToast;
+import talex.zsw.basecore.view.other.RxToast;
 
 /**
  * 定位相关工具类

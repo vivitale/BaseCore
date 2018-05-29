@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<talex.zsw.basecore.view.other.swipetoloadlayout.footer.GoogleHookLoadMoreFooterView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/load_more_footer_height_google"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <talex.zsw.basecore.view.other.swipetoloadlayout.drawable.google.GoogleCircleProgressView
+        android:id="@+id/googleProgress"
+        android:layout_width="@dimen/load_more_drawable_size_google"
+        android:layout_height="@dimen/load_more_drawable_size_google"
+        android:layout_gravity="center"
+        app:gcp_arrow_height="6dp"
+        app:gcp_arrow_width="8dp"
+        app:gcp_progress_stoke_width="3dp"
+        app:gcp_show_arrow="true"/>
+</talex.zsw.basecore.view.other.swipetoloadlayout.footer.GoogleHookLoadMoreFooterView>

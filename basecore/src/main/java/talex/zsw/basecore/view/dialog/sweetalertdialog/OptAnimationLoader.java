@@ -88,7 +88,7 @@ public class OptAnimationLoader
 				anim = new AnimationSet(c, attrs);
 				createAnimationFromXml(c, parser, (AnimationSet) anim, attrs);
 			}
-			else if (name.equals("alpha"))
+			else if (name.equals("alpha_out"))
 			{
 				anim = new AlphaAnimation(c, attrs);
 			}

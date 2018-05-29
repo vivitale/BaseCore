@@ -52,6 +52,11 @@ public class RegTool
 		return str == null || str.length() == 0 || "null".equals(str);
 	}
 
+	public static boolean isBlank(@Nullable String str)
+	{
+		return str == null || str.length() == 0 || "null".equals(str);
+	}
+
 	/**
 	 * 判断对象是否为空
 	 *
