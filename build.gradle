@@ -6,34 +6,24 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0'
-        // 添加如下插件以上传 AAR 至 bintray
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
-
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
-    }
-}
+        // 发布项目到 JitPack
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven {
-            url "https://dl.bintray.com/vvtale/maven"
+    }
+
+    allprojects {
+        repositories {
+            google()
+            jcenter()
+            mavenCentral()
+            maven { url "https://jitpack.io" }
         }
-        mavenCentral()
     }
-    tasks.withType(Javadoc).all {
-        enabled = false
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

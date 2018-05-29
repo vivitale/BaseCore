@@ -1,7 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.jakewharton.butterknife'
 
 android {
 	compileSdkVersion 27
@@ -103,98 +101,4 @@ allprojects {
 	}
 }
 
-// ---------------------- Jcenter ----------------------
-
-if (project.hasProperty("android")) { // Android libraries
-	task sourcesJar(type: Jar) {
-		classifier = 'sources'
-		from android.sourceSets.main.java.srcDirs
-	}
-
-	task javadoc(type: Javadoc) {
-		source = android.sourceSets.main.java.srcDirs
-		classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-	}
-} else { // Java libraries
-	task sourcesJar(type: Jar, dependsOn: classes) {
-		classifier = 'sources'
-		from sourceSets.main.allSource
-	}
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-	classifier = 'javadoc'
-	from javadoc.destinationDir
-}
-
-artifacts {
-	archives javadocJar
-	archives sourcesJar
-}
-
-ext {
-	siteUrl = 'https://github.com/vivitale/BaseCore'
-	gitUrl = 'https://github.com/vivitale/BaseCore.git'
-	currentVersion = '0.0.2'
-	groupId = 'talex.zsw.base'
-	artifactId = 'basecore'
-	desc = 'Android project base library'
-}
-
-
-group = groupId
-version = currentVersion
-
-install {
-	repositories.mavenInstaller {
-		pom {
-			project {
-				name artifactId
-				description desc
-				url siteUrl
-
-				packaging 'aar'
-				groupId groupId
-				artifactId artifactId
-				version currentVersion
-
-				licenses {
-					license {
-						name 'The Apache Software License, Version 2.0'
-						url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-					}
-				}
-				developers {
-					developer {
-						id 'vvtale'
-						name 'ShengWei Zhao'
-						email 'vvtale@gmail.com'
-					}
-				}
-				scm {
-					connection gitUrl
-					developerConnection gitUrl
-					url siteUrl
-				}
-			}
-		}
-	}
-}
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-bintray {
-	user = properties.getProperty("bintray.user")
-	key = properties.getProperty("bintray.implementationkey")
-	configurations = ['archives']
-	pkg {
-		repo = "maven"
-		name = artifactId
-		websiteUrl = siteUrl
-		vcsUrl = gitUrl
-		licenses = ["Apache-2.0"]
-		publish = true
-		publicDownloadNumbers = true
-	}
-}
-
+// ---------------------- JitPack ----------------------
