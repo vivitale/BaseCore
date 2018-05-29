@@ -1,18 +1,22 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+    ext.kotlin_version = '1.2.31'
+    ext.anko_version = '0.10.1'
     repositories {
         google()
         jcenter()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+        classpath 'com.android.tools.build:gradle:3.0.0'
+        // 添加如下插件以上传 AAR 至 bintray
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
     }
 }
 
@@ -20,9 +24,13 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven{
-            url "https://dl.bintray.com/vivitale/maven"
+        maven {
+            url "https://dl.bintray.com/vvtale/maven"
         }
+        mavenCentral()
+    }
+    tasks.withType(Javadoc).all {
+        enabled = false
     }
 }
 

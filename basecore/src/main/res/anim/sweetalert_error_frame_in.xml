@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 错误提示圆框的进场动画 -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sweet="http://schemas.android.com/apk/res-auto"
+    android:interpolator="@android:anim/linear_interpolator"
+    android:shareInterpolator="true" >
+
+    <alpha
+        android:duration="400"
+        android:fromAlpha="0"
+        android:toAlpha="1" />
+
+    <sweet:talex.zsw.basecore.view.dialog.sweetalertdialog.Rotate3dAnimation
+        android:duration="400"
+        sweet:SAD_fromDeg="100"
+        sweet:SAD_pivotX="50%"
+        sweet:SAD_pivotY="50%"
+        sweet:SAD_rollType="x"
+        sweet:SAD_toDeg="0" />
+
+</set>

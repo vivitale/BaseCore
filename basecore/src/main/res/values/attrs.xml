@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress ALL -->
+<resources>
+
+	<!-- SweetAlertDialog -->
+	<declare-styleable name="Rotate3dAnimation">
+		<attr name="SAD_rollType" format="enum">
+			<enum name="x" value="0"/>
+			<enum name="y" value="1"/>
+			<enum name="z" value="2"/>
+		</attr>
+		<attr name="SAD_fromDeg" format="float"/>
+		<attr name="SAD_toDeg" format="float"/>
+		<attr name="SAD_pivotX" format="fraction"/>
+		<attr name="SAD_pivotY" format="fraction"/>
+	</declare-styleable>
+	<declare-styleable name="ProgressWheel">
+		<attr name="SAD_matProg_progressIndeterminate" format="boolean"/>
+		<attr name="SAD_matProg_barColor" format="color"/>
+		<attr name="SAD_matProg_rimColor" format="color"/>
+		<attr name="SAD_matProg_rimWidth" format="dimension"/>
+		<attr name="SAD_matProg_spinSpeed" format="float"/>
+		<attr name="SAD_matProg_barSpinCycleTime" format="integer"/>
+		<attr name="SAD_matProg_circleRadius" format="dimension"/>
+		<attr name="SAD_matProg_fillRadius" format="boolean"/>
+		<attr name="SAD_matProg_barWidth" format="dimension"/>
+		<attr name="SAD_matProg_linearProgress" format="boolean"/>
+	</declare-styleable>
+
+	<!-- RichText富文本显示 -->
+	<declare-styleable name="RichText">
+		<attr name="RT_placeHolder"
+		      format="reference"/>
+		<attr name="RT_errorImage"
+		      format="reference"/>
+		<attr name="RT_default_width"
+		      format="dimension"/>
+		<attr name="RT_default_height"
+		      format="dimension"/>
+	</declare-styleable>
+
+	<!-- AutofitHelper -->
+	<declare-styleable name="AutofitTextView">
+		<!-- Minimum size of the text. -->
+		<attr name="minTextSize" format="dimension" />
+		<!-- Amount of precision used to calculate the correct text size to fit within its
+		bounds. Lower precision is more precise and takes more time. -->
+		<attr name="precision" format="float" />
+		<!-- Defines whether to automatically resize text to fit to the view's bounds. -->
+		<attr name="sizeToFit" format="boolean" />
+	</declare-styleable>
+
+</resources>

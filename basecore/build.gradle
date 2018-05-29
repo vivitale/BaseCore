@@ -1,20 +1,24 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
 	compileSdkVersion 27
-
-
-
+	buildToolsVersion '26.0.3'
 	defaultConfig {
 		minSdkVersion 15
-		targetSdkVersion 27
-		versionCode 1
-		versionName "1.0"
+		targetSdkVersion 26
+		versionCode 2
+		versionName "0.0.2"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+		multiDexEnabled true
+	}
 
+	compileOptions {
+		sourceCompatibility 1.8
+		targetCompatibility 1.8
 	}
 
 	buildTypes {
@@ -22,20 +26,175 @@ android {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
+
+		debug {
+			//            applicationIdSuffix ".debug"
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+
+		unsigned {
+			//			versionNameSuffix '-unsigned'
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
 	}
 
 	lintOptions {
+		checkReleaseBuilds false
 		abortOnError false
 	}
-
 }
 
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-	implementation 'com.android.support:appcompat-v7:27.0.2'
-	testImplementation 'junit:junit:4.12'
-	androidTestImplementation 'com.android.support.test:runner:1.0.1'
-	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+	implementation 'com.android.support:support-v4:27.1.0'
+	implementation 'com.android.support:appcompat-v7:27.1.0'
+	implementation 'com.android.support:design:27.1.0'
+	implementation 'com.android.support:recyclerview-v7:27.1.0'
+	implementation 'com.android.support:cardview-v7:27.1.0'
+	implementation 'com.android.support:percent:27.1.0'
+	implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+	// json相关
+	implementation 'com.google.code.gson:gson:2.8.0'
+	// 网络请求
+	implementation 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
+	implementation 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
+	implementation 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
+	implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+	implementation 'com.squareup.okio:okio:1.13.0'
+	// 图片工具glide
+	implementation 'com.github.bumptech.glide:glide:3.8.0'
+	implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+	// Knife
+	implementation 'com.jakewharton:butterknife:8.4.0'
+	annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0' //Java 的butterknife注解处理器
+	//	kapt 'com.jakewharton:butterknife-compiler:8.7.0' // *** 在app中添加 *** Kotlin 的butterknife注解处理器
+	// Kotlin
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	implementation "org.jetbrains.anko:anko-common:$anko_version"
+	implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
+	// RxJava
+	implementation 'io.reactivex.rxjava2:rxjava:2.1.1'
+	implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+	implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+	//	implementation 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'// rxlifecycle 基础库
+	//	implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.1.0' // rxlifecycle android库,包含基础库
+	implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0' // 包含android库和基础库
+	implementation 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.1.0' // 支持Kotlin语法的RxLifecycle基础库
+	implementation 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.1.0' //支持Kotlin语法的Android库
+	// EventBus
+	implementation 'org.greenrobot:eventbus:3.0.0'
+	//	kapt 'org.greenrobot:eventbus-annotation-processor:3.0.1'// *** 在app中添加 ***
+	//	provided 'org.glassfish:javax.annotation:10.0-b28'// *** 在app中添加 ***
+	//沉浸式
+	implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+	// 动画
+	implementation 'com.nineoldandroids:library:2.4.0'
+}
+
+allprojects {
+	gradle.projectsEvaluated {
+		tasks.withType(JavaCompile) {
+			options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xdiags:verbose"
+		}
+	}
+}
+
+// ---------------------- Jcenter ----------------------
+
+if (project.hasProperty("android")) { // Android libraries
+	task sourcesJar(type: Jar) {
+		classifier = 'sources'
+		from android.sourceSets.main.java.srcDirs
+	}
+
+	task javadoc(type: Javadoc) {
+		source = android.sourceSets.main.java.srcDirs
+		classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+	}
+} else { // Java libraries
+	task sourcesJar(type: Jar, dependsOn: classes) {
+		classifier = 'sources'
+		from sourceSets.main.allSource
+	}
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from javadoc.destinationDir
+}
+
+artifacts {
+	archives javadocJar
+	archives sourcesJar
+}
+
+ext {
+	siteUrl = 'https://github.com/vivitale/BaseCore'
+	gitUrl = 'https://github.com/vivitale/BaseCore.git'
+	currentVersion = '0.0.2'
+	groupId = 'talex.zsw.base'
+	artifactId = 'basecore'
+	desc = 'Android project base library'
+}
+
+
+group = groupId
+version = currentVersion
+
+install {
+	repositories.mavenInstaller {
+		pom {
+			project {
+				name artifactId
+				description desc
+				url siteUrl
+
+				packaging 'aar'
+				groupId groupId
+				artifactId artifactId
+				version currentVersion
+
+				licenses {
+					license {
+						name 'The Apache Software License, Version 2.0'
+						url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+					}
+				}
+				developers {
+					developer {
+						id 'vvtale'
+						name 'ShengWei Zhao'
+						email 'vvtale@gmail.com'
+					}
+				}
+				scm {
+					connection gitUrl
+					developerConnection gitUrl
+					url siteUrl
+				}
+			}
+		}
+	}
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+	user = properties.getProperty("bintray.user")
+	key = properties.getProperty("bintray.implementationkey")
+	configurations = ['archives']
+	pkg {
+		repo = "maven"
+		name = artifactId
+		websiteUrl = siteUrl
+		vcsUrl = gitUrl
+		licenses = ["Apache-2.0"]
+		publish = true
+		publicDownloadNumbers = true
+	}
 }
 
