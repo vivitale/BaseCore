@@ -1,5 +1,7 @@
 # BaseCore
- [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![RxTools](https://jitpack.io/v/vondear/RxTools.svg)](https://jitpack.io/#vivitale/BaseCore)  [![Twitter](https://img.shields.io/badge/Gradle-3.0.0-brightgreen.svg)](https://github.com/vivitale/BaseCore)
+ [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![](https://jitpack.io/v/vivitale/BaseCore.svg)](https://jitpack.io/#vivitale/BaseCore) [![Twitter](https://img.shields.io/badge/Gradle-3.0.0-brightgreen.svg)](https://github.com/vivitale/BaseCore)
+ 
+ 
 [TOC]
 ## Usage
 `TODO 待编辑`

@@ -89,7 +89,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener
 		mAlertType = alertType;
 		mErrorInAnim = OptAnimationLoader.loadAnimation(getContext(), R.anim.sweetalert_error_frame_in);
 		mErrorXInAnim = (AnimationSet) OptAnimationLoader.loadAnimation(getContext(), R.anim.sweetalert_error_x_in);
-		// 2.3.x system don't support alpha_out-animation on layer-list drawable
+		// 2.3.x system don't support alpha-animation on layer-list drawable
 		// remove it from animation set
 		if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.GINGERBREAD_MR1)
 		{

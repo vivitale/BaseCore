@@ -1148,7 +1148,7 @@ public class BitmapTool
 			stackpointer = radius;
 			for(y = 0; y < h; y++)
 			{
-				// Preserve alpha_out channel: ( 0xff000000 & pix[yi] )
+				// Preserve alpha channel: ( 0xff000000 & pix[yi] )
 				pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
 
 				rsum -= routsum;
@@ -2292,7 +2292,7 @@ public class BitmapTool
 				stackpointer = radius;
 				for(y = 0; y < h; y++)
 				{
-					// Preserve alpha_out channel: ( 0xff000000 & pix[yi] )
+					// Preserve alpha channel: ( 0xff000000 & pix[yi] )
 					pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
 
 					rsum -= routsum;
