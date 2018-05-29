@@ -14,7 +14,6 @@ import android.widget.TextView;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import talex.zsw.basecore.BuildConfig;
 import talex.zsw.basecore.interfaces.OnSimpleListener;
 import talex.zsw.basecore.util.cockroach.Cockroach;
 
@@ -47,7 +46,7 @@ public class Tool
 	{
 		Tool.context = context.getApplicationContext();
 		SpTool.init(context);
-		if(!BuildConfig.DEBUG)
+		if(!isDebu)
 		{
 			CrashTool.init(context);
 			LogTool.getConfig().setConsoleSwitch(false);
