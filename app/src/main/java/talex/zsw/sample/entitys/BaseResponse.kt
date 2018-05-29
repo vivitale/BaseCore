@@ -1,6 +1,6 @@
-package sendinfo.com.basecore.entitys
+package talex.zsw.sample.entitys
 
-import sendinfo.com.basecore.mvp.HttpDto
+import talex.zsw.sample.mvp.HttpDto
 import java.io.Serializable
 
 /**

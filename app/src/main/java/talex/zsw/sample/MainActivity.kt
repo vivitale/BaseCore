@@ -1,14 +1,9 @@
-package sendinfo.com.basecore
+package talex.zsw.sample
 
 import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import butterknife.OnClick
-import kotlinx.android.synthetic.main.activity_main.*
-import sendinfo.com.basecore.base.BaseMVPActivity
-import sendinfo.com.basecore.entitys.BaseResponse
-import sendinfo.com.basecore.mvp.CommonPresenter
-import sendinfo.com.basecore.mvp.CommonView
 import talex.zsw.basecore.model.ActionItem
 import talex.zsw.basecore.util.LogTool
 import talex.zsw.basecore.view.popupwindow.PopLayout

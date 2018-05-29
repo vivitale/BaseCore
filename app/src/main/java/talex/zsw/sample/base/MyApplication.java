@@ -1,4 +1,4 @@
-package sendinfo.com.basecore.base;
+package talex.zsw.sample.base;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
@@ -29,7 +29,7 @@ public class MyApplication extends BaseApplication
 	@Override public void onCreate()
 	{
 		super.onCreate();
-		Tool.init(this);
+		Tool.init(this,true);
 		initHttp();
 		UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
 		if(LeakCanary.isInAnalyzerProcess(this))

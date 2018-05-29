@@ -1,6 +1,6 @@
-package sendinfo.com.basecore.mvp
+package talex.zsw.sample.mvp
 
-import sendinfo.com.basecore.entitys.BaseResponse
+import talex.zsw.sample.entitys.BaseResponse
 
 /**
  * 作用: 基本的Model类，简单的用来获取一个网络数据

@@ -1,6 +1,6 @@
-package sendinfo.com.basecore.mvp
+package talex.zsw.sample.mvp
 
-import sendinfo.com.basecore.entitys.BaseResponse
+import talex.zsw.sample.entitys.BaseResponse
 
 /**
  * 作者: 赵小白 email:edisonzsw@icloud.com 

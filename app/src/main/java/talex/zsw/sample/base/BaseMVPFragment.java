@@ -1,4 +1,4 @@
-package sendinfo.com.basecore.base;
+package talex.zsw.sample.base;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -26,11 +26,11 @@ import org.greenrobot.eventbus.Subscribe;
 import java.lang.reflect.Field;
 
 import butterknife.ButterKnife;
-import sendinfo.com.basecore.mvp._Presenter;
-import sendinfo.com.basecore.mvp._View;
 import talex.zsw.basecore.util.KeyboardTool;
 import talex.zsw.basecore.util.RegTool;
 import talex.zsw.basecore.view.dialog.sweetalertdialog.SweetAlertDialog;
+import talex.zsw.sample.mvp._Presenter;
+import talex.zsw.sample.mvp._View;
 
 /**
  * 作用: 基于MVP架构的Fragment基类

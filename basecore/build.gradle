@@ -7,8 +7,8 @@ android {
 	defaultConfig {
 		minSdkVersion 15
 		targetSdkVersion 26
-		versionCode 6
-		versionName "0.0.6"
+		versionCode 7
+		versionName "0.0.7"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 		multiDexEnabled true
@@ -91,7 +91,7 @@ dependencies {
 	api 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 	// 动画
 	api 'com.nineoldandroids:library:2.4.0'
-	compileOnly 'com.github.florent37:viewanimator:1.0.5'
+	api 'com.github.florent37:viewanimator:1.0.5'
 	// RecyclerView适配器工具
 	api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
 }

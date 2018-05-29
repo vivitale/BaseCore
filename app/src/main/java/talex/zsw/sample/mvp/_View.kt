@@ -1,4 +1,4 @@
-package sendinfo.com.basecore.mvp
+package talex.zsw.sample.mvp
 
 import android.content.Context
 import android.os.Handler

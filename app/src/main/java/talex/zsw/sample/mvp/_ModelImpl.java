@@ -1,13 +1,13 @@
-package sendinfo.com.basecore.mvp;
+package talex.zsw.sample.mvp;
 
 import com.lzy.okgo.model.Response;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import sendinfo.com.basecore.entitys.BaseResponse;
 import talex.zsw.basecore.util.JsonTool;
 import talex.zsw.basecore.util.LogTool;
+import talex.zsw.sample.entitys.BaseResponse;
 
 /**
  * 作用: 首页

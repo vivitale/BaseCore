@@ -1,4 +1,4 @@
-package sendinfo.com.basecore.mvp
+package talex.zsw.sample.mvp
 
 /**
  * 作用: 基于MVP架构的Presenter 代理的基类

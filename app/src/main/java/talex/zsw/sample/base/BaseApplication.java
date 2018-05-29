@@ -1,4 +1,4 @@
-package sendinfo.com.basecore.base;
+package talex.zsw.sample.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package sendinfo.com.basecore.mvp;
+package talex.zsw.sample.mvp;
 
 import android.support.annotation.NonNull;
 
@@ -10,9 +10,9 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import sendinfo.com.basecore.entitys.BaseResponse;
 import talex.zsw.basecore.util.LogTool;
 import talex.zsw.basecore.view.dialog.sweetalertdialog.SweetAlertDialog;
+import talex.zsw.sample.entitys.BaseResponse;
 
 /**
  * 作用: 基于MVP架构的Presenter 代理的基类的实现

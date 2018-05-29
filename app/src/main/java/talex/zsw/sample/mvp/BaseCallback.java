@@ -1,4 +1,4 @@
-package sendinfo.com.basecore.mvp;
+package talex.zsw.sample.mvp;
 
 import android.os.Handler;
 import android.os.Message;
@@ -12,8 +12,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Response;
-import sendinfo.com.basecore.entitys.BaseResponse;
 import talex.zsw.basecore.util.LogTool;
+import talex.zsw.sample.entitys.BaseResponse;
 
 /**
  * 作用: 通用请求返回

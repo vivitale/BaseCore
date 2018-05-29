@@ -7,7 +7,7 @@ apply plugin: 'com.jakewharton.butterknife'
 kapt {
     generateStubs = true
     arguments {
-        arg('eventBusIndex', 'sendinfo.com.basecore.MyEventBusIndex')
+        arg('eventBusIndex', 'talex.zsw.sample.MyEventBusIndex')
     }
 }
 
@@ -15,11 +15,11 @@ android {
     compileSdkVersion 27
     buildToolsVersion '26.0.3'
     defaultConfig {
-        applicationId "sendinfo.com.basecore"
+        applicationId "talex.zsw.sample"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true

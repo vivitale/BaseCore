@@ -1,4 +1,4 @@
-package sendinfo.com.basecore.entitys
+package talex.zsw.sample.entitys
 
 import java.io.Serializable
 

@@ -1,4 +1,4 @@
-package sendinfo.com.basecore.base;
+package talex.zsw.sample.base;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,14 +24,14 @@ import org.greenrobot.eventbus.Subscribe;
 import java.lang.reflect.Field;
 
 import butterknife.ButterKnife;
-import sendinfo.com.basecore.R;
-import sendinfo.com.basecore.mvp._Presenter;
-import sendinfo.com.basecore.mvp._View;
 import talex.zsw.basecore.BuildConfig;
 import talex.zsw.basecore.util.ActivityTool;
 import talex.zsw.basecore.util.KeyboardTool;
 import talex.zsw.basecore.util.RegTool;
 import talex.zsw.basecore.view.dialog.sweetalertdialog.SweetAlertDialog;
+import talex.zsw.sample.R;
+import talex.zsw.sample.mvp._Presenter;
+import talex.zsw.sample.mvp._View;
 
 /**
  * 作用: 基于MVP架构的Activity基类

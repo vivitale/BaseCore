@@ -1,4 +1,4 @@
-package sendinfo.com.basecore.mvp;
+package talex.zsw.sample.mvp;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
@@ -9,10 +9,10 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import sendinfo.com.basecore.entitys.BaseModel;
 import talex.zsw.basecore.util.JsonTool;
 import talex.zsw.basecore.util.LogTool;
 import talex.zsw.basecore.util.RegTool;
+import talex.zsw.sample.entitys.BaseModel;
 
 /**
  * 作用: 网络请求参数状态
