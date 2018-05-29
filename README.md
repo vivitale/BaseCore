@@ -1,10 +1,11 @@
 # BaseCore
- [![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![](https://jitpack.io/v/vivitale/BaseCore.svg)](https://jitpack.io/#vivitale/BaseCore) [![Twitter](https://img.shields.io/badge/Gradle-3.0.0-brightgreen.svg)](https://github.com/vivitale/BaseCore)
+[![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![](https://jitpack.io/v/vivitale/BaseCore.svg)](https://jitpack.io/#vivitale/BaseCore) [![Twitter](https://img.shields.io/badge/Gradle-3.0.0-brightgreen.svg)](https://github.com/vivitale/BaseCore)
  
  
-[TOC]
 ## Usage
-`TODO 待编辑`
+> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.7'	}> 第三步 使用方法,在Application中初始化:
+ 
+    Tool.init(this, BuildConfig.DEBUG);
 
 ## Util
 ### ActivityTool  -> Activity相关工具
@@ -965,7 +966,9 @@ doubleClickExit             | 点击两次退出
 
 
 -------
-# 特别感谢 以下文章与项目给予的极大灵感和支持
+# 特别感谢 
+
+以下文章与项目给予的极大灵感和支持
 
 https://www.jianshu.com/u/46702d5c6978
 

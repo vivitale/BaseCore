@@ -5,13 +5,11 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.util.Log;
 
 import java.io.File;
@@ -492,19 +490,6 @@ public class AppTool
      */
     public static boolean isInstallApp(Context context, String packageName) {
         return !RegTool.isNullString(packageName) && IntentTool.getLaunchAppIntent(context, packageName) != null;
-    }
-
-    /**
-     * 安装APK
-     *
-     * @param context
-     * @param APK_PATH
-     */
-    public static void InstallAPK(Context context, String APK_PATH) {//提示安装APK
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.setDataAndType(Uri.parse("file://" + APK_PATH), "application/vnd.android.package-archive");
-        context.startActivity(i);
     }
 
     /**
