@@ -9,7 +9,6 @@ local.properties
 /build
 /captures
 .externalNativeBuild
-gradle
 .idea
 /.idea
 *.iws
