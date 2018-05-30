@@ -39,6 +39,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * 缓存类
  */
+@SuppressWarnings("ALL")
 public class ACache
 {
 	public static final int TIME_HOUR = 60*60;

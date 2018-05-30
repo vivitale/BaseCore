@@ -28,7 +28,7 @@ public class DownloadDao
 
 	public static DownloadDao getInstance(Context context)
 	{
-		if (dao == null)
+		if(dao == null)
 		{
 			dao = new DownloadDao(context);
 		}
@@ -41,7 +41,8 @@ public class DownloadDao
 		try
 		{
 			sqliteDatabase = new DownloadDBHelper(context).getReadableDatabase();
-		} catch (Exception ignored)
+		}
+		catch(Exception ignored)
 		{
 		}
 		return sqliteDatabase;
@@ -59,20 +60,22 @@ public class DownloadDao
 		{
 			String sql = "select count(*)  from download_info where url=?";
 			cursor = database.rawQuery(sql, new String[]{urlstr});
-			if (cursor.moveToFirst())
+			if(cursor.moveToFirst())
 			{
 				count = cursor.getInt(0);
 			}
-		} catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
-		} finally
+		}
+		finally
 		{
-			if (null != database)
+			if(null != database)
 			{
 				database.close();
 			}
-			if (null != cursor)
+			if(null != cursor)
 			{
 				cursor.close();
 			}
@@ -88,22 +91,22 @@ public class DownloadDao
 		SQLiteDatabase database = getConnection();
 		try
 		{
-			for (DownloadInfo info : infos)
+			for(DownloadInfo info : infos)
 			{
-				String sql =
-					"insert into download_info(thread_id,start_pos, end_pos,compelete_size,url) values (?,?,?,?,?)";
-				Object[] bindArgs = {info.getThreadId(), info.getStartPos(),
-					info.getEndPos(), info.getCompeleteSize(),
-					info.getUrl()
-				};
+				String sql
+					= "insert into download_info(thread_id,start_pos, end_pos,compelete_size,url) values (?,?,?,?,?)";
+				Object[] bindArgs = {info.getThreadId(), info.getStartPos(), info.getEndPos(), info.getCompeleteSize(),
+					info.getUrl()};
 				database.execSQL(sql, bindArgs);
 			}
-		} catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
-		} finally
+		}
+		finally
 		{
-			if (null != database)
+			if(null != database)
 			{
 				database.close();
 			}
@@ -120,26 +123,26 @@ public class DownloadDao
 		Cursor cursor = null;
 		try
 		{
-			String sql =
-				"select thread_id, start_pos, end_pos,compelete_size,url from download_info where url=?";
+			String sql = "select thread_id, start_pos, end_pos,compelete_size,url from download_info where url=?";
 			cursor = database.rawQuery(sql, new String[]{urlstr});
-			while (cursor.moveToNext())
+			while(cursor.moveToNext())
 			{
-				DownloadInfo info = new DownloadInfo(cursor.getInt(0),
-					cursor.getInt(1), cursor.getInt(2), cursor.getInt(3),
-					cursor.getString(4));
+				DownloadInfo info
+					= new DownloadInfo(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getInt(3), cursor.getString(4));
 				list.add(info);
 			}
-		} catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
-		} finally
+		}
+		finally
 		{
-			if (null != database)
+			if(null != database)
 			{
 				database.close();
 			}
-			if (null != cursor)
+			if(null != cursor)
 			{
 				cursor.close();
 			}
@@ -150,8 +153,7 @@ public class DownloadDao
 	/**
 	 * 更新数据库中的下载信息
 	 */
-	public synchronized void updataInfos(int threadId, int compeleteSize,
-										 String urlstr)
+	public synchronized void updataInfos(int threadId, int compeleteSize, String urlstr)
 	{
 		SQLiteDatabase database = getConnection();
 		try
@@ -159,12 +161,14 @@ public class DownloadDao
 			String sql = "update download_info set compelete_size=? where thread_id=? and url=?";
 			Object[] bindArgs = {compeleteSize, threadId, urlstr};
 			database.execSQL(sql, bindArgs);
-		} catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
-		} finally
+		}
+		finally
 		{
-			if (null != database)
+			if(null != database)
 			{
 				database.close();
 			}
@@ -180,12 +184,14 @@ public class DownloadDao
 		try
 		{
 			database.delete("download_info", "url=?", new String[]{url});
-		} catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
-		} finally
+		}
+		finally
 		{
-			if (null != database)
+			if(null != database)
 			{
 				database.close();
 			}

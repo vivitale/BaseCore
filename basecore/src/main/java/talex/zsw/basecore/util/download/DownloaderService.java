@@ -39,8 +39,7 @@ public class DownloaderService
 	private int state = INIT;
 	public static final String path = "/mnt/sdcard/Sendinfo/Download/";// 保存到SD卡
 
-	public DownloaderService(String urlstr, String localfile, int threadcount,
-							 Context context, Handler mHandler)
+	public DownloaderService(String urlstr, String localfile, int threadcount, Context context, Handler mHandler)
 	{
 		this.urlstr = urlstr;
 		this.localfile = localfile;
@@ -65,21 +64,19 @@ public class DownloaderService
 	 */
 	public DownloadInfoDetail getDownloaderInfors()
 	{
-		if (isFirst(urlstr))
+		if(isFirst(urlstr))
 		{
 			FileTool.delAllFile(path);
 			Log.v("TAG", "isFirst");
 			init();
-			int range = fileSize / threadcount;
+			int range = fileSize/threadcount;
 			infos = new ArrayList<DownloadInfo>();
-			for (int i = 0; i < threadcount - 1; i++)
+			for(int i = 0; i < threadcount-1; i++)
 			{
-				DownloadInfo info = new DownloadInfo(i, i * range, (i + 1)
-					* range - 1, 0, urlstr);
+				DownloadInfo info = new DownloadInfo(i, i*range, (i+1)*range-1, 0, urlstr);
 				infos.add(info);
 			}
-			DownloadInfo info = new DownloadInfo(threadcount - 1,
-				(threadcount - 1) * range, fileSize - 1, 0, urlstr);
+			DownloadInfo info = new DownloadInfo(threadcount-1, (threadcount-1)*range, fileSize-1, 0, urlstr);
 			infos.add(info);
 			// 保存infos中的数据到数据库
 			DownloadDao.getInstance(context).saveInfos(infos);
@@ -90,13 +87,13 @@ public class DownloaderService
 		{
 			// 得到数据库中已有的urlstr的下载器的具体信息
 			infos = DownloadDao.getInstance(context).getInfos(urlstr);
-			Log.v("TAG", "not isFirst size=" + infos.size());
+			Log.v("TAG", "not isFirst size="+infos.size());
 			int size = 0;
 			int compeleteSize = 0;
-			for (DownloadInfo info : infos)
+			for(DownloadInfo info : infos)
 			{
 				compeleteSize += info.getCompeleteSize();
-				size += info.getEndPos() - info.getStartPos() + 1;
+				size += info.getEndPos()-info.getStartPos()+1;
 			}
 			return new DownloadInfoDetail(size, compeleteSize, urlstr);
 		}
@@ -108,19 +105,18 @@ public class DownloaderService
 		try
 		{
 			URL url = new URL(urlstr);
-			HttpURLConnection connection = (HttpURLConnection) url
-				.openConnection();
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setConnectTimeout(5000);
 			connection.setRequestMethod("GET");
 			fileSize = connection.getContentLength();
 
 			File destDir = new File(path);
-			if (!destDir.exists())
+			if(!destDir.exists())
 			{
 				destDir.mkdirs();
 			}
 			File file = new File(localfile);
-			if (!file.exists())
+			if(!file.exists())
 			{
 				file.createNewFile();
 				System.out.println("新建文件成功");
@@ -130,7 +126,8 @@ public class DownloaderService
 			accessFile.setLength(fileSize);
 			accessFile.close();
 			connection.disconnect();
-		} catch (Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -145,18 +142,17 @@ public class DownloaderService
 	/** 利用线程开始下载数据 */
 	public void download()
 	{
-		if (infos != null)
+		if(infos != null)
 		{
-			if (state == DOWNLOADING)
+			if(state == DOWNLOADING)
 			{
 				return;
 			}
 			state = DOWNLOADING;
-			for (DownloadInfo info : infos)
+			for(DownloadInfo info : infos)
 			{
-				new MyThread(info.getThreadId(), info.getStartPos(),
-					info.getEndPos(), info.getCompeleteSize(),
-					info.getUrl()).start();
+				new MyThread(info.getThreadId(), info.getStartPos(), info.getEndPos(), info.getCompeleteSize(), info.getUrl())
+					.start();
 			}
 		}
 	}
@@ -169,8 +165,7 @@ public class DownloaderService
 		private int compeleteSize;
 		private String urlstr;
 
-		public MyThread(int threadId, int startPos, int endPos,
-						int compeleteSize, String urlstr)
+		public MyThread(int threadId, int startPos, int endPos, int compeleteSize, String urlstr)
 		{
 			this.threadId = threadId;
 			this.startPos = startPos;
@@ -179,8 +174,7 @@ public class DownloaderService
 			this.urlstr = urlstr;
 		}
 
-		@Override
-		public void run()
+		@Override public void run()
 		{
 			HttpURLConnection connection = null;
 			RandomAccessFile randomAccessFile = null;
@@ -192,53 +186,58 @@ public class DownloaderService
 				connection.setConnectTimeout(5000);
 				connection.setRequestMethod("GET");
 				// 设置范围，格式为Range：bytes x-y;
-				connection.setRequestProperty("Range", "bytes="
-					+ (startPos + compeleteSize) + "-" + endPos);
+				connection.setRequestProperty("Range", "bytes="+(startPos+compeleteSize)+"-"+endPos);
 
 				randomAccessFile = new RandomAccessFile(localfile, "rwd");
-				randomAccessFile.seek(startPos + compeleteSize);
+				randomAccessFile.seek(startPos+compeleteSize);
 				// 将要下载的文件写到保存在保存路径下的文件中
 				is = connection.getInputStream();
 				byte[] buffer = new byte[4096];
 				int length = -1;
-				while ((length = is.read(buffer)) != -1)
+				while((length = is.read(buffer)) != -1)
 				{
 					randomAccessFile.write(buffer, 0, length);
 					compeleteSize += length;
 					// 更新数据库中的下载信息
-					DownloadDao.getInstance(context).updataInfos(threadId,
-						compeleteSize, urlstr);
+					DownloadDao.getInstance(context).updataInfos(threadId, compeleteSize, urlstr);
 					// 用消息将下载信息传给进度条，对进度条进行更新
 					Message message = Message.obtain();
 					message.what = 5478;
 					message.obj = urlstr;
 					message.arg1 = length;
 					mHandler.sendMessage(message);
-					if (state == PAUSE)
+					if(state == PAUSE)
 					{
 						return;
 					}
 				}
-			} catch (Exception e)
+			}
+			catch(Exception e)
 			{
 				e.printStackTrace();
 			}
 		}
 	}
 
-	// 删除数据库中urlstr对应的下载器信息
+	/**
+	 * 删除数据库中urlstr对应的下载器信息
+	 */
 	public void delete(String urlstr)
 	{
 		DownloadDao.getInstance(context).delete(urlstr);
 	}
 
-	// 设置暂停
+	/**
+	 * 设置暂停
+	 */
 	public void pause()
 	{
 		state = PAUSE;
 	}
 
-	// 重置下载状态
+	/**
+	 * 重置下载状态
+	 */
 	public void reset()
 	{
 		state = INIT;

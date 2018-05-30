@@ -14,6 +14,7 @@ import talex.zsw.basecore.R;
 
 /**
  * Created by Cuneyt on 4.10.2015.
+ * 可以显示Gif的View
  */
 public class GifView extends View
 {

@@ -33,7 +33,10 @@ import talex.zsw.basecore.util.FileTool;
 @GlideModule
 public class CustomGlideModule extends AppGlideModule
 {
-	@Override public void applyOptions(Context context, GlideBuilder builder)
+	/**
+	 * 设置缓存方式
+	 */
+	@Override public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder)
 	{
 		ViewTarget.setTagId(R.id.glide_tag_id);
 

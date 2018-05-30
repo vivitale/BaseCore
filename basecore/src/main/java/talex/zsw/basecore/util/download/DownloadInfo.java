@@ -19,8 +19,7 @@ public class DownloadInfo implements Serializable
 	private int compeleteSize;// 完成度
 	private String url;// 下载器网络标识
 
-	public DownloadInfo(int threadId, int startPos, int endPos,
-				 int compeleteSize, String url)
+	public DownloadInfo(int threadId, int startPos, int endPos, int compeleteSize, String url)
 	{
 		this.threadId = threadId;
 		this.startPos = startPos;
@@ -83,11 +82,9 @@ public class DownloadInfo implements Serializable
 		this.compeleteSize = compeleteSize;
 	}
 
-	@Override
-	public String toString()
+	@Override public String toString()
 	{
-		return "DownloadInfo [threadId=" + threadId + ", startPos=" + startPos
-			+ ", endPos=" + endPos + ", compeleteSize=" + compeleteSize
-			+ "]";
+		return "DownloadInfo [threadId="+threadId+", startPos="+startPos+", endPos="+endPos+", compeleteSize="+
+			compeleteSize+"]";
 	}
 }

@@ -22,16 +22,13 @@ public class DownloadDBHelper extends SQLiteOpenHelper
 	}
 
 	/** 在download.db数据库下创建一个download_info表存储下载信息 */
-	@Override
-	public void onCreate(SQLiteDatabase db)
+	@Override public void onCreate(SQLiteDatabase db)
 	{
-		db.execSQL(
-			"create table download_info(_id integer PRIMARY KEY AUTOINCREMENT, thread_id integer, "
-				+ "start_pos integer, end_pos integer, compelete_size integer,url char)");
+		db.execSQL("create table download_info(_id integer PRIMARY KEY AUTOINCREMENT, thread_id integer, "+
+			           "start_pos integer, end_pos integer, compelete_size integer,url char)");
 	}
 
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+	@Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
 	{
 
 	}

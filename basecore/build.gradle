@@ -1,14 +1,16 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
+group='com.github.vivitale'
+
 android {
 	compileSdkVersion 27
 	buildToolsVersion '26.0.3'
 	defaultConfig {
 		minSdkVersion 15
 		targetSdkVersion 27
-		versionCode 7
-		versionName "0.0.7"
+		versionCode 9
+		versionName "0.0.9"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 		multiDexEnabled true
@@ -113,3 +115,26 @@ allprojects {
 }
 
 // ---------------------- JitPack ----------------------
+// 打包源码
+task sourcesJar(type: Jar) {
+	from android.sourceSets.main.java.srcDirs
+	classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+	failOnError  false
+	source = android.sourceSets.main.java.sourceFiles
+	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+	classpath += configurations.compile
+}
+
+// 制作文档(Javadoc)
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from javadoc.destinationDir
+}
+
+artifacts {
+	archives sourcesJar
+	archives javadocJar
+}

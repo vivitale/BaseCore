@@ -8,7 +8,7 @@
  
     Tool.init(this, BuildConfig.DEBUG);
 
-## 库介绍
+## 库
 ```
 // 已经整合进入BaseCore中的库
 api 'com.android.support:support-v4:27.1.0'
@@ -80,6 +80,7 @@ BGAPhotoPicker  | 图片选择、预览等 |[Github](https://github.com/bingoogo
 
 
 ## MVP框架介绍
+* [ ] TODO 编辑MVP框架使用方法
 
 ## Util
 ### ActivityTool  -> Activity相关工具
