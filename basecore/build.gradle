@@ -9,8 +9,8 @@ android {
 	defaultConfig {
 		minSdkVersion 15
 		targetSdkVersion 27
-		versionCode 9
-		versionName "0.0.9"
+		versionCode 10
+		versionName "0.0.10"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 		multiDexEnabled true
@@ -98,7 +98,7 @@ dependencies {
 	compileOnly 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
 	compileOnly 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
 	// 轮播图
-	compileOnly 'cn.bingoogolapple:bga-banner:2.0.3@aar'
+	compileOnly 'cn.bingoogolapple:bga-banner:2.2.4@aar'
 	// 二维码,一维码工具
 	compileOnly 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
 	compileOnly 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'

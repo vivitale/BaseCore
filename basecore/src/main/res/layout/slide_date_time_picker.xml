@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<talex.zsw.basecore.view.other.slidedatetimepicker.SlidingTabLayout
+		android:id="@+id/slidingTabLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<talex.zsw.basecore.view.other.slidedatetimepicker.CustomViewPager
+		android:id="@+id/viewPager"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:background="@color/white"/>
+
+	<!--
+		The horizontal separator that runs across the top of
+		the button bar
+	-->
+
+	<View
+		android:id="@+id/buttonHorizontalDivider"
+		android:layout_width="match_parent"
+		android:layout_height="1px"
+		android:background="@color/gray_holo_dark"/>
+
+	<!-- Footer button bar -->
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/bg_white_bottom_c"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/cancelButton"
+			style="?android:attr/borderlessButtonStyle"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@drawable/btn_white_bottom_left"
+			android:paddingBottom="12dp"
+			android:paddingTop="12dp"
+			android:text="@android:string/cancel"/>
+
+		<!-- The vertical divider line between the two buttons -->
+
+		<View
+			android:id="@+id/buttonVerticalDivider"
+			android:layout_width="1px"
+			android:layout_height="match_parent"
+			android:layout_marginBottom="10dp"
+			android:layout_marginTop="10dp"
+			android:background="@color/gray_holo_dark"/>
+
+		<Button
+			android:id="@+id/okButton"
+			style="?android:attr/borderlessButtonStyle"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="@drawable/btn_white_bottom_right"
+			android:paddingBottom="12dp"
+			android:paddingTop="12dp"
+			android:text="@android:string/ok"/>
+
+	</LinearLayout>
+
+</LinearLayout>

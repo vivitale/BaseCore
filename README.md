@@ -60,7 +60,7 @@ compileOnly 'com.github.bumptech.glide:okhttp3-integration:4.6.1'
 compileOnly 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
 compileOnly 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
 // 轮播图
-compileOnly 'cn.bingoogolapple:bga-banner:2.0.3@aar'
+compileOnly 'cn.bingoogolapple:bga-banner:2.2.4@aar'
 // 二维码,一维码工具
 compileOnly 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
 compileOnly 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
@@ -1215,6 +1215,12 @@ setObjectForPosition        | 设置ViewPsger的存放的View和对应的positio
 高度会自行计算的WebView
 
 ### Other
+#### DropDownMenu  -> 下拉菜单
+原项目地址:[https://github.com/dongjunkun/DropDownMenu](https://github.com/dongjunkun/DropDownMenu)
+
+相比原项目增加了更多可自定义项目,使用方法基本一致
+
+
 #### PageControlView  -> 底部小圆圈
 方法名 | 说明
 --------- | -------------
@@ -1239,6 +1245,32 @@ showToast                   | 显示系统toast
 showToastShort              | 显示系统toast(短)
 showToastLong               | 显示系统toast(短)
 doubleClickExit             | 点击两次退出
+
+
+#### SlideDateTimePicker  -> 日期时间滚轮选择
+原项目地址:[https://github.com/jjobes/SlideDateTimePicker](https://github.com/jjobes/SlideDateTimePicker)
+
+相比原项目,增加了一些新的设置选项,优化了项目布局
+
+```
+SlideDateTimeListener startListener = new SlideDateTimeListener(){
+    @Override public void onDateTimeSet(Date date)
+    {
+        
+    }
+};
+// Fragment中则使用getChildFragmentManager()
+new SlideDateTimePicker.Builder(getSupportFragmentManager())
+                   .setListener(startListener)
+                   .setInitialDate(startDate)
+                   .setMinDate(minDate)
+                   .setMaxDate(maxDate)
+                   .setTheme(SlideDateTimePicker.HOLO_LIGHT)
+                   .setIndicatorColor(Color.parseColor("#990000"))
+                   .setShowTime(false)
+                   .build()
+                   .show();
+```
 
 
 #### SwipeToLoadLayout -> 上拉刷新,下拉加载
@@ -1326,5 +1358,9 @@ https://github.com/Aspsine/SwipeToLoadLayout
 https://github.com/grantland/android-autofittextview
 
 https://github.com/bingoogolapple
+
+https://github.com/dongjunkun/DropDownMenu
+
+https://github.com/jjobes/SlideDateTimePicker
 
 

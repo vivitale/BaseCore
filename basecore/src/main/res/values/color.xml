@@ -31,4 +31,8 @@
     <color name="google_green">#34A853</color>
     <color name="google_yellow">#FBBC05</color>
 
+    <!-- SlideDateTimePicker日期时间选择器 -->
+    <item name="gray_holo_dark" type="color">#ff464646</item>
+    <item name="gray_holo_light" type="color">#ffd0d0d0</item>
+
 </resources>

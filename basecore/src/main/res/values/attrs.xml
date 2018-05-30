@@ -119,5 +119,26 @@
 		<attr name="IT_unselected_icon" format="reference"/>
 	</declare-styleable>
 
+	<!-- DropDownMenu -->
+	<declare-styleable name="DropDownMenu">
+		<!-- 下划线颜色 -->
+		<attr name="DD_underlineColor" format="color"/>
+		<!-- 分割线颜色 -->
+		<attr name="DD_dividerColor" format="color"/>
+		<!-- tab选中颜色 -->
+		<attr name="DD_textSelectedColor" format="color"/>
+		<!-- tab未选中颜色 -->
+		<attr name="DD_textUnselectedColor" format="color"/>
+		<!-- tab 背景颜色 -->
+		<attr name="DD_menuBackgroundColor" format="color"/>
+		<!-- 遮罩颜色，一般是半透明 -->
+		<attr name="DD_maskColor" format="color"/>
+		<!-- tab字体大小 -->
+		<attr name="DD_menuTextSize" format="dimension"/>
+		<!-- tab选中状态图标 -->
+		<attr name="DD_menuSelectedIcon" format="reference"/>
+		<!-- tab未选中状态图标 -->
+		<attr name="DD_menuUnselectedIcon" format="reference"/>
+	</declare-styleable>
 
 </resources>
