@@ -34,11 +34,9 @@ import talex.zsw.basecore.R;
  * @author jjobes
  */
 public class SlideDateTimeDialogFragment extends DialogFragment
-	implements DateFragment.DateChangedListener,
-	TimeFragment.TimeChangedListener
+	implements DateFragment.DateChangedListener, TimeFragment.TimeChangedListener
 {
-	public static final String TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT =
-		"tagSlideDateTimeDialogFragment";
+	public static final String TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT = "tagSlideDateTimeDialogFragment";
 
 	private static SlideDateTimeListener mListener;
 
@@ -54,15 +52,14 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 	private int mTheme;
 	private int mIndicatorColor;
 	private boolean mShowTime;
+	private int mThemeColor;
+	private int mTitleColor;
 	private Date mMinDate;
 	private Date mMaxDate;
 	private boolean mIsClientSpecified24HourTime;
 	private boolean mIs24HourTime;
 	private Calendar mCalendar;
-	private int mDateFlags =
-		DateUtils.FORMAT_SHOW_WEEKDAY |
-			DateUtils.FORMAT_SHOW_DATE |
-			DateUtils.FORMAT_ABBREV_ALL;
+	private int mDateFlags = DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL;
 
 	public SlideDateTimeDialogFragment()
 	{
@@ -85,12 +82,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 	 * @param indicatorColor
 	 * @return
 	 */
-	public static SlideDateTimeDialogFragment newInstance(SlideDateTimeListener listener,
-														  Date initialDate, Date minDate,
-														  Date maxDate,
-														  boolean isClientSpecified24HourTime,
-														  boolean is24HourTime, int theme,
-														  int indicatorColor, boolean showTime)
+	public static SlideDateTimeDialogFragment newInstance(SlideDateTimeListener listener, Date initialDate, Date minDate, Date maxDate, boolean isClientSpecified24HourTime, boolean is24HourTime, int theme, int indicatorColor, boolean showTime, int themeColor, int titleColor)
 	{
 		mListener = listener;
 
@@ -107,22 +99,22 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		bundle.putInt("theme", theme);
 		bundle.putInt("indicatorColor", indicatorColor);
 		bundle.putBoolean("showTime", showTime);
+		bundle.putInt("themeColor", themeColor);
+		bundle.putInt("titleColor", titleColor);
 		dialogFragment.setArguments(bundle);
 
 		// Return the fragment with its bundle
 		return dialogFragment;
 	}
 
-	@Override
-	public void onAttach(Activity activity)
+	@Override public void onAttach(Activity activity)
 	{
 		super.onAttach(activity);
 
 		mContext = activity;
 	}
 
-	@Override
-	public void onCreate(Bundle savedInstanceState)
+	@Override public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
@@ -133,31 +125,26 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		mCalendar = Calendar.getInstance();
 		mCalendar.setTime(mInitialDate);
 
-		switch (mTheme)
+		switch(mTheme)
 		{
 			case SlideDateTimePicker.HOLO_DARK:
 				setStyle(DialogFragment.STYLE_NO_TITLE,
-//					android.R.style.Theme_Holo_Dialog_NoActionBar
-                         R.style.DialogStyle
-				);
+				         //					android.R.style.Theme_Holo_Dialog_NoActionBar
+				         R.style.DialogStyle);
 				break;
 			case SlideDateTimePicker.HOLO_LIGHT:
 				setStyle(DialogFragment.STYLE_NO_TITLE,
 				         //android.R.style.Theme_Holo_Light_Dialog_NoActionBar
-				         R.style.DialogStyle
-				);
+				         R.style.DialogStyle);
 				break;
 			default:  // if no theme was specified, default to holo light
 				setStyle(DialogFragment.STYLE_NO_TITLE,
-//					android.R.style.Theme_Holo_Light_Dialog_NoActionBar
-                         R.style.DialogStyle
-				);
+				         //					android.R.style.Theme_Holo_Light_Dialog_NoActionBar
+				         R.style.DialogStyle);
 		}
 	}
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-							 Bundle savedInstanceState)
+	@Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View view = inflater.inflate(R.layout.slide_date_time_picker, container);
 
@@ -170,13 +157,12 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		return view;
 	}
 
-	@Override
-	public void onDestroyView()
+	@Override public void onDestroyView()
 	{
 		// Workaround for a bug in the compatibility library where calling
 		// setRetainInstance(true) does not retain the instance across
 		// orientation changes.
-		if (getDialog() != null && getRetainInstance())
+		if(getDialog() != null && getRetainInstance())
 		{
 			getDialog().setDismissMessage(null);
 		}
@@ -194,6 +180,8 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		mIsClientSpecified24HourTime = args.getBoolean("isClientSpecified24HourTime");
 		mIs24HourTime = args.getBoolean("is24HourTime");
 		mShowTime = args.getBoolean("showTime");
+		mThemeColor = args.getInt("themeColor");
+		mTitleColor = args.getInt("titleColor");
 		mTheme = args.getInt("theme");
 		mIndicatorColor = args.getInt("indicatorColor");
 	}
@@ -210,13 +198,12 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 
 	private void customizeViews()
 	{
-		int lineColor = mTheme == SlideDateTimePicker.HOLO_DARK ?
-			getResources().getColor(R.color.gray_holo_dark) :
+		int lineColor = mTheme == SlideDateTimePicker.HOLO_DARK ? getResources().getColor(R.color.gray_holo_dark) :
 			getResources().getColor(R.color.gray_holo_light);
 
 		// Set the colors of the horizontal and vertical lines for the
 		// bottom buttons depending on the theme.
-		switch (mTheme)
+		switch(mTheme)
 		{
 			case SlideDateTimePicker.HOLO_LIGHT:
 			case SlideDateTimePicker.HOLO_DARK:
@@ -225,14 +212,12 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 				break;
 
 			default:  // if no theme was specified, default to holo light
-				mButtonHorizontalDivider
-					.setBackgroundColor(getResources().getColor(R.color.gray_holo_light));
-				mButtonVerticalDivider
-					.setBackgroundColor(getResources().getColor(R.color.gray_holo_light));
+				mButtonHorizontalDivider.setBackgroundColor(getResources().getColor(R.color.gray_holo_light));
+				mButtonVerticalDivider.setBackgroundColor(getResources().getColor(R.color.gray_holo_light));
 		}
 
 		// Set the color of the selected tab underline if one was specified.
-		if (mIndicatorColor != 0)
+		if(mIndicatorColor != 0)
 		{
 			mSlidingTabLayout.setSelectedIndicatorColors(mIndicatorColor);
 		}
@@ -246,7 +231,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		// Setting this custom layout for each tab ensures that the tabs will
 		// fill all available horizontal space.
 		// 修改顶部颜色
-		mSlidingTabLayout.setCustomTabView(R.layout.sdtp_custom_tab, R.id.tabText);
+		mSlidingTabLayout.setCustomTabView(R.layout.sdtp_custom_tab, R.id.tabText, mThemeColor, mTitleColor, mShowTime);
 		mSlidingTabLayout.setViewPager(mViewPager);
 	}
 
@@ -256,7 +241,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		updateDateTab();
 
 		// Set initial time on time tab
-		if (mShowTime)
+		if(mShowTime)
 		{
 			updateTimeTab();
 		}
@@ -267,13 +252,11 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		mOkButton.setOnClickListener(new OnClickListener()
 		{
 
-			@Override
-			public void onClick(View v)
+			@Override public void onClick(View v)
 			{
-				if (mListener == null)
+				if(mListener == null)
 				{
-					throw new NullPointerException(
-						"Listener no longer exists for mOkButton");
+					throw new NullPointerException("Listener no longer exists for mOkButton");
 				}
 
 				mListener.onDateTimeSet(new Date(mCalendar.getTimeInMillis()));
@@ -285,13 +268,11 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		mCancelButton.setOnClickListener(new OnClickListener()
 		{
 
-			@Override
-			public void onClick(View v)
+			@Override public void onClick(View v)
 			{
-				if (mListener == null)
+				if(mListener == null)
 				{
-					throw new NullPointerException(
-						"Listener no longer exists for mCancelButton");
+					throw new NullPointerException("Listener no longer exists for mCancelButton");
 				}
 
 				mListener.onDateTimeCancel();
@@ -310,8 +291,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 	 * <p>Implements the {@link DateFragment.DateChangedListener}
 	 * interface.</p>
 	 */
-	@Override
-	public void onDateChanged(int year, int month, int day)
+	@Override public void onDateChanged(int year, int month, int day)
 	{
 		mCalendar.set(year, month, day);
 
@@ -327,13 +307,12 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 	 * <p>Implements the {@link TimeFragment.TimeChangedListener}
 	 * interface.</p>
 	 */
-	@Override
-	public void onTimeChanged(int hour, int minute)
+	@Override public void onTimeChanged(int hour, int minute)
 	{
 		mCalendar.set(Calendar.HOUR_OF_DAY, hour);
 		mCalendar.set(Calendar.MINUTE, minute);
 
-		if (mShowTime)
+		if(mShowTime)
 		{
 			updateTimeTab();
 		}
@@ -341,20 +320,18 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 
 	private void updateDateTab()
 	{
-		mSlidingTabLayout.setTabText(0, DateUtils.formatDateTime(
-			mContext, mCalendar.getTimeInMillis(), mDateFlags));
+		mSlidingTabLayout.setTabText(0, DateUtils.formatDateTime(mContext, mCalendar.getTimeInMillis(), mDateFlags));
 	}
 
-	@SuppressLint("SimpleDateFormat")
-	private void updateTimeTab()
+	@SuppressLint("SimpleDateFormat") private void updateTimeTab()
 	{
-		if (mShowTime)
+		if(mShowTime)
 		{
-			if (mIsClientSpecified24HourTime)
+			if(mIsClientSpecified24HourTime)
 			{
 				SimpleDateFormat formatter;
 
-				if (mIs24HourTime)
+				if(mIs24HourTime)
 				{
 					formatter = new SimpleDateFormat("HH:mm");
 					mSlidingTabLayout.setTabText(1, formatter.format(mCalendar.getTime()));
@@ -367,8 +344,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 			}
 			else  // display time using the device's default 12/24 hour format preference
 			{
-				mSlidingTabLayout.setTabText(1, DateFormat.getTimeFormat(
-					mContext).format(mCalendar.getTimeInMillis()));
+				mSlidingTabLayout.setTabText(1, DateFormat.getTimeFormat(mContext).format(mCalendar.getTimeInMillis()));
 			}
 		}
 	}
@@ -380,15 +356,13 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 	 * <p><b>Note:</b> Actual <b>Cancel</b> button clicks are handled by {@code mCancelButton}'s
 	 * event handler.</p>
 	 */
-	@Override
-	public void onCancel(DialogInterface dialog)
+	@Override public void onCancel(DialogInterface dialog)
 	{
 		super.onCancel(dialog);
 
-		if (mListener == null)
+		if(mListener == null)
 		{
-			throw new NullPointerException(
-				"Listener no longer exists in onCancel()");
+			throw new NullPointerException("Listener no longer exists in onCancel()");
 		}
 
 		mListener.onDateTimeCancel();
@@ -401,28 +375,18 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 			super(fm);
 		}
 
-		@Override
-		public Fragment getItem(int position)
+		@Override public Fragment getItem(int position)
 		{
-			switch (position)
+			switch(position)
 			{
 				case 0:
-					DateFragment dateFragment = DateFragment.newInstance(
-						mTheme,
-						mCalendar.get(Calendar.YEAR),
-						mCalendar.get(Calendar.MONTH),
-						mCalendar.get(Calendar.DAY_OF_MONTH),
-						mMinDate,
-						mMaxDate);
+					DateFragment dateFragment = DateFragment.newInstance(mTheme, mCalendar.get(Calendar.YEAR), mCalendar
+						.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH), mMinDate, mMaxDate, mThemeColor);
 					// dateFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 100);
 					return dateFragment;
 				case 1:
-					TimeFragment timeFragment = TimeFragment.newInstance(
-						mTheme,
-						mCalendar.get(Calendar.HOUR_OF_DAY),
-						mCalendar.get(Calendar.MINUTE),
-						mIsClientSpecified24HourTime,
-						mIs24HourTime);
+					TimeFragment timeFragment
+						= TimeFragment.newInstance(mTheme, mCalendar.get(Calendar.HOUR_OF_DAY), mCalendar.get(Calendar.MINUTE), mIsClientSpecified24HourTime, mIs24HourTime, mThemeColor);
 					// timeFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 200);
 					return timeFragment;
 				default:
@@ -430,10 +394,9 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 			}
 		}
 
-		@Override
-		public int getCount()
+		@Override public int getCount()
 		{
-			if (mShowTime)
+			if(mShowTime)
 			{
 				return 2;
 			}

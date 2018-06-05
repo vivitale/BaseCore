@@ -38,4 +38,8 @@ interface _View
     fun getFinishListener(): SweetAlertDialog.OnSweetClickListener
 
     fun bindLifecycle(): LifecycleTransformer<Any>
+
+    fun onVisible()
+
+    fun onInvisible()
 }

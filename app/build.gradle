@@ -83,7 +83,7 @@ dependencies {
 //    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
 //    // 二维码,一维码工具
 //    implementation 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
-//    implementation 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
+//    implementation 'cn.bingoogolapple:bga-qrcode-zbar:1.2Po.1'
 //    // 图片选择、预览、九宫格图片控件、拖拽排序九宫格图片控件,需要同时选择 bga-baseadapter
 //    implementation 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
 }

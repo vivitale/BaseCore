@@ -1,6 +1,7 @@
 package talex.zsw.sample
 
 import android.content.Intent
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import butterknife.OnClick
@@ -8,12 +9,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 import talex.zsw.basecore.model.ActionItem
 import talex.zsw.basecore.util.LogTool
 import talex.zsw.basecore.util.glide.GlideTool
+import talex.zsw.basecore.view.other.slidedatetimepicker.SlideDateTimeListener
+import talex.zsw.basecore.view.other.slidedatetimepicker.SlideDateTimePicker
 import talex.zsw.basecore.view.popupwindow.PopLayout
 import talex.zsw.basecore.view.popupwindow.PopListView
 import talex.zsw.sample.base.BaseMVPActivity
 import talex.zsw.sample.entitys.BaseResponse
 import talex.zsw.sample.mvp.CommonPresenter
 import talex.zsw.sample.mvp.CommonView
+import java.util.*
 
 /**
  * 作者: 赵小白 email:vvtale@gmail.com  
@@ -39,14 +43,15 @@ class MainActivity : BaseMVPActivity<CommonView.Presenter>(), CommonView.View
 
     override fun initData()
     {
-        GlideTool.loadImgCircleCrop(mImageView,"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1182022639,405039723&fm=27&gp=0.jpg")
+        GlideTool.loadImgCircleCrop(mImageView,
+                                    "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1182022639,405039723&fm=27&gp=0.jpg")
     }
 
     override fun bindData(response: BaseResponse)
     {
     }
 
-    @OnClick(R.id.mBtn1, R.id.mBtn2)
+    @OnClick(R.id.mBtn1, R.id.mBtn2, R.id.mBtn3)
     fun onViewClicked(view: View)
     {
         when (view.id)
@@ -59,10 +64,11 @@ class MainActivity : BaseMVPActivity<CommonView.Presenter>(), CommonView.View
                 }
                 else
                 {
-                    popLayout = PopLayout(this@MainActivity,
-                            ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT,
-                            R.layout.activity_main)
+                    popLayout =
+                            PopLayout(this@MainActivity,
+                                      ViewGroup.LayoutParams.WRAP_CONTENT,
+                                      ViewGroup.LayoutParams.WRAP_CONTENT,
+                                      R.layout.activity_main)
                 }
                 popLayout?.show(mBtn1)
                 showDialog()
@@ -72,14 +78,32 @@ class MainActivity : BaseMVPActivity<CommonView.Presenter>(), CommonView.View
                 initPopupView()
                 popListView?.show(mBtn2, 0)
             }
+            R.id.mBtn3 ->
+            {
+                SlideDateTimePicker.Builder(supportFragmentManager)
+                        .setInitialDate(Date())
+                        .setListener(object : SlideDateTimeListener()
+                                     {
+                                         override fun onDateTimeSet(date: Date?)
+                                         {
+                                         }
+                                     })
+                        .setMinDate(Date())
+                        .setTheme(SlideDateTimePicker.HOLO_LIGHT)
+                        .setIndicatorColor(Color.parseColor("#990000"))
+                        .setShowTime(true)
+                        .setThemeColor(Color.parseColor("#FFFF00"))
+                        .setTitleColor(Color.parseColor("#FF0000"))
+                        .build()
+                        .show()
+            }
         }
     }
 
     private fun initPopupView()
     {
-        popListView = PopListView(this@MainActivity,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT)
+        popListView =
+                PopListView(this@MainActivity, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         popListView?.addAction(ActionItem("标清"))
         popListView?.addAction(ActionItem("高清"))
         popListView?.addAction(ActionItem("超清"))

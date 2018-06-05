@@ -15,12 +15,12 @@
 
 	<ImageView
 		android:id="@+id/custom_image"
-		android:layout_width="53dp"
-		android:layout_height="53dp"
+		android:layout_width="100dp"
+		android:layout_height="wrap_content"
+		android:visibility="gone"
 		android:layout_marginTop="5dp"
 		android:contentDescription="@string/app_name"
-		android:scaleType="fitCenter"
-		android:visibility="gone"/>
+		android:scaleType="fitCenter"/>
 
 	<FrameLayout
 		android:id="@+id/error_frame"
@@ -139,7 +139,8 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="16dp"
-		android:singleLine="true"
+		android:maxLines="2"
+		android:ellipsize="end"
 		android:text="@string/sd_dialog_default_title"
 		android:textColor="#575757"
 		android:textSize="16.5sp"/>
@@ -149,6 +150,8 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="8dp"
+		android:maxLines="8"
+		android:ellipsize="end"
 		android:gravity="center"
 		android:text="内容"
 		android:textAlignment="center"

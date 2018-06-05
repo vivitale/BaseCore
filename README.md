@@ -4,7 +4,7 @@
 [TOC]
  
 ## 使用方法
-> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.10'	}> 第三步 使用方法,在Application中初始化:
+> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.12'	}> 第三步 使用方法,在Application中初始化:
  
     Tool.init(this, BuildConfig.DEBUG);
 
@@ -1261,15 +1261,16 @@ SlideDateTimeListener startListener = new SlideDateTimeListener(){
 };
 // Fragment中则使用getChildFragmentManager()
 new SlideDateTimePicker.Builder(getSupportFragmentManager())
-                   .setListener(startListener)
-                   .setInitialDate(startDate)
-                   .setMinDate(minDate)
-                   .setMaxDate(maxDate)
-                   .setTheme(SlideDateTimePicker.HOLO_LIGHT)
-                   .setIndicatorColor(Color.parseColor("#990000"))
-                   .setShowTime(false)
-                   .build()
-                   .show();
+        .setListener(startListener)
+        .setInitialDate(startDate)
+        .setMinDate(minDate)
+        .setMaxDate(maxDate)
+        .setIndicatorColor(Color.parseColor("#990000"))
+        .setShowTime(false)
+        .setThemeColor(Color.parseColor("#FFFF00"))
+        .setTitleColor(Color.parseColor("#FF0000"))
+        .build()
+        .show()
 ```
 
 

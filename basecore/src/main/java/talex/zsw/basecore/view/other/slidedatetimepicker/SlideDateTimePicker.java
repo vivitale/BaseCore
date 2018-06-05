@@ -28,6 +28,8 @@ public class SlideDateTimePicker
 	private boolean mIsClientSpecified24HourTime;
 	private boolean mIs24HourTime;
 	private boolean mShowTime = true;
+	private int mThemeColor = 0;
+	private int mTitleColor = 0;
 	private int mTheme;
 	private int mIndicatorColor;
 
@@ -41,11 +43,10 @@ public class SlideDateTimePicker
 	{
 		// See if there are any DialogFragments from the FragmentManager
 		FragmentTransaction ft = fm.beginTransaction();
-		Fragment prev =
-			fm.findFragmentByTag(SlideDateTimeDialogFragment.TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT);
+		Fragment prev = fm.findFragmentByTag(SlideDateTimeDialogFragment.TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT);
 
 		// Remove if found
-		if (prev != null)
+		if(prev != null)
 		{
 			ft.remove(prev);
 			ft.commit();
@@ -116,6 +117,16 @@ public class SlideDateTimePicker
 		mShowTime = showTime;
 	}
 
+	public void setThemeColor(int themeColor)
+	{
+		mThemeColor = themeColor;
+	}
+
+	public void setTitleColor(int titleColor)
+	{
+		mTitleColor = titleColor;
+	}
+
 	/**
 	 * <p>Sets whether the TimePicker displays its time in 12-hour
 	 * (AM/PM) or 24-hour format.</p>
@@ -161,36 +172,25 @@ public class SlideDateTimePicker
 
 	/**
 	 * Shows the dialog to the user. Make sure to call
-	 *  before calling this.
+	 * before calling this.
 	 */
 	public void show()
 	{
-		if (mListener == null)
+		if(mListener == null)
 		{
-			throw new NullPointerException(
-				"Attempting to bind null listener to SlideDateTimePicker");
+			throw new NullPointerException("Attempting to bind null listener to SlideDateTimePicker");
 		}
 
-		if (mInitialDate == null)
+		if(mInitialDate == null)
 		{
 			setInitialDate(new Date());
 		}
 
-		SlideDateTimeDialogFragment dialogFragment =
-			SlideDateTimeDialogFragment.newInstance(
-				mListener,
-				mInitialDate,
-				mMinDate,
-				mMaxDate,
-				mIsClientSpecified24HourTime,
-				mIs24HourTime,
-				mTheme,
-				mIndicatorColor,
-				mShowTime);
+		SlideDateTimeDialogFragment dialogFragment
+			= SlideDateTimeDialogFragment.newInstance(mListener, mInitialDate, mMinDate, mMaxDate, mIsClientSpecified24HourTime, mIs24HourTime, mTheme, mIndicatorColor, mShowTime, mThemeColor, mTitleColor);
 
 		dialogFragment.setCancelable(false);
-		dialogFragment.show(mFragmentManager,
-			SlideDateTimeDialogFragment.TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT);
+		dialogFragment.show(mFragmentManager, SlideDateTimeDialogFragment.TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT);
 	}
 
 	/*
@@ -211,6 +211,8 @@ public class SlideDateTimePicker
 		private boolean is24HourTime;
 		private int theme;
 		private boolean showTime = true;
+		private int themeColor = 0;
+		private int titleColor = 0;
 		private int indicatorColor;
 
 		public Builder(FragmentManager fm)
@@ -264,12 +266,21 @@ public class SlideDateTimePicker
 			return this;
 		}
 
-		/**
-		 * @see SlideDateTimePicker#setIs24HourTime(boolean)
-		 */
 		public Builder setShowTime(boolean showTime)
 		{
 			this.showTime = showTime;
+			return this;
+		}
+
+		public Builder setThemeColor(int themeColor)
+		{
+			this.themeColor = themeColor;
+			return this;
+		}
+
+		public Builder setTitleColor(int titleColor)
+		{
+			this.titleColor = titleColor;
 			return this;
 		}
 
@@ -291,6 +302,7 @@ public class SlideDateTimePicker
 			return this;
 		}
 
+
 		/**
 		 * <p>Build and return a {@code SlideDateTimePicker} object based on the previously
 		 * supplied parameters.</p>
@@ -311,6 +323,8 @@ public class SlideDateTimePicker
 			picker.setTheme(theme);
 			picker.setIndicatorColor(indicatorColor);
 			picker.setShowTime(showTime);
+			picker.setThemeColor(themeColor);
+			picker.setTitleColor(titleColor);
 
 			return picker;
 		}

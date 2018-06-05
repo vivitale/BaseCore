@@ -1,6 +1,7 @@
 package talex.zsw.basecore.view.other.slidedatetimepicker;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.widget.DatePicker;
 import android.widget.NumberPicker;
@@ -21,20 +22,19 @@ public class CustomDatePicker extends DatePicker
 {
 	private static final String TAG = "CustomDatePicker";
 
+	Class<?> idClass = null;
+	Class<?> numberPickerClass = null;
+	Field selectionDividerField = null;
+	Field monthField = null;
+	Field dayField = null;
+	Field yearField = null;
+	NumberPicker monthNumberPicker = null;
+	NumberPicker dayNumberPicker = null;
+	NumberPicker yearNumberPicker = null;
+
 	public CustomDatePicker(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
-
-		Class<?> idClass = null;
-		Class<?> numberPickerClass = null;
-		Field selectionDividerField = null;
-		Field monthField = null;
-		Field dayField = null;
-		Field yearField = null;
-		NumberPicker monthNumberPicker = null;
-		NumberPicker dayNumberPicker = null;
-		NumberPicker yearNumberPicker = null;
-
 		try
 		{
 			// Create an instance of the id class
@@ -56,22 +56,45 @@ public class CustomDatePicker extends DatePicker
 			// to refer to our custom drawables
 			selectionDividerField = numberPickerClass.getDeclaredField("mSelectionDivider");
 			selectionDividerField.setAccessible(true);
-			selectionDividerField
-				.set(monthNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
-			selectionDividerField
-				.set(dayNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
-			selectionDividerField
-				.set(yearNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
-		} catch (ClassNotFoundException e)
+			selectionDividerField.set(monthNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
+			selectionDividerField.set(dayNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
+			selectionDividerField.set(yearNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
+		}
+		catch(ClassNotFoundException e)
 		{
 			LogTool.e(TAG, "ClassNotFoundException in CustomDatePicker", e);
-		} catch (NoSuchFieldException e)
+		}
+		catch(NoSuchFieldException e)
 		{
 			LogTool.e(TAG, "NoSuchFieldException in CustomDatePicker", e);
-		} catch (IllegalAccessException e)
+		}
+		catch(IllegalAccessException e)
 		{
 			LogTool.e(TAG, "IllegalAccessException in CustomDatePicker", e);
-		} catch (IllegalArgumentException e)
+		}
+		catch(IllegalArgumentException e)
+		{
+			LogTool.e(TAG, "IllegalArgumentException in CustomDatePicker", e);
+		}
+	}
+
+	public void setColor(int color)
+	{
+		try
+		{
+			if(selectionDividerField != null)
+			{
+				selectionDividerField.setAccessible(true);
+				selectionDividerField.set(monthNumberPicker, new ColorDrawable(color));
+				selectionDividerField.set(dayNumberPicker, new ColorDrawable(color));
+				selectionDividerField.set(yearNumberPicker, new ColorDrawable(color));
+			}
+		}
+		catch(IllegalAccessException e)
+		{
+			LogTool.e(TAG, "IllegalAccessException in CustomDatePicker", e);
+		}
+		catch(IllegalArgumentException e)
 		{
 			LogTool.e(TAG, "IllegalArgumentException in CustomDatePicker", e);
 		}

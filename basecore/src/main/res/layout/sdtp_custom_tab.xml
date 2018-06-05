@@ -5,22 +5,16 @@
     all the available horizontal space. Otherwise, by default the
     two tabs will be left-justified.
 -->
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/customTab"
-    android:orientation="vertical"
-    android:layout_width="0dp"
-    android:layout_height="15dp"
-    android:layout_weight="1"
-    android:background="@drawable/bg_black_top_c"
-    android:gravity="center">
-
-    <TextView
-        android:id="@+id/tabText"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
-
+<TextView
+	android:id="@+id/tabText"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:layout_weight="1"
+	android:background="@drawable/bg_black_top_c"
+	android:gravity="center"
+	android:paddingBottom="11dp"
+	android:paddingTop="11dp"
+	android:textColor="@color/white"
+	android:textSize="16sp"
+	android:visibility="visible"/>

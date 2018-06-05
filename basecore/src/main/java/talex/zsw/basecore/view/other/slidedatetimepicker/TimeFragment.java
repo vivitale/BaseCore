@@ -35,7 +35,7 @@ public class TimeFragment extends Fragment
 	}
 
 	private TimeChangedListener mCallback;
-	private TimePicker mTimePicker;
+	private CustomTimePicker mTimePicker;
 
 	public TimeFragment()
 	{
@@ -73,7 +73,7 @@ public class TimeFragment extends Fragment
 	 * @param is24HourTime
 	 * @return
 	 */
-	public static final TimeFragment newInstance(int theme, int hour, int minute, boolean isClientSpecified24HourTime, boolean is24HourTime)
+	public static final TimeFragment newInstance(int theme, int hour, int minute, boolean isClientSpecified24HourTime, boolean is24HourTime,int themeColor)
 	{
 		TimeFragment f = new TimeFragment();
 
@@ -81,6 +81,7 @@ public class TimeFragment extends Fragment
 		b.putInt("theme", theme);
 		b.putInt("hour", hour);
 		b.putInt("minute", minute);
+		b.putInt("themeColor", themeColor);
 		b.putBoolean("isClientSpecified24HourTime", isClientSpecified24HourTime);
 		b.putBoolean("is24HourTime", is24HourTime);
 		f.setArguments(b);
@@ -96,6 +97,7 @@ public class TimeFragment extends Fragment
 		int theme = getArguments().getInt("theme");
 		int initialHour = getArguments().getInt("hour");
 		int initialMinute = getArguments().getInt("minute");
+		int themeColor = getArguments().getInt("themeColor");
 		boolean isClientSpecified24HourTime = getArguments().getBoolean("isClientSpecified24HourTime");
 		boolean is24HourTime = getArguments().getBoolean("is24HourTime");
 
@@ -112,7 +114,7 @@ public class TimeFragment extends Fragment
 
 		View v = localInflater.inflate(R.layout.sdtp_fragment_time, container, false);
 
-		mTimePicker = (TimePicker) v.findViewById(R.id.timePicker);
+		mTimePicker = (CustomTimePicker) v.findViewById(R.id.timePicker);
 		// block keyboard popping up on touch
 		mTimePicker.setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);
 		mTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener()
@@ -139,6 +141,11 @@ public class TimeFragment extends Fragment
 
 		mTimePicker.setCurrentHour(initialHour);
 		mTimePicker.setCurrentMinute(initialMinute);
+
+		if(themeColor != 0)
+		{
+			mTimePicker.setColor(themeColor);
+		}
 
 		// Fix for the bug where a TimePicker's onTimeChanged() is not called when
 		// the user toggles the AM/PM button. Only applies to 4.0.0 and 4.0.3.

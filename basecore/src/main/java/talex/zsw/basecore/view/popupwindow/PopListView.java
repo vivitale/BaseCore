@@ -320,4 +320,24 @@ public class PopListView extends PopupWindow
 	{
 		void onItemClick(ActionItem item, int position);
 	}
+
+	public ListView getmListView()
+	{
+		return mListView;
+	}
+
+	public void setmListView(ListView mListView)
+	{
+		this.mListView = mListView;
+	}
+
+	public ArrayList<ActionItem> getmActionItems()
+	{
+		return mActionItems;
+	}
+
+	public void setmActionItems(ArrayList<ActionItem> mActionItems)
+	{
+		this.mActionItems = mActionItems;
+	}
 }

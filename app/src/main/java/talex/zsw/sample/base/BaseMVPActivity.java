@@ -169,6 +169,16 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 		System.gc();
 	}
 
+	@Override public void onVisible()
+	{
+
+	}
+
+	@Override public void onInvisible()
+	{
+
+	}
+
 	@Override public void getData(boolean silence)
 	{
 
