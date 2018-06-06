@@ -91,8 +91,15 @@ public class PhotoTool
 
 	/**
 	 * 裁剪图片
+	 *
+	 * @param activity 调用的Activity
+	 * @param srcUri   图片的uri
+	 * @param aspectX  裁剪框宽高的比例
+	 * @param aspectY  裁剪框宽高的比例
+	 * @param outputX  裁剪后生成图片的宽高
+	 * @param outputY  裁剪后生成图片的宽高
 	 */
-	public static void cropImage(Activity activity, Uri srcUri)
+	public static void cropImage(Activity activity, Uri srcUri, int aspectX, int aspectY, int outputX, int outputY)
 	{
 		cropImageUri = createImagePathUri(activity);
 
@@ -113,11 +120,11 @@ public class PhotoTool
 		////////////////////////////////////////////////////////////////
 
 		// aspectX aspectY 是裁剪框宽高的比例
-		intent.putExtra("aspectX", 1);
-		intent.putExtra("aspectY", 1);
+		intent.putExtra("aspectX", aspectX);
+		intent.putExtra("aspectY", aspectY);
 		// outputX outputY 是裁剪后生成图片的宽高
-		intent.putExtra("outputX", 300);
-		intent.putExtra("outputY", 300);
+		intent.putExtra("outputX", outputX);
+		intent.putExtra("outputY", outputY);
 
 		// return-data为true时,会直接返回bitmap数据,但是大图裁剪时会出现问题,推荐下面为false时的方式
 		// return-data为false时,不会返回bitmap,但需要指定一个MediaStore.EXTRA_OUTPUT保存图片uri
@@ -128,9 +135,32 @@ public class PhotoTool
 	}
 
 	/**
-	 * 裁剪图片
+	 * 裁剪图片 返回200*200的图片
+	 */
+	public static void cropImage(Activity activity, Uri srcUri)
+	{
+		cropImage(activity, srcUri, 1, 1, 200, 200);
+	}
+
+	/**
+	 * 裁剪图片 返回200*200的图片
 	 */
 	public static void cropImage(Fragment fragment, Uri srcUri)
+	{
+		cropImage(fragment, srcUri, 1, 1, 200, 200);
+	}
+
+	/**
+	 * 裁剪图片
+	 *
+	 * @param fragment 调用裁剪的Fagment
+	 * @param srcUri   图片的uri
+	 * @param aspectX  裁剪框宽高的比例
+	 * @param aspectY  裁剪框宽高的比例
+	 * @param outputX  裁剪后生成图片的宽高
+	 * @param outputY  裁剪后生成图片的宽高
+	 */
+	public static void cropImage(Fragment fragment, Uri srcUri, int aspectX, int aspectY, int outputX, int outputY)
 	{
 		cropImageUri = createImagePathUri(fragment.getContext());
 
@@ -151,11 +181,11 @@ public class PhotoTool
 		////////////////////////////////////////////////////////////////
 
 		// aspectX aspectY 是裁剪框宽高的比例
-		intent.putExtra("aspectX", 1);
-		intent.putExtra("aspectY", 1);
+		intent.putExtra("aspectX", aspectX);
+		intent.putExtra("aspectY", aspectY);
 		// outputX outputY 是裁剪后生成图片的宽高
-		intent.putExtra("outputX", 300);
-		intent.putExtra("outputY", 300);
+		intent.putExtra("outputX", outputX);
+		intent.putExtra("outputY", outputY);
 
 		// return-data为true时,会直接返回bitmap数据,但是大图裁剪时会出现问题,推荐下面为false时的方式
 		// return-data为false时,不会返回bitmap,但需要指定一个MediaStore.EXTRA_OUTPUT保存图片uri
