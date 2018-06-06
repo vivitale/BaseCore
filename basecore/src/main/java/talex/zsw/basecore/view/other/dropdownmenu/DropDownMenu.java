@@ -96,6 +96,7 @@ public class DropDownMenu extends LinearLayout
 			tabs
 				.get(position)
 				.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(menuUnselectedIcon), null);
+			tabs.get(position).setCompoundDrawablePadding(3);
 		}
 		else
 		{
@@ -103,6 +104,7 @@ public class DropDownMenu extends LinearLayout
 			tabs
 				.get(position)
 				.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(menuSelectedIcon), null);
+			tabs.get(position).setCompoundDrawablePadding(3);
 		}
 	}
 
@@ -270,6 +272,7 @@ public class DropDownMenu extends LinearLayout
 			tabs
 				.get(current_tab_position)
 				.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(menuSelectedIcon), null);
+			tabs.get(current_tab_position).setCompoundDrawablePadding(3);
 		}
 	}
 
@@ -284,6 +287,7 @@ public class DropDownMenu extends LinearLayout
 			tabs
 				.get(current_tab_position)
 				.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(menuUnselectedIcon), null);
+			tabs.get(current_tab_position).setCompoundDrawablePadding(3);
 		}
 	}
 
@@ -309,6 +313,7 @@ public class DropDownMenu extends LinearLayout
 			tabs
 				.get(position)
 				.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(menuSelectedIcon), null);
+			tabs.get(position).setCompoundDrawablePadding(3);
 		}
 	}
 
@@ -323,6 +328,7 @@ public class DropDownMenu extends LinearLayout
 			tabs
 				.get(position)
 				.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(menuUnselectedIcon), null);
+			tabs.get(position).setCompoundDrawablePadding(3);
 		}
 	}
 
@@ -387,6 +393,7 @@ public class DropDownMenu extends LinearLayout
 			tabs
 				.get(position)
 				.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(menuSelectedIcon), null);
+			tabs.get(position).setCompoundDrawablePadding(3);
 		}
 		else
 		{
@@ -394,6 +401,7 @@ public class DropDownMenu extends LinearLayout
 			tabs
 				.get(position)
 				.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(menuUnselectedIcon), null);
+			tabs.get(position).setCompoundDrawablePadding(3);
 		}
 	}
 
@@ -429,6 +437,7 @@ public class DropDownMenu extends LinearLayout
 					tabs
 						.get(i)
 						.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(menuSelectedIcon), null);
+					tabs.get(i).setCompoundDrawablePadding(3);
 					tabs.get(i).setBackgroundColor(Color.WHITE);
 				}
 			}

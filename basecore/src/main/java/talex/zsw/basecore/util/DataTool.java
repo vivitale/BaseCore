@@ -1,5 +1,9 @@
 package talex.zsw.basecore.util;
 
+import android.content.ContentResolver;
+import android.content.res.Resources;
+import android.net.Uri;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -1618,5 +1622,19 @@ public class DataTool
 			value += (bytes[i] & 0x000000FF) << shift;// 往高位游
 		}
 		return value;
+	}
+
+	// ----------------------------------------------------------
+
+	/**
+	 * 资源id 转 Uri
+	 */
+	public static Uri resId2Uri(int resId)
+	{
+		Resources r = Tool.getContext().getResources();
+		return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+			                      + r.getResourcePackageName(resId) + "/"
+			                      + r.getResourceTypeName(resId) + "/"
+			                      + r.getResourceEntryName(resId));
 	}
 }

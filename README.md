@@ -4,7 +4,7 @@
 [TOC]
  
 ## 使用方法
-> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.12'	}> 第三步 使用方法,在Application中初始化:
+> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.13'	}> 第三步 使用方法,在Application中初始化:
  
     Tool.init(this, BuildConfig.DEBUG);
 
@@ -336,6 +336,7 @@ int2Bytes                   | byte[] 转 int
 hex2Dec                     | hexChar 转 int
 chars2Bytes                 | charArr 转 byteArr
 bytes2Chars                 | byteArr 转 charArr
+resId2Uri                   | 资源id 转 Uri
 byte2Size                   | 字节数 转 以unit为单位的size
 size2Byte                   | 以unit为单位的size 转 字节数
 byte2FitSize                | 字节数 转 合适大小
@@ -1083,6 +1084,41 @@ public static final int CUSTOM_IMAGE_TYPE = 4;    // 显示图片
 public static final int PROGRESS_TYPE = 5;        // 显示圆形进度条
 ```
 
+#### RxDialogChooseImage -> 用来显示选择获取图片方式的Dialog
+```
+RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(mContext, TITLE);
+        dialogChooseImage.show();
+```
+
+
+#### RxDialogEditSureCancel -> 带有确认取消按钮的 输入框Dialog
+```
+final RxDialogEditSureCancel rxDialogEditSureCancel = new RxDialogEditSureCancel(mContext);//提示弹窗
+rxDialogEditSureCancel.getTitleView().setBackgroundResource(R.drawable.logo);
+rxDialogEditSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        rxDialogEditSureCancel.cancel();
+    }
+});
+rxDialogEditSureCancel.getCancelView().setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        rxDialogEditSureCancel.cancel();
+    }
+});
+rxDialogEditSureCancel.show();
+```
+
+
+#### RxDialogScaleView -> 查看图片并支持手势缩放
+```
+RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(mContext);
+rxDialogScaleView.setImage(...);
+rxDialogScaleView.show();
+```
+
+
 ### EditText
 #### ClearEditText -> 带清理功能的EditText 
 方法名 | 说明
@@ -1096,6 +1132,9 @@ setAfterChangedListener     | 设置文字变化以后的事件
 --------- | -------------
 setMovieResource            | 设置gif的id
 
+
+#### ScaleImageView -> 显示一个支持手势缩放的ImageView
+原项目地址:[https://github.com/davemorrissey/subsampling-scale-image-view](https://github.com/davemorrissey/subsampling-scale-image-view)
 
 ### PopupWindow
 #### MyPopupWindow  -> 可以监听显示,消失事件的POP
