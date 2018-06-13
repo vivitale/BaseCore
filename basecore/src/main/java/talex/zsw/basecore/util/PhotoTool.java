@@ -1,6 +1,5 @@
 package talex.zsw.basecore.util;
 
-import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -8,22 +7,18 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
-
-import talex.zsw.basecore.view.other.RxToast;
 
 /**
  * 相册,相机常用方法
@@ -205,39 +200,39 @@ public class PhotoTool
 	{
 		final Uri[] imageFilePath = {null};
 
-		if(ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-			PackageManager.PERMISSION_GRANTED)
-		{
-			ActivityCompat.requestPermissions((Activity) context, new String[]{
-				Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-			imageFilePath[0] = Uri.parse("");
-			RxToast.error("请先获取写入SDCard权限");
-		}
-		else
-		{
-			String status = Environment.getExternalStorageState();
-			SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA);
-			long time = System.currentTimeMillis();
-			String imageName = timeFormatter.format(new Date(time));
-			// ContentValues是我们希望这条记录被创建时包含的数据信息
-			ContentValues values = new ContentValues(3);
-			values.put(MediaStore.Images.Media.DISPLAY_NAME, imageName);
-			values.put(MediaStore.Images.Media.DATE_TAKEN, time);
-			values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-
-			if(status.equals(Environment.MEDIA_MOUNTED))
-			{// 判断是否有SD卡,优先使用SD卡存储,当没有SD卡时使用手机存储
-				imageFilePath[0] = context
-					.getContentResolver()
-					.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-			}
-			else
+		PermissionHelper.requestStorage(new PermissionTool.FullCallback(){
+			@Override public void onGranted(List<String> permissionsGranted)
 			{
-				imageFilePath[0] = context
-					.getContentResolver()
-					.insert(MediaStore.Images.Media.INTERNAL_CONTENT_URI, values);
+				String status = Environment.getExternalStorageState();
+				SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA);
+				long time = System.currentTimeMillis();
+				String imageName = timeFormatter.format(new Date(time));
+				// ContentValues是我们希望这条记录被创建时包含的数据信息
+				ContentValues values = new ContentValues(3);
+				values.put(MediaStore.Images.Media.DISPLAY_NAME, imageName);
+				values.put(MediaStore.Images.Media.DATE_TAKEN, time);
+				values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+
+				if(status.equals(Environment.MEDIA_MOUNTED))
+				{// 判断是否有SD卡,优先使用SD卡存储,当没有SD卡时使用手机存储
+					imageFilePath[0] = context
+						.getContentResolver()
+						.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+				}
+				else
+				{
+					imageFilePath[0] = context
+						.getContentResolver()
+						.insert(MediaStore.Images.Media.INTERNAL_CONTENT_URI, values);
+				}
 			}
-		}
+
+			@Override public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied)
+			{
+				imageFilePath[0] = Uri.parse("");
+				PermissionHelper.showOpenAppSettingDialog();
+			}
+		});
 
 		Log.i("", "生成的照片输出路径："+imageFilePath[0].toString());
 		return imageFilePath[0];

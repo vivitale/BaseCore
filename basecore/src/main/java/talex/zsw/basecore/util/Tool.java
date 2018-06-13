@@ -11,9 +11,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
+import talex.zsw.basecore.R;
 import talex.zsw.basecore.interfaces.OnSimpleListener;
 import talex.zsw.basecore.util.cockroach.Cockroach;
 
@@ -60,7 +58,7 @@ public class Tool
 						{
 							try
 							{
-								LogTool.e(thread+"\n"+throwable.toString());
+								LogTool.e("BaseCore", thread+"\n"+throwable.toString());
 								throwable.printStackTrace();
 							}
 							catch(Throwable ignored)
@@ -79,6 +77,7 @@ public class Tool
 	public static void uninstall()
 	{
 		Cockroach.uninstall();
+		ActivityTool.AppExit(context);
 	}
 
 	/**
@@ -96,9 +95,15 @@ public class Tool
 		}
 		throw new NullPointerException("请先调用init()方法");
 	}
-	//==============================================================================================延时任务封装 end
 
-	//----------------------------------------------------------------------------------------------延时任务封装 start
+	//---------------------------------------------------------------------------------------------- 其他工具类
+
+	/**
+	 * 延时任务
+	 *
+	 * @param delayTime        延时时间
+	 * @param onSimpleListener 延时后调用方法
+	 */
 	public static void delayToDo(long delayTime, final OnSimpleListener onSimpleListener)
 	{
 		new Handler().postDelayed(new Runnable()
@@ -118,8 +123,25 @@ public class Tool
 	 * @param waitTime 倒计时总时长
 	 * @param interval 倒计时的间隔时间
 	 * @param hint     倒计时完毕时显示的文字
+	 * @param listener 结束时调用的接口
 	 */
-	public static void countDown(final TextView textView, long waitTime, long interval, final String hint)
+	public static void countDown(final TextView textView, long waitTime, long interval, final String hint, OnSimpleListener listener)
+	{
+		String format = DataTool.getString(R.string.tool_count_down);
+		countDown(textView, waitTime, interval, format, hint, listener);
+	}
+
+	/**
+	 * 倒计时
+	 *
+	 * @param textView 控件
+	 * @param waitTime 倒计时总时长
+	 * @param interval 倒计时的间隔时间
+	 * @param format   计时器的文本格式 (如 剩下 %d 秒)
+	 * @param hint     倒计时完毕时显示的文字
+	 * @param listener 结束时调用的接口
+	 */
+	public static void countDown(final TextView textView, long waitTime, long interval, final String format, final String hint, final OnSimpleListener listener)
 	{
 		textView.setEnabled(false);
 		android.os.CountDownTimer timer = new android.os.CountDownTimer(waitTime, interval)
@@ -127,13 +149,16 @@ public class Tool
 
 			@SuppressLint("DefaultLocale") @Override public void onTick(long millisUntilFinished)
 			{
-				textView.setText(String.format("剩下 %d S", millisUntilFinished/1000));
+				String data = String.format(format, millisUntilFinished/1000);
+
+				textView.setText(data);
 			}
 
 			@Override public void onFinish()
 			{
 				textView.setEnabled(true);
 				textView.setText(hint);
+				listener.doSomething();
 			}
 		};
 		timer.start();
@@ -141,8 +166,6 @@ public class Tool
 
 	/**
 	 * 手动计算出listView的高度，但是不再具有滚动效果
-	 *
-	 * @param listView
 	 */
 	public static void fixListViewHeight(ListView listView)
 	{
@@ -170,46 +193,6 @@ public class Tool
 		listView.setLayoutParams(params);
 	}
 
-	//---------------------------------------------MD5加密-------------------------------------------
-
-	/**
-	 * 生成MD5加密32位字符串
-	 *
-	 * @param MStr :需要加密的字符串
-	 * @return
-	 */
-	public static String Md5(String MStr)
-	{
-		try
-		{
-			final MessageDigest mDigest = MessageDigest.getInstance("MD5");
-			mDigest.update(MStr.getBytes());
-			return bytesToHexString(mDigest.digest());
-		}
-		catch(NoSuchAlgorithmException e)
-		{
-			return String.valueOf(MStr.hashCode());
-		}
-	}
-
-	// MD5内部算法---------------不能修改!
-	private static String bytesToHexString(byte[] bytes)
-	{
-		// http://stackoverflow.com/questions/332079
-		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < bytes.length; i++)
-		{
-			String hex = Integer.toHexString(0xFF & bytes[i]);
-			if(hex.length() == 1)
-			{
-				sb.append('0');
-			}
-			sb.append(hex);
-		}
-		return sb.toString();
-	}
-	//============================================MD5加密============================================
-
 	/**
 	 * 根据资源名称获取资源 id
 	 * <p>
@@ -217,15 +200,10 @@ public class Tool
 	 * <p>
 	 * 例如
 	 * getResources().getIdentifier("ic_launcher", "drawable", getPackageName());
-	 *
-	 * @param context
-	 * @param name
-	 * @param defType
-	 * @return
 	 */
-	public final static int getResIdByName(Context context, String name, String defType)
+	public static int getResIdByName(String name, String defType)
 	{
-		return context.getResources().getIdentifier("ic_launcher", "drawable", context.getPackageName());
+		return getContext().getResources().getIdentifier(name, defType, getContext().getPackageName());
 	}
 
 	public static boolean isFastClick(int millisecond)
@@ -243,9 +221,7 @@ public class Tool
 	}
 
 	/**
-	 * 获取
-	 *
-	 * @return
+	 * 获取后台Handler
 	 */
 	public static Handler getBackgroundHandler()
 	{

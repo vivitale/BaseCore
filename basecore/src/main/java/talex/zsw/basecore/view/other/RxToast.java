@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import talex.zsw.basecore.R;
+import talex.zsw.basecore.util.DataTool;
 
 import static talex.zsw.basecore.util.Tool.getContext;
 
@@ -457,7 +458,7 @@ public class RxToast
 	{
 		if((System.currentTimeMillis()-mExitTime) > 2000)
 		{
-			RxToast.normal("再按一次退出");
+			RxToast.normal(DataTool.getString(R.string.tool_double_exit));
 			mExitTime = System.currentTimeMillis();
 			return false;
 		}

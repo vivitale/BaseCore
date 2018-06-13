@@ -1,4 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<string name="app_name">basecore</string>
+
+	<!-- Tool -->
 	<string name="permission_rationale_message">You have rejected us to apply for authorization, please agree to authorization, otherwise the function can\'t be used normally!</string>
 	<string name="permission_denied_forever_message">We need some of the permissions you rejected or the system failed to apply failed, please manually set to the page authorize, otherwise the function can\'t be used normally!</string>
 	<string name="nettool_change_to_wifi">Switch to wifi</string>
@@ -23,51 +26,66 @@
 	<string name="sd_dialog_default_title">title</string>
 	<string name="sd_dialog_ok">ok</string>
 	<string name="sd_dialog_cancel">cancel</string>
-	<string name="sd_loading">loading…</string>
+	<string name="sd_loading">loading …</string>
 
 	<!-- TimeSinceTextView -->
 	<string name="timespan_now">just now</string>
-	<plurals name="timespan_years">
+	<plurals name="timespan_years"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d years ago</item>
 	</plurals>
-	<plurals name="timespan_months">
+	<plurals name="timespan_months"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d months ago</item>
 	</plurals>
-	<plurals name="timespan_weeks">
+	<plurals name="timespan_weeks"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d weeks ago</item>
 	</plurals>
-	<plurals name="timespan_days">
+	<plurals name="timespan_days"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d days ago</item>
 	</plurals>
-	<plurals name="timespan_hours">
+	<plurals name="timespan_hours"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d hours ago</item>
 	</plurals>
-	<plurals name="timespan_minutes">
+	<plurals name="timespan_minutes"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d minutes ago</item>
 	</plurals>
-	<plurals name="timespan_seconds">
+	<plurals name="timespan_seconds"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d seconds ago</item>
 	</plurals>
-	<plurals name="timespan_years_abbr">
+	<plurals name="timespan_years_abbr"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d years</item>
 	</plurals>
-	<plurals name="timespan_months_abbr">
+	<plurals name="timespan_months_abbr"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d months</item>
 	</plurals>
-	<plurals name="timespan_weeks_abbr">
+	<plurals name="timespan_weeks_abbr"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d weeks</item>
 	</plurals>
-	<plurals name="timespan_days_abbr">
+	<plurals name="timespan_days_abbr"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d days</item>
 	</plurals>
-	<plurals name="timespan_hours_abbr">
+	<plurals name="timespan_hours_abbr"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d hours</item>
 	</plurals>
-	<plurals name="timespan_minutes_abbr">
+	<plurals name="timespan_minutes_abbr"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d minutes</item>
 	</plurals>
-	<plurals name="timespan_seconds_abbr">
+	<plurals name="timespan_seconds_abbr"
+	         tools:ignore="MissingQuantity">
 		<item quantity="other">%d seconds</item>
 	</plurals>
+
 
 </resources>

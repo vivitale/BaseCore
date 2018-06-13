@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.os.PowerManager;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
@@ -174,9 +175,18 @@ public class DeviceTool
 				                                 .getApplicationContext()
 				                                 .getContentResolver(), Settings.Secure.ANDROID_ID);
 		}
-		if(mTelephony.getDeviceId() != null)
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 		{
-			id = mTelephony.getDeviceId();
+			id = mTelephony != null ? mTelephony.getImei() : "";
+		}
+		else
+		{
+			id = mTelephony != null ? mTelephony.getDeviceId() : "";
+		}
+
+		if(RegTool.isNotEmpty(id))
+		{
+			return id;
 		}
 		else
 		{
@@ -184,8 +194,8 @@ public class DeviceTool
 			id = Settings.Secure.getString(context
 				                               .getApplicationContext()
 				                               .getContentResolver(), Settings.Secure.ANDROID_ID);
+			return id;
 		}
-		return id;
 	}
 
 	/**
@@ -1302,7 +1312,49 @@ public class DeviceTool
 		{
 			e.printStackTrace();
 		}
-		LogTool.d("ip == "+ip);
+		LogTool.d("BaseCore","ip == "+ip);
 		return ip;
+	}
+
+	/**
+	 * 设备重启
+	 * {@code <uses-permission android:name="android.permission.REBOOT" />}</p>
+	 *
+	 * @param reason code to pass to the kernel (e.g., "recovery") to
+	 *               request special boot modes, or null.
+	 */
+	public static void reboot(final String reason)
+	{
+		PowerManager mPowerManager = (PowerManager) Tool.getContext().getSystemService(Context.POWER_SERVICE);
+		try
+		{
+			if(mPowerManager == null)
+			{
+				return;
+			}
+			mPowerManager.reboot(reason);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 重启到 recovery
+	 * <p>需要root权限</p>
+	 */
+	public static void reboot2Recovery()
+	{
+		ShellTool.execCmd("reboot recovery", true);
+	}
+
+	/**
+	 * 重启到 bootloader
+	 * <p>需要root权限</p>
+	 */
+	public static void reboot2Bootloader()
+	{
+		ShellTool.execCmd("reboot bootloader", true);
 	}
 }

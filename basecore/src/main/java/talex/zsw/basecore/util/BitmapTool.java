@@ -35,6 +35,7 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.io.BufferedInputStream;
@@ -213,6 +214,25 @@ public class BitmapTool
 		Bitmap bitmap = bytes2Bitmap(bytes);
 		Drawable drawable = bitmap2Drawable(bitmap);
 		return drawable;
+	}
+
+	/**
+	 * View 转 Bitmap.
+	 */
+	public static Bitmap view2Bitmap(final View view) {
+		if (view == null) return null;
+		Bitmap ret = Bitmap.createBitmap(view.getWidth(),
+		                                 view.getHeight(),
+		                                 Bitmap.Config.ARGB_8888);
+		Canvas canvas = new Canvas(ret);
+		Drawable bgDrawable = view.getBackground();
+		if (bgDrawable != null) {
+			bgDrawable.draw(canvas);
+		} else {
+			canvas.drawColor(Color.WHITE);
+		}
+		view.draw(canvas);
+		return ret;
 	}
 
 	/**

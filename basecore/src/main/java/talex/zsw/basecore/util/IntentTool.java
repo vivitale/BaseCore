@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,14 +37,31 @@ public class IntentTool
 		{
 			return null;
 		}
-		Intent intent = new Intent(Intent.ACTION_VIEW);
-		Uri contentUri = FileTool.getUriForFile(context, apkfile);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+
+		boolean canInstall = true;
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 		{
-			intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+			canInstall = Tool.getContext().getPackageManager().canRequestPackageInstalls();
 		}
-		intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+		Intent intent = new Intent();
+		if(canInstall)
+		{
+			intent = new Intent(Intent.ACTION_VIEW);
+			Uri contentUri = FileTool.getUriForFile(context, apkfile);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+			{
+				intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+			}
+			intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+		}
+		else
+		{
+			// android 8.0 跳转到显示是否可以安装应用的界面
+			Uri packageUri = Uri.parse("package:"+Tool.getContext().getPackageName());
+			intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageUri);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		}
 		return intent;
 	}
 
@@ -444,16 +462,33 @@ public class IntentTool
 	}
 
 	/**
+	 * 打开某个网页的意图
+	 *
+	 * @param url 网页URL
+	 */
+	public static Intent getWebIntent(String url)
+	{
+		Uri uri = Uri.parse(url);
+		Intent intent = new Intent();
+		intent.setAction(Intent.ACTION_VIEW);
+		intent.setData(uri);
+		return intent;
+	}
+
+
+	/**
 	 * 获取打开照程序界面的Intent
 	 */
-	public static Intent getOpenCameraIntent() {
+	public static Intent getOpenCameraIntent()
+	{
 		return new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 	}
 
 	/**
 	 * 获取跳转至相册选择界面的Intent
 	 */
-	public static Intent getImagePickerIntent() {
+	public static Intent getImagePickerIntent()
+	{
 		Intent intent = new Intent(Intent.ACTION_PICK, null);
 		return intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
 	}
@@ -461,16 +496,16 @@ public class IntentTool
 	/**
 	 * 获取[跳转至相册选择界面,并跳转至裁剪界面，默认可缩放裁剪区域]的Intent
 	 */
-	public static Intent getImagePickerIntent(int outputX, int outputY, Uri fromFileURI,
-		Uri saveFileURI) {
+	public static Intent getImagePickerIntent(int outputX, int outputY, Uri fromFileURI, Uri saveFileURI)
+	{
 		return getImagePickerIntent(1, 1, outputX, outputY, true, fromFileURI, saveFileURI);
 	}
 
 	/**
 	 * 获取[跳转至相册选择界面,并跳转至裁剪界面，默认可缩放裁剪区域]的Intent
 	 */
-	public static Intent getImagePickerIntent(int aspectX, int aspectY, int outputX, int outputY, Uri fromFileURI,
-		Uri saveFileURI) {
+	public static Intent getImagePickerIntent(int aspectX, int aspectY, int outputX, int outputY, Uri fromFileURI, Uri saveFileURI)
+	{
 		return getImagePickerIntent(aspectX, aspectY, outputX, outputY, true, fromFileURI, saveFileURI);
 	}
 
@@ -485,8 +520,8 @@ public class IntentTool
 	 * @param fromFileURI 文件来源路径URI
 	 * @param saveFileURI 输出文件路径URI
 	 */
-	public static Intent getImagePickerIntent(int aspectX, int aspectY, int outputX, int outputY, boolean canScale,
-		Uri fromFileURI, Uri saveFileURI) {
+	public static Intent getImagePickerIntent(int aspectX, int aspectY, int outputX, int outputY, boolean canScale, Uri fromFileURI, Uri saveFileURI)
+	{
 		Intent intent = new Intent(Intent.ACTION_PICK);
 		intent.setDataAndType(fromFileURI, "image/*");
 		intent.putExtra("crop", "true");
@@ -507,7 +542,8 @@ public class IntentTool
 	/**
 	 * 获取[跳转至相册选择界面,并跳转至裁剪界面，默认可缩放裁剪区域]的Intent
 	 */
-	public static Intent getCameraIntent(Uri saveFileURI) {
+	public static Intent getCameraIntent(Uri saveFileURI)
+	{
 		Intent mIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		return mIntent.putExtra(MediaStore.EXTRA_OUTPUT, saveFileURI);
 	}
@@ -515,16 +551,16 @@ public class IntentTool
 	/**
 	 * 获取[跳转至裁剪界面,默认可缩放]的Intent
 	 */
-	public static Intent getCropImageIntent(int outputX, int outputY, Uri fromFileURI,
-		Uri saveFileURI) {
+	public static Intent getCropImageIntent(int outputX, int outputY, Uri fromFileURI, Uri saveFileURI)
+	{
 		return getCropImageIntent(1, 1, outputX, outputY, true, fromFileURI, saveFileURI);
 	}
 
 	/**
 	 * 获取[跳转至裁剪界面,默认可缩放]的Intent
 	 */
-	public static Intent getCropImageIntent(int aspectX, int aspectY, int outputX, int outputY, Uri fromFileURI,
-		Uri saveFileURI) {
+	public static Intent getCropImageIntent(int aspectX, int aspectY, int outputX, int outputY, Uri fromFileURI, Uri saveFileURI)
+	{
 		return getCropImageIntent(aspectX, aspectY, outputX, outputY, true, fromFileURI, saveFileURI);
 	}
 
@@ -532,8 +568,8 @@ public class IntentTool
 	/**
 	 * 获取[跳转至裁剪界面]的Intent
 	 */
-	public static Intent getCropImageIntent(int aspectX, int aspectY, int outputX, int outputY, boolean canScale,
-		Uri fromFileURI, Uri saveFileURI) {
+	public static Intent getCropImageIntent(int aspectX, int aspectY, int outputX, int outputY, boolean canScale, Uri fromFileURI, Uri saveFileURI)
+	{
 		Intent intent = new Intent("com.android.camera.action.CROP");
 		intent.setDataAndType(fromFileURI, "image/*");
 		intent.putExtra("crop", "true");
@@ -563,14 +599,21 @@ public class IntentTool
 	 * @param data    onActivityResult返回的Intent
 	 * @return bitmap
 	 */
-	public static Bitmap getChoosedImage(Activity context, Intent data) {
-		if (data == null) return null;
+	public static Bitmap getChoosedImage(Activity context, Intent data)
+	{
+		if(data == null)
+		{
+			return null;
+		}
 		Bitmap bm = null;
 		ContentResolver cr = context.getContentResolver();
 		Uri originalUri = data.getData();
-		try {
+		try
+		{
 			bm = MediaStore.Images.Media.getBitmap(cr, originalUri);
-		} catch (IOException e) {
+		}
+		catch(IOException e)
+		{
 			e.printStackTrace();
 		}
 		return bm;
@@ -583,27 +626,44 @@ public class IntentTool
 	 * @param data    onActivityResult返回的Intent
 	 * @return
 	 */
-	public static String getChoosedImagePath(Activity context, Intent data) {
-		if (data == null) return null;
+	public static String getChoosedImagePath(Activity context, Intent data)
+	{
+		if(data == null)
+		{
+			return null;
+		}
 		String path = "";
 		ContentResolver resolver = context.getContentResolver();
 		Uri originalUri = data.getData();
-		if (null == originalUri) return null;
+		if(null == originalUri)
+		{
+			return null;
+		}
 		String[] projection = {MediaStore.Images.Media.DATA};
 		Cursor cursor = resolver.query(originalUri, projection, null, null, null);
-		if (null != cursor) {
-			try {
+		if(null != cursor)
+		{
+			try
+			{
 				int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 				cursor.moveToFirst();
 				path = cursor.getString(column_index);
-			} catch (IllegalArgumentException e) {
+			}
+			catch(IllegalArgumentException e)
+			{
 				e.printStackTrace();
-			} finally {
-				try {
-					if (!cursor.isClosed()) {
+			}
+			finally
+			{
+				try
+				{
+					if(!cursor.isClosed())
+					{
 						cursor.close();
 					}
-				} catch (Exception e) {
+				}
+				catch(Exception e)
+				{
 					e.printStackTrace();
 				}
 			}
@@ -618,13 +678,23 @@ public class IntentTool
 	 * @param filePath 文件路径
 	 * @return 文件
 	 */
-	public static File getTakePictureFile(Intent data, String filePath) {
-		if (data == null) return null;
+	public static File getTakePictureFile(Intent data, String filePath)
+	{
+		if(data == null)
+		{
+			return null;
+		}
 		Bundle extras = data.getExtras();
-		if (extras == null) return null;
+		if(extras == null)
+		{
+			return null;
+		}
 		Bitmap photo = extras.getParcelable("data");
 		File file = new File(filePath);
-		if (BitmapTool.save(photo, file, Bitmap.CompressFormat.JPEG)) return file;
+		if(BitmapTool.save(photo, file, Bitmap.CompressFormat.JPEG))
+		{
+			return file;
+		}
 		return null;
 	}
 }

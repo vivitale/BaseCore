@@ -20,7 +20,7 @@ import talex.zsw.basecore.util.LogTool;
  */
 public class CustomTimePicker extends TimePicker
 {
-	private static final String TAG = "CustomTimePicker";
+	private static final String TAG = "BaseCore";
 
 	Class<?> idClass = null;
 	Class<?> numberPickerClass = null;

@@ -58,7 +58,7 @@ public class WebViewTool
 			{
 				mWebView.setVisibility(View.GONE);
 				mRichText.setVisibility(View.VISIBLE);
-				mRichText.setText("无信息");
+				mRichText.setText("no data");
 			}
 		}
 		else if(content.startsWith("http://") || content.startsWith("https://"))

@@ -224,10 +224,10 @@ public class DataCleanTool
 
 		//WebView 缓存文件
 		File appCacheDir = new File(context.getFilesDir().getAbsolutePath() + "/webcache");
-		LogTool.d("appCacheDir path=" + appCacheDir.getAbsolutePath());
+		LogTool.d("BaseCore","appCacheDir path=" + appCacheDir.getAbsolutePath());
 
 		File webviewCacheDir = new File(context.getCacheDir().getAbsolutePath() + "/webviewCache");
-		LogTool.d( "webviewCacheDir path=" + webviewCacheDir.getAbsolutePath());
+		LogTool.d("BaseCore", "webviewCacheDir path=" + webviewCacheDir.getAbsolutePath());
 
 		//删除webview 缓存目录
 		if (webviewCacheDir.exists())

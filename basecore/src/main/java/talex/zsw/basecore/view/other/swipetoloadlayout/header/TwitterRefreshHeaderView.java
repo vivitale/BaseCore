@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import talex.zsw.basecore.R;
+import talex.zsw.basecore.util.DataTool;
 import talex.zsw.basecore.view.other.swipetoloadlayout.SwipeRefreshHeaderLayout;
 
 
@@ -37,61 +38,60 @@ public class TwitterRefreshHeaderView extends SwipeRefreshHeaderLayout
 
 	public TwitterRefreshHeaderView(Context context)
 	{
-		this( context, null );
+		this(context, null);
 	}
 
 	public TwitterRefreshHeaderView(Context context, AttributeSet attrs)
 	{
-		this( context, attrs, 0 );
+		this(context, attrs, 0);
 	}
 
 	public TwitterRefreshHeaderView(Context context, AttributeSet attrs, int defStyleAttr)
 	{
-		super( context, attrs, defStyleAttr );
-		mHeaderHeight =
-			getResources().getDimensionPixelOffset(R.dimen.refresh_header_height_twitter );
-		rotateUp = AnimationUtils.loadAnimation(context, R.anim.rotate_up );
-		rotateDown = AnimationUtils.loadAnimation(context, R.anim.rotate_down );
+		super(context, attrs, defStyleAttr);
+		mHeaderHeight = getResources().getDimensionPixelOffset(R.dimen.refresh_header_height_twitter);
+		rotateUp = AnimationUtils.loadAnimation(context, R.anim.rotate_up);
+		rotateDown = AnimationUtils.loadAnimation(context, R.anim.rotate_down);
 	}
 
 	@Override protected void onFinishInflate()
 	{
 		super.onFinishInflate();
 
-		tvRefresh = (TextView) findViewById(R.id.tvRefresh );
-		ivArrow = (ImageView) findViewById(R.id.ivArrow );
-		ivSuccess = (ImageView) findViewById(R.id.ivSuccess );
-		progressBar = (ProgressBar) findViewById(R.id.progressbar );
+		tvRefresh = (TextView) findViewById(R.id.tvRefresh);
+		ivArrow = (ImageView) findViewById(R.id.ivArrow);
+		ivSuccess = (ImageView) findViewById(R.id.ivSuccess);
+		progressBar = (ProgressBar) findViewById(R.id.progressbar);
 	}
 
 	@Override public void onRefresh()
 	{
-		ivSuccess.setVisibility( GONE );
+		ivSuccess.setVisibility(GONE);
 		ivArrow.clearAnimation();
-		ivArrow.setVisibility( GONE );
-		progressBar.setVisibility( VISIBLE );
-		tvRefresh.setText( "加载中..." );
+		ivArrow.setVisibility(GONE);
+		progressBar.setVisibility(VISIBLE);
+		tvRefresh.setText(DataTool.getString(R.string.stll_loading));
 	}
 
 	@Override public void onPrepare()
 	{
-		Log.d("TwitterRefreshHeader", "onPrepare()" );
+		Log.d("TwitterRefreshHeader", "onPrepare()");
 	}
 
 	@Override public void onSwipe(int y, boolean isComplete)
 	{
 		if(!isComplete)
 		{
-			ivArrow.setVisibility( VISIBLE );
-			progressBar.setVisibility( GONE );
-			ivSuccess.setVisibility( GONE );
+			ivArrow.setVisibility(VISIBLE);
+			progressBar.setVisibility(GONE);
+			ivSuccess.setVisibility(GONE);
 			if(y > mHeaderHeight)
 			{
-				tvRefresh.setText( "松开刷新" );
+				tvRefresh.setText(DataTool.getString(R.string.stll_loose_refresh));
 				if(!rotated)
 				{
 					ivArrow.clearAnimation();
-					ivArrow.startAnimation( rotateUp );
+					ivArrow.startAnimation(rotateUp);
 					rotated = true;
 				}
 			}
@@ -100,36 +100,36 @@ public class TwitterRefreshHeaderView extends SwipeRefreshHeaderLayout
 				if(rotated)
 				{
 					ivArrow.clearAnimation();
-					ivArrow.startAnimation( rotateDown );
+					ivArrow.startAnimation(rotateDown);
 					rotated = false;
 				}
 
-				tvRefresh.setText( "下拉刷新" );
+				tvRefresh.setText(DataTool.getString(R.string.stll_pull_refresh));
 			}
 		}
 	}
 
 	@Override public void onRelease()
 	{
-		Log.d("TwitterRefreshHeader", "onRelease()" );
+		Log.d("TwitterRefreshHeader", "onRelease()");
 	}
 
 	@Override public void complete()
 	{
 		rotated = false;
-		ivSuccess.setVisibility( GONE );
+		ivSuccess.setVisibility(GONE);
 		ivArrow.clearAnimation();
-		ivArrow.setVisibility( GONE );
-		progressBar.setVisibility( GONE );
-		tvRefresh.setText( "加载中..." );
+		ivArrow.setVisibility(GONE);
+		progressBar.setVisibility(GONE);
+		tvRefresh.setText(DataTool.getString(R.string.stll_loading));
 	}
 
 	@Override public void onReset()
 	{
 		rotated = false;
-		ivSuccess.setVisibility( GONE );
+		ivSuccess.setVisibility(GONE);
 		ivArrow.clearAnimation();
-		ivArrow.setVisibility( GONE );
-		progressBar.setVisibility( GONE );
+		ivArrow.setVisibility(GONE);
+		progressBar.setVisibility(GONE);
 	}
 }

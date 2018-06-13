@@ -75,10 +75,11 @@ public class LocationService extends Service
 			@Override public void run()
 			{
 				Looper.prepare();
-				isSuccess = LocationTool.registerLocation(getApplicationContext(), 0, 0, mOnLocationChangeListener);
+				isSuccess = LocationTool.registerLocation(getApplicationContext(),
+				                                          60*1000, 10, mOnLocationChangeListener);
 				if(isSuccess)
 				{
-					LogTool.v("LocationService 初始化成功");
+					LogTool.v("BaseCore", "LocationService 初始化成功");
 				}
 				Looper.loop();
 			}
@@ -114,100 +115,99 @@ public class LocationService extends Service
 		}
 	}
 
-//	// --------------------- 权限 -------------------
-//	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
-//	{
-//		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//
-//		if (requestCode == PermissionsTool.REQUEST_CODE)
-//		{
-//			if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-//			{
-//				// 权限成功
-//				bindService()
-//			}
-//			else
-//			{
-//				// 权限失败
-//			}
-//		}
-//	}
-//
-//	private fun checkPermissions(): Boolean
-//	{
-//		return PermissionsTool.checkPermission(this,
-//		                                       PermissionsTool.ACCESS_FINE_LOCATION) || PermissionsTool.checkPermission(
-//			this,
-//			PermissionsTool.ACCESS_COARSE_LOCATION)
-//	}
-//
-//	// --------------------- 定位服务 -------------------
-//	private var isBind = false
-//	private var mLocationService: LocationService? = null
-//
-//	private fun initLocation()
-//	{
-//		PermissionsTool.with(this)
-//		               .addPermission(PermissionsTool.ACCESS_FINE_LOCATION)
-//		               .addPermission(PermissionsTool.ACCESS_COARSE_LOCATION)
-//		               .initPermission()
-//
-//		if (checkPermissions())
-//		{
-//			bindService()
-//		}
-//	}
-//
-//	private val mLocationServiceConnection = object : ServiceConnection
-//	{
-//		override fun onServiceDisconnected(name:ComponentName)
-//		{
-//			mLocationService = null
-//		}
-//
-//		@SuppressLint("SetTextI18n")
-//		override fun onServiceConnected(name: ComponentName, service: IBinder)
-//		{
-//			isBind = true
-//			mLocationService = (service as LocationService.LocationBinder).getService()
-//			mLocationService?.setOnGetLocationListener { lastLatitude, lastLongitude, latitude, longitude, country, locality, street ->
-//			runOnUiThread {
-//			mTvLocation.text =
-//				"UI更新时间 = ${TimeTool.getCurTimeString()} \nlastLatitude = $lastLatitude \nlastLongitude = $lastLongitude \nlatitude = $latitude \nlongitude = $longitude \ncountry = $country \nlocality = $locality \nstreet = $street \n"
-//		}
-//		}
-//
-//		}
-//	}
-//
-//	private fun bindService()
-//	{
-//		if (checkPermissions())
-//		{
-//			if (isBind)
-//			{
-//				RxToast.warning("服务已启动")
-//			}
-//			else
-//			{
-//				val intent = Intent(applicationContext, LocationService::class.java)
-//				bindService(intent, mLocationServiceConnection, Context.BIND_AUTO_CREATE)
-//			}
-//		}
-//		else
-//		{
-//			RxToast.error("请设置权限")
-//			val intent = Intent("android.settings.APPLICATION_DETAILS_SETTINGS")
-//			val uri = Uri.fromParts("package", this.packageName, null)
-//			intent.data = uri
-//			start(intent)
-//		}
-//	}
-//
-//	private fun unBindService()
-//	{
-//		isBind = false
-//		unbindService(mLocationServiceConnection)
-//	}
-
+	//	// --------------------- 权限 -------------------
+	//	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
+	//	{
+	//		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+	//
+	//		if (requestCode == PermissionsTool.REQUEST_CODE)
+	//		{
+	//			if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+	//			{
+	//				// 权限成功
+	//				bindService()
+	//			}
+	//			else
+	//			{
+	//				// 权限失败
+	//			}
+	//		}
+	//	}
+	//
+	//	private fun checkPermissions(): Boolean
+	//	{
+	//		return PermissionsTool.checkPermission(this,
+	//		                                       PermissionsTool.ACCESS_FINE_LOCATION) || PermissionsTool.checkPermission(
+	//			this,
+	//			PermissionsTool.ACCESS_COARSE_LOCATION)
+	//	}
+	//
+	//	// --------------------- 定位服务 -------------------
+	//	private var isBind = false
+	//	private var mLocationService: LocationService? = null
+	//
+	//	private fun initLocation()
+	//	{
+	//		PermissionsTool.with(this)
+	//		               .addPermission(PermissionsTool.ACCESS_FINE_LOCATION)
+	//		               .addPermission(PermissionsTool.ACCESS_COARSE_LOCATION)
+	//		               .initPermission()
+	//
+	//		if (checkPermissions())
+	//		{
+	//			bindService()
+	//		}
+	//	}
+	//
+	//	private val mLocationServiceConnection = object : ServiceConnection
+	//	{
+	//		override fun onServiceDisconnected(name:ComponentName)
+	//		{
+	//			mLocationService = null
+	//		}
+	//
+	//		@SuppressLint("SetTextI18n")
+	//		override fun onServiceConnected(name: ComponentName, service: IBinder)
+	//		{
+	//			isBind = true
+	//			mLocationService = (service as LocationService.LocationBinder).getService()
+	//			mLocationService?.setOnGetLocationListener { lastLatitude, lastLongitude, latitude, longitude, country, locality, street ->
+	//			runOnUiThread {
+	//			mTvLocation.text =
+	//				"UI更新时间 = ${TimeTool.getCurTimeString()} \nlastLatitude = $lastLatitude \nlastLongitude = $lastLongitude \nlatitude = $latitude \nlongitude = $longitude \ncountry = $country \nlocality = $locality \nstreet = $street \n"
+	//		}
+	//		}
+	//
+	//		}
+	//	}
+	//
+	//	private fun bindService()
+	//	{
+	//		if (checkPermissions())
+	//		{
+	//			if (isBind)
+	//			{
+	//				RxToast.warning("服务已启动")
+	//			}
+	//			else
+	//			{
+	//				val intent = Intent(applicationContext, LocationService::class.java)
+	//				bindService(intent, mLocationServiceConnection, Context.BIND_AUTO_CREATE)
+	//			}
+	//		}
+	//		else
+	//		{
+	//			RxToast.error("请设置权限")
+	//			val intent = Intent("android.settings.APPLICATION_DETAILS_SETTINGS")
+	//			val uri = Uri.fromParts("package", this.packageName, null)
+	//			intent.data = uri
+	//			start(intent)
+	//		}
+	//	}
+	//
+	//	private fun unBindService()
+	//	{
+	//		isBind = false
+	//		unbindService(mLocationServiceConnection)
+	//	}
 }

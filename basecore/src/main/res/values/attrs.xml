@@ -142,6 +142,7 @@
 	</declare-styleable>
 
 
+	<!-- 可缩放的图片 -->
 	<declare-styleable name="ScaleImageView">
 		<attr name="src" format="reference"/>
 		<attr name="assetName" format="string"/>
@@ -149,6 +150,45 @@
 		<attr name="zoomEnabled" format="boolean"/>
 		<attr name="quickScaleEnabled" format="boolean"/>
 		<attr name="tileBackgroundColor" format="color"/>
+	</declare-styleable>
+
+	<!-- 带动画效果的CheckBox -->
+	<declare-styleable name="AnimateCheckBox">
+		<!-- 未选择时候小点的颜色 -->
+		<attr name="ACB_unCheckColor" format="color"/>
+		<!-- 选中之后的背景色 -->
+		<attr name="ACB_checkedColor" format="color"/>
+		<!-- 选中之后钩的颜色 -->
+		<attr name="ACB_lineColor" format="color"/>
+		<!-- 钩的宽度 -->
+		<attr name="ACB_lineWidth" format="dimension"/>
+		<!-- 动画持续时间 -->
+		<attr name="ACB_animDuration" format="integer"/>
+	</declare-styleable>
+
+	<declare-styleable name="StateButton">
+		<!--text color-->
+		<attr name="normalTextColor" format="color|reference" />
+		<attr name="pressedTextColor" format="color|reference" />
+		<attr name="unableTextColor" format="color|reference" />
+		<!--stroke width and color, dash width, dash gap-->
+		<attr name="strokeDashWidth" format="dimension|reference" />
+		<attr name="strokeDashGap" format="dimension|reference" />
+		<attr name="normalStrokeWidth" format="dimension|reference" />
+		<attr name="pressedStrokeWidth" format="dimension|reference" />
+		<attr name="unableStrokeWidth" format="dimension|reference" />
+		<attr name="normalStrokeColor" format="color|reference" />
+		<attr name="pressedStrokeColor" format="color|reference" />
+		<attr name="unableStrokeColor" format="color|reference" />
+		<!--background color-->
+		<attr name="normalBackgroundColor" format="color|reference" />
+		<attr name="pressedBackgroundColor" format="color|reference" />
+		<attr name="unableBackgroundColor" format="color|reference" />
+		<!--background radius-->
+		<attr name="radius" format="dimension|reference" />
+		<attr name="round" format="boolean|reference" />
+		<!--animation duration-->
+		<attr name="animationDuration" format="integer|reference" />
 	</declare-styleable>
 
 </resources>

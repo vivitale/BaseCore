@@ -41,8 +41,7 @@ import talex.zsw.sample.mvp._View;
  * 修改时间：
  * 修改备注：
  */
-public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatActivity
-	implements _View
+public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatActivity implements _View
 {
 	protected T mPresenter;
 	protected MyApplication mApplication;
@@ -65,16 +64,13 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 		// 严苛模式
 		if(BuildConfig.DEBUG)
 		{
-			StrictMode.setThreadPolicy(
-				new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
-			StrictMode
-				.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
+			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
+			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
 		}
 
 		mApplication = getAppApplication();
 		ActivityTool.addActivity(this);
-		mInputMethodManager = (InputMethodManager) this
-			.getSystemService(Context.INPUT_METHOD_SERVICE);
+		mInputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
 		mSweetAlertDialog = new SweetAlertDialog(this);
 		mSweetAlertDialog.setCancelable(false);
 
@@ -247,6 +243,7 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 
 	private static long mLastClickTime;
 	public static final int MIN_CLICK_DELAY_TIME = 500;
+
 	@Override public boolean isFastClick()
 	{
 		// 当前时间
@@ -278,8 +275,7 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 		return 0;
 	}
 
-	public SweetAlertDialog.OnSweetClickListener finishListener
-		= new SweetAlertDialog.OnSweetClickListener()
+	public SweetAlertDialog.OnSweetClickListener finishListener = new SweetAlertDialog.OnSweetClickListener()
 	{
 		@Override public void onClick(SweetAlertDialog sweetAlertDialog)
 		{
@@ -310,8 +306,7 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 		}
 		else
 		{
-			mSweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
-				.setTitleText("正在加载数据");
+			mSweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE).setTitleText("正在加载数据");
 			mSweetAlertDialog.setCancelable(false);
 			mSweetAlertDialog.show();
 		}
@@ -328,9 +323,8 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 		}, null);
 	}
 
-	@Override public void showDialog(int type, String title, String content, String confirmText,
-		String cancelText, SweetAlertDialog.OnSweetClickListener confirmListener,
-		SweetAlertDialog.OnSweetClickListener cancelListener)
+	@Override
+	public void showDialog(int type, String title, String content, String confirmText, String cancelText, SweetAlertDialog.OnSweetClickListener confirmListener, SweetAlertDialog.OnSweetClickListener cancelListener)
 	{
 		if(mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
 		{
@@ -421,9 +415,12 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 		startActivity(intent);
 	}
 
-	@Subscribe
-	public void onEvent(NotingEvent event){
+	@Subscribe public void onEvent(NotingEvent event)
+	{
 	}
 
 	private class NotingEvent{}
+
+
+
 }

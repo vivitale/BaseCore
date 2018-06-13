@@ -3,6 +3,9 @@ package talex.zsw.basecore.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+
+import java.util.Map;
 
 /**
  * SharedPreferences的常规使用
@@ -83,5 +86,68 @@ public class SpTool
 	public static void saveFloat(String TAG, float data)
 	{
 		prefs.edit().putFloat(TAG, data).apply();
+	}
+
+
+	/**
+	 * 获取所有键值对
+	 */
+	public static Map<String, ?> getAll()
+	{
+		return prefs.getAll();
+	}
+
+	/**
+	 * 是否存在该 key
+	 */
+	public static boolean contains(@NonNull final String key)
+	{
+		return prefs.contains(key);
+	}
+
+	/**
+	 * 移除该 key
+	 */
+	public static void remove(@NonNull final String key)
+	{
+		remove(key, false);
+	}
+
+	/**
+	 * 移除该 key
+	 */
+	public static void remove(@NonNull final String key, final boolean isCommit)
+	{
+		if(isCommit)
+		{
+			prefs.edit().remove(key).commit();
+		}
+		else
+		{
+			prefs.edit().remove(key).apply();
+		}
+	}
+
+	/**
+	 * 清除所有数据
+	 */
+	public static void clear()
+	{
+		clear(false);
+	}
+
+	/**
+	 * 清除所有数据
+	 */
+	public static void clear(final boolean isCommit)
+	{
+		if(isCommit)
+		{
+			prefs.edit().clear().commit();
+		}
+		else
+		{
+			prefs.edit().clear().apply();
+		}
 	}
 }

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import talex.zsw.basecore.R;
 import talex.zsw.basecore.view.other.RxToast;
 
 /**
@@ -20,7 +21,6 @@ import talex.zsw.basecore.view.other.RxToast;
  */
 public class NetTool
 {
-
 	/**
 	 * no network
 	 */
@@ -87,7 +87,7 @@ public class NetTool
 			{//获取当前网络的状态
 				case ConnectivityManager.TYPE_WIFI:// wifi的情况下
 					netType = NETWORK_WIFI;
-					RxToast.success("切换到wifi环境下");
+					RxToast.success(DataTool.getString(R.string.nettool_change_to_wifi));
 					break;
 				case ConnectivityManager.TYPE_MOBILE:
 
@@ -100,7 +100,7 @@ public class NetTool
 						case TelephonyManager.NETWORK_TYPE_1xRTT:
 						case TelephonyManager.NETWORK_TYPE_IDEN:
 							netType = NETWORK_2G;
-							RxToast.info("切换到2G环境下");
+							RxToast.info(DataTool.getString(R.string.nettool_change_to_2G));
 							break;
 						case TelephonyManager.NETWORK_TYPE_EVDO_A: // 电信3g
 						case TelephonyManager.NETWORK_TYPE_UMTS:
@@ -113,13 +113,13 @@ public class NetTool
 						case TelephonyManager.NETWORK_TYPE_HSPAP:
 						case NETWORK_TYPE_TD_SCDMA:
 							netType = NETWORK_3G;
-							RxToast.info("切换到3G环境下");
+							RxToast.info(DataTool.getString(R.string.nettool_change_to_3G));
 							break;
 						case TelephonyManager.NETWORK_TYPE_LTE:
 
 						case NETWORK_TYPE_IWLAN:
 							netType = NETWORK_4G;
-							RxToast.info("切换到4G环境下");
+							RxToast.info(DataTool.getString(R.string.nettool_change_to_4G));
 							break;
 						default:
 
@@ -133,18 +133,18 @@ public class NetTool
 							{
 								netType = NETWORK_UNKNOWN;
 							}
-							RxToast.normal("未知网络");
+							RxToast.normal(DataTool.getString(R.string.nettool_unknow));
 					}
 					break;
 				default:
 					netType = 5;
-					RxToast.normal("未知网络");
+					RxToast.normal(DataTool.getString(R.string.nettool_unknow));
 			}
 		}
 		else
 		{
 			netType = NETWORK_NO;
-			RxToast.error(context, "当前无网络连接").show();
+			RxToast.error(context, DataTool.getString(R.string.nettool_no_network)).show();
 		}
 		return netType;
 	}

@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import talex.zsw.basecore.R;
+import talex.zsw.basecore.util.DataTool;
 import talex.zsw.basecore.view.other.swipetoloadlayout.SwipeLoadMoreFooterLayout;
 
 
@@ -59,18 +60,18 @@ public class ClassicLoadMoreFooterView extends SwipeLoadMoreFooterLayout
 			progressBar.setVisibility( GONE );
 			if(-y >= mFooterHeight)
 			{
-				tvLoadMore.setText( "松开加载更多..." );
+				tvLoadMore.setText(DataTool.getString(R.string.stll_loosen_load_more));
 			}
 			else
 			{
-				tvLoadMore.setText( "下拉加载更多..." );
+				tvLoadMore.setText( DataTool.getString(R.string.stll_pull_up_load_more) );
 			}
 		}
 	}
 
 	@Override public void onLoadMore()
 	{
-		tvLoadMore.setText( "加载更多" );
+		tvLoadMore.setText( DataTool.getString(R.string.stll_load_more) );
 		progressBar.setVisibility( VISIBLE );
 	}
 

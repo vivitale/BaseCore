@@ -10,7 +10,6 @@ import com.umeng.analytics.MobclickAgent;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import talex.zsw.basecore.util.ActivityTool;
 import talex.zsw.basecore.util.Tool;
 
 /**
@@ -63,7 +62,6 @@ public class BaseApplication extends MultiDexApplication
 	{
 		Tool.uninstall();
 		EventBus.getDefault().unregister(mApplicationContext);
-		ActivityTool.AppExit(mApplicationContext);
 		android.os.Process.killProcess(android.os.Process.myPid());
 		MobclickAgent.onKillProcess(mApplicationContext);
 	}

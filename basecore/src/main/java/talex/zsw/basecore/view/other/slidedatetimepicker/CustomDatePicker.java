@@ -20,7 +20,7 @@ import talex.zsw.basecore.util.LogTool;
  */
 public class CustomDatePicker extends DatePicker
 {
-	private static final String TAG = "CustomDatePicker";
+	private static final String TAG = "BaseCore";
 
 	Class<?> idClass = null;
 	Class<?> numberPickerClass = null;

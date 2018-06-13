@@ -1284,6 +1284,18 @@ public class DataTool
 	}
 
 	/**
+	 * 如果为空则返回默认值
+	 */
+	public static <T> T getOrDefault(final T object, final T defaultObject)
+	{
+		if(object == null)
+		{
+			return defaultObject;
+		}
+		return object;
+	}
+
+	/**
 	 * 字符串的转义(处理特殊字符)
 	 */
 	public static String stringToString(String input)
@@ -1632,9 +1644,23 @@ public class DataTool
 	public static Uri resId2Uri(int resId)
 	{
 		Resources r = Tool.getContext().getResources();
-		return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
-			                      + r.getResourcePackageName(resId) + "/"
-			                      + r.getResourceTypeName(resId) + "/"
-			                      + r.getResourceEntryName(resId));
+		return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE+"://"+r.getResourcePackageName(resId)+"/"+
+			                 r.getResourceTypeName(resId)+"/"+r.getResourceEntryName(resId));
+	}
+
+	/**
+	 * 从资源获取字符串
+	 */
+	public static String getString(int resId)
+	{
+		String string = Tool.getContext().getResources().getString(resId);
+		if(RegTool.isEmpty(string))
+		{
+			return "";
+		}
+		else
+		{
+			return Tool.getContext().getResources().getString(resId);
+		}
 	}
 }

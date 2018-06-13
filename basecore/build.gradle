@@ -9,16 +9,11 @@ android {
 	defaultConfig {
 		minSdkVersion 15
 		targetSdkVersion 27
-		versionCode 13
-		versionName "0.0.13"
+		versionCode 14
+		versionName "0.0.14"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 		multiDexEnabled true
-	}
-
-	compileOptions {
-		sourceCompatibility 1.8
-		targetCompatibility 1.8
 	}
 
 	buildTypes {
@@ -104,6 +99,8 @@ dependencies {
 	compileOnly 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
 	// 图片选择、预览、九宫格图片控件、拖拽排序九宫格图片控件,需要同时选择 bga-baseadapter
 	compileOnly 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+	// 日历控件
+	// compileOnly 'com.squareup:android-times-square:1.6.5@aar'
 }
 
 allprojects {

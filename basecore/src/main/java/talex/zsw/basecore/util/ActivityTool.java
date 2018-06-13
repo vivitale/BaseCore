@@ -341,4 +341,5 @@ public class ActivityTool
 		}
 		return "no "+packageName;
 	}
+
 }

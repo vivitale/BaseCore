@@ -4,7 +4,7 @@
 [TOC]
  
 ## 使用方法
-> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.13'	}> 第三步 使用方法,在Application中初始化:
+> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.14'	}> 第三步 使用方法,在Application中初始化:
  
     Tool.init(this, BuildConfig.DEBUG);
 
@@ -66,6 +66,8 @@ compileOnly 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
 compileOnly 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
 // 图片选择、预览、九宫格图片控件、拖拽排序九宫格图片控件,需要同时选择 bga-baseadapter
 compileOnly 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+// 日历控件
+compileOnly 'com.squareup:android-times-square:1.6.5@aar'
 ```
 ### 常用工具库
 库名 | 简单说明 | GitHub | 使用方法
@@ -77,6 +79,7 @@ BGABaseAdapter  | AdapterView 和 RecyclerView 中通用的 Adapter 和 ViewHold
 BGABanner  | 轮播图 |[Github](https://github.com/bingoogolapple/BGABanner-Android)  | 
 BGAQRCode  | 条码工具库 |[Github](https://github.com/bingoogolapple/BGAQRCode-Android)  | 
 BGAPhotoPicker  | 图片选择、预览等 |[Github](https://github.com/bingoogolapple/BGAPhotoPicker-Android)
+android-times-square  | 日历工具 |[Github](https://github.com/square/android-times-square)
 
 
 ## MVP框架介绍
@@ -141,6 +144,8 @@ getAppInfo                  | 获取当前App信息
 getBean                     | 得到AppInfo的Bean
 getAllAppsInfo              | 获取所有已安装App信息
 isAppBackground             | 判断当前App处于前台还是后台
+relaunchApp                 | 重启APP
+
 
 ### BarTool -> 状态栏相关
 方法名 | 说明
@@ -175,6 +180,7 @@ drawable2Bytes              | drawable转byteArr
 bytes2Drawable              | byteArr转drawable
 bitmap2Base64               | Bitmap转Base64
 base642Bitmap               | Base64转Bitmap
+view2Bitmap                 | View 转 Bitmap
 **图片处理**|
 getBitmap                   | 获取bitmap
 scale                       | 缩放图片
@@ -214,6 +220,17 @@ getBitmapByUrl              | 下载图片
 calculateInSampleSize       | 计算采样大小
 isImage                     | 根据文件名判断文件是否为图片
 getImageType                | 获取图片类型
+
+
+### BrightnessTool -> 亮度相关工具类
+方法名 | 说明
+--------- | -------------
+isAutoBrightnessEnabled     | 判断是否开启自动调节亮度
+setAutoBrightnessEnabled    | 设置是否开启自动调节亮度
+getBrightness               | 获取屏幕亮度
+setBrightness               | 设置屏幕亮度
+setWindowBrightness         | 设置窗口亮度
+getWindowBrightness         | 获取窗口亮度
 
 
 ### BroadcastTool -> 广播工具
@@ -373,6 +390,7 @@ getPercentValue             | 获取百分比  new BigDecimal(0.21) - 21%
 intsGetSum                  | 整型数组求和
 getRoundUp                  | 四舍五入
 getNotNull                  | 若输入为null，则返回空字符串；否则返回字符串自身
+getOrDefault                | 如果为空则返回默认值
 stringToString              | 字符串的转义(处理特殊字符)
 deleteBlank                 | 去除字符串中的空格，回车制表 符等。。。\t \r \n
 deleteHTMLTag               | 去除String中的HTML标签
@@ -438,6 +456,9 @@ getIpAddress                | 获取本机的ip地址（上面3种方法都包�
 getAppInfo                  | 获取包信息
 getAppVersionNo             | 获取App版本号
 getAppVersionName           | 获取App版本名称
+reboot                      | 重启
+reboot2Recovery             | 重启到 recovery
+reboot2Bootloader           | 重启到 bootloader
 **手机操作相关**|
 isPhone                     | 判断设备是否是手机
 getPhoneStatus              | 获取手机状态信息
@@ -757,6 +778,7 @@ getCallIntent               | 打电话的意图
 getSendSmsIntent            | 发送短信的意图
 getCaptureIntent            | 调用系统相机的意图
 getOpenCameraIntent         | 获取打开照程序界面的Intent
+getWebIntent                | 获取打开网页的意图
 getImagePickerIntent        | 获取[跳转至相册选择界面,并跳转至裁剪界面，可以指定是否缩放裁剪区域]的Intent
 getCameraIntent             | 获取[跳转至相册选择界面,并跳转至裁剪界面，默认可缩放裁剪区域]的Intent
 getCropImageIntent          | 获取[跳转至裁剪界面]的Intent
@@ -783,6 +805,10 @@ showSoftInput               | 动态显示软键盘
 toggleSoftInput             | 切换键盘显示与否状态
 clickBlankArea2HideSoftInput| 点击屏幕空白区域隐藏软键盘（方法1）
 clickBlankArea2HideSoftInput1| 点击屏幕空白区域隐藏软键盘（方法2）
+isSoftInputVisible          | 判断软键盘是否可见
+registerSoftInputChangedListener  | 注册软键盘改变监听器
+unregisterSoftInputChangedListener| 注销软键盘改变监听器
+fixSoftInputLeaks           | 修复软键盘内存泄漏
 
 
 ### LocationTool -> 定位相关工具
@@ -902,10 +928,73 @@ clearNotification           | 取消指定id的消息
 ### PermissionsTool -> 权限工具
 方法名 | 说明
 --------- | -------------
-addPermission               | 添加权限
-initPermission              | 请求权限
-checkPermission             | 检查权限是否获取
+getPermissions              | 获取程序中使用的权限列表
+isGranted                   | 返回某些权限是否已经获取
+```
+PermissionTool
+    .permission(PermissionConstants.PHONE, PermissionConstants.STORAGE)
+    .rationale(new PermissionTool.OnRationaleListener()
+    {
+        @Override public void rationale(final ShouldRequest shouldRequest)
+        {
+            PermissionHelper.showRationaleDialog(shouldRequest);
+        }
+    })
+    .callback(new PermissionTool.FullCallback()
+    {
+        @Override public void onGranted(List<String> permissionsGranted)
+        {
+        }
+        @Override public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied)
+        {
+            if(!permissionsDeniedForever.isEmpty())
+            {
+                PermissionHelper.showOpenAppSettingDialog();
+            }
+        }
+    })
+    .theme(new PermissionTool.ThemeCallback()
+    {
+        @Override public void onActivityCreate(Activity activity)
+        {
+            PermissionHelper.setFullScreen(activity);
+        }
+    })
+    .request();
+```
 
+### PermissionsHelper -> 权限简易获取辅助类
+方法名 | 说明
+--------- | -------------
+requestCamera               | 获取相机权限
+requestStorage              | 获取内存卡权限
+requestPhone                | 获取电话权限
+requestSms                  | 获取短信权限
+requestLocation             | 获取地理位置权限
+requestCalendar             | 获取日历权限
+requestContacts             | 获取联系人权限
+requestMicrophone           | 获取麦克风权限
+requestSensors              | 获取人体传感器权限
+request                     | 获取权限
+showOpenAppSettingDialog    | 显示一个打开APP设置来获取权限的Dialog
+showRationaleDialog         | 显示一个获取权限的提示
+launchAppDetailsSettings    | 打开App的设置界面
+setFullScreen               | activity设置全屏
+```
+PermissionHelper.requestStorage(new PermissionTool.FullCallback()
+{
+    @Override public void onGranted(List<String> permissionsGranted)
+    {   
+    }
+    @Override public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied)
+    {
+        if(!permissionsDeniedForever.isEmpty())
+        {
+            PermissionHelper.showOpenAppSettingDialog();
+        }
+    }
+});
+```
 
 ### PhotoTool -> 进程相关
 方法名 | 说明
@@ -932,6 +1021,8 @@ killBackgroundProcesses     | 杀死后台服务进程
 --------- | -------------
 isNullString                | 判断字符串是否为空 为空即true
 isEmpty                     | 判断对象是否为空 为空即true
+isNotEmpty                  | 判断对象是否不为空
+isEquals                    | 是否相同
 isInteger                   | 判断字符串是否是整数
 isDouble                    | 判断字符串是否是浮点数
 isNumber                    | 判断字符串是否是数字
@@ -956,7 +1047,8 @@ stringFormat                | String.Format方法的封装
 ### ServiceTool -> 服务工具 
 方法名 | 说明
 --------- | -------------
-isRunningService            | 获取服务是否开启
+isServiceRunning            | 获取服务是否开启
+getAllRunningServices       | 获取所有运行中的服务
 
 
 ### ShellTool -> Shell命令关 
@@ -971,6 +1063,27 @@ execCmd                     | 执行命令
 --------- | -------------
 create                      | 播放语音文件
 dismisSoundPool             | 释放播放池
+
+### SpTool -> SharedPreferences工具 
+方法名 | 说明
+--------- | -------------
+init                        | 初始化
+getString                   | 获取String
+saveString                  | 保存String
+getObject                   | 获取Object
+saveObject                  | 保存Object
+getBoolean                  | 获取boolean
+saveBoolean                 | 保存boolean
+getInt                      | 获取int
+saveInt                     | 保存int
+getLong                     | 获取long
+saveLong                    | 保存long
+getFloat                    | 获取float
+saveFloat                   | 保存float
+getAll                      | 获取所有的键值对
+contains                    | 是否包含某key
+remove                      | 移除
+clear                       | 清除所有数据
 
 
 ### TextTool -> 文本工具
@@ -1072,6 +1185,19 @@ setWebData                  | 简单震动一次
 
 ## View
 
+### CheckBox
+#### AnimateCheckBox -> 一个带有动画效果的CheckBox
+原项目地址:[https://github.com/hanks-zyh/AnimateCheckBox](https://github.com/hanks-zyh/AnimateCheckBox)
+
+方法名 | 说明
+--------- | -------------
+setCircleColor              | 设置圆的颜色
+setLineColor                | 设置对号的颜色
+setUnCheckColor             | 设置未选中时的颜色
+setOnCheckedChangeListener  | 设置状态改变监听
+isChecked                   | 返回当前选中状态
+setChecked                  | 设置当前选中状态
+
 ### Dialog
 #### SweetAlertDialog -> 几种Dialog直接的切换显示
 原项目地址:[https://github.com/pedant/sweet-alert-dialog](https://github.com/pedant/sweet-alert-dialog)
@@ -1087,7 +1213,36 @@ public static final int PROGRESS_TYPE = 5;        // 显示圆形进度条
 #### RxDialogChooseImage -> 用来显示选择获取图片方式的Dialog
 ```
 RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(mContext, TITLE);
-        dialogChooseImage.show();
+dialogChooseImage.show();
+
+
+override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent)
+{
+    when (requestCode)
+    {
+        PhotoTool.GET_IMAGE_FROM_PHONE ->
+        { //选择相册之后的处理
+            if (resultCode == RESULT_OK)
+            {
+                PhotoTool.cropImage(this@VerifyActivity, data.data, 16, 11, 320, 220) // 裁剪图片
+            }
+        }
+        PhotoTool.GET_IMAGE_BY_CAMERA  ->
+        { //选择相册之后的处理
+            if (resultCode == RESULT_OK)
+            {
+                PhotoTool.cropImage(this@VerifyActivity, data.data, 16, 11, 320, 220) // 裁剪图片
+            }
+        }
+        PhotoTool.CROP_IMAGE           ->
+        {
+            Glide.with(this@VerifyActivity)
+                    .load(PhotoTool.cropImageUri)
+                    .into(mIvPicture)
+        }
+    }
+    super.onActivityResult(requestCode, resultCode, data)
+}
 ```
 
 
@@ -1127,6 +1282,13 @@ shake                       | 抖动
 setAfterChangedListener     | 设置文字变化以后的事件
 
 ### ImageView
+#### DynamicHeightImageView -> 可设置宽高比的图片
+方法名 | 说明
+--------- | -------------
+setHeightRatio              | 设置ImageView的宽高尺寸比例
+getHeightRatio              | 获取设置的宽高比例
+
+
 #### GifView -> 显示Gif图片
 方法名 | 说明
 --------- | -------------
@@ -1182,12 +1344,32 @@ FullyStaggeredGridLayoutManager| 使RecyclerView使用瀑布流嵌套在ScrollVi
 SampleFooter                | 简单实现的没有更多底部栏
 SampleHeader                | 简单实现的没有数据栏
 
+#### MarqueeRecyclerView -> 自动跑马灯的RecyclerView
+#### MyGridView -> 计算高度为全部item的GridView
+#### MyListView -> 计算高度为全部item的ListView
 
 ### TextView
+#### Anticlockwise -> 倒计时器
+方法名 | 说明
+--------- | -------------
+initTime                    | 初始化时间 秒
+reStart                     | 重新启动计时 秒
+onPause                     | 暂停计时
+onResume                    | 继续计时
+setTimeFormat               | 设置时间格式
+setOnTimeCompleteListener   | 计时结束时的事件
+
+
 #### AutofitTextView -> 自适应文字大小的TextView
 原项目地址:[https://github.com/grantland/android-autofittextview](https://github.com/grantland/android-autofittextview)
 
 自动修改文字大小以适应View的宽度
+
+
+#### MyDigitalClock -> 时钟控件,以自定义格式显示当前时间
+方法名 | 说明
+--------- | -------------
+setFormat                   | 设置时间格式
 
 
 #### RichText  -> Android平台下的富文本解析器
@@ -1200,6 +1382,114 @@ setRichText                 | 设置富文本内容
 setPlaceHolder              | 设置站位图片
 setErrorImage               | 设置错误图片
 setOnImageClickListener     | 设置图片点击事件
+
+#### StateButton  -> 省去为Button写drawable的麻烦
+原项目地址:[https://github.com/niniloveyou/StateButton](https://github.com/niniloveyou/StateButton)
+
+Customizable attributes
+-----------------------
+
+|        Attribute       |      default value     |           xml            |                 java                |
+|------------------------|------------------------|--------------------------|-------------------------------------|
+| normalTextColor        |   original text color  | normalTextColor          | setNormalTextColor(int color)       |
+| pressedTextColor       |   original text color  | pressedTextColor          | setPressedTextColor(int color)       |
+| unableTextColor        |   original text color  | unableTextColor          | setUnableTextColor(int color)       |
+| strokeDashWidth        |   0  | strokeDashWidth          | setStrokeDash(int dashWidth, int dashGap)       |
+| strokeDashGap        |   0  | strokeDashGap          | setStrokeDash(int dashWidth, int dashGap)      |
+| normalStrokeWidth        |   0  | normalStrokeWidth          | setNormalStrokeWidth(int widht)       |
+| pressedStrokeWidth        |   0  | pressedStrokeWidth          | setPressedStrokeWidth(int widht)        |
+| unableStrokeWidth        |   0  | unableStrokeWidth          | setUnableStrokeWidth(int widht)        |
+| normalStrokeColor        |   0  | normalStrokeColor          | setNormalStrokeColor(int color)       |
+| pressedStrokeColor        |   0  | pressedStrokeColor          | setPressedStrokeColor(int color)       |
+| unableStrokeColor        |   0  | unableStrokeColor          | setUnableStrokeColor(int color)       |
+| normalBackgroundColor        |   0  | normalBackgroundColor          | setNormalBackgroundColor(int color)       |
+| pressedBackgroundColor        |   0  | pressedBackgroundColor   | setPressedBackgroundColor(int color)       |
+| unableBackgroundColor        |   0  | unableBackgroundColor          | setUnableBackgroundColor(int color)       |
+| radius        |   0  | radius          | setRadius(int radius) / setRadius(float[] radii)      |
+| round        |  false  | round          | setRound(boolean round)       |
+| animationDuration        |   0ms  | animationDuration          | setAnimationDuration(int duration)       |
+
+
+xml中定义了以下属性
+-  Define `xmlns:app="http://schemas.android.com/apk/res-auto"` on root of your xml file
+
+```
+<talex.zsw.basecore.view.textview.StateButton
+            android:id="@+id/stateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="StateButton"
+            
+            app:radius="5dp"
+            app:round="true"
+            app:animationDuration="200"
+            
+            app:strokeDashGap="2dp"
+            app:strokeDashWidth="5dp"
+            app:normalStrokeWidth="2dp"
+            app:pressedStrokeWidth="2dp"
+            app:unableStrokeWidth="2dp"
+            
+            app:normalStrokeColor="@android:color/white"
+            app:pressedStrokeColor="@android:color/white"
+            app:unableStrokeColor="@android:color/white"
+            
+            app:normalTextColor="@android:color/white"
+            app:pressedTextColor="@android:color/white"
+            app:unableTextColor="@android:color/white"
+            
+            app:normalBackgroundColor="@color/colorPrimaryDark"
+            app:pressedBackgroundColor="@color/colorPrimaryDark"
+            app:unableBackgroundColor="@color/colorPrimaryDark"/>
+```
+
+#### TimeSinceTextView -> 根据当前系统时间,设置某个时间的表达
+```
+    <string name="timespan_now">刚刚</string>
+    <plurals name="timespan_years">
+        <item quantity="other">%d年前</item>
+    </plurals>
+    <plurals name="timespan_months">
+        <item quantity="other">%d个月前</item>
+    </plurals>
+    <plurals name="timespan_weeks">
+        <item quantity="other">%d周前</item>
+    </plurals>
+    <plurals name="timespan_days">
+        <item quantity="other">%d天前</item>
+    </plurals>
+    <plurals name="timespan_hours">
+        <item quantity="other">%d小时前</item>
+    </plurals>
+    <plurals name="timespan_minutes">
+        <item quantity="other">%d分钟前</item>
+    </plurals>
+    <plurals name="timespan_seconds">
+        <item quantity="other">%d秒前</item>
+    </plurals>
+    <plurals name="timespan_years_abbr">
+        <item quantity="other">%d年</item>
+    </plurals>
+    <plurals name="timespan_months_abbr">
+        <item quantity="other">%d月</item>
+    </plurals>
+    <plurals name="timespan_weeks_abbr">
+        <item quantity="other">%d周</item>
+    </plurals>
+    <plurals name="timespan_days_abbr">
+        <item quantity="other">%d天</item>
+    </plurals>
+    <plurals name="timespan_hours_abbr">
+        <item quantity="other">%d小时</item>
+    </plurals>
+    <plurals name="timespan_minutes_abbr">
+        <item quantity="other">%d分钟</item>
+    </plurals>
+    <plurals name="timespan_seconds_abbr">
+        <item quantity="other">%d秒</item>
+    </plurals>
+```
 
 ### ViewPager
 #### CustomViewPager -> 自动适应高度的ViewPager
@@ -1313,6 +1603,8 @@ new SlideDateTimePicker.Builder(getSupportFragmentManager())
 ```
 
 
+#### SquareLayout -> 保持宽高比一致的布局 
+
 #### SwipeToLoadLayout -> 上拉刷新,下拉加载
 原项目地址:[https://github.com/Aspsine/SwipeToLoadLayout](https://github.com/Aspsine/SwipeToLoadLayout)
 
@@ -1372,6 +1664,100 @@ new SlideDateTimePicker.Builder(getSupportFragmentManager())
     layout_google_footer
 
 
+## Service & Receiver
+### 开机启动服务 -> 该功能需要手动设置开机启动才会生效
+1.在清单文件中添加开机启动的服务和广播
+
+```
+<!-- 开机启动 -->
+<service
+    android:name="talex.zsw.basecore.service.BootService">
+</service>
+
+<receiver android:name="talex.zsw.basecore.receiver.BootReceiver">
+    <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+    </intent-filter>
+</receiver>
+```
+2.在清单文件中添加开机启动的权限
+
+```
+<!--开机启动服务-->
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+```
+3.在MyApplication中接收开机启动的事件
+
+```
+@Subscribe public void onEvent(BootEvent event)
+{
+}
+```
+
+### LocationService -> 地理位置相关的服务
+1.在清单文件中添加获取地理位置的服务
+
+```
+<!-- 地理位置 -->
+<service
+    android:name="talex.zsw.basecore.service.LocationService">
+</service>
+```
+2.代码中启动服务
+
+```
+private boolean isBind = false;
+private LocationService mLocationService = null;
+private ServiceConnection mLocationServiceConnection = new ServiceConnection(){
+    @Override public void onServiceConnected(ComponentName name, IBinder service)
+    {
+        isBind = true;
+        mLocationService = ((LocationService.LocationBinder)service).getService();
+        mLocationService.setOnGetLocationListener(new LocationService.OnGetLocationListener(){
+            @Override
+            public void getLocation(String lastLatitude, String lastLongitude, String latitude, String longitude, String country, String locality, String street)
+            {
+                runOnUiThread(new Runnable(){
+                    @Override public void run()
+                    {
+                        
+                    }
+                });
+            }
+        });
+    }
+
+    @Override public void onServiceDisconnected(ComponentName name)
+    {
+        mLocationService = null;
+    }
+};
+
+private void bindService()
+{
+    PermissionHelper.requestLocation(new PermissionTool.FullCallback()
+    {
+        @Override public void onGranted(List<String> permissionsGranted)
+        {
+            Intent intent = new Intent(BaseMVPActivity.this, LocationService.class);
+            bindService(intent, mLocationServiceConnection, Context.BIND_AUTO_CREATE);
+        }
+
+        @Override public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied)
+        {
+            PermissionHelper.showOpenAppSettingDialog();
+        }
+    });
+}
+
+private void unBindService()
+{
+    isBind = false;
+    unbindService(mLocationServiceConnection);
+}
+```
+
+
 ![未完待续](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527567486795&di=19907f5d73242150201c8779411e5b61&imgtype=0&src=http%3A%2F%2Fcdnq.duitang.com%2Fuploads%2Fitem%2F201501%2F10%2F20150110163418_h4JFG.thumb.700_0.jpeg)
 
 
@@ -1402,5 +1788,11 @@ https://github.com/bingoogolapple
 https://github.com/dongjunkun/DropDownMenu
 
 https://github.com/jjobes/SlideDateTimePicker
+
+https://github.com/davemorrissey/subsampling-scale-image-view
+
+https://github.com/hanks-zyh/AnimateCheckBox
+
+https://github.com/square/android-times-square
 
 

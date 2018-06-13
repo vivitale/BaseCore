@@ -1,0 +1,76 @@
+<resources>
+	<string name="app_name">basecore</string>
+
+	<!-- Tool -->
+	<string name="permission_rationale_message">请您授权程序一些必要的权限,否则程序可能不能正常使用!</string>
+	<string name="permission_denied_forever_message">程序需要一些已经被您拒绝的权限才能正常运作,请您手动在设置页面授权,否则程序将不能正常使用!</string>
+	<string name="nettool_change_to_wifi">切换到wifi环境下</string>
+	<string name="nettool_change_to_2G">切换到2G环境下</string>
+	<string name="nettool_change_to_3G">切换到3G环境下</string>
+	<string name="nettool_change_to_4G">切换到4G环境下</string>
+	<string name="nettool_change_to_5G">切换到5G环境下</string>
+	<string name="nettool_unknow">未知网络</string>
+	<string name="nettool_no_network">当前无网络连接</string>
+	<string name="tool_count_down">剩下 %d 秒</string>
+	<string name="tool_double_exit">再按一次退出</string>
+
+	<!-- SwipeToLoadLayout -->
+	<string name="stll_loosen_load_more">松开加载更多…</string>
+	<string name="stll_pull_up_load_more">上拉加载更多…</string>
+	<string name="stll_load_more">加载更多</string>
+	<string name="stll_loading">加载中…</string>
+	<string name="stll_loose_refresh">松开刷新</string>
+	<string name="stll_pull_refresh">下拉刷新</string>
+
+	<!--SweetAlertDialog-->
+	<string name="sd_dialog_default_title">标题</string>
+	<string name="sd_dialog_ok">确认</string>
+	<string name="sd_dialog_cancel">取消</string>
+	<string name="sd_loading">加载中…</string>
+
+	<!-- TimeSinceTextView -->
+	<string name="timespan_now">刚刚</string>
+	<plurals name="timespan_years">
+		<item quantity="other">%d年前</item>
+	</plurals>
+	<plurals name="timespan_months">
+		<item quantity="other">%d个月前</item>
+	</plurals>
+	<plurals name="timespan_weeks">
+		<item quantity="other">%d周前</item>
+	</plurals>
+	<plurals name="timespan_days">
+		<item quantity="other">%d天前</item>
+	</plurals>
+	<plurals name="timespan_hours">
+		<item quantity="other">%d小时前</item>
+	</plurals>
+	<plurals name="timespan_minutes">
+		<item quantity="other">%d分钟前</item>
+	</plurals>
+	<plurals name="timespan_seconds">
+		<item quantity="other">%d秒前</item>
+	</plurals>
+	<plurals name="timespan_years_abbr">
+		<item quantity="other">%d年</item>
+	</plurals>
+	<plurals name="timespan_months_abbr">
+		<item quantity="other">%d月</item>
+	</plurals>
+	<plurals name="timespan_weeks_abbr">
+		<item quantity="other">%d周</item>
+	</plurals>
+	<plurals name="timespan_days_abbr">
+		<item quantity="other">%d天</item>
+	</plurals>
+	<plurals name="timespan_hours_abbr">
+		<item quantity="other">%d小时</item>
+	</plurals>
+	<plurals name="timespan_minutes_abbr">
+		<item quantity="other">%d分钟</item>
+	</plurals>
+	<plurals name="timespan_seconds_abbr">
+		<item quantity="other">%d秒</item>
+	</plurals>
+
+</resources>
