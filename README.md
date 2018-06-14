@@ -4,7 +4,7 @@
 [TOC]
  
 ## 使用方法
-> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.14'	}> 第三步 使用方法,在Application中初始化:
+> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.15'	}> 第三步 使用方法,在Application中初始化:
  
     Tool.init(this, BuildConfig.DEBUG);
 
@@ -23,11 +23,6 @@ api 'com.google.code.gson:gson:2.8.0'
 // Knife
 api 'com.jakewharton:butterknife:8.4.0'
 annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0' //Java 的butterknife注解处理器
-// Kotlin
-api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-api "org.jetbrains.anko:anko-common:$anko_version"
-api "org.jetbrains.anko:anko-sqlite:$anko_version"
 // RxJava
 api 'io.reactivex.rxjava2:rxjava:2.1.1'
 api 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -1216,7 +1211,7 @@ RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(mContext, TITLE)
 dialogChooseImage.show();
 
 
-override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent)
+override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
 {
     when (requestCode)
     {
@@ -1224,14 +1219,14 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent)
         { //选择相册之后的处理
             if (resultCode == RESULT_OK)
             {
-                PhotoTool.cropImage(this@VerifyActivity, data.data, 16, 11, 320, 220) // 裁剪图片
+                PhotoTool.cropImage(this@VerifyActivity, data?.data, 16, 11, 320, 220) // 裁剪图片
             }
         }
         PhotoTool.GET_IMAGE_BY_CAMERA  ->
         { //选择相册之后的处理
             if (resultCode == RESULT_OK)
             {
-                PhotoTool.cropImage(this@VerifyActivity, data.data, 16, 11, 320, 220) // 裁剪图片
+                PhotoTool.cropImage(this@VerifyActivity, PhotoTool.imageUriFromCamera, 16, 11, 320, 220) // 裁剪图片
             }
         }
         PhotoTool.CROP_IMAGE           ->

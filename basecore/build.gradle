@@ -9,8 +9,8 @@ android {
 	defaultConfig {
 		minSdkVersion 15
 		targetSdkVersion 27
-		versionCode 14
-		versionName "0.0.14"
+		versionCode 15
+		versionName "0.0.15"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 		multiDexEnabled true
@@ -56,11 +56,6 @@ dependencies {
 	// Knife
 	api 'com.jakewharton:butterknife:8.4.0'
 	annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0' //Java 的butterknife注解处理器
-	// Kotlin
-	api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-	api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-	api "org.jetbrains.anko:anko-common:$anko_version"
-	api "org.jetbrains.anko:anko-sqlite:$anko_version"
 	// RxJava
 	api 'io.reactivex.rxjava2:rxjava:2.1.1'
 	api 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -74,7 +69,6 @@ dependencies {
 	api 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 	// 动画
 	api 'com.nineoldandroids:library:2.4.0'
-
 
 	// 依据项目情况需自行整合的库
 	// 网络请求
