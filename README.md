@@ -4,7 +4,7 @@
 [TOC]
  
 ## 使用方法
-> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.15'	}> 第三步 使用方法,在Application中初始化:
+> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:0.0.16'	}> 第三步 使用方法,在Application中初始化:
  
     Tool.init(this, BuildConfig.DEBUG);
 
@@ -1544,6 +1544,27 @@ setObjectForPosition        | 设置ViewPsger的存放的View和对应的positio
 
 相比原项目增加了更多可自定义项目,使用方法基本一致
 
+
+### IconText -> 带有TextView上方组合一个ImageView
+属性 | 说明
+--------- | -------------
+android:text                | 设置TextView文本
+android:textSize            | 设置TextView文字大小
+IT_text_selected_color      | 设置TextView选中时的颜色
+IT_text_unselected_color    | 设置TextView未选中时的颜色
+IT_icon_selected            | 设置ImageView选中时的图片
+IT_icon_unselected          | 设置ImageView未选中的图片
+IT_icon_width               | 设置ImageView的宽度
+IT_icon_height              | 设置ImageView的高度
+IT_icon_wrap                | 设置ImageView的高度是否自适应,默认true
+IT_selected_background      | 设置选中时的背景色
+IT_unselected_background    | 设置未选中时的背景色
+IT_padding                  | 设置控件上下的padding
+IT_match                    | 设置控件的高度是否充满,默认false
+IT_badge_text               | 设置badge的文本
+IT_badge_text_show          | 设置badge的文本是否显示
+IT_badge_icon_show          | 设置badge的icon是否显示
+IT_selected                 | 设置控件是否为选中状态
 
 #### PageControlView  -> 底部小圆圈
 方法名 | 说明

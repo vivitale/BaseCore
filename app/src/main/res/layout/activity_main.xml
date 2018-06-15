@@ -28,8 +28,73 @@
 
 	<ImageView
 		android:id="@+id/mImageView"
-		android:src="@mipmap/ic_launcher"
 		android:layout_width="80dp"
-		android:layout_height="80dp"/>
+		android:layout_height="80dp"
+		android:src="@mipmap/ic_launcher_round"/>
 
+	<HorizontalScrollView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="150dp"
+			android:background="@color/gray"
+			android:orientation="horizontal">
+
+			<talex.zsw.basecore.view.other.IconText
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="test"
+				android:textSize="10sp"
+				app:IT_badge_icon_show="true"
+				app:IT_icon_selected="@mipmap/ic_launcher"
+				app:IT_icon_unselected="@mipmap/ic_launcher_round"
+				app:IT_padding="20dp"
+				app:IT_selected="false"
+				app:IT_selected_background="@color/red"
+				app:IT_text_selected_color="@color/white"
+				app:IT_text_unselected_color="@color/yellow"
+				app:IT_unselected_background="@color/black">
+
+			</talex.zsw.basecore.view.other.IconText>
+
+			<TextView
+				android:id="@+id/mTv1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:text="text"
+				android:textSize="10sp"/>
+
+			<talex.zsw.basecore.view.other.IconText
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="test"
+				android:textSize="20sp"
+				app:IT_badge_text="99"
+				app:IT_badge_text_show="true"
+				app:IT_icon_selected="@mipmap/ic_launcher"
+				app:IT_icon_unselected="@mipmap/ic_launcher_round"
+				app:IT_padding="20dp"
+				app:IT_selected="false"
+				app:IT_selected_background="@color/red"
+				app:IT_text_selected_color="@color/white"
+				app:IT_text_unselected_color="@color/yellow"
+				app:IT_unselected_background="@color/black">
+
+			</talex.zsw.basecore.view.other.IconText>
+
+			<TextView
+				android:id="@+id/mTv2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:text="text"
+				android:textSize="20sp"/>
+
+
+		</LinearLayout>
+
+	</HorizontalScrollView>
 </LinearLayout>

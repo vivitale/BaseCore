@@ -4,27 +4,45 @@
 
 	<!-- SweetAlertDialog -->
 	<declare-styleable name="Rotate3dAnimation">
-		<attr name="SAD_rollType" format="enum">
-			<enum name="x" value="0"/>
-			<enum name="y" value="1"/>
-			<enum name="z" value="2"/>
+		<attr name="SAD_rollType"
+		      format="enum">
+			<enum name="x"
+			      value="0"/>
+			<enum name="y"
+			      value="1"/>
+			<enum name="z"
+			      value="2"/>
 		</attr>
-		<attr name="SAD_fromDeg" format="float"/>
-		<attr name="SAD_toDeg" format="float"/>
-		<attr name="SAD_pivotX" format="fraction"/>
-		<attr name="SAD_pivotY" format="fraction"/>
+		<attr name="SAD_fromDeg"
+		      format="float"/>
+		<attr name="SAD_toDeg"
+		      format="float"/>
+		<attr name="SAD_pivotX"
+		      format="fraction"/>
+		<attr name="SAD_pivotY"
+		      format="fraction"/>
 	</declare-styleable>
 	<declare-styleable name="ProgressWheel">
-		<attr name="SAD_matProg_progressIndeterminate" format="boolean"/>
-		<attr name="SAD_matProg_barColor" format="color"/>
-		<attr name="SAD_matProg_rimColor" format="color"/>
-		<attr name="SAD_matProg_rimWidth" format="dimension"/>
-		<attr name="SAD_matProg_spinSpeed" format="float"/>
-		<attr name="SAD_matProg_barSpinCycleTime" format="integer"/>
-		<attr name="SAD_matProg_circleRadius" format="dimension"/>
-		<attr name="SAD_matProg_fillRadius" format="boolean"/>
-		<attr name="SAD_matProg_barWidth" format="dimension"/>
-		<attr name="SAD_matProg_linearProgress" format="boolean"/>
+		<attr name="SAD_matProg_progressIndeterminate"
+		      format="boolean"/>
+		<attr name="SAD_matProg_barColor"
+		      format="color"/>
+		<attr name="SAD_matProg_rimColor"
+		      format="color"/>
+		<attr name="SAD_matProg_rimWidth"
+		      format="dimension"/>
+		<attr name="SAD_matProg_spinSpeed"
+		      format="float"/>
+		<attr name="SAD_matProg_barSpinCycleTime"
+		      format="integer"/>
+		<attr name="SAD_matProg_circleRadius"
+		      format="dimension"/>
+		<attr name="SAD_matProg_fillRadius"
+		      format="boolean"/>
+		<attr name="SAD_matProg_barWidth"
+		      format="dimension"/>
+		<attr name="SAD_matProg_linearProgress"
+		      format="boolean"/>
 	</declare-styleable>
 
 	<!-- RichText富文本显示 -->
@@ -42,153 +60,258 @@
 	<!-- AutofitHelper -->
 	<declare-styleable name="AutofitTextView">
 		<!-- Minimum size of the text. -->
-		<attr name="minTextSize" format="dimension" />
+		<attr name="minTextSize"
+		      format="dimension"/>
 		<!-- Amount of precision used to calculate the correct text size to fit within its
 		bounds. Lower precision is more precise and takes more time. -->
-		<attr name="precision" format="float" />
+		<attr name="precision"
+		      format="float"/>
 		<!-- Defines whether to automatically resize text to fit to the view's bounds. -->
-		<attr name="sizeToFit" format="boolean" />
+		<attr name="sizeToFit"
+		      format="boolean"/>
 	</declare-styleable>
 
 	<!-- SwipeToLoadLayout -->
 	<declare-styleable name="SwipeToLoadLayout">
-		<attr name="refresh_enabled" format="boolean"/>
-		<attr name="load_more_enabled" format="boolean"/>
-		<attr name="swipe_style" format="enum">
-			<enum name="classic" value="0"/>
-			<enum name="above" value="1"/>
-			<enum name="blew" value="2"/>
-			<enum name="scale" value="3"/>
+		<attr name="refresh_enabled"
+		      format="boolean"/>
+		<attr name="load_more_enabled"
+		      format="boolean"/>
+		<attr name="swipe_style"
+		      format="enum">
+			<enum name="classic"
+			      value="0"/>
+			<enum name="above"
+			      value="1"/>
+			<enum name="blew"
+			      value="2"/>
+			<enum name="scale"
+			      value="3"/>
 		</attr>
-		<attr name="refresh_trigger_offset" format="dimension"/>
-		<attr name="load_more_trigger_offset" format="dimension"/>
-		<attr name="refresh_final_drag_offset" format="dimension"/>
-		<attr name="load_more_final_drag_offset" format="dimension"/>
-		<attr name="release_to_refreshing_scrolling_duration" format="integer"/>
-		<attr name="refresh_complete_delay_duration" format="integer"/>
-		<attr name="refresh_complete_to_default_scrolling_duration" format="integer"/>
-		<attr name="default_to_refreshing_scrolling_duration" format="integer"/>
-		<attr name="release_to_loading_more_scrolling_duration" format="integer"/>
-		<attr name="load_more_complete_delay_duration" format="integer"/>
-		<attr name="load_more_complete_to_default_scrolling_duration" format="integer"/>
-		<attr name="default_to_loading_more_scrolling_duration" format="integer"/>
+		<attr name="refresh_trigger_offset"
+		      format="dimension"/>
+		<attr name="load_more_trigger_offset"
+		      format="dimension"/>
+		<attr name="refresh_final_drag_offset"
+		      format="dimension"/>
+		<attr name="load_more_final_drag_offset"
+		      format="dimension"/>
+		<attr name="release_to_refreshing_scrolling_duration"
+		      format="integer"/>
+		<attr name="refresh_complete_delay_duration"
+		      format="integer"/>
+		<attr name="refresh_complete_to_default_scrolling_duration"
+		      format="integer"/>
+		<attr name="default_to_refreshing_scrolling_duration"
+		      format="integer"/>
+		<attr name="release_to_loading_more_scrolling_duration"
+		      format="integer"/>
+		<attr name="load_more_complete_delay_duration"
+		      format="integer"/>
+		<attr name="load_more_complete_to_default_scrolling_duration"
+		      format="integer"/>
+		<attr name="default_to_loading_more_scrolling_duration"
+		      format="integer"/>
 	</declare-styleable>
 
 	<declare-styleable name="GoogleCircleProgressView">
-		<attr name="gcp_inner_radius" format="dimension"/>
-		<attr name="gcp_background_color" format="color"/>
-		<attr name="gcp_progress_color" format="color"/>
-		<attr name="gcp_progress_stoke_width" format="dimension"/>
-		<attr name="gcp_show_arrow" format="boolean"/>
-		<attr name="gcp_enable_circle_background" format="boolean"/>
-		<attr name="gcp_arrow_width" format="dimension"/>
-		<attr name="gcp_arrow_height" format="dimension"/>
-		<attr name="gcp_progress" format="integer"/>
-		<attr name="gcp_max" format="integer"/>
-		<attr name="gcp_progress_text_size" format="dimension"/>
-		<attr name="gcp_progress_text_color" format="color"/>
+		<attr name="gcp_inner_radius"
+		      format="dimension"/>
+		<attr name="gcp_background_color"
+		      format="color"/>
+		<attr name="gcp_progress_color"
+		      format="color"/>
+		<attr name="gcp_progress_stoke_width"
+		      format="dimension"/>
+		<attr name="gcp_show_arrow"
+		      format="boolean"/>
+		<attr name="gcp_enable_circle_background"
+		      format="boolean"/>
+		<attr name="gcp_arrow_width"
+		      format="dimension"/>
+		<attr name="gcp_arrow_height"
+		      format="dimension"/>
+		<attr name="gcp_progress"
+		      format="integer"/>
+		<attr name="gcp_max"
+		      format="integer"/>
+		<attr name="gcp_progress_text_size"
+		      format="dimension"/>
+		<attr name="gcp_progress_text_color"
+		      format="color"/>
 		<!--<attr name="gcp_progress_text_offset" format="dimension"/>-->
-		<attr name="gcp_progress_text_visibility" format="enum">
-			<enum name="visible" value="0"/>
-			<enum name="invisible" value="1"/>
+		<attr name="gcp_progress_text_visibility"
+		      format="enum">
+			<enum name="visible"
+			      value="0"/>
+			<enum name="invisible"
+			      value="1"/>
 		</attr>
 	</declare-styleable>
 
 	<!-- PowerImageView 播放GIF -->
 	<declare-styleable name="GifView">
-		<attr name="gif" format="reference" />
-		<attr name="paused" format="boolean" />
+		<attr name="gif"
+		      format="reference"/>
+		<attr name="paused"
+		      format="boolean"/>
 	</declare-styleable>
 	<declare-styleable name="CustomTheme">
-		<attr name="gifViewStyle" format="reference" />
+		<attr name="gifViewStyle"
+		      format="reference"/>
 	</declare-styleable>
 
-	<style name="Widget.GifView" parent="@android:style/Widget"></style>
+	<style name="Widget.GifView"
+	       parent="@android:style/Widget"></style>
 
 	<!-- 带有图标的TextView -->
 	<declare-styleable name="IconText">
+		<!-- TextView的属性 -->
 		<attr name="android:text"/>
-		<attr name="IT_text_size" format="dimension"/>
-		<attr name="IT_text_selected_color" format="color"/>
-		<attr name="IT_text_unselected_color" format="color"/>
-		<attr name="IT_selected" format="boolean"/>
-		<attr name="IT_selected_color" format="color"/>
-		<attr name="IT_unselected_color" format="color"/>
-		<attr name="IT_padding" format="dimension"/>
-		<attr name="IT_selected_icon" format="reference"/>
-		<attr name="IT_unselected_icon" format="reference"/>
+		<attr name="android:textSize"/>
+		<attr name="IT_text_selected_color"
+		      format="color"/>
+		<attr name="IT_text_unselected_color"
+		      format="color"/>
+		<!-- ImageView的属性 -->
+		<attr name="IT_icon_selected"
+		      format="reference"/>
+		<attr name="IT_icon_unselected"
+		      format="reference"/>
+		<attr name="IT_icon_width"
+		      format="dimension"/>
+		<attr name="IT_icon_height"
+		      format="dimension"/>
+		<attr name="IT_icon_wrap"
+		      format="boolean"/>
+		<!-- LinearLayout的属性 -->
+		<attr name="IT_selected_background"
+		      format="color"/>
+		<attr name="IT_unselected_background"
+		      format="color"/>
+		<attr name="IT_padding"
+		      format="dimension"/>
+		<attr name="IT_match"
+		      format="boolean"/>
+		<!-- Badge的属性 -->
+		<attr name="IT_badge_text"
+		      format="string"/>
+		<attr name="IT_badge_text_show"
+		      format="boolean"/>
+		<attr name="IT_badge_icon_show"
+		      format="boolean"/>
+		<!--整体的属性-->
+		<attr name="IT_selected"
+		      format="boolean"/>
 	</declare-styleable>
 
 	<!-- DropDownMenu -->
 	<declare-styleable name="DropDownMenu">
 		<!-- 下划线颜色 -->
-		<attr name="DD_underlineColor" format="color"/>
+		<attr name="DD_underlineColor"
+		      format="color"/>
 		<!-- 分割线颜色 -->
-		<attr name="DD_dividerColor" format="color"/>
+		<attr name="DD_dividerColor"
+		      format="color"/>
 		<!-- tab选中颜色 -->
-		<attr name="DD_textSelectedColor" format="color"/>
+		<attr name="DD_textSelectedColor"
+		      format="color"/>
 		<!-- tab未选中颜色 -->
-		<attr name="DD_textUnselectedColor" format="color"/>
+		<attr name="DD_textUnselectedColor"
+		      format="color"/>
 		<!-- tab 背景颜色 -->
-		<attr name="DD_menuBackgroundColor" format="color"/>
+		<attr name="DD_menuBackgroundColor"
+		      format="color"/>
 		<!-- 遮罩颜色，一般是半透明 -->
-		<attr name="DD_maskColor" format="color"/>
+		<attr name="DD_maskColor"
+		      format="color"/>
 		<!-- tab字体大小 -->
-		<attr name="DD_menuTextSize" format="dimension"/>
+		<attr name="DD_menuTextSize"
+		      format="dimension"/>
 		<!-- tab选中状态图标 -->
-		<attr name="DD_menuSelectedIcon" format="reference"/>
+		<attr name="DD_menuSelectedIcon"
+		      format="reference"/>
 		<!-- tab未选中状态图标 -->
-		<attr name="DD_menuUnselectedIcon" format="reference"/>
+		<attr name="DD_menuUnselectedIcon"
+		      format="reference"/>
 	</declare-styleable>
 
 
 	<!-- 可缩放的图片 -->
 	<declare-styleable name="ScaleImageView">
-		<attr name="src" format="reference"/>
-		<attr name="assetName" format="string"/>
-		<attr name="panEnabled" format="boolean"/>
-		<attr name="zoomEnabled" format="boolean"/>
-		<attr name="quickScaleEnabled" format="boolean"/>
-		<attr name="tileBackgroundColor" format="color"/>
+		<attr name="src"
+		      format="reference"/>
+		<attr name="assetName"
+		      format="string"/>
+		<attr name="panEnabled"
+		      format="boolean"/>
+		<attr name="zoomEnabled"
+		      format="boolean"/>
+		<attr name="quickScaleEnabled"
+		      format="boolean"/>
+		<attr name="tileBackgroundColor"
+		      format="color"/>
 	</declare-styleable>
 
 	<!-- 带动画效果的CheckBox -->
 	<declare-styleable name="AnimateCheckBox">
 		<!-- 未选择时候小点的颜色 -->
-		<attr name="ACB_unCheckColor" format="color"/>
+		<attr name="ACB_unCheckColor"
+		      format="color"/>
 		<!-- 选中之后的背景色 -->
-		<attr name="ACB_checkedColor" format="color"/>
+		<attr name="ACB_checkedColor"
+		      format="color"/>
 		<!-- 选中之后钩的颜色 -->
-		<attr name="ACB_lineColor" format="color"/>
+		<attr name="ACB_lineColor"
+		      format="color"/>
 		<!-- 钩的宽度 -->
-		<attr name="ACB_lineWidth" format="dimension"/>
+		<attr name="ACB_lineWidth"
+		      format="dimension"/>
 		<!-- 动画持续时间 -->
-		<attr name="ACB_animDuration" format="integer"/>
+		<attr name="ACB_animDuration"
+		      format="integer"/>
 	</declare-styleable>
 
 	<declare-styleable name="StateButton">
 		<!--text color-->
-		<attr name="normalTextColor" format="color|reference" />
-		<attr name="pressedTextColor" format="color|reference" />
-		<attr name="unableTextColor" format="color|reference" />
+		<attr name="normalTextColor"
+		      format="color|reference"/>
+		<attr name="pressedTextColor"
+		      format="color|reference"/>
+		<attr name="unableTextColor"
+		      format="color|reference"/>
 		<!--stroke width and color, dash width, dash gap-->
-		<attr name="strokeDashWidth" format="dimension|reference" />
-		<attr name="strokeDashGap" format="dimension|reference" />
-		<attr name="normalStrokeWidth" format="dimension|reference" />
-		<attr name="pressedStrokeWidth" format="dimension|reference" />
-		<attr name="unableStrokeWidth" format="dimension|reference" />
-		<attr name="normalStrokeColor" format="color|reference" />
-		<attr name="pressedStrokeColor" format="color|reference" />
-		<attr name="unableStrokeColor" format="color|reference" />
+		<attr name="strokeDashWidth"
+		      format="dimension|reference"/>
+		<attr name="strokeDashGap"
+		      format="dimension|reference"/>
+		<attr name="normalStrokeWidth"
+		      format="dimension|reference"/>
+		<attr name="pressedStrokeWidth"
+		      format="dimension|reference"/>
+		<attr name="unableStrokeWidth"
+		      format="dimension|reference"/>
+		<attr name="normalStrokeColor"
+		      format="color|reference"/>
+		<attr name="pressedStrokeColor"
+		      format="color|reference"/>
+		<attr name="unableStrokeColor"
+		      format="color|reference"/>
 		<!--background color-->
-		<attr name="normalBackgroundColor" format="color|reference" />
-		<attr name="pressedBackgroundColor" format="color|reference" />
-		<attr name="unableBackgroundColor" format="color|reference" />
+		<attr name="normalBackgroundColor"
+		      format="color|reference"/>
+		<attr name="pressedBackgroundColor"
+		      format="color|reference"/>
+		<attr name="unableBackgroundColor"
+		      format="color|reference"/>
 		<!--background radius-->
-		<attr name="radius" format="dimension|reference" />
-		<attr name="round" format="boolean|reference" />
+		<attr name="radius"
+		      format="dimension|reference"/>
+		<attr name="round"
+		      format="boolean|reference"/>
 		<!--animation duration-->
-		<attr name="animationDuration" format="integer|reference" />
+		<attr name="animationDuration"
+		      format="integer|reference"/>
 	</declare-styleable>
 
 </resources>

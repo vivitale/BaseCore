@@ -9,8 +9,8 @@ android {
 	defaultConfig {
 		minSdkVersion 15
 		targetSdkVersion 27
-		versionCode 15
-		versionName "0.0.15"
+		versionCode 16
+		versionName "0.0.16"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 		multiDexEnabled true
@@ -69,6 +69,7 @@ dependencies {
 	api 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 	// 动画
 	api 'com.nineoldandroids:library:2.4.0'
+	api 'com.github.florent37:viewanimator:1.0.5'
 
 	// 依据项目情况需自行整合的库
 	// 网络请求
@@ -77,8 +78,6 @@ dependencies {
 	compileOnly 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
 	compileOnly 'com.squareup.okhttp3:okhttp:3.8.1'
 	compileOnly 'com.squareup.okio:okio:1.13.0'
-	// 动画
-	compileOnly 'com.github.florent37:viewanimator:1.0.5'
 	// 图片工具glide
 	compileOnly 'com.github.bumptech.glide:glide:4.6.1'
 	annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'

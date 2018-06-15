@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	android:id="@+id/mLinearLayout"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:paddingBottom="6dp"
+	android:paddingTop="6dp">
+
+	<RelativeLayout
+		android:id="@+id/mRelativeLayout"
+		android:layout_width="wrap_content"
+		android:layout_height="0dp"
+		android:layout_gravity="center_horizontal"
+		android:layout_weight="1">
+
+		<ImageView
+			android:id="@+id/mImageView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:src="@mipmap/yalantis_phoenix_sun"/>
+
+		<ImageView
+			android:id="@+id/mIvBadge"
+			android:layout_width="wrap_content"
+			android:visibility="gone"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_toEndOf="@id/mImageView"
+			android:layout_toRightOf="@id/mImageView"
+			android:src="@drawable/icon_dot5"/>
+
+		<talex.zsw.basecore.view.textview.autofit.AutofitTextView
+			android:id="@+id/mTvBadge"
+			android:layout_width="20dp"
+			android:layout_height="20dp"
+			android:layout_marginEnd="7dp"
+			android:layout_marginRight="7dp"
+			android:layout_toEndOf="@id/mImageView"
+			android:layout_toRightOf="@id/mImageView"
+			android:background="@drawable/icon_dot"
+			android:gravity="center"
+			android:singleLine="true"
+			android:text="99"
+			android:textColor="@color/white"
+			android:textSize="13sp"
+			android:visibility="gone"/>
+
+	</RelativeLayout>
+
+	<TextView
+		android:id="@+id/mTextView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="3dp"
+		android:gravity="center_horizontal"
+		android:singleLine="true"
+		android:text="标题"
+		android:textColor="#303030"
+		android:textSize="17sp"/>
+
+</LinearLayout>
