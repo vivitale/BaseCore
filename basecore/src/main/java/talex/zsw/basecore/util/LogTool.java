@@ -312,6 +312,31 @@ public final class LogTool
 		Log.e(CONFIG.mGlobalTag, contents);
 	}
 
+	public static void nv(String tag, String contents)
+	{
+		Log.v(tag, contents);
+	}
+
+	public static void ni(String tag, String contents)
+	{
+		Log.i(tag, contents);
+	}
+
+	public static void nd(String tag, String contents)
+	{
+		Log.d(tag, contents);
+	}
+
+	public static void nw(String tag, String contents)
+	{
+		Log.w(tag, contents);
+	}
+
+	public static void ne(String tag, String contents)
+	{
+		Log.e(tag, contents);
+	}
+
 	public static void log(final int type, final String tag, final Object... contents)
 	{
 		if(!CONFIG.mLogSwitch || (!CONFIG.mLog2ConsoleSwitch && !CONFIG.mLog2FileSwitch))

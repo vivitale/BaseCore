@@ -93,7 +93,7 @@ public class DataTool
 	 */
 	public static String hideMobilePhone4(String mobile_phone)
 	{
-		if(mobile_phone.length() != 11)
+		if(mobile_phone == null || mobile_phone.length() != 11)
 		{
 			return "手机号码不正确";
 		}
@@ -109,7 +109,7 @@ public class DataTool
 	 */
 	public static String formatCard(String cardNo)
 	{
-		if(cardNo.length() < 8)
+		if(cardNo == null || cardNo.length() < 8)
 		{
 			return "银行卡号有误";
 		}
@@ -127,7 +127,7 @@ public class DataTool
 	 */
 	public static String formatCardEnd4(String cardNo)
 	{
-		if(cardNo.length() < 8)
+		if(cardNo == null || cardNo.length() < 8)
 		{
 			return "银行卡号有误";
 		}
@@ -169,19 +169,19 @@ public class DataTool
 	 */
 	public static int[] string2Ints(String s)
 	{
-		int[] n = new int[s.length()];
 		if(isNullString(s))
 		{
-
+			return null;
 		}
 		else
 		{
+			int[] n = new int[s.length()];
 			for(int i = 0; i < s.length(); i++)
 			{
 				n[i] = Integer.parseInt(s.substring(i, i+1));
 			}
+			return n;
 		}
-		return n;
 	}
 
 	/**
@@ -551,6 +551,10 @@ public class DataTool
 	 */
 	public static String bytes2HexString(byte[] bytes)
 	{
+		if(bytes == null)
+		{
+			return "";
+		}
 		char[] ret = new char[bytes.length << 1];
 		for(int i = 0, j = 0; i < bytes.length; i++)
 		{
@@ -570,6 +574,10 @@ public class DataTool
 	 */
 	public static String bytes2HexStringWithBlank(byte[] bytes)
 	{
+		if(bytes == null)
+		{
+			return "";
+		}
 		String string = "";
 		for(int j = 0; j < bytes.length; j++)
 		{
@@ -597,6 +605,10 @@ public class DataTool
 	 */
 	public static String bytes2HexString(byte[] bytes, int start, int end)
 	{
+		if(bytes==null)
+		{
+			return "";
+		}
 		String string = "";
 		for(int j = start; j < end; j++)
 		{
@@ -645,6 +657,10 @@ public class DataTool
 	 */
 	public static String bytes2String(byte[] bytes)
 	{
+		if(bytes==null)
+		{
+			return "";
+		}
 		String string = "";
 		int start = 0;
 		int end = bytes.length;
@@ -671,6 +687,10 @@ public class DataTool
 	 */
 	public static String bytes2String(byte[] bytes, int start, int end)
 	{
+		if(bytes==null)
+		{
+			return "";
+		}
 		String string = "";
 		byte[] by = new byte[end-start];
 
