@@ -242,6 +242,11 @@ public final class LogTool
 		log(JSON | D, CONFIG.mGlobalTag, content);
 	}
 
+	public static void json(final Object content)
+	{
+		json(JsonTool.getJsonString(content));
+	}
+
 	public static void json(@TYPE final int type, final String content)
 	{
 		log(JSON | type, CONFIG.mGlobalTag, content);

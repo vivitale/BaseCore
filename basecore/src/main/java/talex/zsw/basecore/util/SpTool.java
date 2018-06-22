@@ -19,6 +19,11 @@ public class SpTool
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 	}
 
+	public static String getString(String TAG, String def)
+	{
+		return prefs.getString(TAG, def);
+	}
+
 	public static String getString(String TAG)
 	{
 		return prefs.getString(TAG, "");
@@ -48,6 +53,11 @@ public class SpTool
 		return JsonTool.getObject(prefs.getString(TAG, ""), t);
 	}
 
+	public static Boolean getBoolean(String TAG, boolean def)
+	{
+		return prefs.getBoolean(TAG, def);
+	}
+
 	public static Boolean getBoolean(String TAG)
 	{
 		return prefs.getBoolean(TAG, false);
@@ -58,9 +68,14 @@ public class SpTool
 		prefs.edit().putBoolean(TAG, flag).apply();
 	}
 
+	public static int getInt(String TAG, int def)
+	{
+		return prefs.getInt(TAG, def);
+	}
+
 	public static int getInt(String TAG)
 	{
-		return prefs.getInt(TAG, 0);
+		return prefs.getInt(TAG, -1);
 	}
 
 	public static void saveInt(String TAG, int data)
@@ -68,9 +83,14 @@ public class SpTool
 		prefs.edit().putInt(TAG, data).apply();
 	}
 
+	public static long getLong(String TAG, long def)
+	{
+		return prefs.getLong(TAG, def);
+	}
+
 	public static long getLong(String TAG)
 	{
-		return prefs.getLong(TAG, 0);
+		return prefs.getLong(TAG, -1);
 	}
 
 	public static void saveLong(String TAG, long data)
@@ -78,9 +98,14 @@ public class SpTool
 		prefs.edit().putLong(TAG, data).apply();
 	}
 
+	public static float getFloat(String TAG, float def)
+	{
+		return prefs.getFloat(TAG, def);
+	}
+
 	public static float getFloat(String TAG)
 	{
-		return prefs.getFloat(TAG, 0f);
+		return prefs.getFloat(TAG, -1f);
 	}
 
 	public static void saveFloat(String TAG, float data)
