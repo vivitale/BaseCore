@@ -314,4 +314,19 @@
 		      format="integer|reference"/>
 	</declare-styleable>
 
+	<!-- FlowLayout单选多选标签 -->
+	<declare-styleable name="FlowLayout">
+		<attr name="FL_auto_select_effect"
+		      format="boolean"/>
+		<attr name="FL_max_select"
+		      format="integer"/>
+	</declare-styleable>
+
+	<declare-styleable name="OtherStyleable">
+	<attr name="visibility" format="enum">
+		<enum name="visible" value="0"/>
+		<enum name="invisible" value="1"/>
+	</attr>
+	</declare-styleable>
+
 </resources>

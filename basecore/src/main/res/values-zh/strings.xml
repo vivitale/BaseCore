@@ -1,6 +1,4 @@
 <resources>
-	<string name="app_name">basecore</string>
-
 	<!-- Tool -->
 	<string name="permission_rationale_message">请您授权程序一些必要的权限,否则程序可能不能正常使用!</string>
 	<string name="permission_denied_forever_message">程序需要一些已经被您拒绝的权限才能正常运作,请您手动在设置页面授权,否则程序将不能正常使用!</string>

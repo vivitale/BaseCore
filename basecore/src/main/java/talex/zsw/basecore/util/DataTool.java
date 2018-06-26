@@ -140,13 +140,23 @@ public class DataTool
 	 * 字符串转换成整数 ,转换失败将会 return 0;
 	 *
 	 * @param str 字符串
-	 * @return
 	 */
 	public static int string2Int(String str)
 	{
+		return string2Int(str, 0);
+	}
+
+	/**
+	 * 字符串转换成整数 ,转换失败将会 return 0;
+	 *
+	 * @param str 字符串
+	 * @param def 默认返回
+	 */
+	public static int string2Int(String str, int def)
+	{
 		if(isNullString(str))
 		{
-			return 0;
+			return def;
 		}
 		else
 		{
@@ -156,7 +166,7 @@ public class DataTool
 			}
 			catch(NumberFormatException e)
 			{
-				return 0;
+				return def;
 			}
 		}
 	}
@@ -206,13 +216,23 @@ public class DataTool
 	 * 字符串转换成long ,转换失败将会 return 0;
 	 *
 	 * @param str 字符串
-	 * @return
 	 */
 	public static long string2Long(String str)
 	{
+		return string2Long(str, 0);
+	}
+
+	/**
+	 * 字符串转换成long ,转换失败将会 return 0;
+	 *
+	 * @param str 字符串
+	 * @param def 默认返回
+	 */
+	public static long string2Long(String str, long def)
+	{
 		if(isNullString(str))
 		{
-			return 0;
+			return def;
 		}
 		else
 		{
@@ -222,7 +242,7 @@ public class DataTool
 			}
 			catch(NumberFormatException e)
 			{
-				return 0;
+				return def;
 			}
 		}
 	}
@@ -231,13 +251,23 @@ public class DataTool
 	 * 字符串转换成double ,转换失败将会 return 0;
 	 *
 	 * @param str 字符串
-	 * @return
 	 */
 	public static double string2Double(String str)
 	{
+		return string2Double(str, 0);
+	}
+
+	/**
+	 * 字符串转换成double ,转换失败将会 return 0;
+	 *
+	 * @param str 字符串
+	 * @param def 默认返回
+	 */
+	public static double string2Double(String str, double def)
+	{
 		if(isNullString(str))
 		{
-			return 0;
+			return def;
 		}
 		else
 		{
@@ -247,7 +277,7 @@ public class DataTool
 			}
 			catch(NumberFormatException e)
 			{
-				return 0;
+				return def;
 			}
 		}
 	}
@@ -260,9 +290,21 @@ public class DataTool
 	 */
 	public static float string2Float(String str)
 	{
+		return string2Float(str, 0f);
+	}
+
+	/**
+	 * 字符串转换成浮点型 Float
+	 *
+	 * @param str 待转换的字符串
+	 * @param def 默认返回
+	 * @return 转换后的 float
+	 */
+	public static float string2Float(String str, float def)
+	{
 		if(isNullString(str))
 		{
-			return 0;
+			return def;
 		}
 		else
 		{
@@ -272,7 +314,7 @@ public class DataTool
 			}
 			catch(NumberFormatException e)
 			{
-				return 0;
+				return def;
 			}
 		}
 	}
@@ -605,7 +647,7 @@ public class DataTool
 	 */
 	public static String bytes2HexString(byte[] bytes, int start, int end)
 	{
-		if(bytes==null)
+		if(bytes == null)
 		{
 			return "";
 		}
@@ -657,7 +699,7 @@ public class DataTool
 	 */
 	public static String bytes2String(byte[] bytes)
 	{
-		if(bytes==null)
+		if(bytes == null)
 		{
 			return "";
 		}
@@ -687,7 +729,7 @@ public class DataTool
 	 */
 	public static String bytes2String(byte[] bytes, int start, int end)
 	{
-		if(bytes==null)
+		if(bytes == null)
 		{
 			return "";
 		}
