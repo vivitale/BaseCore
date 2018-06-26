@@ -38,8 +38,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
 import java.lang.reflect.Method;
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -668,20 +666,20 @@ public class DeviceTool
 	 * @param context 上下文
 	 * @return MAC地址
 	 */
-	@SuppressLint("MissingPermission") public static String getMacAddress(Context context)
-	{
-		WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-		WifiInfo info = wifi.getConnectionInfo();
-		if(info != null)
-		{
-			String macAddress = info.getMacAddress();
-			if(macAddress != null)
-			{
-				return macAddress.replace(":", "");
-			}
-		}
-		return null;
-	}
+//	@SuppressLint("MissingPermission") public static String getMacAddress(Context context)
+//	{
+//		WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+//		WifiInfo info = wifi.getConnectionInfo();
+//		if(info != null)
+//		{
+//			String macAddress = info.getMacAddress();
+//			if(macAddress != null)
+//			{
+//				return macAddress.replace(":", "");
+//			}
+//		}
+//		return null;
+//	}
 
 	/**
 	 * 获取设备MAC地址
@@ -690,25 +688,22 @@ public class DeviceTool
 	 * @return MAC地址
 	 */
 
-	public static String getMacAddress()
+	@SuppressLint("HardwareIds") public static String getMacAddress()
 	{
 		String macAddress = null;
-		LineNumberReader lnr = null;
-		InputStreamReader isr = null;
-		try
+
+		WifiManager wifi = (WifiManager) Tool
+			.getContext()
+			.getApplicationContext()
+			.getSystemService(Context.WIFI_SERVICE);
+		WifiInfo info = null;
+		if(wifi != null)
 		{
-			Process pp = Runtime.getRuntime().exec("cat /sys/class/net/wlan0/address");
-			isr = new InputStreamReader(pp.getInputStream());
-			lnr = new LineNumberReader(isr);
-			macAddress = lnr.readLine().replace(":", "");
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			FileTool.closeIO(lnr, isr);
+			info = wifi.getConnectionInfo();
+			if(info != null)
+			{
+				macAddress = info.getMacAddress();
+			}
 		}
 
 		if(RegTool.isNullString(macAddress))
@@ -742,6 +737,10 @@ public class DeviceTool
 				e.printStackTrace();
 				return "02:00:00:00:00:00";
 			}
+		}
+		if(RegTool.isNullString(macAddress))
+		{
+			macAddress = "02:00:00:00:00:00";
 		}
 		return macAddress;
 	}
@@ -1312,7 +1311,7 @@ public class DeviceTool
 		{
 			e.printStackTrace();
 		}
-		LogTool.d("BaseCore","ip == "+ip);
+		LogTool.d("BaseCore", "ip == "+ip);
 		return ip;
 	}
 
