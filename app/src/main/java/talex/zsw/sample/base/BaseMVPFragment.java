@@ -160,6 +160,24 @@ public abstract class BaseMVPFragment<T extends _Presenter> extends RxFragment
 
 	}
 
+	@Override public void onStop()
+	{
+		super.onStop();
+		if(mPresenter != null)
+		{
+			mPresenter.onStop();
+		}
+	}
+
+	@Override public void onStart()
+	{
+		super.onStart();
+		if(mPresenter != null)
+		{
+			mPresenter.onStart();
+		}
+	}
+
 	@Override public void onResume()
 	{
 		super.onResume();

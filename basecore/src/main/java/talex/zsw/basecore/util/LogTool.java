@@ -503,7 +503,12 @@ public final class LogTool
 		return body.length() == 0 ? NOTHING : body;
 	}
 
-	private static String formatJson(String json)
+	public static String formatJson(Object jsonObj)
+	{
+		return formatJson(JsonTool.getJsonString(jsonObj));
+	}
+
+	public static String formatJson(String json)
 	{
 		try
 		{
@@ -523,7 +528,7 @@ public final class LogTool
 		return json;
 	}
 
-	private static String formatXml(String xml)
+	public static String formatXml(String xml)
 	{
 		try
 		{

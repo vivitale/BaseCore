@@ -14,6 +14,10 @@ interface _Presenter
 
     fun onPause()
 
+    fun onStart()
+
+    fun onStop()
+
     fun onDestroy()
 
     fun getData(http: HttpDto)

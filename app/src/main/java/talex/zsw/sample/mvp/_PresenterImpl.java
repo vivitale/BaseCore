@@ -42,6 +42,16 @@ public class _PresenterImpl<T extends _View, V> implements _Presenter, RequestCa
 
 	}
 
+	@Override public void onStart()
+	{
+
+	}
+
+	@Override public void onStop()
+	{
+
+	}
+
 	@Override public void onDestroy()
 	{
 		OkGo.getInstance().cancelTag(this);

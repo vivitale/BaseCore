@@ -108,6 +108,10 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 	{
 		activityState = 1;
 		super.onStart();
+		if(mPresenter != null)
+		{
+			mPresenter.onStart();
+		}
 	}
 
 	@Override protected void onResume()
@@ -137,6 +141,10 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 	{
 		activityState = -2;
 		super.onStop();
+		if(mPresenter != null)
+		{
+			mPresenter.onStop();
+		}
 	}
 
 	@Override protected void onDestroy()
