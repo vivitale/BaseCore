@@ -35,4 +35,10 @@
     <item name="gray_holo_dark" type="color">#ff464646</item>
     <item name="gray_holo_light" type="color">#ffd0d0d0</item>
 
+    <!-- NiceSpinner简单的下拉框 -->
+    <declare-styleable name="NiceSpinner">
+        <attr name="NS_arrowTint" format="color"/>
+        <attr name="NS_hideArrow" format="boolean"/>
+    </declare-styleable>
+
 </resources>
