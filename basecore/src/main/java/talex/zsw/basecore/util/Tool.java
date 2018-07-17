@@ -106,15 +106,24 @@ public class Tool
 	 */
 	public static void delayToDo(long delayTime, final OnSimpleListener onSimpleListener)
 	{
-		new Handler().postDelayed(new Runnable()
+		try
 		{
-			@Override public void run()
+			new Handler().postDelayed(new Runnable()
 			{
-				//execute the task
-				onSimpleListener.doSomething();
-			}
-		}, delayTime);
+				@Override public void run()
+				{
+					//execute the task
+					onSimpleListener.doSomething();
+				}
+			}, delayTime);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
+
+	private static android.os.CountDownTimer timer;
 
 	/**
 	 * 倒计时
@@ -143,25 +152,50 @@ public class Tool
 	 */
 	public static void countDown(final TextView textView, long waitTime, long interval, final String format, final String hint, final OnSimpleListener listener)
 	{
-		textView.setEnabled(false);
-		android.os.CountDownTimer timer = new android.os.CountDownTimer(waitTime, interval)
+		try
 		{
-
-			@SuppressLint("DefaultLocale") @Override public void onTick(long millisUntilFinished)
+			textView.setEnabled(false);
+			timer = new android.os.CountDownTimer(waitTime, interval)
 			{
-				String data = String.format(format, millisUntilFinished/1000);
 
-				textView.setText(data);
-			}
+				@SuppressLint("DefaultLocale") @Override public void onTick(long millisUntilFinished)
+				{
+					String data = String.format(format, millisUntilFinished/1000);
 
-			@Override public void onFinish()
-			{
-				textView.setEnabled(true);
-				textView.setText(hint);
-				listener.doSomething();
-			}
-		};
-		timer.start();
+					if(textView != null)
+					{
+						textView.setText(data);
+					}
+				}
+
+				@Override public void onFinish()
+				{
+					if(textView != null)
+					{
+						textView.setEnabled(true);
+						textView.setText(hint);
+					}
+					if(listener != null)
+					{
+						listener.doSomething();
+					}
+				}
+			};
+			timer.start();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public static void cancelCountDown()
+	{
+		if(timer != null)
+		{
+			timer.cancel();
+			timer = null;
+		}
 	}
 
 	/**

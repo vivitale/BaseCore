@@ -1539,10 +1539,102 @@ setObjectForPosition        | 设置ViewPsger的存放的View和对应的positio
 高度会自行计算的WebView
 
 ### Other
+#### BGABadge -> Badge控件
+原项目地址:[https://github.com/bingoogolapple/BGABadgeView-Android](https://github.com/bingoogolapple/BGABadgeView-Android)
+
+该项目的老版本控件,不需使用注入的方式,直接调用对应的控件即可
+BGABadgeView
+BGADragBadgeView
+BGABadgeTextView
+BGABadgeImageView
+BGABadgeRadioButton
+BGABadgeFrameLayout
+BGABadgeLinearLayout
+BGABadgeRelativeLayout
+
+
+方法名 | 说明
+--------- | -------------
+showCirclePointBadge        | 显示圆点徽章
+showTextBadge               | 显示文字徽章
+hiddenBadge                 | 隐藏徽章
+showDrawableBadge           | 显示图像徽章
+setDragDismissDelegage      | 设置拖动删除徽章的代理
+isShowBadge                 | 是否正在显示徽章
+isDraggable                 | 是否可拖拽
+isDragging                  | 是否正在拖动
+
+属性名 | 说明 | 默认值
+----------- | ----------- | -----------
+badge_bgColor         | 徽章背景色        | Color.RED
+badge_textColor         | 徽章文本的颜色        | Color.WHITE
+badge_textSize         | 徽章文本字体大小        | 10sp
+badge_verticalMargin         | 徽章背景与宿主控件上下边缘间距离        | 4dp
+badge_horizontalMargin         | 徽章背景与宿主控件左右边缘间距离        | 4dp
+badge_padding         | 徽章文本边缘与徽章背景边缘间的距离        | 4dp
+badge_gravity         | 徽章在宿主控件中的位置        | BGABadgeImageView和BGABadgeRadioButton是右上方，其他控件是右边垂直居中
+badge_draggable         | 是否开启拖拽删除徽章        | false
+badge_isResumeTravel         | 拖拽徽章超出轨迹范围后，再次放回到轨迹范围时，是否恢复轨迹        | false
+badge_borderWidth         | 徽章描边宽度        | 0dp
+badge_borderColor         | 徽章描边颜色        | Color.WHITE
+badge_dragExtra         | 触发开始拖拽徽章事件的扩展触摸距离        | 4dp
+
 #### DropDownMenu  -> 下拉菜单
 原项目地址:[https://github.com/dongjunkun/DropDownMenu](https://github.com/dongjunkun/DropDownMenu)
 
 相比原项目增加了更多可自定义项目,使用方法基本一致
+
+#### FlowLayout -> Android流式布局，支持单选、多选等
+原项目地址:[https://github.com/hongyangAndroid/FlowLayout](https://github.com/hongyangAndroid/FlowLayout)
+
+```
+<talex.zsw.basecore.view.other.flowlayout.TagFlowLayout
+    android:id="@+id/mFlowLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:FL_max_select="1"/>
+
+// 设置适配器
+mFlowLayout.setAdapter(new TagAdapter<String>(mVals)
+   {
+       @Override
+       public View getView(FlowLayout parent, int position, String s)
+       {
+           TextView tv = (TextView) mInflater.inflate(R.layout.tv,
+                   mFlowLayout, false);
+           tv.setText(s);
+           return tv;
+       }
+   });
+   
+// 点击事件
+mFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener()
+{
+  @Override
+  public boolean onTagClick(View view, int position, FlowLayout parent)
+  {
+      Toast.makeText(getActivity(), mVals[position], Toast.LENGTH_SHORT).show();
+      return true;
+  }
+});
+
+// Tag选中的回调事件
+mFlowLayout.setOnSelectListener(new TagFlowLayout.OnSelectListener()
+{
+  @Override
+  public void onSelected(Set<Integer> selectPosSet)
+  {
+      getActivity().setTitle("choose:" + selectPosSet.toString());
+  }
+});
+
+mFlowLayout.setMaxSelectCount(1)// 设置最大选中数量
+flowAdapter?.setSelectedList(1)// 设置选中的列表
+```
+
+属性名 | 说明 | 默认值
+----------- | ----------- | -----------
+FL_max_select | -1为不限制选择数量，>=1的数字为控制选择tag的数量 | -1
 
 
 ### IconText -> 带有TextView上方组合一个ImageView
@@ -1565,6 +1657,16 @@ IT_badge_text               | 设置badge的文本
 IT_badge_text_show          | 设置badge的文本是否显示
 IT_badge_icon_show          | 设置badge的icon是否显示
 IT_selected                 | 设置控件是否为选中状态
+
+#### NiceSpinner -> 简单的Spinner的实现
+原项目地址:[https://github.com/arcadefire/nice-spinner](https://github.com/arcadefire/nice-spinner)
+
+```
+ NiceSpinner niceSpinner = (NiceSpinner) findViewById(R.id.nice_spinner);
+ List<String> dataset = new LinkedList<>(Arrays.asList("One", "Two", "Three", "Four", "Five"));
+ niceSpinner.attachDataSource(dataset);
+```
+
 
 #### PageControlView  -> 底部小圆圈
 方法名 | 说明
@@ -1678,7 +1780,6 @@ new SlideDateTimePicker.Builder(getSupportFragmentManager())
     layout_classic_footer
     layout_google_hook_footer
     layout_google_footer
-
 
 ## Service & Receiver
 ### 开机启动服务 -> 该功能需要手动设置开机启动才会生效
@@ -1811,4 +1912,7 @@ https://github.com/hanks-zyh/AnimateCheckBox
 
 https://github.com/square/android-times-square
 
+https://github.com/hongyangAndroid/FlowLayout
+
+https://github.com/arcadefire/nice-spinner
 
