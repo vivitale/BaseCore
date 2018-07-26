@@ -84,104 +84,64 @@ public class _PresenterImpl<T extends _View, V> implements _Presenter, RequestCa
 			LogTool.e(msg);
 			if(httpDto.isShowError())
 			{
-				if(httpDto.isFinish())
+				String title = "";
+				String info = "";
+				if(msg.contains("Timeout"))
 				{
-					if(msg.contains("Timeout"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "连接服务器超时", "数据加载失败，请重试！", "确定", null, mView.getFinishListener(), null);
-					}
-					else if(msg.contains("504"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "无网络服务", "请检查网络后重试", "确定", null, mView.getFinishListener(), null);
-					}
-					else if(msg.contains("Failed to connect"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "服务器异常", "请稍后重试", "确定", null, mView.getFinishListener(), null);
-					}
-					else if(msg.contains("网络请求失败"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "网络请求失败", "请稍后重试", "确定", null, mView.getFinishListener(), null);
-					}
-					else
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "对不起，访问出错了", "", "确定", null, mView.getFinishListener(), null);
-					}
+					title = "连接服务器超时";
+					info = "数据加载失败，请重试！";
 				}
-				else if(httpDto.isTryAgain())
+				else if(msg.contains("504"))
 				{
-					if(msg.contains("Timeout"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "连接服务器超时", "数据加载失败，是否立即重试？", "重试", "取消", new SweetAlertDialog.OnSweetClickListener()
-						{
-							@Override public void onClick(SweetAlertDialog sweetAlertDialog)
-							{
-								getData(httpDto);
-							}
-						}, null);
-					}
-					else if(msg.contains("504"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "无网络服务", "是否立即重试？", "重试", "取消", new SweetAlertDialog.OnSweetClickListener()
-						{
-							@Override public void onClick(SweetAlertDialog sweetAlertDialog)
-							{
-								getData(httpDto);
-							}
-						}, null);
-					}
-					else if(msg.contains("Failed to connect"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "服务器异常", "是否立即重试？", "确定", "取消", new SweetAlertDialog.OnSweetClickListener()
-						{
-							@Override public void onClick(SweetAlertDialog sweetAlertDialog)
-							{
-								getData(httpDto);
-							}
-						}, null);
-					}
-					else if(msg.contains("网络请求失败"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "网络请求失败", "是否立即重试？", "重试", "取消", new SweetAlertDialog.OnSweetClickListener()
-						{
-							@Override public void onClick(SweetAlertDialog sweetAlertDialog)
-							{
-								getData(httpDto);
-							}
-						}, null);
-					}
-					else
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "对不起，访问出错了", "是否立即重试？", "重试", "取消", new SweetAlertDialog.OnSweetClickListener()
-						{
-							@Override public void onClick(SweetAlertDialog sweetAlertDialog)
-							{
-								getData(httpDto);
-							}
-						}, null);
-					}
+					title = "无网络服务";
+					info = "请检查网络后重试！";
+				}
+				else if(msg.contains("Failed to connect"))
+				{
+					title = "服务器异常";
+					info = "请稍后重试！";
+				}
+				else if(msg.contains("网络请求失败"))
+				{
+					title = "网络请求失败";
+					info = "请稍后重试！";
 				}
 				else
 				{
-					if(msg.contains("Timeout"))
+					title = "对不起，访问出错了";
+					info = "请稍后重试！";
+				}
+
+				if(httpDto.isTryAgain())
+				{
+					if(httpDto.isFinish())
 					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "连接服务器超时", "数据加载失败，请重试！");
-					}
-					else if(msg.contains("504"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "无网络服务", "请检查网络后重试");
-					}
-					else if(msg.contains("Failed to connect"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "服务器异常", "请稍后重试");
-					}
-					else if(msg.contains("网络请求失败"))
-					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "网络请求失败", "请稍后重试");
+						mView.showDialog(SweetAlertDialog.ERROR_TYPE, title, info, "重试", "取消", new SweetAlertDialog.OnSweetClickListener()
+						{
+							@Override public void onClick(SweetAlertDialog sweetAlertDialog)
+							{
+								getData(httpDto);
+							}
+						}, mView.getFinishListener());
 					}
 					else
 					{
-						mView.showDialog(SweetAlertDialog.ERROR_TYPE, "对不起，访问出错了", "");
+						mView.showDialog(SweetAlertDialog.ERROR_TYPE, title, info, "重试", "取消", new SweetAlertDialog.OnSweetClickListener()
+						{
+							@Override public void onClick(SweetAlertDialog sweetAlertDialog)
+							{
+								getData(httpDto);
+							}
+						}, null);
 					}
+				}
+				else if(httpDto.isFinish())
+				{
+					mView.showDialog(SweetAlertDialog.ERROR_TYPE, title, info, "确定", null, mView.getFinishListener(), null);
+				}
+				else
+				{
+					mView.showDialog(SweetAlertDialog.ERROR_TYPE, title, info);
 				}
 			}
 		}

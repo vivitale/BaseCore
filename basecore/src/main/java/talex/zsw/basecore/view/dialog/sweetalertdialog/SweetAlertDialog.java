@@ -54,8 +54,8 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener
 	private View mSuccessRightMask;
 	private Drawable mCustomImgDrawable;
 	private ImageView mCustomImage;
-	private Button mConfirmButton;
-	private Button mCancelButton;
+	private TextView mConfirmButton;
+	private TextView mCancelButton;
 	private ProgressHelper mProgressHelper;
 	private FrameLayout mWarningFrame;
 	private OnSweetClickListener mCancelClickListener;
@@ -177,8 +177,8 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener
 		mSuccessRightMask = mSuccessFrame.findViewById(R.id.mask_right);
 		mCustomImage = (ImageView) findViewById(R.id.custom_image);
 		mWarningFrame = (FrameLayout) findViewById(R.id.warning_frame);
-		mConfirmButton = (Button) findViewById(R.id.confirm_button);
-		mCancelButton = (Button) findViewById(R.id.cancel_button);
+		mConfirmButton = (TextView) findViewById(R.id.confirm_button);
+		mCancelButton = (TextView) findViewById(R.id.cancel_button);
 		mProgressHelper.setProgressWheel((ProgressWheel) findViewById(R.id.progressWheel));
 		mConfirmButton.setOnClickListener(this);
 		mCancelButton.setOnClickListener(this);

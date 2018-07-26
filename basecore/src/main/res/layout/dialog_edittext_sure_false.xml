@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="300dp"
-	android:layout_height="170dp"
+	android:layout_width="320dp"
+	android:layout_height="wrap_content"
 	android:background="@drawable/shape_round_white"
 	android:gravity="center"
 	android:orientation="vertical"
@@ -17,6 +17,7 @@
 	<TextView
 		android:id="@+id/tv_title"
 		android:layout_width="wrap_content"
+		android:textSize="16sp"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="20dp"/>
 
@@ -32,6 +33,7 @@
 		android:inputType="textPersonName"
 		android:padding="5dp"
 		android:text=""
+		android:textSize="14sp"
 		android:textColor="@color/black"
 		android:textColorHint="#A5A5A5"/>
 
@@ -57,7 +59,7 @@
 			android:gravity="center"
 			android:text="确认"
 			android:textColor="#333333"
-			android:textSize="16dp"/>
+			android:textSize="15.5sp"/>
 
 		<TextView
 			android:id="@+id/textView10"
@@ -73,6 +75,6 @@
 			android:gravity="center"
 			android:text="取消"
 			android:textColor="#FD4C5B"
-			android:textSize="16dp"/>
+			android:textSize="15.5sp"/>
 	</LinearLayout>
 </LinearLayout>
