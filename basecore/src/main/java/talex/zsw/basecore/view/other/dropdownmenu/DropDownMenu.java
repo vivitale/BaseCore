@@ -255,7 +255,7 @@ public class DropDownMenu extends LinearLayout
 	 */
 	public void setCurTabText(String text)
 	{
-		if(current_tab_position > 0 && current_tab_position < tabs.size())
+		if(current_tab_position >= 0 && current_tab_position < tabs.size())
 		{
 			tabs.get(current_tab_position).setText(text);
 		}
@@ -266,7 +266,7 @@ public class DropDownMenu extends LinearLayout
 	 */
 	public void setCurTabSelect()
 	{
-		if(current_tab_position > 0 && current_tab_position < tabs.size())
+		if(current_tab_position >= 0 && current_tab_position < tabs.size())
 		{
 			tabs.get(current_tab_position).setTextColor(textSelectedColor);
 			tabs
@@ -281,7 +281,7 @@ public class DropDownMenu extends LinearLayout
 	 */
 	public void setCurTabCommon()
 	{
-		if(current_tab_position > 0 && current_tab_position < tabs.size())
+		if(current_tab_position >= 0 && current_tab_position < tabs.size())
 		{
 			tabs.get(current_tab_position).setTextColor(textUnselectedColor);
 			tabs
