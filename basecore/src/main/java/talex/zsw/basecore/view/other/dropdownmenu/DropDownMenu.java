@@ -296,7 +296,7 @@ public class DropDownMenu extends LinearLayout
 	 */
 	public void setTabText(String text, int position)
 	{
-		if(position > 0 && position < tabs.size())
+		if(position >= 0 && position < tabs.size())
 		{
 			tabs.get(position).setText(text);
 		}
@@ -307,7 +307,7 @@ public class DropDownMenu extends LinearLayout
 	 */
 	public void setTabTextSelect(int position)
 	{
-		if(position > 0 && position < tabs.size())
+		if(position >= 0 && position < tabs.size())
 		{
 			tabs.get(position).setTextColor(textSelectedColor);
 			tabs
@@ -322,7 +322,7 @@ public class DropDownMenu extends LinearLayout
 	 */
 	public void setTabTextCommon(int position)
 	{
-		if(position > 0 && position < tabs.size())
+		if(position >= 0 && position < tabs.size())
 		{
 			tabs.get(position).setTextColor(textUnselectedColor);
 			tabs
@@ -348,7 +348,7 @@ public class DropDownMenu extends LinearLayout
 	 */
 	public void setTabClickable(boolean clickable, int position)
 	{
-		if(position > 0 && position < tabLayouts.size())
+		if(position >= 0 && position < tabLayouts.size())
 		{
 			tabLayouts.get(position).setClickable(clickable);
 		}
