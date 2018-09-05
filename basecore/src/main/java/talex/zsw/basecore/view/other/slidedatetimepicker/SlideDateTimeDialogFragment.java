@@ -11,10 +11,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.text.format.DateFormat;
 import android.text.format.DateUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import java.text.SimpleDateFormat;
@@ -105,6 +108,17 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 
 		// Return the fragment with its bundle
 		return dialogFragment;
+	}
+
+	@Override public void onResume()
+	{
+		Window dialogWindow = getDialog().getWindow();
+		WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+		dialogWindow.setGravity(Gravity.CENTER);
+		lp.width = lp.WRAP_CONTENT;
+		lp.height = lp.WRAP_CONTENT;
+		dialogWindow.setAttributes(lp);
+		super.onResume();
 	}
 
 	@Override public void onAttach(Activity activity)
