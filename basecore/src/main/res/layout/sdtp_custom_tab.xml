@@ -13,8 +13,8 @@
 	android:layout_weight="1"
 	android:background="@drawable/bg_black_top_c"
 	android:gravity="center"
-	android:paddingBottom="11dp"
-	android:paddingTop="11dp"
+	android:paddingBottom="@dimen/dp_11"
+	android:paddingTop="@dimen/dp_11"
 	android:textColor="@color/white"
-	android:textSize="16sp"
+	android:textSize="@dimen/sp_16"
 	android:visibility="visible"/>

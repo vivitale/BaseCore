@@ -3,6 +3,8 @@ package talex.zsw.basecore.util;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +14,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -887,6 +891,26 @@ public class AppTool
 		ComponentName componentName = intent.getComponent();
 		Intent mainIntent = Intent.makeRestartActivityTask(componentName);
 		Tool.getContext().startActivity(mainIntent);
+		System.exit(0);
+	}
+
+	/**
+	 * 重启App
+	 *
+	 * @param cls  重启后打开的 Activity
+	 * @param time 多久后重启
+	 */
+	public static void relaunchApp(Class cls, long time)
+	{
+		Intent intent = new Intent(Tool.getContext(), cls);
+		@SuppressLint("WrongConstant") PendingIntent restartIntent
+			= PendingIntent.getActivity(Tool.getContext(), 0, intent, Intent.FLAG_ACTIVITY_NEW_TASK);
+		// 退出程序
+		AlarmManager mgr = (AlarmManager) Tool.getContext().getSystemService(Context.ALARM_SERVICE);
+		mgr.set(AlarmManager.RTC, System.currentTimeMillis()+time, restartIntent); // 1秒钟后重启应用
+		Tool.uninstall();
+		EventBus.getDefault().unregister(Tool.getContext());
+		android.os.Process.killProcess(android.os.Process.myPid());
 		System.exit(0);
 	}
 }

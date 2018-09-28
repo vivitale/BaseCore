@@ -79,4 +79,15 @@ public class DimenTool
 		final float fontScale = Tool.getContext().getResources().getDisplayMetrics().scaledDensity;
 		return (int) (pxValue/fontScale+0.5f);
 	}
+
+	/**
+	 * 从资源文件获取尺寸
+	 *
+	 * @param id 资源ID
+	 * @return sp值
+	 */
+	public static int getPxById(int id)
+	{
+		return Tool.getContext().getResources().getDimensionPixelSize(id);
+	}
 }

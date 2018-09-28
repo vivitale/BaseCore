@@ -6,8 +6,8 @@
             <solid android:color="@android:color/darker_gray"/>
 
             <size
-                android:width="6dp"
-                android:height="6dp"/>
+                android:width="@dimen/dp_6"
+                android:height="@dimen/dp_6"/>
         </shape>
     </item>
 

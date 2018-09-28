@@ -11,36 +11,36 @@
 		android:layout_height="match_parent"
 		android:layout_alignParentTop="true"
 		android:gravity="center"
-		android:paddingLeft="20dp"
-		android:paddingRight="20dp"
+		android:paddingLeft="@dimen/dp_20"
+		android:paddingRight="@dimen/dp_20"
 		android:textColor="@color/white"
-		android:textSize="14.5sp"/>
+		android:textSize="@dimen/sp_15"/>
 
 	<ImageView
 		android:id="@+id/vIvBack"
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:layout_gravity="center"
-		android:paddingEnd="40dp"
-		android:paddingLeft="10dp"
-		android:paddingRight="40dp"
-		android:paddingStart="10dp"
+		android:paddingEnd="@dimen/dp_40"
+		android:paddingLeft="@dimen/dp_10"
+		android:paddingRight="@dimen/dp_40"
+		android:paddingStart="@dimen/dp_10"
 		android:src="@mipmap/title_back2"
 		android:visibility="visible"/>
 
 	<TextView
 		android:id="@+id/vTvLeft"
 		android:layout_width="wrap_content"
-		android:layout_height="50dp"
+		android:layout_height="@dimen/dp_50"
 		android:layout_gravity="center"
-		android:layout_marginRight="10dp"
+		android:layout_marginRight="@dimen/dp_10"
 		android:gravity="center"
-		android:paddingBottom="5dp"
-		android:paddingLeft="15dp"
-		android:paddingRight="15dp"
-		android:paddingTop="5dp"
+		android:paddingBottom="@dimen/dp_5"
+		android:paddingLeft="@dimen/dp_15"
+		android:paddingRight="@dimen/dp_15"
+		android:paddingTop="@dimen/dp_5"
 		android:textColor="#333"
-		android:textSize="16sp"
+		android:textSize="@dimen/sp_16"
 		android:visibility="gone"/>
 
 	<TextView
@@ -48,12 +48,12 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_centerInParent="true"
-		android:layout_marginLeft="50dp"
-		android:layout_marginRight="50dp"
+		android:layout_marginLeft="@dimen/dp_50"
+		android:layout_marginRight="@dimen/dp_50"
 		android:gravity="center"
 		android:singleLine="true"
 		android:textColor="#333"
-		android:textSize="18sp"/>
+		android:textSize="@dimen/sp_18"/>
 
 	<LinearLayout
 		android:layout_width="wrap_content"
@@ -68,8 +68,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:layout_marginRight="5dp"
-			android:padding="10dp"
+			android:layout_marginRight="@dimen/dp_5"
+			android:padding="@dimen/dp_10"
 			android:visibility="gone"/>
 
 		<ImageView
@@ -77,7 +77,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:padding="10dp"
+			android:padding="@dimen/dp_10"
 			android:visibility="gone"/>
 
 		<TextView
@@ -85,25 +85,25 @@
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_gravity="center"
-			android:drawablePadding="5dp"
+			android:drawablePadding="@dimen/dp_5"
 			android:gravity="center"
-			android:paddingBottom="5dp"
-			android:paddingLeft="15dp"
-			android:paddingRight="10dp"
-			android:paddingTop="5dp"
+			android:paddingBottom="@dimen/dp_5"
+			android:paddingLeft="@dimen/dp_15"
+			android:paddingRight="@dimen/dp_10"
+			android:paddingTop="@dimen/dp_5"
 			android:textColor="#333"
-			android:textSize="14.5sp"
+			android:textSize="@dimen/sp_15"
 			android:visibility="gone"/>
 	</LinearLayout>
 
 	<ImageView
 		android:id="@+id/vIvCenter"
 		android:layout_width="wrap_content"
-		android:layout_height="50dp"
+		android:layout_height="@dimen/dp_50"
 		android:layout_centerHorizontal="true"
 		android:layout_centerVertical="true"
-		android:paddingLeft="10dp"
-		android:paddingRight="10dp"
+		android:paddingLeft="@dimen/dp_10"
+		android:paddingRight="@dimen/dp_10"
 		android:visibility="gone"/>
 
 </RelativeLayout>

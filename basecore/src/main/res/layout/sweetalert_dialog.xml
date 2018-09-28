@@ -8,25 +8,25 @@
 	android:layout_gravity="center"
 	android:gravity="center"
 	android:orientation="vertical"
-	android:paddingBottom="16dp"
-	android:paddingLeft="10dp"
-	android:paddingRight="10dp"
-	android:paddingTop="16dp">
+	android:paddingBottom="@dimen/dp_16"
+	android:paddingLeft="@dimen/dp_10"
+	android:paddingRight="@dimen/dp_10"
+	android:paddingTop="@dimen/dp_16">
 
 	<ImageView
 		android:id="@+id/custom_image"
-		android:layout_width="100dp"
+		android:layout_width="@dimen/dp_100"
 		android:layout_height="wrap_content"
 		android:visibility="gone"
-		android:layout_marginTop="5dp"
+		android:layout_marginTop="@dimen/dp_5"
 		android:contentDescription="@string/app_name"
 		android:scaleType="fitCenter"/>
 
 	<FrameLayout
 		android:id="@+id/error_frame"
-		android:layout_width="53dp"
-		android:layout_height="53dp"
-		android:layout_marginTop="5dp"
+		android:layout_width="@dimen/dp_53"
+		android:layout_height="@dimen/dp_53"
+		android:layout_marginTop="@dimen/dp_5"
 		android:visibility="gone">
 
 		<View
@@ -45,9 +45,9 @@
 
 	<FrameLayout
 		android:id="@+id/success_frame"
-		android:layout_width="53dp"
-		android:layout_height="53dp"
-		android:layout_marginTop="5dp"
+		android:layout_width="@dimen/dp_53"
+		android:layout_height="@dimen/dp_53"
+		android:layout_marginTop="@dimen/dp_5"
 		android:visibility="gone">
 
 		<View
@@ -57,16 +57,16 @@
 
 		<View
 			android:id="@+id/mask_right"
-			android:layout_width="35dp"
-			android:layout_height="80dp"
+			android:layout_width="@dimen/dp_35"
+			android:layout_height="@dimen/dp_80"
 			android:layout_gravity="right"
 			android:layout_marginTop="-13dp"
 			android:background="@android:color/white"/>
 
 		<View
 			android:id="@+id/mask_left"
-			android:layout_width="21dp"
-			android:layout_height="60dp"
+			android:layout_width="@dimen/dp_21"
+			android:layout_height="@dimen/dp_60"
 			android:layout_gravity="left"
 			android:layout_marginLeft="-3dp"
 			android:background="@android:color/white"/>
@@ -84,9 +84,9 @@
 
 	<FrameLayout
 		android:id="@+id/warning_frame"
-		android:layout_width="53dp"
-		android:layout_height="53dp"
-		android:layout_marginTop="5dp"
+		android:layout_width="@dimen/dp_53"
+		android:layout_height="@dimen/dp_53"
+		android:layout_marginTop="@dimen/dp_5"
 		android:visibility="gone">
 
 		<View
@@ -104,19 +104,19 @@
 
 	<LinearLayout
 		android:id="@+id/progress_dialog"
-		android:layout_width="120dp"
+		android:layout_width="@dimen/dp_120"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:layout_marginTop="9dp"
+		android:layout_marginTop="@dimen/dp_9"
 		android:background="@drawable/sweetalert_dialog_background"
 		android:orientation="vertical"
-		android:padding="16dp"
+		android:padding="@dimen/dp_16"
 		android:visibility="gone">
 
 		<talex.zsw.basecore.view.dialog.sweetalertdialog.ProgressWheel
 			android:id="@+id/progressWheel"
-			android:layout_width="60dp"
-			android:layout_height="60dp"
+			android:layout_width="@dimen/dp_60"
+			android:layout_height="@dimen/dp_60"
 			android:layout_gravity="center"
 			wheel:SAD_matProg_progressIndeterminate="true"/>
 
@@ -125,12 +125,12 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:layout_marginTop="16dp"
+			android:layout_marginTop="@dimen/dp_16"
 			android:gravity="center"
 			android:singleLine="true"
 			android:text="@string/sd_dialog_default_title"
 			android:textColor="#575757"
-			android:textSize="16sp"/>
+			android:textSize="@dimen/sp_16"/>
 
 	</LinearLayout>
 
@@ -138,37 +138,37 @@
 		android:id="@+id/title_text"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="16dp"
+		android:layout_marginTop="@dimen/dp_16"
 		android:maxLines="2"
 		android:ellipsize="end"
 		android:text="@string/sd_dialog_default_title"
 		android:textColor="#575757"
-		android:textSize="16.5sp"/>
+		android:textSize="@dimen/sp_17"/>
 
 	<TextView
 		android:id="@+id/content_text"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
+		android:layout_marginTop="@dimen/dp_8"
 		android:maxLines="8"
 		android:ellipsize="end"
 		android:gravity="center"
 		android:text="内容"
 		android:textAlignment="center"
 		android:textColor="#797979"
-		android:textSize="13.5sp"
+		android:textSize="@dimen/sp_14"
 		android:visibility="gone"/>
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="16dp"
+		android:layout_marginTop="@dimen/dp_16"
 		android:gravity="center">
 
 		<TextView
 			android:id="@+id/cancel_button"
 			style="@style/dialog_blue_button"
-			android:layout_marginRight="10dp"
+			android:layout_marginRight="@dimen/dp_10"
 			android:background="@drawable/sweetalert_gray_button_background"
 			android:text="@string/sd_dialog_cancel"
 			android:visibility="gone"/>

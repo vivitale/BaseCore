@@ -42,10 +42,11 @@
 			style="?android:attr/borderlessButtonStyle"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:textSize="@dimen/sp_16"
 			android:layout_weight="1"
 			android:background="@drawable/btn_white_bottom_left"
-			android:paddingBottom="12dp"
-			android:paddingTop="12dp"
+			android:paddingBottom="@dimen/dp_12"
+			android:paddingTop="@dimen/dp_12"
 			android:text="@android:string/cancel"/>
 
 		<!-- The vertical divider line between the two buttons -->
@@ -54,19 +55,20 @@
 			android:id="@+id/buttonVerticalDivider"
 			android:layout_width="1px"
 			android:layout_height="match_parent"
-			android:layout_marginBottom="10dp"
-			android:layout_marginTop="10dp"
+			android:layout_marginBottom="@dimen/dp_10"
+			android:layout_marginTop="@dimen/dp_10"
 			android:background="@color/gray_holo_dark"/>
 
 		<Button
 			android:id="@+id/okButton"
 			style="?android:attr/borderlessButtonStyle"
 			android:layout_width="0dp"
+			android:textSize="@dimen/sp_16"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:background="@drawable/btn_white_bottom_right"
-			android:paddingBottom="12dp"
-			android:paddingTop="12dp"
+			android:paddingBottom="@dimen/dp_12"
+			android:paddingTop="@dimen/dp_12"
 			android:text="@android:string/ok"/>
 
 	</LinearLayout>

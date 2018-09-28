@@ -5,8 +5,8 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
-	android:paddingBottom="6dp"
-	android:paddingTop="6dp">
+	android:paddingBottom="@dimen/dp_6"
+	android:paddingTop="@dimen/dp_6">
 
 	<RelativeLayout
 		android:id="@+id/mRelativeLayout"
@@ -27,18 +27,18 @@
 			android:layout_width="wrap_content"
 			android:visibility="gone"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="10dp"
-			android:layout_marginRight="10dp"
+			android:layout_marginEnd="@dimen/dp_10"
+			android:layout_marginRight="@dimen/dp_10"
 			android:layout_toEndOf="@id/mImageView"
 			android:layout_toRightOf="@id/mImageView"
 			android:src="@drawable/icon_dot5"/>
 
 		<talex.zsw.basecore.view.textview.autofit.AutofitTextView
 			android:id="@+id/mTvBadge"
-			android:layout_width="20dp"
-			android:layout_height="20dp"
-			android:layout_marginEnd="7dp"
-			android:layout_marginRight="7dp"
+			android:layout_width="@dimen/dp_20"
+			android:layout_height="@dimen/dp_20"
+			android:layout_marginEnd="@dimen/dp_7"
+			android:layout_marginRight="@dimen/dp_7"
 			android:layout_toEndOf="@id/mImageView"
 			android:layout_toRightOf="@id/mImageView"
 			android:background="@drawable/icon_dot"
@@ -46,7 +46,7 @@
 			android:singleLine="true"
 			android:text="99"
 			android:textColor="@color/white"
-			android:textSize="13sp"
+			android:textSize="@dimen/sp_13"
 			android:visibility="gone"/>
 
 	</RelativeLayout>
@@ -61,6 +61,6 @@
 		android:singleLine="true"
 		android:text="标题"
 		android:textColor="#303030"
-		android:textSize="17sp"/>
+		android:textSize="@dimen/sp_16"/>
 
 </LinearLayout>

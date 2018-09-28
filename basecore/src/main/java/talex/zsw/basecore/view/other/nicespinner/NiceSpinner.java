@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -127,12 +128,16 @@ public class NiceSpinner extends TextView
 	{
 		Resources resources = getResources();
 		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.NiceSpinner);
-		int defaultPadding = DimenTool.dp2px(11f);
+		int defaultPadding = DimenTool.getPxById(R.dimen.dp_12);
+		int halfPadding = DimenTool.getPxById(R.dimen.dp_6);
 
 		setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-		setPadding(defaultPadding, defaultPadding, defaultPadding, defaultPadding);
+		setMaxLines(1);
+		setEllipsize(TextUtils.TruncateAt.END);
+		setPadding(defaultPadding, halfPadding, defaultPadding, halfPadding);
 		setClickable(true);
-		setBackgroundResource(R.drawable.nice_spinner_selector);
+		setBackgroundResource(R.color.transparent);
+		setTextSize(DimenTool.getPxById(R.dimen.sp_16));
 
 		mListView = new ListView(context);
 		mListView.setDivider(null);

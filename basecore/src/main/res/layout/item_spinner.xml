@@ -6,6 +6,6 @@
           android:layout_height="wrap_content"
           android:layout_gravity="left|center_vertical"
           android:ellipsize="marquee"
-          android:padding="11dp"
+          android:padding="@dimen/dp_11"
           android:singleLine="true"
-          android:textSize="15sp"/>
+          android:textSize="@dimen/sp_15"/>

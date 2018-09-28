@@ -8,10 +8,10 @@
     <TextView
         android:id="@+id/tv_imply"
         android:textColor="#FBFBFB"
-        android:layout_width="110dp"
+        android:layout_width="@dimen/dp_110"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:background="@drawable/pop_layout"
-        android:textSize="8dp"
+        android:textSize="@dimen/sp_14"
         android:text="一小时后点这里\n有惊喜哦~" />
 </LinearLayout>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:top="3dp">
+    <item android:top="@dimen/dp_3">
         <shape android:shape="rectangle">
             <solid android:color="@android:color/white" />
             <corners
-                    android:bottomLeftRadius="1dp"
-                    android:bottomRightRadius="1dp"
-                    android:topLeftRadius="1dp"
-                    android:topRightRadius="1dp" />
+                    android:bottomLeftRadius="@dimen/dp_1"
+                    android:bottomRightRadius="@dimen/dp_1"
+                    android:topLeftRadius="@dimen/dp_1"
+                    android:topRightRadius="@dimen/dp_1" />
         </shape>
     </item>
 </layer-list>

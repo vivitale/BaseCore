@@ -34,6 +34,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import talex.zsw.basecore.R;
+import talex.zsw.basecore.util.DimenTool;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -202,7 +203,7 @@ public class SlidingTabLayout extends HorizontalScrollView
 	{
 		TextView textView = new TextView(context);
 		textView.setGravity(Gravity.CENTER);
-		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
+		textView.setTextSize(DimenTool.getPxById(R.dimen.sp_15));
 		textView.setTypeface(Typeface.DEFAULT_BOLD);
 
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)

@@ -20,18 +20,18 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="20dp"
+			android:layout_marginTop="@dimen/dp_20"
 			android:text="SORRY"
 			android:textColor="#283844"
-			android:textSize="15sp"/>
+			android:textSize="@dimen/sp_16"/>
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="10dp"
+			android:layout_marginTop="@dimen/dp_10"
 			android:text="查询不到数据"
 			android:textColor="#999999"
-			android:textSize="13sp"/>
+			android:textSize="@dimen/sp_14"/>
 
 	</LinearLayout>
 

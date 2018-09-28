@@ -12,8 +12,8 @@
         android:layout_width="@dimen/refresh_drawable_size_google"
         android:layout_height="@dimen/refresh_drawable_size_google"
         android:layout_gravity="center"
-        app:gcp_arrow_height="6dp"
-        app:gcp_arrow_width="8dp"
-        app:gcp_progress_stoke_width="3dp"
+        app:gcp_arrow_height="@dimen/dp_6"
+        app:gcp_arrow_width="@dimen/dp_8"
+        app:gcp_progress_stoke_width="@dimen/dp_3"
         app:gcp_show_arrow="true"/>
 </talex.zsw.basecore.view.other.swipetoloadlayout.header.GoogleCircleHookRefreshHeaderView>
