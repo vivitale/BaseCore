@@ -15,6 +15,7 @@
         android:id="@+id/tv_itpop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_15"
         android:layout_marginLeft="@dimen/dp_5"
         android:gravity="center"
         android:text="TextView"

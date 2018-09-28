@@ -220,7 +220,6 @@ public class PopListView extends PopupWindow
 						colorItemText = mContext.getResources().getColor(android.R.color.white);
 					}
 					tv_itpop.setTextColor(colorItemText);
-					tv_itpop.setTextSize(14);
 					// 设置文本居中
 					tv_itpop.setGravity(Gravity.CENTER);
 					// 设置文本域的范围
