@@ -50,6 +50,15 @@ public class JsonTool
 				return new JsonPrimitive(originalValue);
 			}
 		});
+		gb.registerTypeAdapter(Long.class, new JsonSerializer<Long>()
+		{
+			@Override public JsonElement serialize(Long originalValue, Type typeOf, JsonSerializationContext context)
+			{
+				BigDecimal bigValue = BigDecimal.valueOf(originalValue);
+
+				return new JsonPrimitive(bigValue.toPlainString());
+			}
+		});
 		gb.registerTypeAdapter(Integer.class, new JsonSerializer<Integer>()
 		{
 			@Override public JsonElement serialize(Integer originalValue, Type typeOf, JsonSerializationContext context)
