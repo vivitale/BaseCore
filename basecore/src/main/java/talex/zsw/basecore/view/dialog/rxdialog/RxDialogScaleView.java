@@ -4,11 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
+
 import talex.zsw.basecore.R;
+import talex.zsw.basecore.util.glide.GlideTool;
 import talex.zsw.basecore.view.imageview.scaleimage.ImageSource;
 import talex.zsw.basecore.view.imageview.scaleimage.ScaleImageView;
 
@@ -23,6 +29,7 @@ public class RxDialogScaleView extends RxDialog
 	private String filePath;
 	private Uri fileUri;
 	private String fileAssetName;
+	private String imageUrl;
 	private Bitmap fileBitmap;
 	private int resId;
 	private int maxScale = 100;
@@ -71,6 +78,13 @@ public class RxDialogScaleView extends RxDialog
 		setImage(bitmap);
 	}
 
+	public RxDialogScaleView(Context context, String imageUrl)
+	{
+		super(context);
+		initView();
+		setImage(imageUrl);
+	}
+
 	public RxDialogScaleView(Context context, int themeResId)
 	{
 		super(context, themeResId);
@@ -99,7 +113,7 @@ public class RxDialogScaleView extends RxDialog
 	{
 		if(isAssets)
 		{
-			this.fileAssetName = fileAssetName;
+			this.fileAssetName = filePath;
 			mScaleImageView.setImage(ImageSource.asset(filePath));
 		}
 		else
@@ -107,6 +121,19 @@ public class RxDialogScaleView extends RxDialog
 			this.filePath = filePath;
 			mScaleImageView.setImage(ImageSource.uri(filePath));
 		}
+	}
+
+	public void setImage(String imageUrl)
+	{
+		this.imageUrl = imageUrl;
+		GlideTool.loadImageSimpleTarget(mScaleImageView.getContext(), imageUrl, new SimpleTarget<Bitmap>()
+		{
+			@Override
+			public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition)
+			{
+				mScaleImageView.setImage(ImageSource.bitmap(resource));
+			}
+		});
 	}
 
 	public void setImage(Uri uri)
@@ -178,5 +205,15 @@ public class RxDialogScaleView extends RxDialog
 	public int getResId()
 	{
 		return resId;
+	}
+
+	public String getImageUrl()
+	{
+		return imageUrl;
+	}
+
+	public ScaleImageView getmScaleImageView()
+	{
+		return mScaleImageView;
 	}
 }
