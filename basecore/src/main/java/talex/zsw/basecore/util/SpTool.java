@@ -2,21 +2,37 @@ package talex.zsw.basecore.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+
+import com.tencent.mmkv.MMKV;
 
 import java.util.Map;
 
 /**
+ * MMKV 取代原生SharedPreferences
  * SharedPreferences的常规使用
  */
 public class SpTool
 {
-	private static SharedPreferences prefs;
+	private static MMKV prefs;
 
+	/**
+	 * 单进程存储数据
+	 */
 	public static void init(Context context)
 	{
-		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		MMKV.initialize(context);
+		prefs = MMKV.mmkvWithID(context.getPackageName());
+	}
+
+
+	/**
+	 * 多进程共享数据
+	 */
+	public static void initMulitProcess(Context context)
+	{
+		MMKV.initialize(context);
+		prefs = MMKV.mmkvWithID(context.getPackageName(), MMKV.MULTI_PROCESS_MODE);
 	}
 
 	public static String getString(String TAG, String def)
@@ -31,7 +47,7 @@ public class SpTool
 
 	public static void saveString(String TAG, String data)
 	{
-		prefs.edit().putString(TAG, data).apply();
+		prefs.edit().putString(TAG, data);
 	}
 
 	public static void saveObject(String TAG, Object obj)
@@ -45,7 +61,6 @@ public class SpTool
 		{
 			editor.putString(TAG, "");
 		}
-		editor.apply();
 	}
 
 	public static <T> T getObject(String TAG, Class<T> t)
@@ -65,7 +80,7 @@ public class SpTool
 
 	public static void saveBoolean(String TAG, boolean flag)
 	{
-		prefs.edit().putBoolean(TAG, flag).apply();
+		prefs.edit().putBoolean(TAG, flag);
 	}
 
 	public static int getInt(String TAG, int def)
@@ -80,7 +95,7 @@ public class SpTool
 
 	public static void saveInt(String TAG, int data)
 	{
-		prefs.edit().putInt(TAG, data).apply();
+		prefs.edit().putInt(TAG, data);
 	}
 
 	public static long getLong(String TAG, long def)
@@ -95,7 +110,7 @@ public class SpTool
 
 	public static void saveLong(String TAG, long data)
 	{
-		prefs.edit().putLong(TAG, data).apply();
+		prefs.edit().putLong(TAG, data);
 	}
 
 	public static float getFloat(String TAG, float def)
@@ -110,7 +125,7 @@ public class SpTool
 
 	public static void saveFloat(String TAG, float data)
 	{
-		prefs.edit().putFloat(TAG, data).apply();
+		prefs.edit().putFloat(TAG, data);
 	}
 
 
@@ -149,7 +164,7 @@ public class SpTool
 		}
 		else
 		{
-			prefs.edit().remove(key).apply();
+			prefs.edit().remove(key);
 		}
 	}
 
@@ -172,7 +187,7 @@ public class SpTool
 		}
 		else
 		{
-			prefs.edit().clear().apply();
+			prefs.edit().clear();
 		}
 	}
 }

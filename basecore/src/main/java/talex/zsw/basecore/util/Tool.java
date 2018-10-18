@@ -39,11 +39,31 @@ public class Tool
 	 * 初始化工具类
 	 *
 	 * @param context 上下文
+	 * @param isDebu
 	 */
 	public static void init(Context context, boolean isDebu)
 	{
+		init(context, isDebu, false);
+	}
+
+	/**
+	 * 初始化工具类
+	 *
+	 * @param context        上下文
+	 * @param isDebu
+	 * @param isMulitProcess true 多进程共享数据  fasle 单进程存储数据
+	 */
+	public static void init(Context context, boolean isDebu, boolean isMulitProcess)
+	{
 		Tool.context = context.getApplicationContext();
-		SpTool.init(context);
+		if(isMulitProcess)
+		{
+			SpTool.initMulitProcess(context);
+		}
+		else
+		{
+			SpTool.init(context);
+		}
 		if(!isDebu)
 		{
 			CrashTool.init(context);
@@ -58,7 +78,7 @@ public class Tool
 						{
 							try
 							{
-								LogTool.e("BaseCore", thread+"\n"+throwable.toString());
+								LogTool.e(thread+"\n"+throwable.toString());
 								throwable.printStackTrace();
 							}
 							catch(Throwable ignored)
