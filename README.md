@@ -1268,6 +1268,38 @@ rxDialogScaleView.setImage(...);
 rxDialogScaleView.show();
 ```
 
+#### RxDialogSure -> 有确定按钮的弹出框,显示基础信息
+```
+RxDialogSure rxDialogSure = new RxDialogSure(mContext);
+rxDialogSure.getLogoView().setImageResource(R.drawable.logo);
+rxDialogSure.getSureView().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        rxDialogSure.cancel();
+                    }
+                });
+rxDialogSure.show();
+```
+
+#### RxDialogSureCancel -> 有确定,取消 按钮的弹出框,显示基础信息
+```
+RxDialogSureCancel rxDialogSureCancel = new RxDialogSureCancel(mContext);
+rxDialogSureCancel.getTitleView().setBackgroundResource(R.drawable.logo);
+rxDialogSureCancel.getSureView().setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        rxDialogSureCancel.cancel();
+    }
+});
+rxDialogSureCancel.getCancelView().setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        rxDialogSureCancel.cancel();
+    }
+});
+rxDialogSureCancel.show();
+```
+
 
 ### EditText
 #### ClearEditText -> 带清理功能的EditText 
@@ -1377,6 +1409,33 @@ setRichText                 | 设置富文本内容
 setPlaceHolder              | 设置站位图片
 setErrorImage               | 设置错误图片
 setOnImageClickListener     | 设置图片点击事件
+
+#### RunTextView  -> 无限自动跑马灯
+
+#### RxTextViewVertical  -> 无限向上自动翻滚的TextView
+```
+ArrayList<String> titleList = new ArrayList<String>();
+titleList.add("测试轮播消息1");
+...
+mRxTextViewVertical.setTextList(titleList);
+mRxTextViewVertical.setText(26, 5, 0xff766156);//设置属性
+mRxTextViewVertical.setTextStillTime(3000);//设置停留时长间隔
+mRxTextViewVertical.setAnimTime(300);//设置进入和退出的时间间隔
+mRxTextViewVertical.setOnItemClickListener(new RxTextViewVertical.OnItemClickListener() {
+    @Override
+    public void onItemClick(int position) {
+        RxToast.success(mContext, "点击了 : " + titleList.get(position), Toast.LENGTH_SHORT, true).show();
+    }
+});
+```
+
+#### RxTextViewVerticalMore  -> 无限向上自动翻滚的自定义View
+```
+List<View> views = new ArrayList<>();
+viewsviews.add(VIEW);
+...
+mRxTextViewVerticalMore.setViews(views);
+```
 
 #### StateButton  -> 省去为Button写drawable的麻烦
 原项目地址:[https://github.com/niniloveyou/StateButton](https://github.com/niniloveyou/StateButton)
