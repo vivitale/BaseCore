@@ -1,5 +1,5 @@
 # BaseCore
-[![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![](https://jitpack.io/v/vivitale/BaseCore.svg)](https://jitpack.io/#vivitale/BaseCore) [![Twitter](https://img.shields.io/badge/Gradle-3.0.1-brightgreen.svg)](https://github.com/vivitale/BaseCore)
+[![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)  [![API](https://img.shields.io/badge/API-16%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)  [![](https://jitpack.io/v/vivitale/BaseCore.svg)](https://jitpack.io/#vivitale/BaseCore) [![Twitter](https://img.shields.io/badge/Gradle-3.2.1-brightgreen.svg)](https://github.com/vivitale/BaseCore)
 
 [TOC]
  
