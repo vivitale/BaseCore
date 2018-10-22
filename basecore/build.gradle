@@ -64,9 +64,9 @@ dependencies {
 	api 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.1.0' // 支持Kotlin语法的RxLifecycle基础库
 	api 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.1.0' //支持Kotlin语法的Android库
 	// EventBus
-	api 'org.greenrobot:eventbus:3.0.0'
+	api 'org.greenrobot:eventbus:3.1.1'
 	//沉浸式
-	api 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+	api 'com.readystatesoftware.systembartint:systembartint:1.0.4'
 	// 动画
 	api 'com.nineoldandroids:library:2.4.0'
 	api 'com.github.florent37:viewanimator:1.0.5'
@@ -81,9 +81,9 @@ dependencies {
 	provided 'com.squareup.okhttp3:okhttp:3.8.1'
 	provided 'com.squareup.okio:okio:1.13.0'
 	// 图片工具glide
-	provided 'com.github.bumptech.glide:glide:4.6.1'
-	annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
-	provided 'com.github.bumptech.glide:okhttp3-integration:4.6.1'
+	provided 'com.github.bumptech.glide:glide:4.7.1'
+	annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+	provided 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
 	// RecyclerView适配器工具
 	provided 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
 	provided 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'

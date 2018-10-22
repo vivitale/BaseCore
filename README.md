@@ -10,59 +10,59 @@
 
 ## 库
 ```
-// 已经整合进入BaseCore中的库
-api 'com.android.support:support-v4:27.1.0'
-api 'com.android.support:appcompat-v7:27.1.0'
-api 'com.android.support:design:27.1.0'
-api 'com.android.support:recyclerview-v7:27.1.0'
-api 'com.android.support:cardview-v7:27.1.0'
-api 'com.android.support:percent:27.1.0'
-api 'com.android.support.constraint:constraint-layout:1.0.2'
-// json相关
-api 'com.google.code.gson:gson:2.8.0'
-// Knife
-api 'com.jakewharton:butterknife:8.4.0'
-annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0' //Java 的butterknife注解处理器
-// RxJava
-api 'io.reactivex.rxjava2:rxjava:2.1.1'
-api 'io.reactivex.rxjava2:rxandroid:2.0.1'
-api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0' // 包含android库和基础库
-api 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.1.0' // 支持Kotlin语法的RxLifecycle基础库
-api 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.1.0' //支持Kotlin语法的Android库
-// EventBus
-api 'org.greenrobot:eventbus:3.0.0'
-//沉浸式
-api 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-// 动画
-api 'com.nineoldandroids:library:2.4.0'
+	// 已经整合进入BaseCore中的库
+	api 'com.android.support:support-v4:28.0.0'
+	api 'com.android.support:appcompat-v7:28.0.0'
+	api 'com.android.support:design:28.0.0'
+	api 'com.android.support:recyclerview-v7:28.0.0'
+	api 'com.android.support:cardview-v7:28.0.0'
+	api 'com.android.support:percent:28.0.0'
+	api 'com.android.support.constraint:constraint-layout:1.1.3'
+	// json相关
+	api 'com.google.code.gson:gson:2.8.5'
+	// Knife
+	api 'com.jakewharton:butterknife:8.8.1'
+	annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1' //Java 的butterknife注解处理器
+	// RxJava
+	api 'io.reactivex.rxjava2:rxjava:2.1.14'
+	api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+	api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+	api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0' // 包含android库和基础库
+	api 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.1.0' // 支持Kotlin语法的RxLifecycle基础库
+	api 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.1.0' //支持Kotlin语法的Android库
+	// EventBus
+	api 'org.greenrobot:eventbus:3.1.1'
+	//沉浸式
+	api 'com.readystatesoftware.systembartint:systembartint:1.0.4'
+	// 动画
+	api 'com.nineoldandroids:library:2.4.0'
+	api 'com.github.florent37:viewanimator:1.0.5'
+	//腾讯MMKV 取代sp
+	api 'com.tencent:mmkv:1.0.11'
 
-
-// 依据项目情况需自行整合的库
-// 网络请求
-compileOnly 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
-compileOnly 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
-compileOnly 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
-compileOnly 'com.squareup.okhttp3:okhttp:3.8.1'
-compileOnly 'com.squareup.okio:okio:1.13.0'
-// 动画
-compileOnly 'com.github.florent37:viewanimator:1.0.5'
-// 图片工具glide
-compileOnly 'com.github.bumptech.glide:glide:4.6.1'
-annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
-compileOnly 'com.github.bumptech.glide:okhttp3-integration:4.6.1'
-// RecyclerView适配器工具
-compileOnly 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
-compileOnly 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
-// 轮播图
-compileOnly 'cn.bingoogolapple:bga-banner:2.2.4@aar'
-// 二维码,一维码工具
-compileOnly 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
-compileOnly 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
-// 图片选择、预览、九宫格图片控件、拖拽排序九宫格图片控件,需要同时选择 bga-baseadapter
-compileOnly 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
-// 日历控件
-compileOnly 'com.squareup:android-times-square:1.6.5@aar'
+	// 依据项目情况需自行整合的库
+	// 网络请求
+	provided 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
+	provided 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
+	provided 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
+	provided 'com.squareup.okhttp3:okhttp:3.8.1'
+	provided 'com.squareup.okio:okio:1.13.0'
+	// 图片工具glide
+	provided 'com.github.bumptech.glide:glide:4.7.1'
+	annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+	provided 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
+	// RecyclerView适配器工具
+	provided 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+	provided 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
+	// 轮播图
+	provided 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+	// 二维码,一维码工具
+	provided 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
+	provided 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
+	// 图片选择、预览、九宫格图片控件、拖拽排序九宫格图片控件,需要同时选择 bga-baseadapter
+	provided 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+	// 日历控件
+	// provided 'com.squareup:android-times-square:1.6.5@aar'
 ```
 ### 常用工具库
 库名 | 简单说明 | GitHub | 使用方法
