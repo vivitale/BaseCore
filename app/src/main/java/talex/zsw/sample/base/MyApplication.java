@@ -1,5 +1,7 @@
 package talex.zsw.sample.base;
 
+import android.content.Context;
+
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -14,12 +16,10 @@ import com.umeng.commonsdk.UMConfigure;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
-import talex.zsw.basecore.util.Tool;
 
 /**
- * 作用: BaseApplication
- * 作者: 赵小白 email:edisonzsw@icloud.com
- * 日期: 2016 16/3/3 10:14 
+ * 作用：使用的Application
+ * 作者：赵小白 email:vvtale@gmail.com  
  * 修改人：
  * 修改时间：
  * 修改备注：
@@ -29,7 +29,6 @@ public class MyApplication extends BaseApplication
 	@Override public void onCreate()
 	{
 		super.onCreate();
-		Tool.init(this,true);
 		initHttp();
 		UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
 		if(LeakCanary.isInAnalyzerProcess(this))
@@ -37,6 +36,54 @@ public class MyApplication extends BaseApplication
 			return;
 		}
 		LeakCanary.install(this);
+		//Bugly.init(this, "", false);// 调试时，将第三个参数改为true
+	}
+
+	@Override
+	protected void attachBaseContext(Context base)
+	{
+		super.attachBaseContext(base);
+		// 安装tinker
+//		Beta.installTinker();
+//		Beta.canNotifyUserRestart = false;
+//		Beta.betaPatchListener = new BetaPatchListener()
+//		{
+//			@Override public void onPatchReceived(String patchFile)
+//			{
+//				Log.d("Tinker", "补丁下载地址");
+//			}
+//
+//			@Override public void onDownloadReceived(long savedLength, long totalLength)
+//			{
+//				Log.d("Tinker", String.format(Locale.getDefault(), "%s %d%%", Beta.strNotificationDownloading, (int) (
+//					totalLength == 0 ? 0 : savedLength*100/totalLength)));
+//			}
+//
+//			@Override public void onDownloadSuccess(String msg)
+//			{
+//				Log.d("Tinker", "补丁下载成功");
+//			}
+//
+//			@Override public void onDownloadFailure(String msg)
+//			{
+//				Log.d("Tinker", "补丁下载失败");
+//			}
+//
+//			@Override public void onApplySuccess(String msg)
+//			{
+//				Log.d("Tinker", "补丁应用成功");
+//			}
+//
+//			@Override public void onApplyFailure(String msg)
+//			{
+//				Log.d("Tinker", "补丁应用失败");
+//			}
+//
+//			@Override public void onPatchRollback()
+//			{
+//				Log.d("Tinker", "补丁回滚");
+//			}
+//		};
 	}
 
 	@Override public void exit()

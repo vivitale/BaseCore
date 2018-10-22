@@ -34,9 +34,8 @@ import talex.zsw.sample.mvp._Presenter;
 import talex.zsw.sample.mvp._View;
 
 /**
- * 作用: 基于MVP架构的Activity基类
- * 作者: 赵小白 email:edisonzsw@icloud.com
- * 日期: 2016 16/3/3 10:46 
+ * 作用：基于MVP架构的Activity基类
+ * 作者：赵小白 email:vvtale@gmail.com  
  * 修改人：
  * 修改时间：
  * 修改备注：
@@ -144,6 +143,15 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 		if(mPresenter != null)
 		{
 			mPresenter.onStop();
+		}
+	}
+
+	@Override protected void onRestart()
+	{
+		super.onRestart();
+		if(mPresenter != null)
+		{
+			mPresenter.onRestart();
 		}
 	}
 

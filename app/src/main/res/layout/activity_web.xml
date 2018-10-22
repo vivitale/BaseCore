@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<include layout="@layout/include_title"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/white"
+		android:orientation="vertical">
+
+		<ProgressBar
+			android:id="@+id/mProgressBar"
+			style="?android:attr/progressBarStyleHorizontal"
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/dp_5"
+			android:max="100"
+			android:visibility="gone"/>
+
+		<WebView
+			android:id="@+id/mWebView"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@color/white"
+			android:padding="@dimen/dp_10"/>
+
+		<talex.zsw.basecore.view.textview.RichText
+			android:id="@+id/mRichText"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@color/white"
+			android:lineSpacingMultiplier="1.3"
+			android:padding="@dimen/dp_10"
+			android:textColor="@color/text_gray"
+			android:textSize="@dimen/sp_16"
+			android:visibility="gone"/>
+	</LinearLayout>
+
+</LinearLayout>

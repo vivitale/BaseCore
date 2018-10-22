@@ -137,7 +137,7 @@ public class NiceSpinner extends TextView
 		setPadding(defaultPadding, halfPadding, defaultPadding, halfPadding);
 		setClickable(true);
 		setBackgroundResource(R.color.transparent);
-		setTextSize(DimenTool.getPxById(R.dimen.sp_16));
+		setTextSize(getTextSize()+1);
 
 		mListView = new ListView(context);
 		mListView.setDivider(null);

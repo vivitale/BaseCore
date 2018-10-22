@@ -33,9 +33,8 @@ import talex.zsw.sample.mvp._Presenter;
 import talex.zsw.sample.mvp._View;
 
 /**
- * 作用: 基于MVP架构的Fragment基类
- * 作者: 赵小白 email:edisonzsw@icloud.com
- * 日期: 2016 16/3/3 10:46 
+ * 作用：基于MVP架构的Fragment基类
+ * 作者：赵小白 email:vvtale@gmail.com  
  * 修改人：
  * 修改时间：
  * 修改备注：
@@ -160,15 +159,6 @@ public abstract class BaseMVPFragment<T extends _Presenter> extends RxFragment
 
 	}
 
-	@Override public void onStop()
-	{
-		super.onStop();
-		if(mPresenter != null)
-		{
-			mPresenter.onStop();
-		}
-	}
-
 	@Override public void onStart()
 	{
 		super.onStart();
@@ -194,6 +184,15 @@ public abstract class BaseMVPFragment<T extends _Presenter> extends RxFragment
 			mPresenter.onPause();
 		}
 		super.onPause();
+	}
+
+	@Override public void onStop()
+	{
+		super.onStop();
+		if(mPresenter != null)
+		{
+			mPresenter.onStop();
+		}
 	}
 
 	@Override public void onDestroyView()

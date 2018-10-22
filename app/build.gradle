@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.jakewharton.butterknife'
 
 kapt {
     generateStubs = true
@@ -12,12 +11,12 @@ kapt {
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '26.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "talex.zsw.sample"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -52,7 +51,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':basecore')
 
-    kapt 'com.jakewharton:butterknife-compiler:8.4.0' // *** 在app中添加 *** Kotlin 的butterknife注解处理器
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1' // *** 在app中添加 *** Kotlin 的butterknife注解处理器
     kapt 'org.greenrobot:eventbus-annotation-processor:3.0.1' // *** 在app中添加 ***
     provided 'org.glassfish:javax.annotation:10.0-b28' // *** 在app中添加 ***
     // Kotlin
@@ -61,8 +60,8 @@ dependencies {
     implementation "org.jetbrains.anko:anko-common:$anko_version"
     implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
     // 友盟
-    implementation 'com.umeng.sdk:common:latest.integration'
-    implementation 'com.umeng.sdk:analytics:latest.integration'
+    implementation 'com.umeng.sdk:common:1.5.3'
+    implementation 'com.umeng.sdk:analytics:7.5.3'
     // LeakCanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
@@ -75,7 +74,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.8.1'
     implementation 'com.squareup.okio:okio:1.13.0'
     // 图片工具glide
-    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
     kapt 'com.github.bumptech.glide:compiler:4.6.1'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.6.1'
 //    // 动画

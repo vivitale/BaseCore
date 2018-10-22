@@ -1,3 +1,4 @@
 <resources>
-	<string name="app_name">BaseCore</string>
+	<string name="app_name"
+	        translatable="false">BaseCore</string>
 </resources>

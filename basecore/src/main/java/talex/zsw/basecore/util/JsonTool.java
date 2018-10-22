@@ -114,7 +114,7 @@ public class JsonTool
 	/**
 	 * 将object解析成指定泛型并返回
 	 * TypeToken token =  new TypeToken<ArrayList<BannerVo>>(){};
-	 * val list = JsonUtil.getObject(response.dataInfo, object : TypeToken<ArrayList<SearchOrderVo>>(){})
+	 * val list = JsonTool.getObject(response.data, object : TypeToken<ArrayList<SearchOrderVo>>(){})
 	 *
 	 * @param obj   json数据的object
 	 * @param token 解析类型token
@@ -133,7 +133,7 @@ public class JsonTool
 	/**
 	 * 将object解析成指定泛型并返回
 	 * TypeToken token =  new TypeToken<ArrayList<BannerVo>>(){};
-	 * val list = JsonUtil.getObject(response.dataInfo, object : TypeToken<ArrayList<SearchOrderVo>>(){})
+	 * val list = JsonTool.getObject(response.data, object : TypeToken<ArrayList<SearchOrderVo>>(){})
 	 *
 	 * @param string json数据
 	 * @param token  解析类型token

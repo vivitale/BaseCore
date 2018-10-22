@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<talex.zsw.basecore.view.other.TitleBar
+	android:id="@+id/mTitleBar"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="@dimen/dp_55"
+	android:background="@color/colorPrimary">
+
+</talex.zsw.basecore.view.other.TitleBar>

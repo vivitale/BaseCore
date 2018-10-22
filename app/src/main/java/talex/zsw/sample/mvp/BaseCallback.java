@@ -16,9 +16,8 @@ import talex.zsw.basecore.util.LogTool;
 import talex.zsw.sample.entitys.BaseResponse;
 
 /**
- * 作用: 通用请求返回
- * 作者: 赵小白 email:edisonzsw@icloud.com 
- * 日期: 2016/11/21 09:47 
+ * 作用：通用请求返回
+ * 作者：赵小白 email:vvtale@gmail.com  
  * 修改人：
  * 修改时间：
  * 修改备注：

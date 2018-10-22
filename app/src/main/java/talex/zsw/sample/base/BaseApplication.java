@@ -13,10 +13,8 @@ import org.greenrobot.eventbus.Subscribe;
 import talex.zsw.basecore.util.Tool;
 
 /**
- * 项目名称: BaseLibrary
- * 作用: 基本的Application,项目的Application继承自该类,调用setImg(int res)方法来设置基本图片
- * 作者: 赵小白 email:vvtale@gmail.com  
- * 日期: 2015-09-25-0025 15:16 
+ * 作用：基本的Application,项目的Application继承自该类,调用setImg(int res)方法来设置基本图片
+ * 作者：赵小白 email:vvtale@gmail.com  
  * 修改人：
  * 修改时间：
  * 修改备注：
@@ -29,6 +27,7 @@ public class BaseApplication extends MultiDexApplication
 	@Override public void onCreate()
 	{
 		mApplicationContext = this;
+		Tool.init(this, true);
 		EventBus.getDefault().register(mApplicationContext);
 		super.onCreate();
 	}

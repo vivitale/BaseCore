@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="colorPrimary">#3F51B5</color>
-	<color name="colorPrimaryDark">#303F9F</color>
-	<color name="colorAccent">#FF4081</color>
+	<!--系统 -->
+	<color name="colorPrimary">#272626</color>
+	<color name="colorPrimaryDark">#272626</color>
+	<color name="colorAccent">#272626</color>
+	<color name="primary_text">#E0E0E0</color>
+	<color name="secondary_text">#A0A0A0</color>
+	<color name="window_background">#F8F8F8</color>
+	<color name="line">#E0E0E0</color>
+	<color name="menu">#60000000</color>
+	<!-- 文本颜色 -->
+	<color name="text_black">#333</color>
+	<color name="text_black2">#666</color>
+	<color name="text_black3">#999</color>
+	<color name="text_black4">#bbb</color>
+	<color name="text_blue">#009BDA</color>
+	<color name="text_gray">#b1b1b1</color>
+	<color name="text_red">#8d0005</color>
+	<color name="text_cyan">#8ACB00</color>
+	<color name="text_green">#29A87E</color>
+	<color name="text_brown">#bc7143</color>
+	<color name="text_brown2">#cc8c64</color>
+	<color name="text_orange">#EB8600</color>
 </resources>
