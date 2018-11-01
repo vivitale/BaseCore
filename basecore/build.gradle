@@ -9,8 +9,8 @@ android {
 	defaultConfig {
 		minSdkVersion 16
 		targetSdkVersion 28
-		versionCode 40
-		versionName "0.0.40"
+		versionCode 41
+		versionName "0.0.41"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 		multiDexEnabled true
@@ -75,27 +75,27 @@ dependencies {
 
 	// 依据项目情况需自行整合的库
 	// 网络请求
-	provided 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
-	provided 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
-	provided 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
-	provided 'com.squareup.okhttp3:okhttp:3.8.1'
-	provided 'com.squareup.okio:okio:1.13.0'
+	compileOnly 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
+	compileOnly 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
+	compileOnly 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
+	compileOnly 'com.squareup.okhttp3:okhttp:3.8.1'
+	compileOnly 'com.squareup.okio:okio:1.13.0'
 	// 图片工具glide
-	provided 'com.github.bumptech.glide:glide:4.7.1'
+	compileOnly 'com.github.bumptech.glide:glide:4.7.1'
 	annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
-	provided 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
+	compileOnly 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
 	// RecyclerView适配器工具
-	provided 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
-	provided 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
+	compileOnly 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+	compileOnly 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
 	// 轮播图
-	provided 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+	compileOnly 'cn.bingoogolapple:bga-banner:2.2.4@aar'
 	// 二维码,一维码工具
-	provided 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
-	provided 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
+	compileOnly 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
+	compileOnly 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
 	// 图片选择、预览、九宫格图片控件、拖拽排序九宫格图片控件,需要同时选择 bga-baseadapter
-	provided 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+	compileOnly 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
 	// 日历控件
-	// provided 'com.squareup:android-times-square:1.6.5@aar'
+	// compileOnly 'com.squareup:android-times-square:1.6.5@aar'
 }
 
 allprojects {

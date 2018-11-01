@@ -43,6 +43,10 @@ public class JsonTool
 			@Override public JsonElement serialize(Double originalValue, Type typeOf, JsonSerializationContext context)
 			{
 				BigDecimal bigValue = BigDecimal.valueOf(originalValue);
+				if(originalValue == originalValue.longValue())
+				{
+					return new JsonPrimitive(originalValue.longValue());
+				}
 				return new JsonPrimitive(bigValue.toPlainString());
 			}
 		});
@@ -59,6 +63,10 @@ public class JsonTool
 			@Override public JsonElement serialize(Float originalValue, Type typeOf, JsonSerializationContext context)
 			{
 				BigDecimal bigValue = BigDecimal.valueOf(originalValue);
+				if(originalValue == originalValue.longValue())
+				{
+					return new JsonPrimitive(originalValue.longValue());
+				}
 				return new JsonPrimitive(bigValue.toPlainString());
 			}
 		});
