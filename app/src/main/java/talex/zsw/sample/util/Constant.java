@@ -8,4 +8,6 @@ package talex.zsw.sample.util;
  * 修改备注：
  */
 public class Constant
-{}
+{
+	public static final String WEATHER = "http://apicloud.mob.com/v1/weather/query";
+}

@@ -13,7 +13,9 @@ import talex.zsw.sample.mvp._View
 interface MainContract
 {
     interface View : _View
-    {}
+    {
+        fun bindWeatherStr(json: String)
+    }
 
     interface Presenter : _Presenter
     {}

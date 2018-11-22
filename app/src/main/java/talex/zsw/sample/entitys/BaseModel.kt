@@ -12,5 +12,6 @@ import java.io.Serializable
  */
 class BaseModel : Serializable
 {
-    var id: String? = null
+    var key: String? = null
+    var city: String? = null
 }

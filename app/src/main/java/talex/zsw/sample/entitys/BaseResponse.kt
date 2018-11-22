@@ -16,5 +16,7 @@ class BaseResponse : Serializable
     var msg: String? = null
     var flag: String? = null
     var data: Any? = null
+    var result: Any? = null
+    var retCode:Int = 0
     var httpDto: HttpDto? = null
 }

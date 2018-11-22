@@ -10,6 +10,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import talex.zsw.basecore.model.ActionItem
 import talex.zsw.basecore.util.LogTool
+import talex.zsw.basecore.util.TimeTool
 import talex.zsw.basecore.util.glide.GlideTool
 import talex.zsw.basecore.view.other.slidedatetimepicker.SlideDateTimeListener
 import talex.zsw.basecore.view.other.slidedatetimepicker.SlideDateTimePicker
@@ -17,8 +18,11 @@ import talex.zsw.basecore.view.popupwindow.PopLayout
 import talex.zsw.basecore.view.popupwindow.PopListView
 import talex.zsw.sample.R
 import talex.zsw.sample.base.BaseMVPActivity
+import talex.zsw.sample.entitys.BaseModel
 import talex.zsw.sample.module.main.contract.MainContract
 import talex.zsw.sample.module.main.presenter.MainPresenter
+import talex.zsw.sample.mvp.HttpDto
+import talex.zsw.sample.util.Constant
 import java.util.*
 
 /**
@@ -49,7 +53,7 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
                                     "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1182022639,405039723&fm=27&gp=0.jpg")
     }
 
-    @OnClick(R.id.mBtn1, R.id.mBtn2, R.id.mBtn3)
+    @OnClick(R.id.mBtn1, R.id.mBtn2, R.id.mBtn3, R.id.mBtn4)
     fun onViewClicked(view: View)
     {
         EventBus.getDefault()
@@ -96,6 +100,14 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
                         .build()
                         .show()
             }
+            R.id.mBtn4 ->
+            {
+                val body = BaseModel()
+                body.key = "26802ee608152"
+                body.city = "杭州"
+
+                mPresenter.getData(HttpDto(Constant.WEATHER, body).setType(HttpDto.GET))
+            }
         }
     }
 
@@ -109,6 +121,12 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
         popListView?.setItemOnClickListener { item, position ->
             LogTool.d(popListView?.getAction(position).toString())
         }
+    }
+
+    override fun bindWeatherStr(json: String)
+    {
+        mTvInfo.text = TimeTool.getCurTimeString()
+        mTvInfo.append("\n$json")
     }
 
     @Subscribe

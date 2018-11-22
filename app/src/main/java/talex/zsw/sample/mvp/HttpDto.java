@@ -12,7 +12,6 @@ import java.util.Map;
 import talex.zsw.basecore.util.JsonTool;
 import talex.zsw.basecore.util.LogTool;
 import talex.zsw.basecore.util.RegTool;
-import talex.zsw.sample.entitys.BaseModel;
 
 /**
  * 作用：网络请求参数状态
@@ -44,13 +43,14 @@ public class HttpDto implements Serializable
 	private Map<String, String> heads;// 请求头
 	private Object model;
 	private String bodyStr;
+	private String method;
 	private String bodyJson;
 	private Object tag;
 
 	// -------------- 基础组 --------------
 	public HttpDto(String url)
 	{
-		this(url, new BaseModel(), false);
+		this(url, null, false);
 	}
 
 	public HttpDto(String url, Object model)
@@ -66,7 +66,10 @@ public class HttpDto implements Serializable
 		this.model = model;
 		this.silence = silence;
 
-		params = JsonTool.getMapFromObj(model);
+		if(model != null)
+		{
+			params = JsonTool.getMapFromObj(model);
+		}
 		heads = new HashMap<>();
 	}
 
@@ -196,6 +199,17 @@ public class HttpDto implements Serializable
 	public HttpDto setUrl(String url)
 	{
 		this.url = url;
+		return this;
+	}
+
+	public String getMethod()
+	{
+		return method;
+	}
+
+	public HttpDto setMethod(String method)
+	{
+		this.method = method;
 		return this;
 	}
 
