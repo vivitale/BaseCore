@@ -29,7 +29,7 @@
 	<!-- 字体大小 -->
 	<dimen name="text_title_bigger">27sp</dimen>
 	<dimen name="text_title">24sp</dimen>
-	<dimen name="text_list_title">122.5sp</dimen>
+	<dimen name="text_list_title">22.5sp</dimen>
 	<dimen name="text_list_input">20.5sp</dimen>
 	<dimen name="text_exp">22sp</dimen>
 	<dimen name="text_label">18sp</dimen>
