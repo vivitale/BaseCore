@@ -138,6 +138,7 @@
 	<dimen name="sp_99">99sp</dimen>
 	<dimen name="sp_100">100sp</dimen>
 
+	<dimen name="dp_test">1dp</dimen>
 
 	<dimen name="dp_0.5">0.5dp</dimen>
 	<dimen name="dp_1">1dp</dimen>
