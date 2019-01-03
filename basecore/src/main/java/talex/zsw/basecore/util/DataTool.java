@@ -85,22 +85,6 @@ public class DataTool
 	}
 
 	/**
-	 * 隐藏手机中间4位号码
-	 * 130****0000
-	 *
-	 * @param mobile_phone 手机号码
-	 * @return 130****0000
-	 */
-	public static String hideMobilePhone4(String mobile_phone)
-	{
-		if(mobile_phone == null || mobile_phone.length() != 11)
-		{
-			return "手机号码不正确";
-		}
-		return mobile_phone.substring(0, 3)+"****"+mobile_phone.substring(7, 11);
-	}
-
-	/**
 	 * 格式化银行卡 加*
 	 * 3749 **** **** 330
 	 *
@@ -117,6 +101,59 @@ public class DataTool
 		card = cardNo.substring(0, 4)+" **** **** ";
 		card += cardNo.substring(cardNo.length()-4);
 		return card;
+	}
+
+	/**
+	 * 格式化身份证 加*
+	 * 33042419901101****
+	 *
+	 * @param certNo 身份证号
+	 * @return 33042419901101****
+	 */
+	public static String formatCert(String certNo)
+	{
+		if(certNo == null || certNo.length() < 15)
+		{
+			return "无身份证号";
+		}
+		String card = "";
+		card = certNo.substring(0, certNo.length()-8)+"****";
+		card += certNo.substring(certNo.length()-4);
+		return card;
+	}
+
+	/**
+	 * 格式化身份证 加*
+	 * 33042419901101****
+	 *
+	 * @param name 姓名
+	 * @return 赵*
+	 */
+	public static String formatName(String name)
+	{
+		if(name == null || name.length() < 1)
+		{
+			return "无姓名";
+		}
+		String card = "";
+		card = name.substring(0, name.length()-1)+"*";
+		return card;
+	}
+
+	/**
+	 * 隐藏手机中间4位号码
+	 * 130****0000
+	 *
+	 * @param mobile_phone 手机号码
+	 * @return 130****0000
+	 */
+	public static String formatPhone(String mobile_phone)
+	{
+		if(mobile_phone == null || mobile_phone.length() != 11)
+		{
+			return mobile_phone;
+		}
+		return mobile_phone.substring(0, 3)+"****"+mobile_phone.substring(7, 11);
 	}
 
 	/**
@@ -1436,7 +1473,7 @@ public class DataTool
 		{
 			Pattern p = Pattern.compile("\\s*|\t|\r|\n");
 			Matcher m = p.matcher(str);
-			dest = m.replaceAll(" ");
+			dest = m.replaceAll("");
 		}
 		return dest;
 	}
