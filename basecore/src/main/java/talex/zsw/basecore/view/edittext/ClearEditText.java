@@ -14,7 +14,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 
 import talex.zsw.basecore.R;
-import talex.zsw.basecore.util.RegTool;
+import talex.zsw.basecore.util.DataTool;
 
 
 /**
@@ -128,9 +128,9 @@ public class ClearEditText extends EditText implements View.OnFocusChangeListene
 
 	@Override public void afterTextChanged(Editable s)
 	{
-		if(listener != null && !RegTool.isBlank(s.toString()))
+		if(listener != null)
 		{
-			listener.onChanged(s.toString());
+			listener.onChanged(DataTool.getNotNull(s.toString()));
 		}
 	}
 
