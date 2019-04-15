@@ -60,7 +60,9 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 	@Override protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		// 严苛模式
+		getWindow().setBackgroundDrawable(null);
+		/
+		/ 严苛模式
 		if(BuildConfig.DEBUG)
 		{
 			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
@@ -258,7 +260,7 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 	}
 
 	private static long mLastClickTime;
-	public static final int MIN_CLICK_DELAY_TIME = 500;
+	public static final int MIN_CLICK_DELAY_TIME = 400;
 
 	@Override public boolean isFastClick()
 	{
@@ -337,6 +339,12 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 				sweetAlertDialog.dismiss();
 			}
 		}, null);
+	}
+
+	@Override
+	public void showDialog(int type, String title, String content, String confirmText, SweetAlertDialog.OnSweetClickListener confirmListener)
+	{
+		showDialog(type, title, content, confirmText, null, confirmListener, null);
 	}
 
 	@Override

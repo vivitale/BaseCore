@@ -39,8 +39,7 @@ import talex.zsw.sample.mvp._View;
  * 修改时间：
  * 修改备注：
  */
-public abstract class BaseMVPFragment<T extends _Presenter> extends RxFragment
-	implements _View
+public abstract class BaseMVPFragment<T extends _Presenter> extends RxFragment implements _View
 {
 	// 将代理类通用行为抽出来
 	protected T mPresenter;
@@ -299,7 +298,7 @@ public abstract class BaseMVPFragment<T extends _Presenter> extends RxFragment
 	}
 
 	private static long mLastClickTime;
-	public static final int MIN_CLICK_DELAY_TIME = 500;
+	public static final int MIN_CLICK_DELAY_TIME = 400;
 
 	@Override public boolean isFastClick()
 	{
@@ -359,6 +358,12 @@ public abstract class BaseMVPFragment<T extends _Presenter> extends RxFragment
 				sweetAlertDialog.dismiss();
 			}
 		}, null);
+	}
+
+	@Override
+	public void showDialog(int type, String title, String content, String confirmText, SweetAlertDialog.OnSweetClickListener confirmListener)
+	{
+		showDialog(type, title, content, confirmText, null, confirmListener, null);
 	}
 
 	@Override

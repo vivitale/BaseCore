@@ -22,6 +22,8 @@ public interface _View
 
 	void showDialog(int type, String title, String content, String confirmText, String cancelText, SweetAlertDialog.OnSweetClickListener confirmListener, SweetAlertDialog.OnSweetClickListener cancelListener);
 
+	void showDialog(int type, String title, String content, String confirmText, SweetAlertDialog.OnSweetClickListener confirmListener);
+
 	void showDialog(int type, String title, String content);
 
 	void disDialog();

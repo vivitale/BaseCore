@@ -37,6 +37,7 @@ public class JsonTool
 	private static Gson getGson()
 	{
 		GsonBuilder gb = new GsonBuilder();
+		gb.setLenient();
 		gb.setLongSerializationPolicy(LongSerializationPolicy.STRING);
 		gb.registerTypeAdapter(Double.class, new JsonSerializer<Double>()
 		{
