@@ -72,7 +72,7 @@ public class DateFragment extends Fragment
 	 * @param maxDate
 	 * @return an instance of DateFragment
 	 */
-	public static final DateFragment newInstance(int theme, int year, int month, int day, Date minDate, Date maxDate, int themeColor)
+	public static final DateFragment newInstance(int theme, int year, int month, int day, Date minDate, Date maxDate, int themeColor, boolean showDay)
 	{
 		DateFragment f = new DateFragment();
 
@@ -82,6 +82,7 @@ public class DateFragment extends Fragment
 		b.putInt("month", month);
 		b.putInt("day", day);
 		b.putInt("themeColor", themeColor);
+		b.putBoolean("showDay", showDay);
 		b.putSerializable("minDate", minDate);
 		b.putSerializable("maxDate", maxDate);
 		f.setArguments(b);
@@ -99,6 +100,7 @@ public class DateFragment extends Fragment
 		int initialMonth = getArguments().getInt("month");
 		int initialDay = getArguments().getInt("day");
 		int themeColor = getArguments().getInt("themeColor");
+		boolean showDay = getArguments().getBoolean("showDay", true);
 		Date minDate = (Date) getArguments().getSerializable("minDate");
 		Date maxDate = (Date) getArguments().getSerializable("maxDate");
 
@@ -141,6 +143,8 @@ public class DateFragment extends Fragment
 		{
 			mDatePicker.setColor(themeColor);
 		}
+
+		mDatePicker.showDayPicker(showDay);
 
 		return v;
 	}

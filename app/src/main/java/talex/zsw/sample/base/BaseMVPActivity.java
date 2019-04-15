@@ -61,8 +61,7 @@ public abstract class BaseMVPActivity<T extends _Presenter> extends RxAppCompatA
 	{
 		super.onCreate(savedInstanceState);
 		getWindow().setBackgroundDrawable(null);
-		/
-		/ 严苛模式
+		// 严苛模式
 		if(BuildConfig.DEBUG)
 		{
 			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());

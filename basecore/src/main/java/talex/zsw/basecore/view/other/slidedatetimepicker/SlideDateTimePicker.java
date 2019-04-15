@@ -28,6 +28,7 @@ public class SlideDateTimePicker
 	private boolean mIsClientSpecified24HourTime;
 	private boolean mIs24HourTime;
 	private boolean mShowTime = true;
+	private boolean mShowDay = true;
 	private int mThemeColor = 0;
 	private int mTitleColor = 0;
 	private int mTheme;
@@ -117,6 +118,11 @@ public class SlideDateTimePicker
 		mShowTime = showTime;
 	}
 
+	public void setShowDay(boolean showDay)
+	{
+		mShowDay = showDay;
+	}
+
 	public void setThemeColor(int themeColor)
 	{
 		mThemeColor = themeColor;
@@ -187,7 +193,7 @@ public class SlideDateTimePicker
 		}
 
 		SlideDateTimeDialogFragment dialogFragment
-			= SlideDateTimeDialogFragment.newInstance(mListener, mInitialDate, mMinDate, mMaxDate, mIsClientSpecified24HourTime, mIs24HourTime, mTheme, mIndicatorColor, mShowTime, mThemeColor, mTitleColor);
+			= SlideDateTimeDialogFragment.newInstance(mListener, mInitialDate, mMinDate, mMaxDate, mIsClientSpecified24HourTime, mIs24HourTime, mTheme, mIndicatorColor, mShowTime, mShowDay, mThemeColor, mTitleColor);
 
 		dialogFragment.setCancelable(false);
 		dialogFragment.show(mFragmentManager, SlideDateTimeDialogFragment.TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT);
@@ -211,6 +217,7 @@ public class SlideDateTimePicker
 		private boolean is24HourTime;
 		private int theme;
 		private boolean showTime = true;
+		private boolean showDay = true;
 		private int themeColor = 0;
 		private int titleColor = 0;
 		private int indicatorColor;
@@ -272,6 +279,12 @@ public class SlideDateTimePicker
 			return this;
 		}
 
+		public Builder setShowDay(boolean showDay)
+		{
+			this.showDay = showDay;
+			return this;
+		}
+
 		public Builder setThemeColor(int themeColor)
 		{
 			this.themeColor = themeColor;
@@ -323,6 +336,7 @@ public class SlideDateTimePicker
 			picker.setTheme(theme);
 			picker.setIndicatorColor(indicatorColor);
 			picker.setShowTime(showTime);
+			picker.setShowDay(showDay);
 			picker.setThemeColor(themeColor);
 			picker.setTitleColor(titleColor);
 

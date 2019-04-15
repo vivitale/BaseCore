@@ -3,6 +3,7 @@ package talex.zsw.basecore.view.other.slidedatetimepicker;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.NumberPicker;
 
@@ -97,6 +98,21 @@ public class CustomDatePicker extends DatePicker
 		catch(IllegalArgumentException e)
 		{
 			LogTool.e(TAG, "IllegalArgumentException in CustomDatePicker", e);
+		}
+	}
+
+	public void showDayPicker(boolean show)
+	{
+		if(dayNumberPicker!=null)
+		{
+			if(show)
+			{
+				dayNumberPicker.setVisibility(View.VISIBLE);
+			}
+			else
+			{
+				dayNumberPicker.setVisibility(View.GONE);
+			}
 		}
 	}
 }

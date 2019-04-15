@@ -55,6 +55,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 	private int mTheme;
 	private int mIndicatorColor;
 	private boolean mShowTime;
+	private boolean mShowDay;
 	private int mThemeColor;
 	private int mTitleColor;
 	private Date mMinDate;
@@ -85,7 +86,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 	 * @param indicatorColor
 	 * @return
 	 */
-	public static SlideDateTimeDialogFragment newInstance(SlideDateTimeListener listener, Date initialDate, Date minDate, Date maxDate, boolean isClientSpecified24HourTime, boolean is24HourTime, int theme, int indicatorColor, boolean showTime, int themeColor, int titleColor)
+	public static SlideDateTimeDialogFragment newInstance(SlideDateTimeListener listener, Date initialDate, Date minDate, Date maxDate, boolean isClientSpecified24HourTime, boolean is24HourTime, int theme, int indicatorColor, boolean showTime, boolean showDay, int themeColor, int titleColor)
 	{
 		mListener = listener;
 
@@ -102,6 +103,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		bundle.putInt("theme", theme);
 		bundle.putInt("indicatorColor", indicatorColor);
 		bundle.putBoolean("showTime", showTime);
+		bundle.putBoolean("showDay", showDay);
 		bundle.putInt("themeColor", themeColor);
 		bundle.putInt("titleColor", titleColor);
 		dialogFragment.setArguments(bundle);
@@ -194,6 +196,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		mIsClientSpecified24HourTime = args.getBoolean("isClientSpecified24HourTime");
 		mIs24HourTime = args.getBoolean("is24HourTime");
 		mShowTime = args.getBoolean("showTime");
+		mShowDay = args.getBoolean("showDay");
 		mThemeColor = args.getInt("themeColor");
 		mTitleColor = args.getInt("titleColor");
 		mTheme = args.getInt("theme");
@@ -334,7 +337,18 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 
 	private void updateDateTab()
 	{
-		mSlidingTabLayout.setTabText(0, DateUtils.formatDateTime(mContext, mCalendar.getTimeInMillis(), mDateFlags));
+		SimpleDateFormat formatter;
+
+		if(mShowDay)
+		{
+			formatter = new SimpleDateFormat("yyyy-MM-dd");
+			mSlidingTabLayout.setTabText(0, formatter.format(mCalendar.getTime()));
+		}
+		else
+		{
+			formatter = new SimpleDateFormat("yyyy-MM");
+			mSlidingTabLayout.setTabText(0, formatter.format(mCalendar.getTime()));
+		}
 	}
 
 	@SuppressLint("SimpleDateFormat") private void updateTimeTab()
@@ -395,7 +409,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 			{
 				case 0:
 					DateFragment dateFragment = DateFragment.newInstance(mTheme, mCalendar.get(Calendar.YEAR), mCalendar
-						.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH), mMinDate, mMaxDate, mThemeColor);
+						.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH), mMinDate, mMaxDate, mThemeColor,mShowDay);
 					// dateFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 100);
 					return dateFragment;
 				case 1:

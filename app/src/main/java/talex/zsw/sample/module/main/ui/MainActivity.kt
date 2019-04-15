@@ -95,6 +95,7 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
                         .setTheme(SlideDateTimePicker.HOLO_LIGHT)
                         .setIndicatorColor(Color.parseColor("#990000"))
                         .setShowTime(true)
+                        .setShowDay(true)
                         .setThemeColor(Color.parseColor("#FFFF00"))
                         .setTitleColor(Color.parseColor("#FF0000"))
                         .build()
