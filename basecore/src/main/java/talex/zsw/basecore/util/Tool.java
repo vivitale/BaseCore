@@ -16,7 +16,7 @@ import talex.zsw.basecore.interfaces.OnSimpleListener;
 import talex.zsw.basecore.util.cockroach.Cockroach;
 
 /**
- * RxTools的常用工具类
+ * Tool的常用工具类
  */
 public class Tool
 {

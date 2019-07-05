@@ -772,7 +772,7 @@ public class TimeTool
 	/**
 	 * 修改日期格式
 	 *
-	 * @param value 日期
+	 * @param value     日期
 	 * @param oldFormat 旧格式
 	 * @param newFormat 新格式
 	 */
@@ -785,6 +785,7 @@ public class TimeTool
 
 	/**
 	 * 返回int型的日期 yyyyMMdd
+	 *
 	 * @param date 日期
 	 */
 	public static int getDateInt(Date date)
@@ -796,6 +797,7 @@ public class TimeTool
 
 	/**
 	 * 返回int型的时间 HHmmss
+	 *
 	 * @param date 日期
 	 */
 	public static int getTimeInt(Date date)
@@ -898,7 +900,7 @@ public class TimeTool
 	 * 修改日期的时间段格式
 	 *
 	 * @param date 日期
-	 * @param hms 新的时间 HH:mm:ss
+	 * @param hms  新的时间 HH:mm:ss
 	 */
 	public static Date changeDateHMS(Date date, String hms)
 	{
@@ -929,11 +931,59 @@ public class TimeTool
 	}
 
 	/**
+	 * 获取指定日期所在月份开始的时间
+	 *
+	 * @param date 日期
+	 */
+	public static Date getMonthStart(Date date)
+	{
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+
+		//设置为1号,当前日期既为本月第一天
+		c.set(Calendar.DAY_OF_MONTH, 1);
+		//将小时至0
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		//将分钟至0
+		c.set(Calendar.MINUTE, 0);
+		//将秒至0
+		c.set(Calendar.SECOND, 0);
+		//将毫秒至0
+		c.set(Calendar.MILLISECOND, 0);
+		// 获取本月第一天的时间戳
+		return c.getTime();
+	}
+
+	/**
+	 * 获取指定日期所在月份结束的时
+	 *
+	 * @param date 指定日期
+	 * @return
+	 */
+	public static Date getMonthEnd(Date date)
+	{
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+
+		//设置为当月最后一天
+		c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
+		//将小时至23
+		c.set(Calendar.HOUR_OF_DAY, 23);
+		//将分钟至59
+		c.set(Calendar.MINUTE, 59);
+		//将秒至59
+		c.set(Calendar.SECOND, 59);
+		//将毫秒至999
+		c.set(Calendar.MILLISECOND, 999);
+		// 获取本月最后一天的时间戳
+		return c.getTime();
+	}
+
+	/**
 	 * A的时间是不是比B早
 	 *
 	 * @param A 日期A
 	 * @param B 日期B
-	 * @return
 	 */
 	public static boolean isAEarlier(Date A, Date B)
 	{

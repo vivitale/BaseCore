@@ -5,6 +5,9 @@ import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import butterknife.OnClick
+import com.lzy.okgo.OkGo
+import com.lzy.okgo.callback.StringCallback
+import com.lzy.okgo.model.Progress
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -18,11 +21,10 @@ import talex.zsw.basecore.view.popupwindow.PopLayout
 import talex.zsw.basecore.view.popupwindow.PopListView
 import talex.zsw.sample.R
 import talex.zsw.sample.base.BaseMVPActivity
-import talex.zsw.sample.entitys.BaseModel
 import talex.zsw.sample.module.main.contract.MainContract
 import talex.zsw.sample.module.main.presenter.MainPresenter
-import talex.zsw.sample.mvp.HttpDto
-import talex.zsw.sample.util.Constant
+import talex.zsw.sample.util.LogUtils
+import java.io.File
 import java.util.*
 
 /**
@@ -51,6 +53,11 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
     {
         GlideTool.loadImgCircleCrop(mImageView,
                                     "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1182022639,405039723&fm=27&gp=0.jpg")
+        LogTool.nv("initData")
+        LogUtils.listLogs().forEach {
+            LogTool.nv(it.name)
+            uploadFile(it)
+        }
     }
 
     @OnClick(R.id.mBtn1, R.id.mBtn2, R.id.mBtn3, R.id.mBtn4)
@@ -103,11 +110,11 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
             }
             R.id.mBtn4 ->
             {
-                val body = BaseModel()
-                body.key = "26802ee608152"
-                body.city = "杭州"
-
-                mPresenter.getData(HttpDto(Constant.WEATHER, body).setType(HttpDto.GET))
+                //                val body = BaseModel()
+                //                body.key = "26802ee608152"
+                //                body.city = "杭州"
+                //                mPresenter.getData(HttpDto(Constant.WEATHER, body).setType(HttpDto.GET))
+                uploadLog()
             }
         }
     }
@@ -137,5 +144,35 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
         LogTool.a(event)
         LogTool.a(event)
         LogTool.a(event)
+    }
+
+    fun uploadLog()
+    {
+
+    }
+
+    fun uploadFile(file: File)
+    {
+        OkGo.post<String>("http://devapi.xcodn.com/r/apiTask_AndroidLogs/uploadLogs")
+                .tag(this)
+                .headers("apiToken","logs-api-0102")
+                .params("xxxxxx_"+file.name, file)
+                .execute(object : StringCallback()
+                         {
+                             override fun onSuccess(response: com.lzy.okgo.model.Response<String>?)
+                             {
+                                 LogTool.nd(response?.body())
+                             }
+
+                             override fun uploadProgress(progress: Progress?)
+                             {
+                                 LogTool.ne("totalSize = " + progress?.totalSize + "   currentSize = " + progress?.currentSize + "   fraction = " + progress?.fraction + "  networkSpeed = " + progress?.speed)
+                             }
+
+                             override fun onError(response: com.lzy.okgo.model.Response<String>?)
+                             {
+                                 LogTool.ne(response?.body())
+                             }
+                         })
     }
 }

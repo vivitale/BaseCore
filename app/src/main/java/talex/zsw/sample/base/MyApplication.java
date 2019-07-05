@@ -16,6 +16,7 @@ import com.umeng.commonsdk.UMConfigure;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import talex.zsw.sample.util.LogUtils;
 
 /**
  * 作用：使用的Application
@@ -37,6 +38,8 @@ public class MyApplication extends BaseApplication
 		}
 		LeakCanary.install(this);
 		//Bugly.init(this, "", false);// 调试时，将第三个参数改为true
+		LogUtils.delLog();
+		LogUtils.file("测试测试测试");
 	}
 
 	@Override
