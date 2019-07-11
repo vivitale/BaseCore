@@ -48,6 +48,27 @@ public class WebViewTool
 		//		mWebView.getSettings().setLoadWithOverviewMode(true);
 		//		mWebView.setInitialScale(960 * 100 / getScrnHeight());
 
+		mWebView.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放
+		mWebView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+
+		mWebView.getSettings().setDomStorageEnabled(true);
+		//priority high
+		mWebView.getSettings().setAppCacheEnabled(true);
+		mWebView.getSettings().setDatabaseEnabled(true);
+		mWebView
+			.getSettings()
+			.setDatabasePath(Tool.getContext().getCacheDir().getAbsolutePath());
+		//add by wjj end
+		//解决图片不显示
+		mWebView.getSettings().setBlockNetworkImage(false);
+		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP)
+		{
+			mWebView.getSettings().setMixedContentMode(0);
+		}
+		String ua = mWebView.getSettings().getUserAgentString();
+		mWebView.getSettings().setUseWideViewPort(true);
+		mWebView.getSettings().setLoadWithOverviewMode(true);
+
 		if(content.startsWith("www"))
 		{
 			content = "http://"+content;
@@ -141,7 +162,34 @@ public class WebViewTool
 					}
 					super.onProgressChanged(view, newProgress);
 				}
+
+//				@Override
+//				public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams)
+//				{
+//					mUploadCallbackAboveL = filePathCallback;
+//					take();
+//					return true;
+//				}
+//
+//				public void openFileChooser(ValueCallback<Uri> uploadMsg)
+//				{
+//					mUploadMessage = uploadMsg;
+//					take();
+//				}
+//
+//				public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType)
+//				{
+//					mUploadMessage = uploadMsg;
+//					take();
+//				}
+//
+//				public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture)
+//				{
+//					mUploadMessage = uploadMsg;
+//					take();
+//				}
 			});
+
 			mWebView.loadUrl(content);
 		}
 		else

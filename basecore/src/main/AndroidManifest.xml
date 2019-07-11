@@ -37,5 +37,15 @@
 				android:name="android.support.FILE_PROVIDER_PATHS"
 				android:resource="@xml/file_paths"/>
 		</provider>
+
+		<activity
+			android:name=".crash.DefaultErrorActivity"
+			android:process=":error_activity" />
+
+		<provider
+			android:name=".crash.CaocInitProvider"
+			android:authorities="${applicationId}.customactivityoncrashinitprovider"
+			android:exported="false"
+			android:initOrder="101" />
 	</application>
 </manifest>

@@ -26,6 +26,17 @@
 	<string name="sd_dialog_cancel">cancel</string>
 	<string name="sd_loading">loading …</string>
 
+	<!--Crash-->
+	<string name="customactivityoncrash_error_activity_error_occurred_explanation">An unexpected error occurred.\nSorry to inconvenience you.</string>
+	<string name="customactivityoncrash_error_activity_restart_app">Restart</string>
+	<string name="customactivityoncrash_error_activity_close_app">Close</string>
+	<string name="customactivityoncrash_error_activity_error_details">The error log</string>
+	<string name="customactivityoncrash_error_activity_error_details_title">Error details</string>
+	<string name="customactivityoncrash_error_activity_error_details_close">Close</string>
+	<string name="customactivityoncrash_error_activity_error_details_copy">Copy</string>
+	<string name="customactivityoncrash_error_activity_error_details_copied">Copy log</string>
+	<string name="customactivityoncrash_error_activity_error_details_clipboard_label">The error message</string>
+
 	<!-- TimeSinceTextView -->
 	<string name="timespan_now">just now</string>
 	<plurals name="timespan_years"

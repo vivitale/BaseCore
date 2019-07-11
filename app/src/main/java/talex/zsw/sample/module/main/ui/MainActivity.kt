@@ -60,7 +60,7 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
         }
     }
 
-    @OnClick(R.id.mBtn1, R.id.mBtn2, R.id.mBtn3, R.id.mBtn4)
+    @OnClick(R.id.mBtn1, R.id.mBtn2, R.id.mBtn3, R.id.mBtn4, R.id.mBtn5)
     fun onViewClicked(view: View)
     {
         EventBus.getDefault()
@@ -115,6 +115,10 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
                 //                body.city = "杭州"
                 //                mPresenter.getData(HttpDto(Constant.WEATHER, body).setType(HttpDto.GET))
                 uploadLog()
+            }
+            R.id.mBtn5 ->
+            {
+                Integer.parseInt("abc")
             }
         }
     }

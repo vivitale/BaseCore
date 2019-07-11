@@ -16,6 +16,8 @@ import com.umeng.commonsdk.UMConfigure;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import talex.zsw.basecore.util.Tool;
+import talex.zsw.sample.module.main.ui.MainActivity;
 import talex.zsw.sample.util.LogUtils;
 
 /**
@@ -31,6 +33,7 @@ public class MyApplication extends BaseApplication
 	{
 		super.onCreate();
 		initHttp();
+		Tool.initCaoc(0, MainActivity.class);
 		UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
 		if(LeakCanary.isInAnalyzerProcess(this))
 		{

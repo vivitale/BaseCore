@@ -1,6 +1,7 @@
 package talex.zsw.basecore.util;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import talex.zsw.basecore.R;
+import talex.zsw.basecore.crash.CaocConfig;
 import talex.zsw.basecore.interfaces.OnSimpleListener;
 import talex.zsw.basecore.util.cockroach.Cockroach;
 
@@ -68,27 +70,62 @@ public class Tool
 		{
 			CrashTool.init(context);
 			LogTool.getConfig().setConsoleSwitch(false);
-			Cockroach.install(new Cockroach.ExceptionHandler()
-			{
-				@Override public void handlerException(final Thread thread, final Throwable throwable)
-				{
-					new Handler(Looper.getMainLooper()).post(new Runnable()
-					{
-						@Override public void run()
-						{
-							try
-							{
-								LogTool.e(thread+"\n"+throwable.toString());
-								throwable.printStackTrace();
-							}
-							catch(Throwable ignored)
-							{
-							}
-						}
-					});
-				}
-			});
 		}
+	}
+
+	/**
+	 * 永不崩溃的APP——Crash防护
+	 */
+	public static void initCockroah()
+	{
+		Cockroach.install(new Cockroach.ExceptionHandler()
+		{
+			@Override public void handlerException(final Thread thread, final Throwable throwable)
+			{
+				new Handler(Looper.getMainLooper()).post(new Runnable()
+				{
+					@Override public void run()
+					{
+						try
+						{
+							LogTool.e(thread+"\n"+throwable.toString());
+							throwable.printStackTrace();
+						}
+						catch(Throwable ignored)
+						{
+						}
+					}
+				});
+			}
+		});
+	}
+
+	/**
+	 * 避免闪退
+	 *
+	 * @param errorRes 错误提示图标,不传则显示一个 bug
+	 * @param cls      重启的Activity
+	 */
+	public static void initCaoc(int errorRes, Class<? extends Activity> cls)
+	{
+		CaocConfig.Builder builder = CaocConfig.Builder.create();
+		builder.backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //背景模式,开启沉浸式
+		       .enabled(true) //是否启动全局异常捕获
+		       .showErrorDetails(true) //是否显示错误详细信息
+		       .trackActivities(true) //是否跟踪Activity
+		       .minTimeBetweenCrashesMs(2000); //崩溃的间隔时间(毫秒)
+		if(errorRes != 0)
+		{
+			builder.errorDrawable(errorRes); //错误图标
+		}
+		if(cls != null)
+		{
+			builder.showRestartButton(true) //是否显示重启按钮
+			       .restartActivity(cls); //重新启动后的activity
+		}
+		// builder.errorActivity(YourCustomErrorActivity.class) //崩溃后的错误activity
+		//         .eventListener(new YourCustomEventListener()) //崩溃后的错误监听
+		builder.apply();
 	}
 
 	/**
