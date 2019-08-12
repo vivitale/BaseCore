@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 import talex.zsw.basecore.R;
 import talex.zsw.basecore.util.DimenTool;
+import talex.zsw.basecore.util.LogTool;
 
 
 /**
@@ -136,8 +137,6 @@ public class NiceSpinner extends TextView
 		setEllipsize(TextUtils.TruncateAt.END);
 		setPadding(defaultPadding, halfPadding, defaultPadding, halfPadding);
 		setClickable(true);
-		setBackgroundResource(R.color.transparent);
-		setTextSize(getTextSize()+1);
 
 		mListView = new ListView(context);
 		mListView.setDivider(null);
@@ -193,13 +192,13 @@ public class NiceSpinner extends TextView
 
 		Drawable basicDrawable = ContextCompat.getDrawable(context, R.drawable.nice_spinner_arrow);
 		int resId = typedArray.getColor(R.styleable.NiceSpinner_NS_arrowTint, -1);
-
 		if(basicDrawable != null)
 		{
 			mDrawable = DrawableCompat.wrap(basicDrawable);
 
 			if(resId != -1)
 			{
+				LogTool.a();
 				DrawableCompat.setTint(mDrawable, resId);
 			}
 		}

@@ -294,52 +294,52 @@ public final class LogTool
 
 	public static void nv(String contents)
 	{
-		Log.v(CONFIG.mGlobalTag, contents);
+		Log.v(CONFIG.mGlobalTag, DataTool.getNotNull(contents));
 	}
 
 	public static void ni(String contents)
 	{
-		Log.i(CONFIG.mGlobalTag, contents);
+		Log.i(CONFIG.mGlobalTag, DataTool.getNotNull(contents));
 	}
 
 	public static void nd(String contents)
 	{
-		Log.d(CONFIG.mGlobalTag, contents);
+		Log.d(CONFIG.mGlobalTag, DataTool.getNotNull(contents));
 	}
 
 	public static void nw(String contents)
 	{
-		Log.w(CONFIG.mGlobalTag, contents);
+		Log.w(CONFIG.mGlobalTag, DataTool.getNotNull(contents));
 	}
 
 	public static void ne(String contents)
 	{
-		Log.e(CONFIG.mGlobalTag, contents);
+		Log.e(CONFIG.mGlobalTag, DataTool.getNotNull(contents));
 	}
 
 	public static void nv(String tag, String contents)
 	{
-		Log.v(tag, contents);
+		Log.v(tag, DataTool.getNotNull(contents));
 	}
 
 	public static void ni(String tag, String contents)
 	{
-		Log.i(tag, contents);
+		Log.i(tag, DataTool.getNotNull(contents));
 	}
 
 	public static void nd(String tag, String contents)
 	{
-		Log.d(tag, contents);
+		Log.d(tag, DataTool.getNotNull(contents));
 	}
 
 	public static void nw(String tag, String contents)
 	{
-		Log.w(tag, contents);
+		Log.w(tag, DataTool.getNotNull(contents));
 	}
 
 	public static void ne(String tag, String contents)
 	{
-		Log.e(tag, contents);
+		Log.e(tag, DataTool.getNotNull(contents));
 	}
 
 	public static void log(final int type, final String tag, final Object... contents)

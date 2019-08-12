@@ -37,7 +37,7 @@ public class GoogleLoadMoreFooterView extends FrameLayout
 	public GoogleLoadMoreFooterView(Context context, AttributeSet attrs, int defStyleAttr)
 	{
 		super( context, attrs, defStyleAttr );
-		ringProgressDrawable = new RingProgressDrawable( context );
+		ringProgressDrawable = new RingProgressDrawable(  );
 		Resources res = getResources();
 		ringProgressDrawable
 			.setColors(res.getColor(R.color.google_blue ), res.getColor(R.color.google_red ),

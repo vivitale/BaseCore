@@ -58,6 +58,17 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
             LogTool.nv(it.name)
             uploadFile(it)
         }
+
+        val list:ArrayList<String> = arrayListOf()
+        list.add("1111")
+        list.add("2222")
+        list.add("3333")
+        list.add("4444")
+        list.add("4444")
+        list.add("4444")
+        list.add("4444")
+        list.add("4444")
+        mNiceSpinner.attachDataSource(list)
     }
 
     @OnClick(R.id.mBtn1, R.id.mBtn2, R.id.mBtn3, R.id.mBtn4, R.id.mBtn5)

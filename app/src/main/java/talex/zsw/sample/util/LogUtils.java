@@ -589,14 +589,17 @@ public final class LogUtils
 			return fileList;
 		}
 		File[] files = file.listFiles();
-		for(int i = 0; i < files.length; i++)
+		if(files!=null)
 		{
-			File exeFile = files[i];
-			String name = exeFile.getName();
-			int type = SpTool.getInt(name, 0);
-			if(type == 0 && name.startsWith(sFilePrefix) && !name.contains(time))
+			for(int i = 0; i < files.length; i++)
 			{
-				fileList.add(exeFile);
+				File exeFile = files[i];
+				String name = exeFile.getName();
+				int type = SpTool.getInt(name, 0);
+				if(type == 0 && name.startsWith(sFilePrefix) && !name.contains(time))
+				{
+					fileList.add(exeFile);
+				}
 			}
 		}
 		return fileList;

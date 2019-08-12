@@ -114,7 +114,7 @@ public class DataTool
 	{
 		if(certNo == null || certNo.length() < 15)
 		{
-			return "无身份证号";
+			return "无效身份证号";
 		}
 		String card = "";
 		card = certNo.substring(0, certNo.length()-8)+"****";
@@ -792,18 +792,22 @@ public class DataTool
 
 	/**
 	 * 十六进制字符串转换成 ASCII字符串
+	 *
 	 * @param hexStr String Byte字符串
 	 * @return String 对应的字符串
 	 */
-	public static String hexStr2Str(String hexStr){
+	public static String hexStr2Str(String hexStr)
+	{
 		hexStr = hexStr.toString().trim().replace(" ", "").toUpperCase(Locale.US);
 		char[] hexs = hexStr.toCharArray();
-		byte[] bytes = new byte[hexStr.length() / 2];
-		int iTmp = 0x00;;
+		byte[] bytes = new byte[hexStr.length()/2];
+		int iTmp = 0x00;
+		;
 
-		for (int i = 0; i < bytes.length; i++){
-			iTmp = mHexStr.indexOf(hexs[2 * i]) << 4;
-			iTmp |= mHexStr.indexOf(hexs[2 * i + 1]);
+		for(int i = 0; i < bytes.length; i++)
+		{
+			iTmp = mHexStr.indexOf(hexs[2*i]) << 4;
+			iTmp |= mHexStr.indexOf(hexs[2*i+1]);
 			bytes[i] = (byte) (iTmp & 0xFF);
 		}
 		return new String(bytes);

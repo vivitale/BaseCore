@@ -1,6 +1,5 @@
 package talex.zsw.basecore.view.other.swipetoloadlayout.drawable.google;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -36,9 +35,7 @@ public class RingProgressDrawable extends ProgressDrawable {
 
     private float mPercent;
 
-
-    public RingProgressDrawable(Context context) {
-        super(context);
+    public RingProgressDrawable() {
         mBounds = new RectF();
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.STROKE);

@@ -24,7 +24,6 @@ public class Tool
 {
 
 	@SuppressLint("StaticFieldLeak") private static Context context;
-	private static long lastClickTime;
 	private boolean isDebug = false;
 
 	public boolean isDebug()
@@ -297,6 +296,7 @@ public class Tool
 		return getContext().getResources().getIdentifier(name, defType, getContext().getPackageName());
 	}
 
+	private static long lastClickTime;
 	public static boolean isFastClick(int millisecond)
 	{
 		long curClickTime = System.currentTimeMillis();
