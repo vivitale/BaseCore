@@ -164,4 +164,9 @@ public class RxDialogList extends RxDialog
 	{
 		return mRecyclerView;
 	}
+
+	public View getRootView()
+	{
+		return rootView;
+	}
 }
