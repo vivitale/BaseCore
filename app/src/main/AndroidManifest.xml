@@ -25,6 +25,8 @@
 		<activity android:name=".module.common.ui.WelcomeActivity"/>
 		<activity android:name=".test.TestActivity"/>
 		<activity android:name=".test.TestJavaActivity"/>
+
+		<service android:name="talex.zsw.basecore.service.PingService"/>
 	</application>
 
 	<!-- 打电话 -->

@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import talex.zsw.basecore.util.Tool;
 import talex.zsw.sample.module.main.ui.MainActivity;
-import talex.zsw.sample.util.LogUtils;
 
 /**
  * 作用：使用的Application
@@ -35,61 +34,58 @@ public class MyApplication extends BaseApplication
 		initHttp();
 		Tool.initCaoc(0, MainActivity.class);
 		UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
+		//Bugly.init(this, "", false);// 调试时，将第三个参数改为true
 		if(LeakCanary.isInAnalyzerProcess(this))
 		{
 			return;
 		}
 		LeakCanary.install(this);
-		//Bugly.init(this, "", false);// 调试时，将第三个参数改为true
-		LogUtils.delLog();
-		LogUtils.file("测试测试测试");
 	}
 
-	@Override
-	protected void attachBaseContext(Context base)
+	@Override protected void attachBaseContext(Context base)
 	{
 		super.attachBaseContext(base);
 		// 安装tinker
-//		Beta.installTinker();
-//		Beta.canNotifyUserRestart = false;
-//		Beta.betaPatchListener = new BetaPatchListener()
-//		{
-//			@Override public void onPatchReceived(String patchFile)
-//			{
-//				Log.d("Tinker", "补丁下载地址");
-//			}
-//
-//			@Override public void onDownloadReceived(long savedLength, long totalLength)
-//			{
-//				Log.d("Tinker", String.format(Locale.getDefault(), "%s %d%%", Beta.strNotificationDownloading, (int) (
-//					totalLength == 0 ? 0 : savedLength*100/totalLength)));
-//			}
-//
-//			@Override public void onDownloadSuccess(String msg)
-//			{
-//				Log.d("Tinker", "补丁下载成功");
-//			}
-//
-//			@Override public void onDownloadFailure(String msg)
-//			{
-//				Log.d("Tinker", "补丁下载失败");
-//			}
-//
-//			@Override public void onApplySuccess(String msg)
-//			{
-//				Log.d("Tinker", "补丁应用成功");
-//			}
-//
-//			@Override public void onApplyFailure(String msg)
-//			{
-//				Log.d("Tinker", "补丁应用失败");
-//			}
-//
-//			@Override public void onPatchRollback()
-//			{
-//				Log.d("Tinker", "补丁回滚");
-//			}
-//		};
+		//		Beta.installTinker();
+		//		Beta.canNotifyUserRestart = false;
+		//		Beta.betaPatchListener = new BetaPatchListener()
+		//		{
+		//			@Override public void onPatchReceived(String patchFile)
+		//			{
+		//				Log.d("Tinker", "补丁下载地址");
+		//			}
+		//
+		//			@Override public void onDownloadReceived(long savedLength, long totalLength)
+		//			{
+		//				Log.d("Tinker", String.format(Locale.getDefault(), "%s %d%%", Beta.strNotificationDownloading, (int) (
+		//					totalLength == 0 ? 0 : savedLength*100/totalLength)));
+		//			}
+		//
+		//			@Override public void onDownloadSuccess(String msg)
+		//			{
+		//				Log.d("Tinker", "补丁下载成功");
+		//			}
+		//
+		//			@Override public void onDownloadFailure(String msg)
+		//			{
+		//				Log.d("Tinker", "补丁下载失败");
+		//			}
+		//
+		//			@Override public void onApplySuccess(String msg)
+		//			{
+		//				Log.d("Tinker", "补丁应用成功");
+		//			}
+		//
+		//			@Override public void onApplyFailure(String msg)
+		//			{
+		//				Log.d("Tinker", "补丁应用失败");
+		//			}
+		//
+		//			@Override public void onPatchRollback()
+		//			{
+		//				Log.d("Tinker", "补丁回滚");
+		//			}
+		//		};
 	}
 
 	@Override public void exit()

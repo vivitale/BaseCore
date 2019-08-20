@@ -99,7 +99,7 @@ dependencies {
 //    // 动画
 //    implementation 'com.github.florent37:viewanimator:1.0.5'
 //    // RecyclerView适配器工具
-//    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
 //    implementation 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
 //    // 轮播图
 //    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'

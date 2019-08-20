@@ -890,6 +890,15 @@ div                         | 除 返回double
 round                       | 小数位四舍五入 返回double
 roundStr                    | 小数位四舍五入 返回String
 
+### NetTool -> 不断的ping网址,返回延迟
+方法名 | 说明
+--------- | -------------
+NetPingTool                 | 初始化方法,传入网址,端口和回调方法
+startGetDelay               | 开始监听
+release                     | 释放
+setmDomain                  | 设置网址
+setmPort                    | 设置端口号
+setDuration                 | 设置延迟,多久发送一次ping
 
 ### NetTool -> 网络工具
 方法名 | 说明
@@ -1932,7 +1941,58 @@ private void unBindService()
     unbindService(mLocationServiceConnection);
 }
 ```
+### PingService -> ping服务器获取网络延迟
+1.在清单文件中添加获取地理位置的服务
 
+```
+<!-- ping服务器 -->
+<service
+    android:name="talex.zsw.basecore.service.PingService">
+</service>
+```
+2.代码中启动服务
+```
+private PingService mPingService;
+
+private ServiceConnection mPingServiceConnection = new ServiceConnection()
+{
+    @Override public void onServiceConnected(ComponentName name, IBinder service)
+    {
+        LogTool.nv("onServiceConnected");
+        mPingService = ((PingService.PingBinder) service).getService();
+        mPingService.startPing("www.baidu.com", new NetPingTool.IOnNetPingListener()
+        {
+            @Override public void ontDelay(long log)
+            {
+                LogTool.ni("延迟 "+log+" ms");
+            }
+
+            @Override public void onError()
+            {
+                LogTool.ne("错误，网络不通");
+            }
+        });
+    }
+
+    @Override public void onServiceDisconnected(ComponentName name)
+    {
+        LogTool.nv("onServiceDisconnected");
+        mPingService = null;
+    }
+};
+
+private void bindPingService()
+{
+    LogTool.nv("bindPingService");
+    Intent intent = new Intent(this, PingService.class);
+    bindService(intent, mPingServiceConnection, Context.BIND_AUTO_CREATE);
+}
+
+private void unBindPingService()
+{
+    unbindService(mPingServiceConnection);
+i}
+```
 
 ![未完待续](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527567486795&di=19907f5d73242150201c8779411e5b61&imgtype=0&src=http%3A%2F%2Fcdnq.duitang.com%2Fuploads%2Fitem%2F201501%2F10%2F20150110163418_h4JFG.thumb.700_0.jpeg)
 

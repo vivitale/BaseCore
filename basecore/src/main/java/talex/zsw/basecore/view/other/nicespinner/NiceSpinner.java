@@ -31,7 +31,6 @@ import java.util.ArrayList;
 
 import talex.zsw.basecore.R;
 import talex.zsw.basecore.util.DimenTool;
-import talex.zsw.basecore.util.LogTool;
 
 
 /**
@@ -198,7 +197,6 @@ public class NiceSpinner extends TextView
 
 			if(resId != -1)
 			{
-				LogTool.a();
 				DrawableCompat.setTint(mDrawable, resId);
 			}
 		}

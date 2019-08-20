@@ -38,6 +38,12 @@
 		android:layout_height="wrap_content"
 		android:text="啊!我死了..."/>
 
+	<Button
+		android:id="@+id/mBtn6"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="底部列表"/>
+
 	<talex.zsw.basecore.view.other.nicespinner.NiceSpinner
 		android:id="@+id/mNiceSpinner"
 		android:layout_width="150dp"

@@ -9,20 +9,21 @@ import com.lzy.okgo.OkGo
 import com.lzy.okgo.callback.StringCallback
 import com.lzy.okgo.model.Progress
 import kotlinx.android.synthetic.main.activity_main.*
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
 import talex.zsw.basecore.model.ActionItem
 import talex.zsw.basecore.util.LogTool
 import talex.zsw.basecore.util.TimeTool
 import talex.zsw.basecore.util.glide.GlideTool
+import talex.zsw.basecore.view.dialog.rxdialog.RxDialogList
 import talex.zsw.basecore.view.other.slidedatetimepicker.SlideDateTimeListener
 import talex.zsw.basecore.view.other.slidedatetimepicker.SlideDateTimePicker
 import talex.zsw.basecore.view.popupwindow.PopLayout
 import talex.zsw.basecore.view.popupwindow.PopListView
 import talex.zsw.sample.R
 import talex.zsw.sample.base.BaseMVPActivity
+import talex.zsw.sample.module.main.adapter.TestAdapter
 import talex.zsw.sample.module.main.contract.MainContract
 import talex.zsw.sample.module.main.presenter.MainPresenter
+import talex.zsw.sample.test.TestData
 import talex.zsw.sample.util.LogUtils
 import java.io.File
 import java.util.*
@@ -71,11 +72,9 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
         mNiceSpinner.attachDataSource(list)
     }
 
-    @OnClick(R.id.mBtn1, R.id.mBtn2, R.id.mBtn3, R.id.mBtn4, R.id.mBtn5)
+    @OnClick(R.id.mBtn1, R.id.mBtn2, R.id.mBtn3, R.id.mBtn4, R.id.mBtn5, R.id.mBtn6)
     fun onViewClicked(view: View)
     {
-        EventBus.getDefault()
-                .post("onViewClicked")
         when (view.id)
         {
             R.id.mBtn1 ->
@@ -131,8 +130,20 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
             {
                 Integer.parseInt("abc")
             }
+            R.id.mBtn6 ->
+            {
+                listDialog?:let {
+                    listDialog = RxDialogList(this@MainActivity)
+                    listDialog?.setAdapter(adapter)
+                    adapter.replaceData(TestData.getGoods(20))
+                }
+                listDialog?.show()
+            }
         }
     }
+
+    private var listDialog :RxDialogList? = null
+    private val adapter = TestAdapter()
 
     private fun initPopupView()
     {
@@ -150,15 +161,6 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
     {
         mTvInfo.text = TimeTool.getCurTimeString()
         mTvInfo.append("\n$json")
-    }
-
-    @Subscribe
-    fun onEvent(event: String)
-    {
-        LogTool.a(event)
-        LogTool.a(event)
-        LogTool.a(event)
-        LogTool.a(event)
     }
 
     fun uploadLog()
