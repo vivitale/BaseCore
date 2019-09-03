@@ -5,9 +5,6 @@ import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import butterknife.OnClick
-import com.lzy.okgo.OkGo
-import com.lzy.okgo.callback.StringCallback
-import com.lzy.okgo.model.Progress
 import kotlinx.android.synthetic.main.activity_main.*
 import talex.zsw.basecore.model.ActionItem
 import talex.zsw.basecore.util.LogTool
@@ -55,12 +52,12 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
         GlideTool.loadImgCircleCrop(mImageView,
                                     "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1182022639,405039723&fm=27&gp=0.jpg")
         LogTool.nv("initData")
-        LogUtils.listLogs().forEach {
-            LogTool.nv(it.name)
-            uploadFile(it)
-        }
-
-        val list:ArrayList<String> = arrayListOf()
+        LogUtils.listLogs()
+                .forEach {
+                    LogTool.nv(it.name)
+                    uploadFile(it)
+                }
+        val list: ArrayList<String> = arrayListOf()
         list.add("1111")
         list.add("2222")
         list.add("3333")
@@ -101,20 +98,20 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
             R.id.mBtn3 ->
             {
                 SlideDateTimePicker.Builder(supportFragmentManager)
-                        .setInitialDate(Date())
                         .setListener(object : SlideDateTimeListener()
                                      {
                                          override fun onDateTimeSet(date: Date?)
                                          {
                                          }
                                      })
+                        .setInitialDate(Date())
                         .setMinDate(Date())
-                        .setTheme(SlideDateTimePicker.HOLO_LIGHT)
-                        .setIndicatorColor(Color.parseColor("#990000"))
+                        .setMaxDate(Date())
+                        .setIndicatorColor(Color.parseColor("#0000FF"))
+                        .setThemeColor(Color.parseColor("#00FF00"))
+                        .setTitleColor(Color.parseColor("#FF0000"))
                         .setShowTime(true)
                         .setShowDay(true)
-                        .setThemeColor(Color.parseColor("#FFFF00"))
-                        .setTitleColor(Color.parseColor("#FF0000"))
                         .build()
                         .show()
             }
@@ -132,23 +129,26 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
             }
             R.id.mBtn6 ->
             {
-                listDialog?:let {
-                    listDialog = RxDialogList(this@MainActivity)
-                    listDialog?.setAdapter(adapter)
-                    adapter.replaceData(TestData.getGoods(20))
-                }
+                listDialog
+                        ?: let {
+                            listDialog = RxDialogList(this@MainActivity)
+                            listDialog?.setAdapter(adapter)
+                            adapter.replaceData(TestData.getGoods(20))
+                        }
                 listDialog?.show()
             }
         }
     }
 
-    private var listDialog :RxDialogList? = null
+    private var listDialog: RxDialogList? = null
     private val adapter = TestAdapter()
 
     private fun initPopupView()
     {
         popListView =
-                PopListView(this@MainActivity, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                PopListView(this@MainActivity,
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT)
         popListView?.addAction(ActionItem("标清"))
         popListView?.addAction(ActionItem("高清"))
         popListView?.addAction(ActionItem("超清"))
@@ -170,26 +170,5 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
 
     fun uploadFile(file: File)
     {
-        OkGo.post<String>("http://devapi.xcodn.com/r/apiTask_AndroidLogs/uploadLogs")
-                .tag(this)
-                .headers("apiToken","logs-api-0102")
-                .params("xxxxxx_"+file.name, file)
-                .execute(object : StringCallback()
-                         {
-                             override fun onSuccess(response: com.lzy.okgo.model.Response<String>?)
-                             {
-                                 LogTool.nd(response?.body())
-                             }
-
-                             override fun uploadProgress(progress: Progress?)
-                             {
-                                 LogTool.ne("totalSize = " + progress?.totalSize + "   currentSize = " + progress?.currentSize + "   fraction = " + progress?.fraction + "  networkSpeed = " + progress?.speed)
-                             }
-
-                             override fun onError(response: com.lzy.okgo.model.Response<String>?)
-                             {
-                                 LogTool.ne(response?.body())
-                             }
-                         })
     }
 }

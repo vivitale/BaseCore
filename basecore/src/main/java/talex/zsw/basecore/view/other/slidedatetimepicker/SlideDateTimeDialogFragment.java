@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -236,8 +237,9 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 		// Set the color of the selected tab underline if one was specified.
 		if(mIndicatorColor != 0)
 		{
-			mSlidingTabLayout.setSelectedIndicatorColors(mIndicatorColor);
+			 mSlidingTabLayout.setSelectedIndicatorColors(mIndicatorColor);
 		}
+		mSlidingTabLayout.setDividerColors(Color.WHITE);
 	}
 
 	private void initViewPager()

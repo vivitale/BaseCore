@@ -9,6 +9,7 @@
 	<talex.zsw.basecore.view.other.slidedatetimepicker.SlidingTabLayout
 		android:id="@+id/slidingTabLayout"
 		android:layout_width="match_parent"
+		android:background="@drawable/bg_white_top_c"
 		android:layout_height="wrap_content"/>
 
 	<talex.zsw.basecore.view.other.slidedatetimepicker.CustomViewPager

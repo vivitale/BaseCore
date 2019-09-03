@@ -105,6 +105,7 @@ public class RxDialogList extends RxDialog
 		getWindow().setAttributes(lp);
 		getWindow().setGravity(Gravity.BOTTOM);
 
+		rootView = dialogView.findViewById(R.id.layout);
 		mTvTitle = dialogView.findViewById(R.id.tv_title);
 		mTvTitle.setTextIsSelectable(true);
 		mTvContent = dialogView.findViewById(R.id.tv_content);

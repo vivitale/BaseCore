@@ -26,7 +26,7 @@ import android.support.annotation.Nullable;
 
 public class CaocInitProvider extends ContentProvider {
 
-    public boolean onCreate() {
+    @Override public boolean onCreate() {
         CustomActivityOnCrash.install(getContext());
         return false;
     }

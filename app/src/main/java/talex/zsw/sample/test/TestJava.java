@@ -11,14 +11,12 @@ public class TestJava
 {
 	public static void main(String[] args)
 	{
-		String string = "一二三四五  - / abc 阿 ABC 哦";
-		String string2 = "abc - ABC";
-		System.out.println("原数据 : "+string);
-		System.out.println("新数据 : "+string.replaceAll("[^A-Za-z]", ""));
-		System.out.println("新数据 : "+string.replaceAll("[^A-Za-z -]", ""));
-		System.out.println("新数据 : "+string.replaceAll("[A-Za-z]", ""));
-		System.out.println("新数据 : "+string.replaceAll("[A-Za-z -]", ""));
-		System.out.println(string+" : "+string.matches("[A-Za-z -]+"));
-		System.out.println(string2+" : "+string2.matches("[A-Za-z -]+"));
+//		Map<String, String> map = new HashMap<>();
+//		map.put("ticket", "成人票");
+//		map.put("price", "27.00");
+//		StringSubstitutor stringSubstitutor = new StringSubstitutor(map);
+//		String temp = "${ticket} 的价格是 ${price}";
+//		String result = stringSubstitutor.replace(temp);
+//		System.out.println(result);
 	}
 }

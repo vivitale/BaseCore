@@ -49,6 +49,23 @@ public class ACache
 	private static Map<String, ACache> mInstanceMap = new HashMap<String, ACache>();
 	private ACacheManager mCache;
 
+	private volatile static ACache instance;
+
+	public static ACache getInstance()
+	{
+		if(instance == null)
+		{
+			synchronized(ACache.class)
+			{//锁
+				if(instance == null)
+				{
+					instance = ACache.get(Tool.getContext());
+				}
+			}
+		}
+		return instance;
+	}
+
 	public static ACache get(Context ctx)
 	{
 		return get(ctx, "ACache");
@@ -116,7 +133,7 @@ public class ACache
 			this.file = file;
 		}
 
-		public void close() throws IOException
+		@Override public void close() throws IOException
 		{
 			super.close();
 			mCache.put(file);
