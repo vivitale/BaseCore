@@ -1,8 +1,7 @@
 package talex.zsw.sample.test
 
-import android.content.Intent
-import talex.zsw.sample.R
-import talex.zsw.sample.base.BaseMVPActivity
+import android.os.Bundle
+import talex.zsw.sample.base.BaseMVPFragment
 import talex.zsw.sample.entitys.BaseResponse
 import talex.zsw.sample.mvp.CommonPresenter
 import talex.zsw.sample.mvp.CommonView
@@ -14,15 +13,14 @@ import talex.zsw.sample.mvp.CommonView
  * 修改时间：
  * 修改备注：
  */
-class TestActivity : BaseMVPActivity<CommonView.Presenter>(), CommonView.View
+class TestFragment : BaseMVPFragment<CommonView.Presenter>(), CommonView.View
 {
-    override fun initArgs(intent: Intent)
+    override fun initArgs(bundle: Bundle)
     {
     }
 
-    override fun initView()
+    override fun initView(bundle: Bundle)
     {
-        setContentView(R.layout.custom_recycleview)
         mPresenter = CommonPresenter(this)
     }
 

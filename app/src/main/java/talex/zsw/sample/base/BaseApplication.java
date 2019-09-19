@@ -11,7 +11,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import talex.zsw.basecore.util.Tool;
-import talex.zsw.sample.BuildConfig;
 
 /**
  * 作用：基本的Application,项目的Application继承自该类,调用setImg(int res)方法来设置基本图片
@@ -28,7 +27,6 @@ public class BaseApplication extends MultiDexApplication
 	@Override public void onCreate()
 	{
 		mApplicationContext = this;
-		Tool.init(this, BuildConfig.DEBUG);
 		EventBus.getDefault().register(mApplicationContext);
 		super.onCreate();
 	}

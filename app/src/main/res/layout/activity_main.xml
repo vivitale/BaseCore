@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout android:id="@+id/layout"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -12,45 +12,37 @@
 		android:id="@+id/mBtn1"
 		android:layout_width="200dp"
 		android:layout_height="wrap_content"
-		android:text="显示普通POP"/>
+		android:text="显示普通POP" />
 
 	<Button
 		android:id="@+id/mBtn2"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="显示列表POP"/>
+		android:text="显示列表POP" />
 
 	<Button
 		android:id="@+id/mBtn3"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="显示时间选择器"/>
+		android:text="显示时间选择器" />
 
 	<Button
 		android:id="@+id/mBtn4"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="网络请求测试"/>
+		android:text="网络请求测试" />
 
 	<Button
 		android:id="@+id/mBtn5"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="啊!我死了..."/>
+		android:text="啊!我死了..." />
 
 	<Button
 		android:id="@+id/mBtn6"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="底部列表"/>
-
-	<talex.zsw.basecore.view.other.nicespinner.NiceSpinner
-		android:id="@+id/mNiceSpinner"
-		android:layout_width="150dp"
-		android:layout_height="wrap_content"
-		android:background="@drawable/btn_blue"
-		android:textColor="@color/white"
-		android:textSize="@dimen/text_label"/>
+		android:text="底部列表" />
 
 	<HorizontalScrollView
 		android:layout_width="match_parent"
@@ -65,25 +57,8 @@
 				android:id="@+id/mImageView"
 				android:layout_width="80dp"
 				android:layout_height="80dp"
-				android:src="@mipmap/ic_launcher_round"/>
+				android:src="@mipmap/ic_launcher_round" />
 
-
-			<talex.zsw.basecore.view.other.IconText
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="test"
-				android:textSize="10sp"
-				app:IT_badge_icon_show="true"
-				app:IT_icon_selected="@mipmap/ic_launcher"
-				app:IT_icon_unselected="@mipmap/ic_launcher_round"
-				app:IT_padding="20dp"
-				app:IT_selected="false"
-				app:IT_selected_background="@color/red"
-				app:IT_text_selected_color="@color/white"
-				app:IT_text_unselected_color="@color/yellow"
-				app:IT_unselected_background="@color/black">
-
-			</talex.zsw.basecore.view.other.IconText>
 
 			<TextView
 				android:id="@+id/mTv1"
@@ -91,7 +66,15 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:text="text"
-				android:textSize="10sp"/>
+				android:textSize="10sp" />
+
+			<TextView
+				android:id="@+id/mTv2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:text="text"
+				android:textSize="20sp" />
 
 			<talex.zsw.basecore.view.other.IconText
 				android:layout_width="wrap_content"
@@ -111,13 +94,22 @@
 
 			</talex.zsw.basecore.view.other.IconText>
 
-			<TextView
-				android:id="@+id/mTv2"
+			<talex.zsw.basecore.view.other.IconText
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:text="text"
-				android:textSize="20sp"/>
+				android:text="test"
+				android:textSize="10sp"
+				app:IT_badge_icon_show="true"
+				app:IT_icon_selected="@mipmap/ic_launcher"
+				app:IT_icon_unselected="@mipmap/ic_launcher_round"
+				app:IT_padding="20dp"
+				app:IT_selected="false"
+				app:IT_selected_background="@color/red"
+				app:IT_text_selected_color="@color/white"
+				app:IT_text_unselected_color="@color/yellow"
+				app:IT_unselected_background="@color/black">
+
+			</talex.zsw.basecore.view.other.IconText>
 
 
 		</LinearLayout>
@@ -131,7 +123,15 @@
 		<TextView
 			android:id="@+id/mTvInfo"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content" />
 
 	</android.support.v4.widget.NestedScrollView>
+
+	<talex.zsw.basecore.view.other.nicespinner.NiceSpinner
+		android:id="@+id/mNiceSpinner"
+		android:layout_width="150dp"
+		android:layout_height="wrap_content"
+		android:background="@drawable/btn_blue"
+		android:textColor="@color/white"
+		android:textSize="@dimen/text_label" />
 </LinearLayout>

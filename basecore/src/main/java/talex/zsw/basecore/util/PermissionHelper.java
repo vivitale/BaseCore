@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import java.util.List;
 
 import talex.zsw.basecore.R;
+import talex.zsw.basecore.interfaces.OnSimpleListener;
 
 /**
  * 权限简单获取工具类
@@ -101,11 +102,102 @@ public class PermissionHelper
 				LogTool.d("BaseCore", permissionsGranted);
 			}
 
-			@Override public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied)
+			@Override
+			public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied)
 			{
 				if(listener != null)
 				{
 					listener.onDenied(permissionsDeniedForever, permissionsDenied);
+				}
+				LogTool.d("BaseCore", permissionsDeniedForever, permissionsDenied);
+			}
+		}).theme(new PermissionTool.ThemeCallback()
+		{
+			@Override public void onActivityCreate(Activity activity)
+			{
+				setFullScreen(activity);
+			}
+		}).request();
+	}
+
+	// ==============================  检查权限,有权限则调用简单方法 ==============================
+
+	/** 获取相机权限 */
+	public static void checkCamera(final OnSimpleListener listener)
+	{
+		check(listener, PermissionConstants.CAMERA);
+	}
+
+	/** 获取内存卡权限 */
+	public static void checkStorage(final OnSimpleListener listener)
+	{
+		check(listener, PermissionConstants.STORAGE);
+	}
+
+	/** 获取电话权限 */
+	public static void checkPhone(final OnSimpleListener listener)
+	{
+		check(listener, PermissionConstants.PHONE);
+	}
+
+	/** 获取短信权限 */
+	public static void checkSms(final OnSimpleListener listener)
+	{
+		check(listener, PermissionConstants.SMS);
+	}
+
+	/** 获取地理位置权限 */
+	public static void checkLocation(final OnSimpleListener listener)
+	{
+		check(listener, PermissionConstants.LOCATION);
+	}
+
+	/** 获取日历权限 */
+	public static void checkCalendar(final OnSimpleListener listener)
+	{
+		check(listener, PermissionConstants.CALENDAR);
+	}
+
+	/** 获取联系人权限 */
+	public static void checkContacts(final OnSimpleListener listener)
+	{
+		check(listener, PermissionConstants.CONTACTS);
+	}
+
+	/** 获取麦克风权限 */
+	public static void checkMicrophone(final OnSimpleListener listener)
+	{
+		check(listener, PermissionConstants.MICROPHONE);
+	}
+
+	/** 获取人体传感器权限 */
+	public static void checkSensors(final OnSimpleListener listener)
+	{
+		check(listener, PermissionConstants.SENSORS);
+	}
+
+	/** 获取权限 */
+	public static void check(final OnSimpleListener listener, final @PermissionConstants.Permission
+		String... permissions)
+	{
+		PermissionTool.permission(permissions).callback(new PermissionTool.FullCallback()
+		{
+			@Override public void onGranted(List<String> permissionsGranted)
+			{
+				if(listener != null)
+				{
+					listener.doSomething();
+				}
+				LogTool.d("BaseCore", permissionsGranted);
+			}
+
+			@Override
+			public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied)
+			{
+				if((permissionsDeniedForever != null && permissionsDeniedForever.size() > 0) ||
+					(permissionsDenied != null && permissionsDenied.size() > 0))
+				{
+					showOpenAppSettingDialog();
 				}
 				LogTool.d("BaseCore", permissionsDeniedForever, permissionsDenied);
 			}
@@ -135,7 +227,10 @@ public class PermissionHelper
 	/** 显示一个打开APP设置来获取权限的Dialog */
 	public static void showOpenAppSettingDialog(DialogInterface.OnClickListener cancelListener)
 	{
-		String message = Tool.getContext().getResources().getString(R.string.permission_denied_forever_message);
+		String message = Tool
+			.getContext()
+			.getResources()
+			.getString(R.string.permission_denied_forever_message);
 		showOpenAppSettingDialog(message, new DialogInterface.OnClickListener()
 		{
 			@Override public void onClick(DialogInterface dialog, int which)
@@ -172,7 +267,10 @@ public class PermissionHelper
 	/** 显示一个打开APP设置来获取权限的Dialog */
 	public static void showOpenAppSettingDialog(DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener)
 	{
-		String message = Tool.getContext().getResources().getString(R.string.permission_denied_forever_message);
+		String message = Tool
+			.getContext()
+			.getResources()
+			.getString(R.string.permission_denied_forever_message);
 		showOpenAppSettingDialog(message, okListener, cancelListener);
 	}
 
@@ -194,28 +292,33 @@ public class PermissionHelper
 			.show();
 	}
 
-	public static void showRationaleDialog(final PermissionTool.OnRationaleListener.ShouldRequest shouldRequest) {
+	public static void showRationaleDialog(final PermissionTool.OnRationaleListener.ShouldRequest shouldRequest)
+	{
 		Activity topActivity = ActivityTool.currentActivity();
-		if (topActivity == null) return;
+		if(topActivity == null)
+		{
+			return;
+		}
 		new AlertDialog.Builder(topActivity)
 			.setTitle(android.R.string.dialog_alert_title)
 			.setMessage(R.string.permission_rationale_message)
-			.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
+			.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+			{
+				@Override public void onClick(DialogInterface dialog, int which)
+				{
 					shouldRequest.again(true);
 				}
 			})
-			.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
+			.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
+			{
+				@Override public void onClick(DialogInterface dialog, int which)
+				{
 					shouldRequest.again(false);
 				}
 			})
 			.setCancelable(false)
 			.create()
 			.show();
-
 	}
 
 	/** 打开App的设置界面 */
@@ -233,6 +336,7 @@ public class PermissionHelper
 	{
 		activity
 			.getWindow()
-			.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+			.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN |
+				          WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 	}
 }

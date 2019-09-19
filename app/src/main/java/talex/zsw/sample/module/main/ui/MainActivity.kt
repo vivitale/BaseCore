@@ -5,16 +5,21 @@ import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import butterknife.OnClick
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
 import talex.zsw.basecore.model.ActionItem
 import talex.zsw.basecore.util.LogTool
+import talex.zsw.basecore.util.PhotoTool
 import talex.zsw.basecore.util.TimeTool
 import talex.zsw.basecore.util.glide.GlideTool
+import talex.zsw.basecore.view.dialog.rxdialog.RxDialogChooseImage
 import talex.zsw.basecore.view.dialog.rxdialog.RxDialogList
 import talex.zsw.basecore.view.other.slidedatetimepicker.SlideDateTimeListener
 import talex.zsw.basecore.view.other.slidedatetimepicker.SlideDateTimePicker
 import talex.zsw.basecore.view.popupwindow.PopLayout
 import talex.zsw.basecore.view.popupwindow.PopListView
+import talex.zsw.basecore.view.recyleview.SampleFooter
+import talex.zsw.basecore.view.recyleview.SampleHeader
 import talex.zsw.sample.R
 import talex.zsw.sample.base.BaseMVPActivity
 import talex.zsw.sample.module.main.adapter.TestAdapter
@@ -107,7 +112,6 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
                         .setInitialDate(Date())
                         .setMinDate(Date())
                         .setMaxDate(Date())
-                        .setIndicatorColor(Color.parseColor("#0000FF"))
                         .setThemeColor(Color.parseColor("#00FF00"))
                         .setTitleColor(Color.parseColor("#FF0000"))
                         .setShowTime(true)
@@ -121,7 +125,8 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
                 //                body.key = "26802ee608152"
                 //                body.city = "杭州"
                 //                mPresenter.getData(HttpDto(Constant.WEATHER, body).setType(HttpDto.GET))
-                uploadLog()
+                //                uploadLog()
+                showRxChooseImg()
             }
             R.id.mBtn5 ->
             {
@@ -134,6 +139,8 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
                             listDialog = RxDialogList(this@MainActivity)
                             listDialog?.setAdapter(adapter)
                             adapter.replaceData(TestData.getGoods(20))
+                            adapter.addHeaderView(SampleHeader(this@MainActivity))
+                            adapter.addFooterView(SampleFooter(this@MainActivity))
                         }
                 listDialog?.show()
             }
@@ -171,4 +178,51 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
     fun uploadFile(file: File)
     {
     }
+
+    // --------------- 选择图片 ---------------
+    private var rxChooseImg: RxDialogChooseImage? = null
+
+    private fun showRxChooseImg()
+    {
+        rxChooseImg
+                ?: let {
+                    rxChooseImg = RxDialogChooseImage(this@MainActivity)
+                }
+        rxChooseImg?.showWithPermission()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+    {
+        when (requestCode)
+        {
+            PhotoTool.GET_IMAGE_FROM_PHONE ->
+            { //选择相册之后的处理
+                if (resultCode == RESULT_OK)
+                {
+                    PhotoTool.cropImage(this@MainActivity, data?.data, 1, 1, 250, 250) // 裁剪图片
+                }
+            }
+            PhotoTool.GET_IMAGE_BY_CAMERA  ->
+            { //选择相册之后的处理
+                if (resultCode == RESULT_OK)
+                {
+                    PhotoTool.cropImage(this@MainActivity,
+                                        PhotoTool.imageUriFromCamera,
+                                        1,
+                                        1,
+                                        250,
+                                        250) // 裁剪图片
+                }
+            }
+            PhotoTool.CROP_IMAGE           ->
+            { // 裁剪完成以后
+                Glide.with(this@MainActivity)
+                        .load(PhotoTool.cropImageUri)
+                        .into(mImageView)
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+
 }

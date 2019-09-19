@@ -4,117 +4,119 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 kapt {
-    generateStubs = true
-    arguments {
-        arg('eventBusIndex', 'talex.zsw.sample.MyEventBusIndex')
-    }
+	generateStubs = true
+	arguments {
+		arg('eventBusIndex', 'talex.zsw.sample.MyEventBusIndex')
+	}
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
-    defaultConfig {
-        applicationId "talex.zsw.sample"
-        minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+	compileSdkVersion 28
+	buildToolsVersion '28.0.3'
+	defaultConfig {
+		applicationId "talex.zsw.sample"
+		minSdkVersion 16
+		targetSdkVersion 28
+		versionCode 1
+		versionName "1.0.0"
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        multiDexEnabled true
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+		multiDexEnabled true
+	}
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+	}
 
-    packagingOptions {
-        exclude 'META-INF/services/javax.annotation.processing.Processor'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LGPL2.1'
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/DEPENDENCIES.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/dependencies.txt'
-    }
+	packagingOptions {
+		exclude 'META-INF/services/javax.annotation.processing.Processor'
+		exclude 'META-INF/LICENSE'
+		exclude 'META-INF/NOTICE'
+		exclude 'META-INF/DEPENDENCIES'
+		exclude 'META-INF/LGPL2.1'
+		exclude 'META-INF/ASL2.0'
+		exclude 'META-INF/LICENSE.txt'
+		exclude 'META-INF/NOTICE.txt'
+		exclude 'META-INF/DEPENDENCIES.txt'
+		exclude 'META-INF/license.txt'
+		exclude 'META-INF/notice.txt'
+		exclude 'META-INF/dependencies.txt'
+	}
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
+	lintOptions {
+		checkReleaseBuilds false
+		abortOnError false
+	}
 
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            outputFileName = "CoreSample_${defaultConfig.versionName}_" + getDate() + ".apk"
-        }
-    }
+	applicationVariants.all { variant ->
+		variant.outputs.all { output ->
+			outputFileName = "CoreSample_${defaultConfig.versionName}_" + getDate() + ".apk"
+		}
+	}
 }
 
 def getDate()
 {
-    return new Date().format("yyyyMMddHHmm")
+	return new Date().format("yyyyMMddHHmm")
 }
 
 repositories {
-    flatDir { dirs 'libs' }
-    maven { url "https://jitpack.io" }
+	flatDir { dirs 'libs' }
+	maven { url "https://jitpack.io" }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':basecore')
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation project(':basecore')
 
-    kapt 'com.jakewharton:butterknife-compiler:8.8.1' // *** 在app中添加 *** Kotlin 的butterknife注解处理器
-    kapt 'org.greenrobot:eventbus-annotation-processor:3.0.1' // *** 在app中添加 ***
-    compileOnly 'org.glassfish:javax.annotation:10.0-b28' // *** 在app中添加 ***
-    // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.anko:anko-common:$anko_version"
-    implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
-    // 友盟
-    implementation 'com.umeng.sdk:common:1.5.3'
-    implementation 'com.umeng.sdk:analytics:7.5.3'
-    // LeakCanary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+	kapt 'com.jakewharton:butterknife-compiler:8.8.1' // *** 在app中添加 *** Kotlin 的butterknife注解处理器
+	kapt 'org.greenrobot:eventbus-annotation-processor:3.0.1' // *** 在app中添加 ***
+	compileOnly 'org.glassfish:javax.annotation:10.0-b28' // *** 在app中添加 ***
+	// Kotlin
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	implementation "org.jetbrains.anko:anko-common:$anko_version"
+	implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
+	// 友盟
+	implementation 'com.umeng.sdk:common:1.5.3'
+	implementation 'com.umeng.sdk:analytics:7.5.3'
+	// LeakCanary
+	debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+	releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 
-    // 依据项目情况需自行整合的库
-    // 网络请求
-    implementation 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
-    implementation 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
-    implementation 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
-    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
-    implementation 'com.squareup.okio:okio:1.13.0'
-    // 图片工具glide
-    implementation 'com.github.bumptech.glide:glide:4.7.1'
-    kapt 'com.github.bumptech.glide:compiler:4.7.1'
-    implementation 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
-//    // 动画
-//    implementation 'com.github.florent37:viewanimator:1.0.5'
-//    // RecyclerView适配器工具
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
-//    implementation 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
-//    // 轮播图
-//    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
-//    // 二维码,一维码工具
-//    implementation 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
-//    implementation 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
-//    // 图片选择、预览、九宫格图片控件、拖拽排序九宫格图片控件,需要同时选择 bga-baseadapter
-//    implementation 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+	// 依据项目情况需自行整合的库
+	// 网络请求
+	implementation 'com.lzy.net:okgo:3.0.4' //可以单独使用，不需要依赖下方的扩展包
+	implementation 'com.lzy.net:okrx2:2.0.2' //RxJava扩展支持，根据需要添加
+	implementation 'com.lzy.net:okserver:2.0.5' //版本号使用 + 可以自动引用最新版
+	implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+	implementation 'com.squareup.okio:okio:1.13.0'
+	// 图片工具glide
+	implementation 'com.github.bumptech.glide:glide:4.7.1'
+	kapt 'com.github.bumptech.glide:compiler:4.7.1'
+	implementation 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
+	// SuperTextView
+	// implementation 'com.github.chenBingX:SuperTextView:3.2.1'
+	//    // 动画
+	//    implementation 'com.github.florent37:viewanimator:1.0.5'
+	//    // RecyclerView适配器工具
+	implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+	//    implementation 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
+	//    // 轮播图
+	//    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+	//    // 二维码,一维码工具
+	//    implementation 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
+	//    implementation 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
+	//    // 图片选择、预览、九宫格图片控件、拖拽排序九宫格图片控件,需要同时选择 bga-baseadapter
+	//    implementation 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
 }
 
 allprojects {
-    gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xdiags:verbose"
-        }
-    }
+	gradle.projectsEvaluated {
+		tasks.withType(JavaCompile) {
+			options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xdiags:verbose"
+		}
+	}
 }
 

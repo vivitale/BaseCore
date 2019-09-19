@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import talex.zsw.basecore.util.Tool;
+import talex.zsw.sample.BuildConfig;
 import talex.zsw.sample.module.main.ui.MainActivity;
 
 /**
@@ -31,8 +32,9 @@ public class MyApplication extends BaseApplication
 	@Override public void onCreate()
 	{
 		super.onCreate();
-		initHttp();
+		Tool.init(this, BuildConfig.DEBUG);
 		Tool.initCaoc(0, MainActivity.class);
+		initHttp();
 		UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
 		//Bugly.init(this, "", false);// 调试时，将第三个参数改为true
 		if(LeakCanary.isInAnalyzerProcess(this))

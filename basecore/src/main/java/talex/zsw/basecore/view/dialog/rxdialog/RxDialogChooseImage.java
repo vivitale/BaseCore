@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import talex.zsw.basecore.R;
+import talex.zsw.basecore.interfaces.OnSimpleListener;
+import talex.zsw.basecore.util.PermissionConstants;
+import talex.zsw.basecore.util.PermissionHelper;
 import talex.zsw.basecore.util.PhotoTool;
 
 /**
@@ -125,10 +128,14 @@ public class RxDialogChooseImage extends RxDialog
 		switch(mLayoutType)
 		{
 			case TITLE:
-				dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_picker_pictrue, null);
+				dialogView = LayoutInflater
+					.from(getContext())
+					.inflate(R.layout.dialog_picker_pictrue, null);
 				break;
 			case NO_TITLE:
-				dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_camero_show, null);
+				dialogView = LayoutInflater
+					.from(getContext())
+					.inflate(R.layout.dialog_camero_show, null);
 				break;
 			default:
 				break;
@@ -173,10 +180,14 @@ public class RxDialogChooseImage extends RxDialog
 		switch(mLayoutType)
 		{
 			case TITLE:
-				dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_picker_pictrue, null);
+				dialogView = LayoutInflater
+					.from(getContext())
+					.inflate(R.layout.dialog_picker_pictrue, null);
 				break;
 			case NO_TITLE:
-				dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_camero_show, null);
+				dialogView = LayoutInflater
+					.from(getContext())
+					.inflate(R.layout.dialog_camero_show, null);
 				break;
 			default:
 				break;
@@ -219,5 +230,15 @@ public class RxDialogChooseImage extends RxDialog
 	public enum LayoutType
 	{
 		TITLE, NO_TITLE
+	}
+
+	public void showWithPermission()
+	{
+		PermissionHelper.check(new OnSimpleListener(){
+			@Override public void doSomething()
+			{
+				show();
+			}
+		}, PermissionConstants.CAMERA, PermissionConstants.STORAGE);
 	}
 }
