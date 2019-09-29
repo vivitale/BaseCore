@@ -91,7 +91,7 @@ public class IntentTool
 	}
 
 	/**
-	 * 根据包名获取意图
+	 * 根据包名获取意图2
 	 *
 	 * @param context     上下文
 	 * @param packageName 包名

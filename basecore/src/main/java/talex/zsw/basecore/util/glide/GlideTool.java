@@ -2,6 +2,7 @@ package talex.zsw.basecore.util.glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
@@ -301,6 +302,67 @@ public class GlideTool
 	}
 
 	/**
+	 * 加载圆角图片
+	 *
+	 * @param v              ImageView
+	 * @param url            图片URL
+	 * @param roundingRadius 元角度数(px)
+	 */
+	public static void loadImgRoundedCornersLeft(ImageView v, String url, int roundingRadius)
+	{
+		GlideCircleTransform transform
+			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
+		transform.setExceptCorner(true, false, true, false);
+		loadImg(v, url, transform);
+	}
+
+	/**
+	 * 加载圆角图片
+	 *
+	 * @param v              ImageView
+	 * @param url            图片URL
+	 * @param roundingRadius 元角度数(px)
+	 */
+	public static void loadImgRoundedCornersRight(ImageView v, String url, int roundingRadius)
+	{
+		GlideCircleTransform transform
+			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
+		transform.setExceptCorner(false, true, false, true);
+		loadImg(v, url, transform);
+	}
+
+	/**
+	 * 加载圆角图片
+	 *
+	 * @param v              ImageView
+	 * @param url            图片URL
+	 * @param roundingRadius 元角度数(px)
+	 */
+	public static void loadImgRoundedCornersTop(ImageView v, String url, int roundingRadius)
+	{
+		GlideCircleTransform transform
+			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
+		transform.setExceptCorner(true, true, false, false);
+		loadImg(v, url, transform);
+	}
+
+	/**
+	 * 加载圆角图片
+	 *
+	 * @param v              ImageView
+	 * @param url            图片URL
+	 * @param roundingRadius 元角度数(px)
+	 */
+	public static void loadImgRoundedCornersBottom(ImageView v, String url, int roundingRadius)
+	{
+		GlideCircleTransform transform
+			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
+		transform.setExceptCorner(false, false, true, true);
+		loadImg(v, url, transform);
+	}
+
+
+	/**
 	 * 加载图片并且不缓存
 	 *
 	 * @param v   ImageView
@@ -347,12 +409,13 @@ public class GlideTool
 		Bitmap bitmap = null;
 		try
 		{
-			bitmap = GlideApp.with(Tool.getContext())
-			                 .asBitmap()
-			                 .load(url)
-			                 .centerCrop()
-			                 .into(500, 500)
-			                 .get();
+			bitmap = GlideApp
+				.with(Tool.getContext())
+				.asBitmap()
+				.load(url)
+				.centerCrop()
+				.into(500, 500)
+				.get();
 		}
 		catch(InterruptedException | ExecutionException e)
 		{
@@ -365,7 +428,10 @@ public class GlideTool
 	{
 		LogTool.i("IMG", url);
 		String path = "";
-		FutureTarget<File> future = GlideApp.with(Tool.getContext()).load(url).downloadOnly(500, 500);
+		FutureTarget<File> future = GlideApp
+			.with(Tool.getContext())
+			.load(url)
+			.downloadOnly(500, 500);
 		try
 		{
 			File cacheFile = future.get();

@@ -376,4 +376,16 @@
 		      format="reference|dimension"/>
 	</declare-styleable>
 
+	<!-- 圆形图片 -->
+	<declare-styleable name="CircleImageView">
+		<!--边框厚度-->
+		<attr name="civ_border_width" format="dimension" />
+		<!--边框颜色-->
+		<attr name="civ_border_color" format="color" />
+		<!--是否使用背景填充-->
+		<attr name="civ_border_overlay" format="boolean" />
+		<!--背景填充色-->
+		<attr name="civ_fill_color" format="color" />
+	</declare-styleable>
+
 </resources>

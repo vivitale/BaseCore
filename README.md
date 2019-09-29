@@ -1862,6 +1862,7 @@ new SlideDateTimePicker.Builder(getSupportFragmentManager())
 <receiver android:name="talex.zsw.basecore.receiver.BootReceiver">
     <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED"/>
+        <category android:name="android.intent.category.HOME" />
     </intent-filter>
 </receiver>
 ```
@@ -1876,6 +1877,9 @@ new SlideDateTimePicker.Builder(getSupportFragmentManager())
 ```
 @Subscribe public void onEvent(BootEvent event)
 {
+    Intent intentMainActivity = new Intent(this, MainActivity.class);
+    intentMainActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intentMainActivity);
 }
 ```
 
