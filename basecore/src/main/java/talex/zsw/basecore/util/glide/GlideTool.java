@@ -308,7 +308,7 @@ public class GlideTool
 	 * @param url            图片URL
 	 * @param roundingRadius 元角度数(px)
 	 */
-	public static void loadImgRoundedCornersLeft(ImageView v, String url, int roundingRadius)
+	public static void loadImgRoundedCornersRight(ImageView v, String url, int roundingRadius)
 	{
 		GlideCircleTransform transform
 			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
@@ -323,7 +323,7 @@ public class GlideTool
 	 * @param url            图片URL
 	 * @param roundingRadius 元角度数(px)
 	 */
-	public static void loadImgRoundedCornersRight(ImageView v, String url, int roundingRadius)
+	public static void loadImgRoundedCornersLeft(ImageView v, String url, int roundingRadius)
 	{
 		GlideCircleTransform transform
 			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
@@ -338,7 +338,7 @@ public class GlideTool
 	 * @param url            图片URL
 	 * @param roundingRadius 元角度数(px)
 	 */
-	public static void loadImgRoundedCornersTop(ImageView v, String url, int roundingRadius)
+	public static void loadImgRoundedCornersBottom(ImageView v, String url, int roundingRadius)
 	{
 		GlideCircleTransform transform
 			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
@@ -353,7 +353,7 @@ public class GlideTool
 	 * @param url            图片URL
 	 * @param roundingRadius 元角度数(px)
 	 */
-	public static void loadImgRoundedCornersBottom(ImageView v, String url, int roundingRadius)
+	public static void loadImgRoundedCornersTop(ImageView v, String url, int roundingRadius)
 	{
 		GlideCircleTransform transform
 			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);

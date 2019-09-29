@@ -80,7 +80,8 @@ public class GlideCircleTransform implements Transformation<Bitmap>
 		this.mBitmapPool = pool;
 	}
 
-	public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight)
+	@NonNull @Override public Resource<Bitmap> transform(
+		@NonNull Context context, @NonNull Resource<Bitmap> resource, int outWidth, int outHeight)
 	{
 		Bitmap source = (Bitmap) resource.get();
 		Bitmap bitmap = null;
@@ -252,11 +253,5 @@ public class GlideCircleTransform implements Transformation<Bitmap>
 	{
 		//避免Transformation重复设置,导致图片闪烁,同一个圆角值的Transformation视为同一个对象
 		return Util.hashCode(getId().hashCode(), Util.hashCode(this.radius));
-	}
-
-	@NonNull @Override public Resource<Bitmap> transform(
-		@NonNull Context context, @NonNull Resource<Bitmap> resource, int outWidth, int outHeight)
-	{
-		return null;
 	}
 }

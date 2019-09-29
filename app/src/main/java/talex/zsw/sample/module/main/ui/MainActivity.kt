@@ -54,8 +54,9 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
 
     override fun initData()
     {
-        GlideTool.loadImgCircleCrop(mImageView,
-                                    "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1182022639,405039723&fm=27&gp=0.jpg")
+        val url = "http://img4.imgtn.bdimg.com/it/u=3399090562,3531159538&fm=26&gp=0.jpg"
+        GlideTool.loadImgRoundedCornersLeft(mImageView, url, 20)
+
         LogTool.nv("initData")
         LogUtils.listLogs()
                 .forEach {
