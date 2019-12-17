@@ -2,6 +2,8 @@ package talex.zsw.sample.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
+import android.os.StrictMode;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
@@ -28,7 +30,22 @@ public class BaseApplication extends MultiDexApplication
 	{
 		mApplicationContext = this;
 		EventBus.getDefault().register(mApplicationContext);
+
+		initPhotoError();
 		super.onCreate();
+	}
+
+	/**
+	 * 解决7.0系统拍照崩溃问题
+	 */
+	private void initPhotoError()
+	{
+		StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+		StrictMode.setVmPolicy(builder.build());
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+		{
+			builder.detectFileUriExposure();
+		}
 	}
 
 	public EventBus getBus()

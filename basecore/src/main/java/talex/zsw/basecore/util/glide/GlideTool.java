@@ -10,9 +10,9 @@ import android.widget.ImageView;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.FutureTarget;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.io.File;
@@ -32,6 +32,9 @@ import talex.zsw.basecore.util.Tool;
  */
 public class GlideTool
 {
+
+	// --------------- 加载图片,不涉及图像改变 ---------------
+
 	/**
 	 * 加载图片
 	 *
@@ -48,7 +51,6 @@ public class GlideTool
 			.error(new ColorDrawable(0xffF0F0F0))
 			.fallback(new ColorDrawable(0xffF0F0F0))
 			.transition(DrawableTransitionOptions.withCrossFade())
-			.fitCenter()
 			.into(v);
 	}
 
@@ -69,7 +71,6 @@ public class GlideTool
 			.error(holder)
 			.fallback(holder)
 			.transition(DrawableTransitionOptions.withCrossFade())
-			.fitCenter()
 			.into(v);
 	}
 
@@ -90,7 +91,6 @@ public class GlideTool
 			.error(holder)
 			.fallback(holder)
 			.transition(DrawableTransitionOptions.withCrossFade())
-			.fitCenter()
 			.into(v);
 	}
 
@@ -139,6 +139,32 @@ public class GlideTool
 	}
 
 	/**
+	 * 加载图片,为图片加入一些变化
+	 *
+	 * @param v              ImageView
+	 * @param url            图片URL
+	 * @param transformation 变化
+	 */
+	public static void loadImgTransparent(ImageView v, String url, Transformation<Bitmap> transformation)
+	{
+		LogTool.i("IMG", url);
+		GlideApp
+			.with(v.getContext())
+			.asBitmap()
+			.load(url)
+			.placeholder(new ColorDrawable(Color.TRANSPARENT))
+			.error(new ColorDrawable(Color.TRANSPARENT))
+			.fallback(new ColorDrawable(Color.TRANSPARENT))
+			.transition(BitmapTransitionOptions.withCrossFade())
+			.transform(transformation)
+			.into(v);
+	}
+
+
+	// --------------- 加载图片,图片可能不完整 ---------------
+
+
+	/**
 	 * 图片可能不完整
 	 * 缩放宽和高都到达View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能超过边界
 	 *
@@ -158,6 +184,52 @@ public class GlideTool
 			.centerCrop()
 			.into(v);
 	}
+
+	/**
+	 * 图片可能不完整
+	 * 缩放宽和高都到达View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能超过边界
+	 *
+	 * @param v   ImageView
+	 * @param url 图片URL
+	 */
+	public static void loadImgCenterCrop(ImageView v, String url, int holder)
+	{
+		LogTool.i("IMG", url);
+		GlideApp
+			.with(v.getContext())
+			.load(url)
+			.placeholder(holder)
+			.error(holder)
+			.fallback(holder)
+			.transition(DrawableTransitionOptions.withCrossFade())
+			.centerCrop()
+			.into(v);
+	}
+
+	/**
+	 * 图片可能不完整
+	 * 缩放宽和高都到达View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能超过边界
+	 *
+	 * @param v   ImageView
+	 * @param url 图片URL
+	 */
+	public static void loadImgCenterCrop(ImageView v, String url, Drawable holder)
+	{
+		LogTool.i("IMG", url);
+		GlideApp
+			.with(v.getContext())
+			.load(url)
+			.placeholder(holder)
+			.error(holder)
+			.fallback(holder)
+			.transition(DrawableTransitionOptions.withCrossFade())
+			.centerCrop()
+			.into(v);
+	}
+
+
+
+	// --------------- 图片完整,但是会露出背景 ---------------
 
 	/**
 	 * 图片完整
@@ -182,6 +254,50 @@ public class GlideTool
 
 	/**
 	 * 图片完整
+	 * 如果宽和高都在View的边界内，那就不缩放，否则缩放宽和高都进入View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能在边界内
+	 *
+	 * @param v   ImageView
+	 * @param url 图片URL
+	 */
+	public static void loadImgCenterInside(ImageView v, String url, Drawable holder)
+	{
+		LogTool.i("IMG", url);
+		GlideApp
+			.with(v.getContext())
+			.load(url)
+			.placeholder(holder)
+			.error(holder)
+			.fallback(holder)
+			.transition(DrawableTransitionOptions.withCrossFade())
+			.centerInside()
+			.into(v);
+	}
+
+	/**
+	 * 图片完整
+	 * 如果宽和高都在View的边界内，那就不缩放，否则缩放宽和高都进入View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能在边界内
+	 *
+	 * @param v   ImageView
+	 * @param url 图片URL
+	 */
+	public static void loadImgCenterInside(ImageView v, String url, int holder)
+	{
+		LogTool.i("IMG", url);
+		GlideApp
+			.with(v.getContext())
+			.load(url)
+			.placeholder(holder)
+			.error(holder)
+			.fallback(holder)
+			.transition(DrawableTransitionOptions.withCrossFade())
+			.centerInside()
+			.into(v);
+	}
+
+	// --------------- 图片完整但是可能变形 ---------------
+
+	/**
+	 * 图片完整
 	 * 缩放宽和高都进入View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能在边界内
 	 *
 	 * @param v   ImageView
@@ -200,6 +316,50 @@ public class GlideTool
 			.fitCenter()
 			.into(v);
 	}
+
+	/**
+	 * 图片完整
+	 * 缩放宽和高都进入View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能在边界内
+	 *
+	 * @param v   ImageView
+	 * @param url 图片URL
+	 */
+	public static void loadImgFitCenter(ImageView v, String url, Drawable holder)
+	{
+		LogTool.i("IMG", url);
+		GlideApp
+			.with(v.getContext())
+			.load(url)
+			.placeholder(holder)
+			.error(holder)
+			.fallback(holder)
+			.transition(DrawableTransitionOptions.withCrossFade())
+			.fitCenter()
+			.into(v);
+	}
+
+	/**
+	 * 图片完整
+	 * 缩放宽和高都进入View的边界，有一个参数在边界上，另一个参数可能在边界上，也可能在边界内
+	 *
+	 * @param v   ImageView
+	 * @param url 图片URL
+	 */
+	public static void loadImgFitCenter(ImageView v, String url, int holder)
+	{
+		LogTool.i("IMG", url);
+		GlideApp
+			.with(v.getContext())
+			.load(url)
+			.placeholder(holder)
+			.error(holder)
+			.fallback(holder)
+			.transition(DrawableTransitionOptions.withCrossFade())
+			.fitCenter()
+			.into(v);
+	}
+
+	// --------------- 加载圆形图片 ---------------
 
 	/**
 	 * 加载圆形图片
@@ -260,6 +420,8 @@ public class GlideTool
 			.into(v);
 	}
 
+	// --------------- 加载圆角图片 ---------------
+
 	/**
 	 * 加载圆角图片
 	 *
@@ -269,15 +431,10 @@ public class GlideTool
 	public static void loadImgRoundedCorners(ImageView v, String url)
 	{
 		LogTool.i("IMG", url);
-		GlideApp
-			.with(v.getContext())
-			.load(url)
-			.placeholder(new ColorDrawable(0xffF0F0F0))
-			.error(new ColorDrawable(0xffF0F0F0))
-			.fallback(new ColorDrawable(0xffF0F0F0))
-			.transition(DrawableTransitionOptions.withCrossFade())
-			.transform(new RoundedCorners(11))
-			.into(v);
+		GlideCircleTransform transform
+			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, 11);
+		transform.setExceptCorner(true, true, true, true);
+		loadImgTransparent(v, url, transform);
 	}
 
 	/**
@@ -290,15 +447,10 @@ public class GlideTool
 	public static void loadImgRoundedCorners(ImageView v, String url, int roundingRadius)
 	{
 		LogTool.i("IMG", url);
-		GlideApp
-			.with(v.getContext())
-			.load(url)
-			.placeholder(new ColorDrawable(0xffF0F0F0))
-			.error(new ColorDrawable(0xffF0F0F0))
-			.fallback(new ColorDrawable(0xffF0F0F0))
-			.transition(DrawableTransitionOptions.withCrossFade())
-			.transform(new RoundedCorners(roundingRadius))
-			.into(v);
+		GlideCircleTransform transform
+			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
+		transform.setExceptCorner(true, true, true, true);
+		loadImgTransparent(v, url, transform);
 	}
 
 	/**
@@ -310,10 +462,11 @@ public class GlideTool
 	 */
 	public static void loadImgRoundedCornersRight(ImageView v, String url, int roundingRadius)
 	{
+		LogTool.i("IMG", url);
 		GlideCircleTransform transform
 			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
 		transform.setExceptCorner(true, false, true, false);
-		loadImg(v, url, transform);
+		loadImgTransparent(v, url, transform);
 	}
 
 	/**
@@ -325,10 +478,11 @@ public class GlideTool
 	 */
 	public static void loadImgRoundedCornersLeft(ImageView v, String url, int roundingRadius)
 	{
+		LogTool.i("IMG", url);
 		GlideCircleTransform transform
 			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
 		transform.setExceptCorner(false, true, false, true);
-		loadImg(v, url, transform);
+		loadImgTransparent(v, url, transform);
 	}
 
 	/**
@@ -340,10 +494,11 @@ public class GlideTool
 	 */
 	public static void loadImgRoundedCornersBottom(ImageView v, String url, int roundingRadius)
 	{
+		LogTool.i("IMG", url);
 		GlideCircleTransform transform
 			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
 		transform.setExceptCorner(true, true, false, false);
-		loadImg(v, url, transform);
+		loadImgTransparent(v, url, transform);
 	}
 
 	/**
@@ -355,10 +510,11 @@ public class GlideTool
 	 */
 	public static void loadImgRoundedCornersTop(ImageView v, String url, int roundingRadius)
 	{
+		LogTool.i("IMG", url);
 		GlideCircleTransform transform
 			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
 		transform.setExceptCorner(false, false, true, true);
-		loadImg(v, url, transform);
+		loadImgTransparent(v, url, transform);
 	}
 
 
@@ -392,6 +548,7 @@ public class GlideTool
 	 */
 	public static void loadImageSimpleTarget(Context context, String url, SimpleTarget<Bitmap> target)
 	{
+		LogTool.i("IMG", url);
 		GlideApp
 			.with(context)
 			.asBitmap()
@@ -401,6 +558,107 @@ public class GlideTool
 			.fallback(new ColorDrawable(0xffF0F0F0))
 			.transition(BitmapTransitionOptions.withCrossFade())
 			.into(target);
+	}
+
+	/**
+	 * 加载视频的第一帧
+	 *
+	 * @param v        ImageView
+	 * @param videoUrl 视频URL
+	 */
+	public static void loadVideoImg(ImageView v, String videoUrl)
+	{
+		LogTool.i("IMG", videoUrl);
+		GlideApp
+			.with(v.getContext())
+			.setDefaultRequestOptions(new RequestOptions()
+				                          .frame(0)
+				                          .centerCrop()
+				                          .error(new ColorDrawable(Color.BLACK))
+				                          .fallback(new ColorDrawable(Color.BLACK))
+				                          .placeholder(new ColorDrawable(Color.BLACK)))
+
+			.load(videoUrl)
+			.transition(DrawableTransitionOptions.withCrossFade())
+			.fitCenter()
+			.into(v);
+	}
+
+	/**
+	 * 加载视频的第一帧
+	 *
+	 * @param v               ImageView
+	 * @param videoUrl        视频URL
+	 * @param holder          占位图
+	 */
+	public static void loadVideoImg(ImageView v, String videoUrl, int holder)
+	{
+		LogTool.i("IMG", videoUrl);
+		GlideApp
+			.with(v.getContext())
+			.setDefaultRequestOptions(new RequestOptions()
+				                          .frame(0)
+				                          .centerCrop()
+				                          .error(holder)
+				                          .fallback(holder)
+				                          .placeholder(holder))
+
+			.load(videoUrl)
+			.transition(DrawableTransitionOptions.withCrossFade())
+			.fitCenter()
+			.into(v);
+	}
+
+	/**
+	 * 加载视频图片
+	 *
+	 * @param v               ImageView
+	 * @param videoUrl        视频URL
+	 * @param holder          占位图
+	 * @param frameTimeMicros 视频多少秒
+	 */
+	public static void loadVideoImg(ImageView v, String videoUrl, int holder, long frameTimeMicros)
+	{
+		LogTool.i("IMG", videoUrl);
+		GlideApp
+			.with(v.getContext())
+			.setDefaultRequestOptions(new RequestOptions()
+				                          .frame(frameTimeMicros)
+				                          .centerCrop()
+				                          .error(holder)
+				                          .fallback(holder)
+				                          .placeholder(holder))
+
+			.load(videoUrl)
+			.transition(DrawableTransitionOptions.withCrossFade())
+			.fitCenter()
+			.into(v);
+	}
+
+	/**
+	 * 加载视频图片
+	 *
+	 * @param v               ImageView
+	 * @param videoUrl        视频URL
+	 * @param holder          占位图
+	 * @param frameTimeMicros 视频多少秒
+	 */
+	public static void loadVideoImg(ImageView v, String videoUrl, Drawable holder, long frameTimeMicros)
+	{
+		LogTool.i("IMG", videoUrl);
+		GlideApp
+			.with(v.getContext())
+			.setDefaultRequestOptions(new RequestOptions()
+				                          .frame(frameTimeMicros)
+				                          .centerCrop()
+				                          .error(holder)
+				                          .fallback(holder)
+				                          .placeholder(holder))
+
+			.load(videoUrl)
+			.transition(DrawableTransitionOptions.withCrossFade())
+			.fitCenter()
+			.into(v);
 	}
 
 	public static Bitmap getBitmap(String url)

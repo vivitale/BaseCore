@@ -481,7 +481,9 @@ public class IntentTool
 	 */
 	public static Intent getOpenCameraIntent()
 	{
-		return new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+		return getIntent(intent, false);
 	}
 
 	/**
@@ -545,6 +547,7 @@ public class IntentTool
 	public static Intent getCameraIntent(Uri saveFileURI)
 	{
 		Intent mIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		mIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 		return mIntent.putExtra(MediaStore.EXTRA_OUTPUT, saveFileURI);
 	}
 

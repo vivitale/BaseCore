@@ -26,6 +26,11 @@ import talex.zsw.basecore.R;
 
 /**
  * 作用：圆形图片
+ * 加载网络图片时不能用holder
+ * GlideApp.with(v.context)
+ *         .load(url)
+ *         .centerCrop()
+ *         .into(v)
  * 作者：赵小白 email:vvtale@gmail.com  
  * 修改人：
  * 修改时间：

@@ -84,6 +84,11 @@ public class PopLayout extends PopupWindow
 		tv_imply.setText(str);
 	}
 
+	public TextView getSimpleTextView()
+	{
+		return tv_imply;
+	}
+
 	/**
 	 * 显示弹窗列表界面
 	 */
@@ -92,7 +97,8 @@ public class PopLayout extends PopupWindow
 		// 获得点击屏幕的位置坐标
 		view.getLocationOnScreen(mLocation);
 		// 设置矩形的大小
-		mRect.set(mLocation[0], mLocation[1], mLocation[0]+view.getWidth(), mLocation[1]+view.getHeight());
+		mRect.set(mLocation[0], mLocation[1],
+		          mLocation[0]+view.getWidth(), mLocation[1]+view.getHeight());
 		// 显示弹窗的位置
 		// showAtLocation(view, popupGravity, mScreenWidth - LIST_PADDING - (getWidth() / 2), mRect.bottom + VonUtils.dip2px(mContext, 7.5f));
 		showAsDropDown(view);
@@ -108,7 +114,8 @@ public class PopLayout extends PopupWindow
 		// 获得点击屏幕的位置坐标
 		view.getLocationOnScreen(mLocation);
 		// 设置矩形的大小
-		mRect.set(mLocation[0], mLocation[1], mLocation[0]+view.getWidth(), mLocation[1]+view.getHeight());
+		mRect.set(mLocation[0], mLocation[1],
+		          mLocation[0]+view.getWidth(), mLocation[1]+view.getHeight());
 		// 显示弹窗的位置
 		// showAtLocation(view, popupGravity, mScreenWidth - LIST_PADDING - (getWidth() / 2), mRect.bottom + VonUtils.dip2px(mContext, 7.5f));
 		showAsDropDown(view, x, 0);
@@ -125,7 +132,8 @@ public class PopLayout extends PopupWindow
 		// 获得点击屏幕的位置坐标
 		view.getLocationOnScreen(mLocation);
 		// 设置矩形的大小
-		mRect.set(mLocation[0], mLocation[1], mLocation[0]+view.getWidth(), mLocation[1]+view.getHeight());
+		mRect.set(mLocation[0], mLocation[1],
+		          mLocation[0]+view.getWidth(), mLocation[1]+view.getHeight());
 		// 显示弹窗的位置
 		// showAtLocation(view, popupGravity, mScreenWidth - LIST_PADDING - (getWidth() / 2), mRect.bottom + VonUtils.dip2px(mContext, 7.5f));
 		showAsDropDown(view, x, y);

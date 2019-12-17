@@ -153,8 +153,8 @@ public class BitmapTool
 		int h = drawable.getIntrinsicHeight();
 
 		// 取 drawable 的颜色格式
-		Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 :
-			Bitmap.Config.RGB_565;
+		Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ?
+			Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
 		// 建立对应 bitmap
 		Bitmap bitmap = Bitmap.createBitmap(w, h, config);
 		// 建立对应 bitmap 的画布
@@ -219,16 +219,22 @@ public class BitmapTool
 	/**
 	 * View 转 Bitmap.
 	 */
-	public static Bitmap view2Bitmap(final View view) {
-		if (view == null) return null;
-		Bitmap ret = Bitmap.createBitmap(view.getWidth(),
-		                                 view.getHeight(),
-		                                 Bitmap.Config.ARGB_8888);
+	public static Bitmap view2Bitmap(final View view)
+	{
+		if(view == null)
+		{
+			return null;
+		}
+		Bitmap ret
+			= Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
 		Canvas canvas = new Canvas(ret);
 		Drawable bgDrawable = view.getBackground();
-		if (bgDrawable != null) {
+		if(bgDrawable != null)
+		{
 			bgDrawable.draw(canvas);
-		} else {
+		}
+		else
+		{
 			canvas.drawColor(Color.WHITE);
 		}
 		view.draw(canvas);
@@ -856,7 +862,8 @@ public class BitmapTool
 		int width = src.getWidth();
 		int height = src.getHeight();
 		Bitmap ret = src.copy(src.getConfig(), true);
-		BitmapShader bitmapShader = new BitmapShader(src, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+		BitmapShader bitmapShader
+			= new BitmapShader(src, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 		Paint paint = new Paint();
 		Canvas canvas = new Canvas(ret);
 		RectF rectf = new RectF(0, 0, width, height);
@@ -911,7 +918,8 @@ public class BitmapTool
 		Bitmap scaleBitmap = Bitmap.createScaledBitmap(src, scaleWidth, scaleHeight, true);
 		Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
 		Canvas canvas = new Canvas();
-		PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
+		PorterDuffColorFilter filter
+			= new PorterDuffColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
 		paint.setColorFilter(filter);
 		canvas.scale(scale, scale);
 		canvas.drawBitmap(scaleBitmap, 0, 0, paint);
@@ -947,7 +955,8 @@ public class BitmapTool
 	 * @param radius 模糊度(0...25)
 	 * @return 模糊后的图片
 	 */
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1) public static Bitmap renderScriptBlur(Bitmap src, float radius)
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+	public static Bitmap renderScriptBlur(Bitmap src, float radius)
 	{
 		if(isEmptyBitmap(src))
 		{
@@ -1515,7 +1524,8 @@ public class BitmapTool
 		{
 			return null;
 		}
-		Bitmap grayBitmap = Bitmap.createBitmap(src.getWidth(), src.getHeight(), Bitmap.Config.RGB_565);
+		Bitmap grayBitmap
+			= Bitmap.createBitmap(src.getWidth(), src.getHeight(), Bitmap.Config.RGB_565);
 		Canvas canvas = new Canvas(grayBitmap);
 		Paint paint = new Paint();
 		ColorMatrix colorMatrix = new ColorMatrix();
@@ -1628,8 +1638,8 @@ public class BitmapTool
 	public static boolean isImage(String filePath)
 	{
 		String path = filePath.toUpperCase();
-		return path.endsWith(".PNG") || path.endsWith(".JPG") || path.endsWith(".JPEG") || path.endsWith(".BMP") ||
-			path.endsWith(".GIF");
+		return path.endsWith(".PNG") || path.endsWith(".JPG") || path.endsWith(".JPEG") ||
+			path.endsWith(".BMP") || path.endsWith(".GIF");
 	}
 
 	/**
@@ -1737,8 +1747,8 @@ public class BitmapTool
 	private static boolean isPNG(byte[] b)
 	{
 		return b.length >= 8 &&
-			(b[0] == (byte) 137 && b[1] == (byte) 80 && b[2] == (byte) 78 && b[3] == (byte) 71 && b[4] == (byte) 13 &&
-				b[5] == (byte) 10 && b[6] == (byte) 26 && b[7] == (byte) 10);
+			(b[0] == (byte) 137 && b[1] == (byte) 80 && b[2] == (byte) 78 && b[3] == (byte) 71 &&
+				b[4] == (byte) 13 && b[5] == (byte) 10 && b[6] == (byte) 26 && b[7] == (byte) 10);
 	}
 
 	private static boolean isBMP(byte[] b)
@@ -2313,7 +2323,8 @@ public class BitmapTool
 				for(y = 0; y < h; y++)
 				{
 					// Preserve alpha channel: ( 0xff000000 & pix[yi] )
-					pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
+					pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16) | (dv[gsum] << 8) |
+						dv[bsum];
 
 					rsum -= routsum;
 					gsum -= goutsum;
@@ -2610,7 +2621,8 @@ public class BitmapTool
 			options -= 10;//每次都减少10
 			image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
 		}
-		ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
+		ByteArrayInputStream isBm
+			= new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
 		Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
 		return bitmap;
 	}
@@ -2642,26 +2654,25 @@ public class BitmapTool
 
 			Bitmap paintingBoard = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 			Canvas canvas = new Canvas(paintingBoard);
-			canvas.drawARGB(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT,
-			                Color.TRANSPARENT);
+			canvas.drawARGB(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT);
 
 			final Paint paint = new Paint();
 			paint.setAntiAlias(true);
 			paint.setColor(Color.BLACK);
 
-			if (TOP == type)
+			if(TOP == type)
 			{
 				clipTop(canvas, paint, roundPx, width, height);
 			}
-			else if (LEFT == type)
+			else if(LEFT == type)
 			{
 				clipLeft(canvas, paint, roundPx, width, height);
 			}
-			else if (RIGHT == type)
+			else if(RIGHT == type)
 			{
 				clipRight(canvas, paint, roundPx, width, height);
 			}
-			else if (BOTTOM == type)
+			else if(BOTTOM == type)
 			{
 				clipBottom(canvas, paint, roundPx, width, height);
 			}
@@ -2676,52 +2687,83 @@ public class BitmapTool
 			final Rect dst = src;
 			canvas.drawBitmap(bitmap, src, dst, paint);
 			return paintingBoard;
-		} catch (Exception exp)
+		}
+		catch(Exception exp)
 		{
 			return bitmap;
 		}
 	}
 
-	private static void clipLeft(final Canvas canvas, final Paint paint, int offset, int width,
-		int height)
+	private static void clipLeft(final Canvas canvas, final Paint paint, int offset, int width, int height)
 	{
 		final Rect block = new Rect(offset, 0, width, height);
 		canvas.drawRect(block, paint);
-		final RectF rectF = new RectF(0, 0, offset * 2, height);
+		final RectF rectF = new RectF(0, 0, offset*2, height);
 		canvas.drawRoundRect(rectF, offset, offset, paint);
 	}
 
-	private static void clipRight(final Canvas canvas, final Paint paint, int offset, int width,
-		int height)
+	private static void clipRight(final Canvas canvas, final Paint paint, int offset, int width, int height)
 	{
-		final Rect block = new Rect(0, 0, width - offset, height);
+		final Rect block = new Rect(0, 0, width-offset, height);
 		canvas.drawRect(block, paint);
-		final RectF rectF = new RectF(width - offset * 2, 0, width, height);
+		final RectF rectF = new RectF(width-offset*2, 0, width, height);
 		canvas.drawRoundRect(rectF, offset, offset, paint);
 	}
 
-	private static void clipTop(final Canvas canvas, final Paint paint, int offset, int width,
-		int height)
+	private static void clipTop(final Canvas canvas, final Paint paint, int offset, int width, int height)
 	{
 		final Rect block = new Rect(0, offset, width, height);
 		canvas.drawRect(block, paint);
-		final RectF rectF = new RectF(0, 0, width, offset * 2);
+		final RectF rectF = new RectF(0, 0, width, offset*2);
 		canvas.drawRoundRect(rectF, offset, offset, paint);
 	}
 
-	private static void clipBottom(final Canvas canvas, final Paint paint, int offset, int width,
-		int height)
+	private static void clipBottom(final Canvas canvas, final Paint paint, int offset, int width, int height)
 	{
-		final Rect block = new Rect(0, 0, width, height - offset);
+		final Rect block = new Rect(0, 0, width, height-offset);
 		canvas.drawRect(block, paint);
-		final RectF rectF = new RectF(0, height - offset * 2, width, height);
+		final RectF rectF = new RectF(0, height-offset*2, width, height);
 		canvas.drawRoundRect(rectF, offset, offset, paint);
 	}
 
-	private static void clipAll(final Canvas canvas, final Paint paint, int offset, int width,
-		int height)
+	private static void clipAll(final Canvas canvas, final Paint paint, int offset, int width, int height)
 	{
 		final RectF rectF = new RectF(0, 0, width, height);
 		canvas.drawRoundRect(rectF, offset, offset, paint);
+	}
+
+	/**
+	 * 横向拼接
+	 *
+	 * @param first  第一张图片
+	 * @param second 第二张图片
+	 */
+	private Bitmap add2Bitmap(Bitmap first, Bitmap second)
+	{
+		int width = first.getWidth()+second.getWidth();
+		int height = Math.max(first.getHeight(), second.getHeight());
+		Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+		Canvas canvas = new Canvas(result);
+		canvas.drawBitmap(first, 0, 0, null);
+		canvas.drawBitmap(second, first.getWidth(), 0, null);
+		return result;
+	}
+
+
+	/**
+	 * 纵向拼接
+	 *
+	 * @param first  第一张图片
+	 * @param second 第二张图片
+	 */
+	private Bitmap addBitmap(Bitmap first, Bitmap second)
+	{
+		int width = Math.max(first.getWidth(), second.getWidth());
+		int height = first.getHeight()+second.getHeight();
+		Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+		Canvas canvas = new Canvas(result);
+		canvas.drawBitmap(first, 0, 0, null);
+		canvas.drawBitmap(second, first.getHeight(), 0, null);
+		return result;
 	}
 }

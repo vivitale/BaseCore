@@ -51,6 +51,7 @@ public class PhotoTool
 		// 返回图片在onActivityResult中通过以下代码获取
 		// Bitmap bitmap = (Bitmap) data.getExtras().get("data");
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUriFromCamera);
+		intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 		activity.startActivityForResult(intent, GET_IMAGE_BY_CAMERA);
 	}
 
@@ -66,6 +67,7 @@ public class PhotoTool
 		// 返回图片在onActivityResult中通过以下代码获取
 		// Bitmap bitmap = (Bitmap) data.getExtras().get("data");
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUriFromCamera);
+		intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 		fragment.startActivityForResult(intent, GET_IMAGE_BY_CAMERA);
 	}
 
