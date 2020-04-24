@@ -1,6 +1,10 @@
 package talex.zsw.sample.base;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
@@ -16,6 +20,9 @@ import com.umeng.commonsdk.UMConfigure;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import talex.zsw.basecore.service.PingService;
+import talex.zsw.basecore.util.LogTool;
+import talex.zsw.basecore.util.NetPingTool;
 import talex.zsw.basecore.util.Tool;
 import talex.zsw.sample.BuildConfig;
 import talex.zsw.sample.module.main.ui.MainActivity;

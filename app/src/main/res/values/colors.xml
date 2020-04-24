@@ -3,7 +3,7 @@
 	<!--系统 -->
 	<color name="colorPrimary">#272626</color>
 	<color name="colorPrimaryDark">#272626</color>
-	<color name="colorAccent">#272626</color>
+	<color name="colorAccent">#E0E0E0</color>
 	<color name="primary_text">#E0E0E0</color>
 	<color name="secondary_text">#A0A0A0</color>
 	<color name="window_background">#F8F8F8</color>

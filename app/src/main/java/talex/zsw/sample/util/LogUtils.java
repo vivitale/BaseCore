@@ -38,6 +38,7 @@ import talex.zsw.basecore.util.DataTool;
 import talex.zsw.basecore.util.SpTool;
 import talex.zsw.basecore.util.Tool;
 
+
 /**
  * <pre>
  *     author: Blankj
@@ -70,7 +71,7 @@ public final class LogUtils
 	private static ExecutorService sExecutor;
 	private static String sDefaultDir;// log默认存储目录
 	private static String sDir;       // log存储目录
-	private static String sFilePrefix = "SDZJ";// log文件前缀
+	public static String sFilePrefix = "SDZJ-Ping";// log文件前缀
 	private static boolean sLogSwitch = true;  // log总开关，默认开
 	private static boolean sLog2ConsoleSwitch = true;  // logcat是否打印，默认打印
 	private static String sGlobalTag = null;  // log标签
@@ -450,8 +451,7 @@ public final class LogUtils
 		String date = format.substring(0, 5);
 		String hour = format.substring(6, 8);
 		String time = format.substring(6);
-		String ten = format.substring(9, 10);
-		final String fullPath = (sDir == null ? sDefaultDir : sDir)+sFilePrefix+"_"+date+"-"+hour+"-"+ten+".txt";
+		final String fullPath = (sDir == null ? sDefaultDir : sDir)+sFilePrefix+"_"+date+"-"+hour+".txt";
 		if(!createOrExistsFile(fullPath))
 		{
 			Log.e(tag, "log to "+fullPath+" failed!");
@@ -503,6 +503,7 @@ public final class LogUtils
 		File file = new File(filePath);
 		if(file.exists())
 		{
+			SpTool.saveInt(file.getName(), 0);
 			return file.isFile();
 		}
 		if(!createOrExistsDir(file.getParentFile()))
@@ -574,9 +575,8 @@ public final class LogUtils
 		Date now = new Date(System.currentTimeMillis());
 		String format = FORMAT.format(now);
 		String date = format.substring(0, 5);
-		String hour = format.substring(6, 8);
-		String ten = format.substring(9, 10);
-		String time = date+"-"+hour+"-"+ten;
+		//String hour = format.substring(6, 8);
+		//String time = date+"-"+hour;
 
 		String fullPath = (sDir == null ? sDefaultDir : sDir);
 		File file = new File(fullPath);
@@ -589,17 +589,14 @@ public final class LogUtils
 			return fileList;
 		}
 		File[] files = file.listFiles();
-		if(files!=null)
+		for(int i = 0; i < files.length; i++)
 		{
-			for(int i = 0; i < files.length; i++)
+			File exeFile = files[i];
+			String name = exeFile.getName();
+			int type = SpTool.getInt(name, 0);
+			if(type == 0 && name.contains(date))
 			{
-				File exeFile = files[i];
-				String name = exeFile.getName();
-				int type = SpTool.getInt(name, 0);
-				if(type == 0 && name.startsWith(sFilePrefix) && !name.contains(time))
-				{
-					fileList.add(exeFile);
-				}
+				fileList.add(exeFile);
 			}
 		}
 		return fileList;

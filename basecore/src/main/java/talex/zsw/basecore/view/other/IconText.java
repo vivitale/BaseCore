@@ -208,7 +208,7 @@ public class IconText extends RelativeLayout
 		setSelected(flag);
 	}
 
-	public void setSelected(boolean selected)
+	@Override public void setSelected(boolean selected)
 	{
 		this.selected = selected;
 		if(selected)

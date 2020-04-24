@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/black"
+	android:orientation="vertical">
+
+	<include layout="@layout/include_title" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/activity_margin"
+		android:visibility="gone"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="服务器地址"
+			android:textColor="@color/white" />
+
+		<EditText
+			android:id="@+id/mEtServer"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/activity_margin"
+			android:layout_marginEnd="@dimen/activity_margin"
+			android:background="#20FFFFFF"
+			android:padding="@dimen/activity_margin"
+			android:textColor="@color/white" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:focusable="true"
+		android:visibility="gone"
+		android:layout_marginTop="@dimen/activity_margin"
+		android:focusableInTouchMode="true"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="服务器端口"
+			android:textColor="@color/white" />
+
+		<EditText
+			android:id="@+id/mEtPort"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/activity_margin"
+			android:layout_marginEnd="@dimen/activity_margin"
+			android:background="#20FFFFFF"
+			android:padding="@dimen/activity_margin"
+			android:textColor="@color/white" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:focusable="true"
+		android:layout_marginTop="@dimen/margin_big"
+		android:focusableInTouchMode="true"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:text="总次数"
+			android:textColor="@color/white" />
+
+		<TextView
+			android:id="@+id/mTv1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="0"
+			android:textColor="@color/white"
+			android:textSize="32sp" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:text="0~500 ms"
+			android:textColor="@color/lime"/>
+
+		<TextView
+			android:id="@+id/mTv2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="0"
+			android:textColor="@color/lime"
+			android:textSize="32sp" />
+	</LinearLayout>
+
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:text="500 ~ 2000 ms"
+			android:textColor="@color/yellow" />
+
+		<TextView
+			android:id="@+id/mTv3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="0"
+			android:textColor="@color/yellow"
+			android:textSize="32sp" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:text="2000 ~ 5000 ms"
+			android:textColor="@color/orange" />
+
+		<TextView
+			android:id="@+id/mTv4"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="0"
+			android:textColor="@color/orange"
+			android:textSize="32sp" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:text="> 5000 ms"
+			android:textColor="@color/red" />
+
+		<TextView
+			android:id="@+id/mTv5"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="0"
+			android:textColor="@color/red"
+			android:textSize="32sp" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:text="错误!!!"
+			android:textColor="@color/red" />
+
+		<TextView
+			android:id="@+id/mTv6"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="0"
+			android:textColor="@color/red"
+			android:textSize="32sp" />
+	</LinearLayout>
+
+
+</LinearLayout>

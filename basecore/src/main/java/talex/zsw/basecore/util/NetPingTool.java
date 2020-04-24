@@ -37,7 +37,7 @@ public class NetPingTool
 	private IOnNetPingListener mIOnNetPingListener; // 将监控日志上报到前段页面
 	private HandlerThread mHandlerThread;
 
-	private int DELAY_TIME = 1000;
+	private int DELAY_TIME = 500;
 	private ConnectivityManager manager;
 	private final Handler mHandleMessage;
 
