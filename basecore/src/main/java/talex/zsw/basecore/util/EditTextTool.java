@@ -1,11 +1,15 @@
 package talex.zsw.basecore.util;
 
+import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import java.util.regex.Matcher;
@@ -253,5 +257,16 @@ public class EditTextTool
 			}
 		}
 		editText.setText(s.toString());
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
+	public void showSoftInputFromWindow(EditText editText){
+		editText.setFocusable(true);
+		editText.setFocusableInTouchMode(true);
+		editText.requestFocus();
+		editText.setSelection(editText.getText().length());
+		InputMethodManager inputManager =
+			(InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputManager.showSoftInput(editText, 0);
 	}
 }

@@ -2566,12 +2566,12 @@ public class BitmapTool
 	public static File saveBitmap2File(Bitmap bm, String fileName)
 	{
 		Log.e(TAG, "保存图片");
-		File dirFile = new File("/sdcard/cache/");
+		File dirFile = new File("/storage/emulated/0/Pictures");
 		if(!dirFile.exists())
 		{
 			dirFile.mkdir();
 		}
-		File f = new File("/sdcard/cache/", fileName);
+		File f = new File("/storage/emulated/0/Pictures", fileName);
 		if(f.exists())
 		{
 			f.delete();
