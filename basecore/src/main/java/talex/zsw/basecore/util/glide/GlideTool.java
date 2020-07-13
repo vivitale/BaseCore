@@ -431,10 +431,7 @@ public class GlideTool
 	public static void loadImgRoundedCorners(ImageView v, String url)
 	{
 		LogTool.i("IMG", url);
-		GlideCircleTransform transform
-			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, 11);
-		transform.setExceptCorner(true, true, true, true);
-		loadImgTransparent(v, url, transform);
+		loadImgTransparent(v, url, new GlideRoundImage());
 	}
 
 	/**
@@ -442,15 +439,12 @@ public class GlideTool
 	 *
 	 * @param v              ImageView
 	 * @param url            图片URL
-	 * @param roundingRadius 元角度数(px)
+	 * @param roundingRadius 元角度数(dp)
 	 */
 	public static void loadImgRoundedCorners(ImageView v, String url, int roundingRadius)
 	{
 		LogTool.i("IMG", url);
-		GlideCircleTransform transform
-			= new GlideCircleTransform(v.getContext(), Color.TRANSPARENT, roundingRadius);
-		transform.setExceptCorner(true, true, true, true);
-		loadImgTransparent(v, url, transform);
+		loadImgTransparent(v, url, new GlideRoundImage(roundingRadius));
 	}
 
 	/**
