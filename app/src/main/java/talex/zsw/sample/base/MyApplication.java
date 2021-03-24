@@ -1,10 +1,6 @@
 package talex.zsw.sample.base;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
@@ -14,15 +10,11 @@ import com.lzy.okgo.cookie.store.SPCookieStore;
 import com.lzy.okgo.https.HttpsUtils;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
-import com.squareup.leakcanary.LeakCanary;
 import com.umeng.commonsdk.UMConfigure;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
-import talex.zsw.basecore.service.PingService;
-import talex.zsw.basecore.util.LogTool;
-import talex.zsw.basecore.util.NetPingTool;
 import talex.zsw.basecore.util.Tool;
 import talex.zsw.sample.BuildConfig;
 import talex.zsw.sample.module.main.ui.MainActivity;
@@ -39,16 +31,11 @@ public class MyApplication extends BaseApplication
 	@Override public void onCreate()
 	{
 		super.onCreate();
-		Tool.init(this, BuildConfig.DEBUG);
+		Tool.init(getApplicationContext(), BuildConfig.DEBUG);
 		Tool.initCaoc(0, MainActivity.class);
 		initHttp();
 		UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
 		//Bugly.init(this, "", false);// 调试时，将第三个参数改为true
-		if(LeakCanary.isInAnalyzerProcess(this))
-		{
-			return;
-		}
-		LeakCanary.install(this);
 	}
 
 	@Override protected void attachBaseContext(Context base)

@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import talex.zsw.basecore.util.WebViewTool;
+import talex.zsw.basecore.view.other.RxToast;
 import talex.zsw.basecore.view.other.TitleBar;
 import talex.zsw.basecore.view.textview.RichText;
 import talex.zsw.sample.R;
@@ -45,6 +46,8 @@ public class WebActivity extends BaseMVPActivity<_Presenter> implements CommonVi
 		setContentView(R.layout.activity_web);
 		ButterKnife.bind(this);
 		mPresenter = new CommonPresenter(this);
+
+		RxToast.normal("111111111111111");
 	}
 
 	@Override protected void initData()

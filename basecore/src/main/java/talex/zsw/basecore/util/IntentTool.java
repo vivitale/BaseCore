@@ -496,6 +496,15 @@ public class IntentTool
 	}
 
 	/**
+	 * 获取跳转至相册选择界面的Intent
+	 */
+	public static Intent getVideoPickerIntent()
+	{
+		Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+		return intent;
+	}
+
+	/**
 	 * 获取[跳转至相册选择界面,并跳转至裁剪界面，默认可缩放裁剪区域]的Intent
 	 */
 	public static Intent getImagePickerIntent(int outputX, int outputY, Uri fromFileURI, Uri saveFileURI)

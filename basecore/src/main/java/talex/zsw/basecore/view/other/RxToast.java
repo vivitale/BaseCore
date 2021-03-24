@@ -44,13 +44,10 @@ public class RxToast
 
 	private static final String TOAST_TYPEFACE = "sans-serif-condensed";
 
-	private static Toast currentToast;
-
 	//*******************************************普通 使用ApplicationContext 方法*********************
 	/**
 	 * Toast 替代方法 ：立即显示无需等待
 	 */
-	private static Toast mToast;
 	private static long mExitTime;
 
 	public static void normal(@NonNull String message)
@@ -73,7 +70,8 @@ public class RxToast
 		normal(getContext(), message, duration, icon, true).show();
 	}
 
-	public static Toast normal(@NonNull String message, int duration, Drawable icon, boolean withIcon)
+	public static Toast normal(
+		@NonNull String message, int duration, Drawable icon, boolean withIcon)
 	{
 		return custom(getContext(), message, icon, DEFAULT_TEXT_COLOR, duration, withIcon);
 	}
@@ -146,24 +144,27 @@ public class RxToast
 		return normal(context, message, Toast.LENGTH_SHORT, null, false);
 	}
 
-	@CheckResult public static Toast normal(@NonNull Context context, @NonNull String message, Drawable icon)
+	@CheckResult
+	public static Toast normal(@NonNull Context context, @NonNull String message, Drawable icon)
 	{
 		return normal(context, message, Toast.LENGTH_SHORT, icon, true);
 	}
 
-	@CheckResult public static Toast normal(@NonNull Context context, @NonNull String message, int duration)
+	@CheckResult
+	public static Toast normal(@NonNull Context context, @NonNull String message, int duration)
 	{
 		return normal(context, message, duration, null, false);
 	}
 
-	@CheckResult
-	public static Toast normal(@NonNull Context context, @NonNull String message, int duration, Drawable icon)
+	@CheckResult public static Toast normal(
+		@NonNull Context context, @NonNull String message, int duration, Drawable icon)
 	{
 		return normal(context, message, duration, icon, true);
 	}
 
 	@CheckResult public static Toast normal(
-		@NonNull Context context, @NonNull String message, int duration, Drawable icon, boolean withIcon)
+		@NonNull Context context,
+		@NonNull String message, int duration, Drawable icon, boolean withIcon)
 	{
 		return custom(context, message, icon, DEFAULT_TEXT_COLOR, duration, withIcon);
 	}
@@ -173,13 +174,14 @@ public class RxToast
 		return warning(context, message, Toast.LENGTH_SHORT, true);
 	}
 
-	@CheckResult public static Toast warning(@NonNull Context context, @NonNull String message, int duration)
+	@CheckResult
+	public static Toast warning(@NonNull Context context, @NonNull String message, int duration)
 	{
 		return warning(context, message, duration, true);
 	}
 
-	@CheckResult
-	public static Toast warning(@NonNull Context context, @NonNull String message, int duration, boolean withIcon)
+	@CheckResult public static Toast warning(
+		@NonNull Context context, @NonNull String message, int duration, boolean withIcon)
 	{
 		return custom(context, message, getDrawable(context, R.drawable.ic_error_outline_white_48dp), DEFAULT_TEXT_COLOR, WARNING_COLOR, duration, withIcon, true);
 	}
@@ -189,13 +191,14 @@ public class RxToast
 		return info(context, message, Toast.LENGTH_SHORT, true);
 	}
 
-	@CheckResult public static Toast info(@NonNull Context context, @NonNull String message, int duration)
+	@CheckResult
+	public static Toast info(@NonNull Context context, @NonNull String message, int duration)
 	{
 		return info(context, message, duration, true);
 	}
 
-	@CheckResult
-	public static Toast info(@NonNull Context context, @NonNull String message, int duration, boolean withIcon)
+	@CheckResult public static Toast info(
+		@NonNull Context context, @NonNull String message, int duration, boolean withIcon)
 	{
 		return custom(context, message, getDrawable(context, R.drawable.ic_info_outline_white_48dp), DEFAULT_TEXT_COLOR, INFO_COLOR, duration, withIcon, true);
 	}
@@ -205,13 +208,14 @@ public class RxToast
 		return success(context, message, Toast.LENGTH_SHORT, true);
 	}
 
-	@CheckResult public static Toast success(@NonNull Context context, @NonNull String message, int duration)
+	@CheckResult
+	public static Toast success(@NonNull Context context, @NonNull String message, int duration)
 	{
 		return success(context, message, duration, true);
 	}
 
-	@CheckResult
-	public static Toast success(@NonNull Context context, @NonNull String message, int duration, boolean withIcon)
+	@CheckResult public static Toast success(
+		@NonNull Context context, @NonNull String message, int duration, boolean withIcon)
 	{
 		return custom(context, message, getDrawable(context, R.drawable.ic_check_white_48dp), DEFAULT_TEXT_COLOR, SUCCESS_COLOR, duration, withIcon, true);
 	}
@@ -223,20 +227,22 @@ public class RxToast
 
 	//===========================================常规方法============================================
 
-	@CheckResult public static Toast error(@NonNull Context context, @NonNull String message, int duration)
+	@CheckResult
+	public static Toast error(@NonNull Context context, @NonNull String message, int duration)
 	{
 		return error(context, message, duration, true);
 	}
 
-	@CheckResult
-	public static Toast error(@NonNull Context context, @NonNull String message, int duration, boolean withIcon)
+	@CheckResult public static Toast error(
+		@NonNull Context context, @NonNull String message, int duration, boolean withIcon)
 	{
 		return custom(context, message, getDrawable(context, R.drawable.ic_clear_white_48dp), DEFAULT_TEXT_COLOR, ERROR_COLOR, duration, withIcon, true);
 	}
 
 	@CheckResult public static Toast custom(
 		@NonNull Context context,
-		@NonNull String message, Drawable icon, @ColorInt int textColor, int duration, boolean withIcon)
+		@NonNull String message, Drawable icon,
+		@ColorInt int textColor, int duration, boolean withIcon)
 	{
 		return custom(context, message, icon, textColor, -1, duration, withIcon, false);
 	}
@@ -247,7 +253,8 @@ public class RxToast
 		@NonNull Context context,
 		@NonNull String message,
 		@DrawableRes int iconRes,
-		@ColorInt int textColor, @ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint)
+		@ColorInt int textColor,
+		@ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint)
 	{
 		return custom(context, message, getDrawable(context, iconRes), textColor, tintColor, duration, withIcon, shouldTint);
 	}
@@ -255,12 +262,13 @@ public class RxToast
 	@CheckResult public static Toast custom(
 		@NonNull Context context,
 		@NonNull String message, Drawable icon,
-		@ColorInt int textColor, @ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint)
+		@ColorInt int textColor,
+		@ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint)
 	{
-		if(currentToast == null)
-		{
-			currentToast = new Toast(context);
-		}
+		//		if(currentToast == null)
+		//		{
+		Toast currentToast = new Toast(context);
+		//		}
 		final View toastLayout
 			= ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.toast_layout, null);
 		final ImageView toastIcon = (ImageView) toastLayout.findViewById(R.id.toast_icon);
@@ -299,9 +307,11 @@ public class RxToast
 		return currentToast;
 	}
 
-	public static final Drawable tint9PatchDrawableFrame(@NonNull Context context, @ColorInt int tintColor)
+	public static final Drawable tint9PatchDrawableFrame(
+		@NonNull Context context, @ColorInt int tintColor)
 	{
-		final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, R.drawable.toast_frame);
+		final NinePatchDrawable toastDrawable
+			= (NinePatchDrawable) getDrawable(context, R.drawable.toast_frame);
 		toastDrawable.setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
 		return toastDrawable;
 	}
@@ -392,14 +402,7 @@ public class RxToast
 	 */
 	public static void showToast(String msg)
 	{
-		if(mToast == null)
-		{
-			mToast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
-		}
-		else
-		{
-			mToast.setText(msg);
-		}
+		Toast mToast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
 		mToast.show();
 	}
 
@@ -410,14 +413,7 @@ public class RxToast
 	 */
 	public static void showToast(int resId)
 	{
-		if(mToast == null)
-		{
-			mToast = Toast.makeText(getContext(), getContext().getString(resId), Toast.LENGTH_LONG);
-		}
-		else
-		{
-			mToast.setText(getContext().getString(resId));
-		}
+		Toast mToast = Toast.makeText(getContext(), getContext().getString(resId), Toast.LENGTH_LONG);
 		mToast.show();
 	}
 
@@ -443,14 +439,7 @@ public class RxToast
 	 */
 	public static void showToast(Context context, String msg, int duration)
 	{
-		if(mToast == null)
-		{
-			mToast = Toast.makeText(context, msg, duration);
-		}
-		else
-		{
-			mToast.setText(msg);
-		}
+		Toast mToast = Toast.makeText(context, msg, duration);
 		mToast.show();
 	}
 

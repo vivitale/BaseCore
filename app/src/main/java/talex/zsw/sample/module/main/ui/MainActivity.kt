@@ -22,6 +22,7 @@ import talex.zsw.basecore.view.recyleview.SampleFooter
 import talex.zsw.basecore.view.recyleview.SampleHeader
 import talex.zsw.sample.R
 import talex.zsw.sample.base.BaseMVPActivity
+import talex.zsw.sample.module.common.ui.WebActivity
 import talex.zsw.sample.module.main.adapter.TestAdapter
 import talex.zsw.sample.module.main.contract.MainContract
 import talex.zsw.sample.module.main.presenter.MainPresenter
@@ -73,6 +74,16 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
         list.add("4444")
         list.add("4444")
         mNiceSpinner.attachDataSource(list)
+    }
+
+    override fun onDestroy()
+    {
+        super.onDestroy()
+        if (rxChooseImg!=null)
+        {
+            rxChooseImg?.dismiss()
+            rxChooseImg = null
+        }
     }
 
     @OnClick(R.id.mBtn1, R.id.mBtn2, R.id.mBtn3, R.id.mBtn4, R.id.mBtn5, R.id.mBtn6)
@@ -128,6 +139,7 @@ class MainActivity : BaseMVPActivity<MainContract.Presenter>(), MainContract.Vie
                 //                mPresenter.getData(HttpDto(Constant.WEATHER, body).setType(HttpDto.GET))
                 //                uploadLog()
                 showRxChooseImg()
+                start(WebActivity::class.java)
             }
             R.id.mBtn5 ->
             {

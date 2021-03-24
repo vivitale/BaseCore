@@ -28,6 +28,7 @@
 			android:multiprocess="true"
 			android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
 
+
 		<provider
 			android:name="android.support.v4.content.FileProvider"
 			android:authorities="${applicationId}.fileprovider"
@@ -37,7 +38,6 @@
 				android:name="android.support.FILE_PROVIDER_PATHS"
 				android:resource="@xml/file_paths"/>
 		</provider>
-
 		<activity
 			android:name=".crash.DefaultErrorActivity"
 			android:process=":error_activity" />

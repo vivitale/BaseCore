@@ -147,7 +147,7 @@ public class Tool
 	{
 		if(context != null)
 		{
-			return context;
+			return context.getApplicationContext();
 		}
 		throw new NullPointerException("请先调用init()方法");
 	}
