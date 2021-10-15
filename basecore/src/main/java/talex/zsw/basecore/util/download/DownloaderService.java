@@ -37,7 +37,7 @@ public class DownloaderService
 	private static final int DOWNLOADING = 2;// 正在下载状态
 	private static final int PAUSE = 3;// 暂停状态
 	private int state = INIT;
-	public static final String path = "/mnt/sdcard/Sendinfo/Download/";// 保存到SD卡
+	public static final String path = "/mnt/sdcard/Download/";// 保存到SD卡
 
 	public DownloaderService(String urlstr, String localfile, int threadcount, Context context, Handler mHandler)
 	{

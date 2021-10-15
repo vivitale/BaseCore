@@ -4,7 +4,21 @@
 [TOC]
  
 ## 使用方法
-> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::	allprojects {		repositories {			...			maven { url "https://jitpack.io" }		}	}> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:	dependencies {	        implementation 'com.github.vivitale:BaseCore:latest.release'	}> 第三步 使用方法,在Application中初始化:
+> 第一步 在 build.gradle(Project:XXXX) 的 repositories 添加::
+
+	allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
+	}
+> 第二步 在 build.gradle(Module:app) 的 dependencies 添加:
+
+	dependencies {
+	        implementation 'com.github.vivitale:BaseCore:latest.release'
+	}
+
+> 第三步 使用方法,在Application中初始化:
  
     Tool.init(this, BuildConfig.DEBUG);
 
@@ -480,7 +494,7 @@ px2sp                       | px转sp
 ```
 // ----------- 下载相关 ----------- 
 @SuppressLint("SdCardPath")
-public static final String path = "/mnt/sdcard/Download/Sendinfo";// 保存到SD卡的文件夹
+public static final String path = "/mnt/sdcard/Download";// 保存到SD卡的文件夹
 private String localfile = "";// 文件下载之后的本地真实地址
 public String host = "http://daodao.zhiyoubao.com";//下载服务器的地址
 private String dowonloadUrl = "";// 文件的最终下载地址

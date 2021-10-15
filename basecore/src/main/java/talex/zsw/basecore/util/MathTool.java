@@ -283,7 +283,7 @@ public class MathTool
 	{
 		if(scale < 0)
 		{
-			throw new IllegalArgumentException("The scale must be a positive integer or zero");
+			scale = 0;
 		}
 		BigDecimal b = new BigDecimal(v);
 		BigDecimal one = new BigDecimal("1");
@@ -294,7 +294,7 @@ public class MathTool
 	{
 		if(scale < 0)
 		{
-			throw new IllegalArgumentException("The scale must be a positive integer or zero");
+			scale = 0;
 		}
 		BigDecimal b = new BigDecimal(v);
 		BigDecimal one = new BigDecimal("1");
@@ -305,7 +305,7 @@ public class MathTool
 	{
 		if(scale < 0)
 		{
-			throw new IllegalArgumentException("The scale must be a positive integer or zero");
+			scale = 0;
 		}
 		BigDecimal b = new BigDecimal(v);
 		BigDecimal one = new BigDecimal("1");
@@ -316,7 +316,7 @@ public class MathTool
 	{
 		if(scale < 0)
 		{
-			throw new IllegalArgumentException("The scale must be a positive integer or zero");
+			scale = 0;
 		}
 		BigDecimal b = new BigDecimal(v);
 		BigDecimal one = new BigDecimal("1");
@@ -325,9 +325,13 @@ public class MathTool
 
 	public static double round(String v, int scale)
 	{
+		if(RegTool.isEmpty(v))
+		{
+			v = "0";
+		}
 		if(scale < 0)
 		{
-			throw new IllegalArgumentException("The scale must be a positive integer or zero");
+			scale = 0;
 		}
 		BigDecimal b = new BigDecimal(v);
 		BigDecimal one = new BigDecimal("1");
@@ -345,7 +349,7 @@ public class MathTool
 	{
 		if(scale < 0)
 		{
-			throw new IllegalArgumentException("The scale must be a positive integer or zero");
+			scale = 0;
 		}
 		BigDecimal b = new BigDecimal(v);
 		BigDecimal one = new BigDecimal("1");
@@ -356,7 +360,7 @@ public class MathTool
 	{
 		if(scale < 0)
 		{
-			throw new IllegalArgumentException("The scale must be a positive integer or zero");
+			scale = 0;
 		}
 		BigDecimal b = new BigDecimal(v);
 		BigDecimal one = new BigDecimal("1");
@@ -367,7 +371,7 @@ public class MathTool
 	{
 		if(scale < 0)
 		{
-			throw new IllegalArgumentException("The scale must be a positive integer or zero");
+			scale = 0;
 		}
 		BigDecimal b = new BigDecimal(v);
 		BigDecimal one = new BigDecimal("1");
@@ -378,7 +382,7 @@ public class MathTool
 	{
 		if(scale < 0)
 		{
-			throw new IllegalArgumentException("The scale must be a positive integer or zero");
+			scale = 0;
 		}
 		BigDecimal b = new BigDecimal(v);
 		BigDecimal one = new BigDecimal("1");
@@ -387,13 +391,79 @@ public class MathTool
 
 	public static String roundStr(String v, int scale)
 	{
+		if(RegTool.isEmpty(v))
+		{
+			v = "0";
+		}
 		if(scale < 0)
 		{
-			throw new IllegalArgumentException("The scale must be a positive integer or zero");
+			scale = 0;
 		}
 		BigDecimal b = new BigDecimal(v);
 		BigDecimal one = new BigDecimal("1");
 		return b.divide(one, scale, BigDecimal.ROUND_HALF_UP).toString();
+	}
+
+	/**
+	 * 提供精确的两位小数位四舍五入处理。
+	 *
+	 * @param v     需要四舍五入的数字
+	 * @return 四舍五入后的结果
+	 */
+	public static double round2(double v)
+	{
+		return round(v,2);
+	}
+
+	public static double round2(int v)
+	{
+		return round(v,2);
+	}
+
+	public static double round2(float v)
+	{
+		return round(v,2);
+	}
+
+	public static double round2(long v)
+	{
+		return round(v,2);
+	}
+
+	public static double round2(String v)
+	{
+		return round(v,2);
+	}
+
+	/**
+	 * 提供精确的两位小数位四舍五入处理。
+	 *
+	 * @param v     需要四舍五入的数字
+	 * @return 四舍五入后的结果
+	 */
+	public static String round2Str(double v)
+	{
+		return roundStr(v,2);
+	}
+
+	public static String round2Str(int v)
+	{
+		return roundStr(v,2);
+	}
+
+	public static String round2Str(float v)
+	{
+		return roundStr(v,2);
+	}
+
+	public static String round2Str(long v)
+	{
+		return roundStr(v,2);
+	}
+
+	public static String round2Str(String v)
+	{
+		return roundStr(v,2);
 	}
 }
 

@@ -21,69 +21,7 @@
 
 #--------------------------------- 1.公司包 ---------------------------------
 
-#Logsystem
--keep class com.sendinfo.loglib.** {*;}
--dontwarn com.sendinfo.loglib.**
-
-#Headset
--keep class com.qrcode.** {*;}
--dontwarn com.qrcode.**
--keep class com.sam.sdticreader.** {*;}
--dontwarn com.sam.sdticreader.**
--keep class com.sendinfo.machinepower.** {*;}
--dontwarn com.sendinfo.machinepower.**
--keep class com.sendinfo.sendinfoheadsetlib.** {*;}
--dontwarn com.sendinfo.sendinfoheadsetlib.**
--keep class com.sendinfocard.** {*;}
--dontwarn com.sendinfocard.**
--keep class com.com.techsdk.wid.** {*;}
--dontwarn com.com.techsdk.wid.**
--keep class com.util.** {*;}
--dontwarn com.util.**
--keep class com.wellcom.** {*;}
--dontwarn com.wellcom.**
--keep class com.sendinfo.headsetcardutil.** {*;}
--dontwarn com.sendinfo.headsetcardutil.**
--keep class com.sendinfo.headsetcardlib.** {*;}
--dontwarn com.sendinfo.headsetcardlib.**
-
-#哈尼维尔打印机
--dontwarn com.sendinfo.honeywellprintlib.**
--keep class com.sendinfo.honeywellprintlib.**{*;}
-
-#新大陆手持机
--keep class com.newland.** {*;}
--dontwarn com.newland.**
--keep class android.newland.** {*;}
--dontwarn android.newland.**
-
-#公司硬件包
--dontwarn android_serialport_api.**
--keep class android_serialport_api.**{*;}
--dontwarn com.sendinfo.padserialhelp.**
--keep class com.sendinfo.padserialhelp.**{*;}
--dontwarn com.sendinfo.readargslib.**
--keep class com.sendinfo.readargslib.**{*;}
--dontwarn com.sendinfo.devicehelp.**
--keep class com.sendinfo.devicehelp.**{*;}
--dontwarn com.sam.**
--keep class com.sam.**{*;}
--dontwarn com.sendinfo.machinepower.**
--keep class com.sendinfo.machinepower.**{*;}
--dontwarn com.techsdk.wid.**
--keep class com.techsdk.wid.**{*;}
-
-#-------------------------------------------------------------------------
-
 #---------------------------------2.第三方包-------------------------------
-
-#unity3d
--keep class com.sendinfo.handsetbgssj.UnityManager {
-  *;
-}
--dontwarn com.sendinfo.handsetbgssj.UnityManager
--keep class com.sendinfo.handsetbgssjar.** {*;}
--dontwarn com.sendinfo.handsetbgssjar.**
 -keep class bitter.jnibridge.** {*;}
 -dontwarn bitter.jnibridge.**
 -keep class com.unity3d.player.** {*;}
@@ -97,9 +35,6 @@
 -keepclassmembers class * {
    public <init> (org.json.JSONObject);
    }
--keep public class com.sendinfo.handsetbgssj.R$*{
-public static final int *;
-}
 -keepclassmembers enum * {
     public static **[] values();
     public static ** valueOf(java.lang.String);
@@ -113,8 +48,6 @@ public static final int *;
 -dontwarn com.sina.**
 
 #腾讯系 - QQ,微信
--keep class com.sendinfo.handsetbgssj.wxapi.** {*;}
--dontwarn com.sendinfo.handsetbgssj.wxapi.**
 -keep class com.tencent.** {*;}
 -dontwarn com.tencent.**
 

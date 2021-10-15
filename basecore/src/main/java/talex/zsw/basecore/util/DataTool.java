@@ -369,6 +369,10 @@ public class DataTool
 		{
 			return "0"+df.format(string2Double(str));
 		}
+		else if(df.format(string2Double(str)).startsWith("-."))
+		{
+			return "-0"+df.format(string2Double(str));
+		}
 		else
 		{
 			return df.format(string2Double(str));
